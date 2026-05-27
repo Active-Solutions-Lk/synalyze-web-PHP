@@ -26,11 +26,17 @@ $router->add('/contact', 'ContactController@index');
 $router->add('/qa', 'QAController@index');
 $router->add('/support', 'QAController@index');
 $router->add('/signup', 'SignupController@index');
+$router->add('/login', 'LoginController@index');
+$router->add('/dashboard', 'DashboardController@index');
+$router->add('/logout', 'LoginController@logout');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $requestPath = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
     if (strpos($requestPath, '/signup') !== false || strpos($_GET['url'] ?? '', 'signup') !== false) {
         $router->add('/signup', 'SignupController@submit');
+    }
+    if (strpos($requestPath, '/login') !== false || strpos($_GET['url'] ?? '', 'login') !== false) {
+        $router->add('/login', 'LoginController@submit');
     }
     if (strpos($requestPath, '/contact') !== false || strpos($_GET['url'] ?? '', 'contact') !== false) {
         $router->add('/contact', 'ContactController@submit');

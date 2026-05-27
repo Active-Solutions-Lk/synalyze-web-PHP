@@ -80,5 +80,17 @@ class UserModel {
         $stmt = $this->pdo->prepare("DELETE FROM users WHERE id = ?");
         return $stmt->execute([$id]);
     }
+
+    /**
+     * Retrieves a user by their email.
+     *
+     * @param string $email
+     * @return array|false
+     */
+    public function getUserByEmail($email) {
+        $stmt = $this->pdo->prepare("SELECT * FROM users WHERE email = ?");
+        $stmt->execute([$email]);
+        return $stmt->fetch(\PDO::FETCH_ASSOC);
+    }
 }
 

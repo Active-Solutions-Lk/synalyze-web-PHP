@@ -591,4 +591,315 @@ body {
   margin-bottom: 0;
 }
 
+/* =============================================
+   LOGIN PAGE
+   ============================================= */
+
+.login-page {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: stretch;
+}
+
+.login-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.login-bg__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.login-panel {
+  position: relative;
+  z-index: 10;
+  margin-left: auto;               /* push to the right */
+  width: 50%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;             /* center form vertically unlike signup */
+  justify-content: center;
+  padding: 6.5rem 3rem 3rem;
+  overflow-y: auto;
+  background-color: rgba(13, 17, 23, 0.45); /* subtle dark overlay */
+  backdrop-filter: blur(0px);
+}
+
+.login-form-wrap {
+  width: 100%;
+  max-width: 440px; /* slightly wider form for elegant spacing */
+}
+
+/* ---------- Heading ---------- */
+.login-heading {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.login-heading__title {
+  font-size: 2.2rem;
+  font-weight: 500;
+  color: #ffffff;
+  letter-spacing: -0.01em;
+  margin-bottom: 0.5rem;
+}
+
+/* ---------- Form ---------- */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.login-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.login-label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.login-label {
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: #ffffff;
+}
+
+.login-forgot-link {
+  font-size: 0.8rem;
+  color: #cbd5e1;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.login-forgot-link:hover {
+  color: #06b6d4;
+  text-decoration: underline;
+}
+
+.login-input {
+  width: 100%;
+  height: 3.2rem;
+  background-color: rgba(60, 62, 73, 0.6); /* translucent dark fill */
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 9999px; /* pill shape */
+  padding: 0 1.5rem;
+  color: #ffffff;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s, background-color 0.2s;
+}
+
+.login-input:focus {
+  background-color: rgba(66, 69, 90, 0.8);
+  border-color: rgba(6, 182, 212, 0.8);
+  box-shadow: 0 0 0 2px rgba(6, 182, 212, 0.3);
+}
+
+/* ---------- Password wrapper ---------- */
+.login-input-wrap {
+  position: relative;
+}
+
+.login-input--pass {
+  padding-right: 3.2rem;
+}
+
+.login-input-wrap .signup-eye-btn {
+  right: 1.25rem;
+}
+
+/* ---------- Submit button ---------- */
+.login-submit {
+  width: 100%;
+  height: 3.2rem;
+  border: none;
+  border-radius: 9999px; /* pill shape */
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: #ffffff;
+  cursor: pointer;
+  margin-top: 1rem;
+  letter-spacing: 0.02em;
+  transition: opacity 0.2s, transform 0.15s;
+  background-image: linear-gradient(90deg, #1a7a6e, #06b6d4) !important;
+}
+
+.login-submit:hover {
+  opacity: 0.92;
+  transform: translateY(-1px);
+}
+
+.login-submit:active {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* ---------- Are you new link ---------- */
+.login-signup-text {
+  text-align: center;
+  font-size: 0.92rem;
+  color: #cbd5e1;
+  margin-top: 0.8rem;
+}
+
+.login-signup-anchor {
+  color: #06b6d4;
+  font-weight: 500;
+  text-decoration: underline;
+  transition: opacity 0.2s;
+}
+
+.login-signup-anchor:hover {
+  opacity: 0.8;
+}
+
+/* ---------- Responsive Breakpoints ---------- */
+@media (max-width: 1023px) {
+  .login-panel {
+    width: 60%;
+    padding: 6rem 2rem 3rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .login-panel {
+    width: 100%;
+    background-color: rgba(13, 17, 23, 0.82);
+    backdrop-filter: blur(2px);
+    padding: 6rem 1.5rem 3rem;
+    margin-left: 0;
+  }
+  .login-form-wrap {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-panel {
+    padding: 5.5rem 1rem 2.5rem;
+  }
+  .login-heading__title {
+    font-size: 1.8rem;
+  }
+  .login-input, .login-submit {
+    font-size: 0.92rem;
+    height: 3rem;
+  }
+}
+
+/* =============================================
+   USER DASHBOARD PAGE
+   ============================================= */
+
+.glassmorphism-panel {
+  background: rgba(30, 32, 48, 0.45) !important;
+  border: 1px solid rgba(255, 255, 255, 0.07) !important;
+  backdrop-filter: blur(12px);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+}
+
+.dashboard-card {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s ease;
+}
+
+.dashboard-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(6, 182, 212, 0.3) !important;
+}
+
+.dashboard-logout-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: #f87171;
+  border-radius: 9999px;
+  padding: 0.6rem 1.35rem;
+  font-weight: 600;
+  font-size: 0.92rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dashboard-logout-btn:hover {
+  background-color: #ef4444;
+  color: #ffffff;
+  border-color: #ef4444;
+  transform: scale(1.02);
+}
+
+.dashboard-action-card {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-decoration: none;
+}
+
+.dashboard-action-card:hover {
+  transform: translateY(-3px);
+  background-color: #1A1C23 !important;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* =============================================
+   MOBILE RESPONSIVENESS REFINEMENTS
+   ============================================= */
+
+@media (max-width: 1023px) {
+  /* Dashboard layout columns fallbacks */
+  .grid-cols-5 {
+    grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (max-width: 767px) {
+  /* Dashboard card spacing tweaks */
+  .dashboard-card {
+    padding: 1.5rem !important;
+  }
+  .dashboard-action-card {
+    padding: 1.25rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Dashboard small mobile optimizations */
+  .dashboard-card {
+    padding: 1.25rem !important;
+  }
+  .dashboard-logout-btn {
+    padding: 0.5rem 1.1rem;
+    font-size: 0.85rem;
+  }
+  
+  /* Text and title size adaptations */
+  .text-3xl {
+    font-size: 1.65rem !important;
+  }
+  .text-2xl {
+    font-size: 1.35rem !important;
+  }
+  .text-lg {
+    font-size: 0.95rem !important;
+  }
+}
+
+
+
+
 
