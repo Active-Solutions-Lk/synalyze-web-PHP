@@ -217,12 +217,12 @@
       </div>
 
       <div class="flex flex-col sm:flex-row items-center justify-center gap-8 w-full">
-        <button class="flex items-center justify-center gap-3 px-6 py-3.5 sm:px-8 md:px-12 md:py-5 rounded-[1.5rem] bg-[#3d8c7c] text-white text-base sm:text-lg md:text-[1.65rem] hover:bg-[#439283] transition-colors shadow-lg shadow-[#3d8c7c]/20 w-full sm:w-auto">
+        <a href="<?= e(baseUrl('/signup')) ?>" class="flex items-center justify-center gap-3 px-6 py-3.5 sm:px-8 md:px-12 md:py-5 rounded-[1.5rem] bg-[#3d8c7c] text-white text-base sm:text-lg md:text-[1.65rem] hover:bg-[#439283] transition-colors shadow-lg shadow-[#3d8c7c]/20 w-full sm:w-auto">
           Request Free Demo
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-8 h-8 ml-2">
             <path d="M3.478 2.404a.75.75 0 00-.926.941l2.432 7.905H13.5a.75.75 0 010 1.5H4.984l-2.432 7.905a.75.75 0 00.926.94 60.519 60.519 0 0018.445-8.986.75.75 0 000-1.218A60.517 60.517 0 003.478 2.404z" />
           </svg>
-        </button>
+        </a>
         <a href="<?= e(baseUrl('/contact')) ?>" class="px-6 py-3.5 sm:px-8 md:px-12 md:py-5 rounded-[1.5rem] bg-white text-[#115e59] text-base sm:text-lg md:text-[1.65rem] hover:bg-gray-100 transition-colors shadow-lg w-full sm:w-auto flex items-center justify-center">
           Contact Us
         </a>

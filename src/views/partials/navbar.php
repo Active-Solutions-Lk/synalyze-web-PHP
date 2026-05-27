@@ -26,7 +26,7 @@ $logoUrl = $settings['logoUrl'] ?? '';
       <a href="<?= e(baseUrl('/#features')) ?>" class="hover:text-[#06b6d4] transition-colors">Features</a>
       <a href="<?= e(baseUrl('/#how-it-works')) ?>" class="hover:text-[#06b6d4] transition-colors">How It Works</a>
       <a href="<?= e(baseUrl('/#deployment')) ?>" class="hover:text-[#06b6d4] transition-colors">Deployment</a>
-      <a href="<?= e(baseUrl('/qa')) ?>" class="hover:text-[#06b6d4] transition-colors">Support</a>
+      <a href="<?= e(baseUrl('/qa')) ?>" class="hover:text-[#06b6d4] transition-colors">FAQs</a>
     </nav>
     <div class="hidden lg:flex items-center gap-6">
       <a href="<?= e(baseUrl('/login')) ?>" class="text-base font-medium text-white hover:text-[#06b6d4] transition-colors">Sign In</a>
@@ -57,7 +57,7 @@ $logoUrl = $settings['logoUrl'] ?? '';
       <a href="<?= e(baseUrl('/#features')) ?>" class="text-white hover:text-[#06b6d4] transition-colors py-2 border-b border-white/5">Features</a>
       <a href="<?= e(baseUrl('/#how-it-works')) ?>" class="text-white hover:text-[#06b6d4] transition-colors py-2 border-b border-white/5">How It Works</a>
       <a href="<?= e(baseUrl('/#deployment')) ?>" class="text-white hover:text-[#06b6d4] transition-colors py-2 border-b border-white/5">Deployment</a>
-      <a href="<?= e(baseUrl('/qa')) ?>" class="text-white hover:text-[#06b6d4] transition-colors py-2 border-b border-white/5">Support</a>
+      <a href="<?= e(baseUrl('/qa')) ?>" class="text-white hover:text-[#06b6d4] transition-colors py-2 border-b border-white/5">FAQs</a>
       
       <div class="flex flex-col gap-4 mt-2">
         <a href="<?= e(baseUrl('/login')) ?>" class="text-center text-white py-2 border border-white/20 rounded-lg hover:bg-white/5">Sign In</a>

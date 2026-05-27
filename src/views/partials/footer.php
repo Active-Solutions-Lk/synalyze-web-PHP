@@ -30,9 +30,9 @@ $logoUrl = $settings['logoUrl'] ?? '';
           Cloud-based log analysis software for NAS. Take back control of your data with comprehensive usage auditing and reporting.
         </p>
         <div class="flex flex-col gap-2 mt-4 text-white font-bold text-[1rem]">
-          <p>076 440 4456</p>
-          <p>vipsupport@activelk.com</p>
-          <p>http://sg-analyzer.synalyze.net:3000/</p>
+          <a href="tel:+94764404456" class="hover:text-[#3d8c7c] transition-colors">076 440 4456</a>
+          <a href="mailto:vipsupport@activelk.com" class="hover:text-[#3d8c7c] transition-colors">vipsupport@activelk.com</a>
+          <a href="http://sg-analyzer.synalyze.net:3000/" target="_blank" rel="noopener noreferrer" class="hover:text-[#3d8c7c] transition-colors break-all">http://sg-analyzer.synalyze.net:3000/</a>
         </div>
       </div>
 
@@ -42,8 +42,8 @@ $logoUrl = $settings['logoUrl'] ?? '';
             <h4 class="text-white font-bold mb-5 text-lg">Product</h4>
             <ul class="space-y-3 text-gray-300 font-medium">
               <li><a href="<?= e(baseUrl('/#features')) ?>" class="hover:text-white transition-colors">Features</a></li>
-              <li><a href="<?= e(baseUrl('/#how-it-works')) ?>" class="hover:text-white transition-colors">How It Works</a></li>
-              <li><a href="<?= e(baseUrl('/#deployment')) ?>" class="hover:text-white transition-colors">Deployment</a></li>
+              <!-- <li><a href="<?= e(baseUrl('/#how-it-works')) ?>" class="hover:text-white transition-colors">How It Works</a></li>
+              <li><a href="<?= e(baseUrl('/#deployment')) ?>" class="hover:text-white transition-colors">Deployment</a></li> -->
               <li><a href="<?= e(baseUrl('/pricing')) ?>" class="hover:text-white transition-colors">Pricing</a></li>
             </ul>
           </div>
@@ -51,8 +51,8 @@ $logoUrl = $settings['logoUrl'] ?? '';
             <h4 class="text-white font-bold mb-5 text-lg">Company</h4>
             <ul class="space-y-3 text-gray-300 font-medium">
               <li><a href="<?= e(baseUrl('/about')) ?>" class="hover:text-white transition-colors">About Us</a></li>
-              <li><a href="#" class="hover:text-white transition-colors">Blog</a></li>
-              <li><a href="#" class="hover:text-white transition-colors">Careers</a></li>
+              <!-- <li><a href="#" class="hover:text-white transition-colors">Blog</a></li>
+              <li><a href="#" class="hover:text-white transition-colors">Careers</a></li> -->
               <li><a href="<?= e(baseUrl('/contact')) ?>" class="hover:text-white transition-colors">Contact</a></li>
             </ul>
           </div>
@@ -61,8 +61,8 @@ $logoUrl = $settings['logoUrl'] ?? '';
             <ul class="space-y-3 text-gray-300 font-medium">
               <li><a href="#" class="hover:text-white transition-colors">Documentation</a></li>
               <li><a href="<?= e(baseUrl('/qa')) ?>" class="hover:text-white transition-colors">FAQs</a></li>
-              <li><a href="#" class="hover:text-white transition-colors">Support Center</a></li>
-              <li><a href="#" class="hover:text-white transition-colors">Status</a></li>
+              <!-- <li><a href="#" class="hover:text-white transition-colors">Support Center</a></li>
+              <li><a href="#" class="hover:text-white transition-colors">Status</a></li> -->
             </ul>
           </div>
         </div>
