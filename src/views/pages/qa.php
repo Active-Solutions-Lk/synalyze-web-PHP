@@ -181,7 +181,7 @@ details[open] .faq-chevron {
               </div>
             <?php else: ?>
               <?php foreach ($category['items'] as $item): ?>
-                <details class="faq-card group" <?= $item === reset($category['items']) && $category === reset($categories) ? 'open' : '' ?>>
+                <details class="faq-card group" <?= $item === reset($category['items']) && $category === reset($categories) ? 'closed' : '' ?>>
                   <summary class="faq-summary">
                     <div class="faq-question-wrap">
                       <?= lucide_icon('HelpCircle', 'faq-icon-left', '1.5') ?>
@@ -202,8 +202,8 @@ details[open] .faq-chevron {
       <?php endforeach; ?>
     </div>
 
-    <!-- Divider -->
-    <div class="h-[1px] w-full bg-white/10 mt-20 mb-24"></div>
+    <div class="h-[1px] w-full bg-white mt-20"></div>
+
   </div>
 
   <!-- Bottom transition gradient -->

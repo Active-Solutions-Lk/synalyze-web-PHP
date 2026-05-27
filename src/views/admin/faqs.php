@@ -102,31 +102,29 @@
     </div>
   <?php endif; ?>
 
-  <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-    <!-- Left Column: Add Category -->
-    <div class="lg:col-span-1">
-      <div class="admin-card h-fit">
-        <h3 class="text-xl font-bold text-white mb-2 flex items-center gap-2">
-          <?= lucide_icon('PlusCircle', 'w-5 h-5 text-teal-400') ?>
-          Add Category
-        </h3>
-        <p class="text-xs text-gray-400 mb-4">Create a new FAQ category block to group related questions together.</p>
-        
-        <form method="POST" action="<?= e(baseUrl('/admin/faqs/category/create')) ?>" class="space-y-4">
-          <div>
-            <label class="text-xs text-gray-400 font-semibold uppercase block mb-1">Category Name</label>
-            <input type="text" name="name" placeholder="e.g., General Questions" required class="admin-input">
-          </div>
-          <button type="submit" class="w-full admin-btn-primary">
-            <?= lucide_icon('Plus', 'w-4 h-4') ?>
-            Add Category
-          </button>
-        </form>
-      </div>
+  <div class="max-w-4xl mx-auto space-y-8">
+    <!-- Top Row: Add Category Card -->
+    <div class="admin-card">
+      <h3 class="text-xl font-bold text-white mb-2 flex items-center gap-2">
+        <?= lucide_icon('PlusCircle', 'w-5 h-5 text-teal-400') ?>
+        Add New Category
+      </h3>
+      <p class="text-xs text-gray-400 mb-4">Create a new FAQ category to group related questions together.</p>
+      
+      <form method="POST" action="<?= e(baseUrl('/admin/faqs/category/create')) ?>" class="flex flex-col sm:flex-row gap-4 items-end">
+        <div class="flex-grow w-full">
+          <label class="text-xs text-gray-400 font-semibold uppercase block mb-1">Category Name</label>
+          <input type="text" name="name" placeholder="e.g., General Questions" required class="admin-input">
+        </div>
+        <button type="submit" class="w-full sm:w-auto admin-btn-primary py-3 px-6 shrink-0 h-[46px]">
+          <?= lucide_icon('Plus', 'w-4 h-4') ?>
+          <span>Add Category</span>
+        </button>
+      </form>
     </div>
 
-    <!-- Right Column: Categories list & FAQ items -->
-    <div class="lg:col-span-2 space-y-8">
+    <!-- Categories List & FAQ Items -->
+    <div class="space-y-8">
       <?php foreach ($categories as $cat): ?>
         <div class="admin-card">
           <!-- Category Header -->
