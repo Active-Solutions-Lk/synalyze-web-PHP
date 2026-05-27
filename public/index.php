@@ -25,9 +25,16 @@ $router->add('/pricing', 'PricingController@index');
 $router->add('/contact', 'ContactController@index');
 $router->add('/qa', 'QAController@index');
 $router->add('/support', 'QAController@index');
+$router->add('/signup', 'SignupController@index');
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && strpos($_GET['url'] ?? '', 'contact') !== false) {
-    $router->add('/contact', 'ContactController@submit');
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $requestPath = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+    if (strpos($requestPath, '/signup') !== false || strpos($_GET['url'] ?? '', 'signup') !== false) {
+        $router->add('/signup', 'SignupController@submit');
+    }
+    if (strpos($requestPath, '/contact') !== false || strpos($_GET['url'] ?? '', 'contact') !== false) {
+        $router->add('/contact', 'ContactController@submit');
+    }
 }
 
 // Admin routes
@@ -72,6 +79,10 @@ $router->add('/admin/pricing/option/update', 'PricingAdminController@updateOptio
 
 $router->add('/admin/contact', 'ContactAdminController@index');
 $router->add('/admin/contact/update', 'ContactAdminController@update');
+
+$router->add('/admin/users', 'UsersAdminController@index');
+$router->add('/admin/users/delete', 'UsersAdminController@delete');
+
 
 $router->add('/admin/about', 'AboutAdminController@index');
 $router->add('/admin/about/hero/update', 'AboutAdminController@updateHero');

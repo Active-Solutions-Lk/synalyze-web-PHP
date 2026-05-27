@@ -13,7 +13,9 @@
         ['title' => 'Landing Page', 'desc' => 'Hero, features, deployment', 'href' => '/admin/landing', 'icon' => 'file-text'],
         ['title' => 'Pricing', 'desc' => 'Plans, features, add-ons', 'href' => '/admin/pricing', 'icon' => 'credit-card'],
         ['title' => 'FAQs', 'desc' => 'Manage questions & answers', 'href' => '/admin/faqs', 'icon' => 'help-circle'],
+        ['title' => 'Users', 'desc' => 'View & manage registered users', 'href' => '/admin/users', 'icon' => 'users'],
     ];
+
     foreach ($cards as $card):
     ?>
     <a href="<?= e(baseUrl($card['href'])) ?>" class="block p-6 rounded-xl bg-[#1A1A1A] border border-gray-800 hover:border-[#00CED1] transition-colors group">

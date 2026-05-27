@@ -30,7 +30,9 @@
           ['name' => 'Contact Page', 'href' => '/admin/contact', 'icon' => 'contact-round'],
           ['name' => 'Pricing', 'href' => '/admin/pricing', 'icon' => 'credit-card'],
           ['name' => 'FAQs', 'href' => '/admin/faqs', 'icon' => 'help-circle'],
+          ['name' => 'Users', 'href' => '/admin/users', 'icon' => 'users'],
       ];
+
       $currentPath = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
       // Remove base path if needed, simplifying for now assuming domain root or similar
       foreach ($navItems as $item): 

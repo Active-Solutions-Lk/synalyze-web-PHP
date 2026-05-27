@@ -142,3 +142,15 @@ CREATE TABLE IF NOT EXISTS ContactPage (
     locationTitle TEXT NOT NULL DEFAULT 'Our Location',
     mapEmbedUrl TEXT NOT NULL
 );
+
+CREATE TABLE IF NOT EXISTS users (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    full_name TEXT NOT NULL,
+    company_name TEXT,
+    address TEXT NOT NULL,
+    phone TEXT NOT NULL,
+    email TEXT NOT NULL UNIQUE,
+    password TEXT NOT NULL,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+

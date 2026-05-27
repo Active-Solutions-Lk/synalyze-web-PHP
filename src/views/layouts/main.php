@@ -12,21 +12,27 @@
   <!-- Load Lucide icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
 </head>
-<body class="bg-background text-foreground bg-[#16171B] overflow-x-hidden selection:bg-[#06b6d4] selection:text-white flex min-h-screen flex-col relative">
+<body class="bg-background text-foreground bg-[#16171B] overflow-x-hidden selection:bg-[#06b6d4] selection:text-white flex min-h-screen flex-col relative"
+      data-eye-show="<?= e(baseUrl('/assets/images/Sign up/view (eye).png')) ?>"
+      data-eye-hide="<?= e(baseUrl('/assets/images/Sign up/no view (eye).png')) ?>">
 
   <?php require __DIR__ . '/../partials/navbar.php'; ?>
 
-  <main class="flex-1 relative z-10 pt-24">
+  <main class="flex-1 relative z-10<?= isset($noBackground) && $noBackground ? '' : ' pt-24' ?>">
     <!-- Page Background -->
+    <?php if (!isset($noBackground) || !$noBackground): ?>
     <div 
       class="absolute inset-0 -z-10 bg-[#16171B] bg-cover bg-top bg-no-repeat pointer-events-none"
       style="background-image: url('<?= e(baseUrl('/assets/images/bg.png')) ?>')"
     ></div>
+    <?php endif; ?>
 
     <?= $content ?? '' ?>
   </main>
 
-  <?php require __DIR__ . '/../partials/footer.php'; ?>
+  <?php if (!isset($noFooter) || !$noFooter): ?>
+    <?php require __DIR__ . '/../partials/footer.php'; ?>
+  <?php endif; ?>
 
   <script src="<?= e(baseUrl('/assets/js/app.js')) ?>"></script>
 </body>
