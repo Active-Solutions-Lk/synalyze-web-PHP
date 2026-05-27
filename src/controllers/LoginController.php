@@ -58,6 +58,9 @@ class LoginController {
                         'company_name' => $user['company_name'] ?? ''
                     ];
 
+                    // Mark user as active in the database
+                    $userModel->updateStatus($user['id'], 'active');
+
                     $_SESSION['success'] = "Welcome back, " . e($user['full_name']) . "!";
                     unset($_SESSION['old_input']);
                     unset($_SESSION['errors']);
@@ -82,6 +85,11 @@ class LoginController {
 
     public function logout() {
         if (isset($_SESSION['user'])) {
+            // Mark user as inactive in the database before clearing session
+            require_once dirname(__DIR__) . '/models/UserModel.php';
+            $userModel = new UserModel();
+            $userModel->updateStatus($_SESSION['user']['id'], 'inactive');
+
             unset($_SESSION['user']);
         }
         $_SESSION['success'] = "You have been logged out successfully.";
