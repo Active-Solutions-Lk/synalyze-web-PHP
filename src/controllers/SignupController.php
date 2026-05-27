@@ -89,21 +89,10 @@ class SignupController {
                     ];
                     
                     if ($userModel->createUser($userData)) {
-                        // Automatically log in the user upon successful signup
-                        $user = $userModel->getUserByEmail($email);
-                        if ($user) {
-                            $_SESSION['user'] = [
-                                'id' => $user['id'],
-                                'full_name' => $user['full_name'],
-                                'email' => $user['email'],
-                                'company_name' => $user['company_name'] ?? ''
-                            ];
-                        }
-
-                        $_SESSION['success'] = "Your account has been created successfully! Welcome to SYNALYZE.";
+                        $_SESSION['success'] = "Your account has been created successfully! Welcome to SYNALYZE. Please sign in below.";
                         unset($_SESSION['old_input']);
                         unset($_SESSION['errors']);
-                        header("Location: " . baseUrl('/'));
+                        header("Location: " . baseUrl('/login'));
                         exit;
                     } else {
                         $errors[] = "Something went wrong during registration. Please try again.";
