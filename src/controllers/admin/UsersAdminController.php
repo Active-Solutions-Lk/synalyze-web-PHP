@@ -2,6 +2,12 @@
 require_once dirname(__DIR__, 2) . '/models/UserModel.php';
 
 class UsersAdminController {
+    public function __construct() {
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+    }
+
     public function index() {
         $model = new UserModel();
         $search = $_GET['search'] ?? '';

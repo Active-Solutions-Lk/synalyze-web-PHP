@@ -2,6 +2,12 @@
 require_once dirname(__DIR__, 2) . '/models/LandingModel.php';
 
 class LandingAdminController {
+    public function __construct() {
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+    }
+
     public function index() {
         $model = new LandingModel();
         $hero = $model->getHeroSection();

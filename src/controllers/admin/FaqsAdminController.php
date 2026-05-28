@@ -2,6 +2,12 @@
 require_once dirname(__DIR__, 2) . '/models/FaqModel.php';
 
 class FaqsAdminController {
+    public function __construct() {
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+    }
+
     public function index() {
         $model = new FaqModel();
         $categories = $model->getFaqCategories();
