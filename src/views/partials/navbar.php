@@ -20,7 +20,7 @@ $isHome = ($currentPath === '/');
 $isLogin = ($currentPath === '/login');
 $isSignup = ($currentPath === '/signup');
 $isDashboard = ($currentPath === '/dashboard');
-$isSupport = ($currentPath === '/qa' || $currentPath === '/support');
+$isSupport = ($currentPath === '/qa');
 
 $isLoggedIn = isset($_SESSION['user']);
 ?>
@@ -41,12 +41,12 @@ $isLoggedIn = isset($_SESSION['user']);
     </a>
     
     <!-- Desktop Navigation -->
-    <nav class="hidden lg:flex items-center gap-8 text-base font-large text-white">
-      <a href="<?= e(baseUrl('/')) ?>" class="<?= $isHome ? 'border border-[#06b6d4] rounded-full px-5 py-2 text-white' : 'hover:text-[#06b6d4] transition-colors' ?>">Home</a>
-      <a href="<?= e(baseUrl('/#how-it-works')) ?>" class="hover:text-[#06b6d4] transition-colors">How It Works</a>
-      <a href="<?= e(baseUrl('/#features')) ?>" class="hover:text-[#06b6d4] transition-colors">Features</a>
-      <a href="<?= e(baseUrl('/#deployment')) ?>" class="hover:text-[#06b6d4] transition-colors">Deployment</a>
-      <a href="<?= e(baseUrl('/qa')) ?>" class="<?= $isSupport ? 'border border-[#06b6d4] rounded-full px-5 py-2 text-white' : 'hover:text-[#06b6d4] transition-colors' ?>">FAQs</a>
+    <nav class="hidden lg:flex items-center gap-8 text-base font-large text-white" id="desktop-nav">
+      <a href="<?= e(baseUrl('/')) ?>" class="nav-link <?= $isHome ? 'border border-[#06b6d4] rounded-full px-5 py-2 text-white' : 'hover:text-[#06b6d4] transition-colors' ?>" data-target="home">Home</a>
+      <a href="<?= e(baseUrl('/#how-it-works')) ?>" class="nav-link hover:text-[#06b6d4] transition-colors" data-target="how-it-works">How It Works</a>
+      <a href="<?= e(baseUrl('/#features')) ?>" class="nav-link hover:text-[#06b6d4] transition-colors" data-target="features">Features</a>
+      <a href="<?= e(baseUrl('/#deployment')) ?>" class="nav-link hover:text-[#06b6d4] transition-colors" data-target="deployment">Deployment</a>
+      <a href="<?= e(baseUrl('/qa')) ?>" class="nav-link <?= $isSupport ? 'border border-[#06b6d4] rounded-full px-5 py-2 text-white' : 'hover:text-[#06b6d4] transition-colors' ?>" data-target="qa">FAQs</a>
     </nav>
 
     <!-- Desktop Session Actions -->
@@ -91,12 +91,12 @@ $isLoggedIn = isset($_SESSION['user']);
 
   <!-- Mobile Menu Panel -->
   <div id="mobile-menu" class="lg:hidden bg-[#16171B] border-t border-white/10">
-    <div class="container mx-auto px-6 py-4 flex flex-col gap-4">
-      <a href="<?= e(baseUrl('/')) ?>" class="text-white hover:text-[#06b6d4] transition-colors py-2 border-b border-white/5">Home</a>
-      <a href="<?= e(baseUrl('/#how-it-works')) ?>" class="text-white hover:text-[#06b6d4] transition-colors py-2 border-b border-white/5">How It Works</a>
-      <a href="<?= e(baseUrl('/#features')) ?>" class="text-white hover:text-[#06b6d4] transition-colors py-2 border-b border-white/5">Features</a>
-      <a href="<?= e(baseUrl('/#deployment')) ?>" class="text-white hover:text-[#06b6d4] transition-colors py-2 border-b border-white/5">Deployment</a>
-      <a href="<?= e(baseUrl('/qa')) ?>" class="text-white hover:text-[#06b6d4] transition-colors py-2 border-b border-white/5">FAQs</a>
+    <div class="container mx-auto px-6 py-4 flex flex-col gap-4" id="mobile-nav">
+      <a href="<?= e(baseUrl('/')) ?>" class="nav-link-mobile <?= $isHome ? 'text-white font-semibold' : 'text-white hover:text-[#06b6d4]' ?> transition-colors py-2 border-b border-white/5" data-target="home">Home</a>
+      <a href="<?= e(baseUrl('/#how-it-works')) ?>" class="nav-link-mobile text-white hover:text-[#06b6d4] transition-colors py-2 border-b border-white/5" data-target="how-it-works">How It Works</a>
+      <a href="<?= e(baseUrl('/#features')) ?>" class="nav-link-mobile text-white hover:text-[#06b6d4] transition-colors py-2 border-b border-white/5" data-target="features">Features</a>
+      <a href="<?= e(baseUrl('/#deployment')) ?>" class="nav-link-mobile text-white hover:text-[#06b6d4] transition-colors py-2 border-b border-white/5" data-target="deployment">Deployment</a>
+      <a href="<?= e(baseUrl('/qa')) ?>" class="nav-link-mobile <?= $isSupport ? 'text-white font-semibold' : 'text-white hover:text-[#06b6d4]' ?> transition-colors py-2 border-b border-white/5" data-target="qa">FAQs</a>
       
       <div class="flex flex-col gap-4 mt-2">
         <?php if ($isLoggedIn): ?>
@@ -128,3 +128,71 @@ $isLoggedIn = isset($_SESSION['user']);
     </div>
   </div>
 </header>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const isHomePage = window.location.pathname === '/' || window.location.pathname === '/index.php' || window.location.pathname === '';
+  if (!isHomePage) return;
+
+  const sections = document.querySelectorAll('section[id]');
+  const desktopLinks = document.querySelectorAll('#desktop-nav .nav-link');
+  const mobileLinks = document.querySelectorAll('#mobile-nav .nav-link-mobile');
+
+  const desktopActive = ['border', 'border-[#06b6d4]', 'rounded-full', 'px-5', 'py-2', 'text-white'];
+  const desktopInactive = ['hover:text-[#06b6d4]', 'transition-colors'];
+  const mobileActive = ['text-white', 'font-semibold'];
+  const mobileInactive = ['text-white', 'hover:text-[#06b6d4]'];
+
+  function setActiveNav(targetId) {
+    desktopLinks.forEach(link => {
+      if (link.dataset.target === targetId) {
+        link.classList.remove(...desktopInactive);
+        link.classList.add(...desktopActive);
+      } else {
+        link.classList.remove(...desktopActive);
+        link.classList.add(...desktopInactive);
+      }
+    });
+
+    mobileLinks.forEach(link => {
+      if (link.dataset.target === targetId) {
+        link.classList.remove(...mobileInactive);
+        link.classList.add(...mobileActive);
+      } else {
+        link.classList.remove(...mobileActive);
+        link.classList.add(...mobileInactive);
+      }
+    });
+  }
+
+  const observerOptions = {
+    root: null,
+    rootMargin: '-40% 0px -60% 0px',
+    threshold: 0
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        setActiveNav(entry.target.id);
+      }
+    });
+  }, observerOptions);
+
+  sections.forEach(section => observer.observe(section));
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY < 200) {
+      setActiveNav('home');
+    }
+  });
+  
+  // Set initial state based on hash
+  if (window.location.hash) {
+    const hashTarget = window.location.hash.substring(1);
+    if (document.getElementById(hashTarget)) {
+      setActiveNav(hashTarget);
+    }
+  }
+});
+</script>

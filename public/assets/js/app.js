@@ -33,6 +33,22 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             }
         });
+
+        // Close menu when a link inside it is clicked
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (mobileMenu.classList.contains('open')) {
+                    mobileMenu.classList.remove('open');
+                    if (iconOpen && iconClose) {
+                        iconOpen.classList.remove('hidden');
+                        iconOpen.classList.add('block');
+                        iconClose.classList.add('hidden');
+                        iconClose.classList.remove('block');
+                    }
+                }
+            });
+        });
     }
 
     // Theme toggle via 'd' hotkey
