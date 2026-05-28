@@ -99,7 +99,7 @@ class SignupController {
                         $_SESSION['success'] = "Welcome to SYNALYZE, " . e($newUser['full_name']) . "! Your account is ready. You can now access the portal.";
                         unset($_SESSION['old_input']);
                         unset($_SESSION['errors']);
-                        header("Location: " . baseUrl('/'));
+                        header("Location: " . baseUrl('/signup'));
                         exit;
                     } else {
                         $errors[] = "Something went wrong during registration. Please try again.";

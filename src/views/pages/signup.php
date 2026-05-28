@@ -241,12 +241,6 @@ $oldInput = $_SESSION['old_input'] ?? [];
           <a href="#" id="signup-google" class="signup-social__btn" aria-label="Sign up with Google">
             <img src="<?= e(baseUrl('/assets/images/Sign up/google.png')) ?>" alt="Google" class="signup-social__icon" />
           </a>
-          <!-- <a href="#" id="signup-facebook" class="signup-social__btn" aria-label="Sign up with Facebook">
-            <img src="<?= e(baseUrl('/assets/images/Sign up/fb.png')) ?>" alt="Facebook" class="signup-social__icon" />
-          </a>
-          <a href="#" id="signup-x" class="signup-social__btn" aria-label="Sign up with X">
-            <img src="<?= e(baseUrl('/assets/images/Sign up/X.png')) ?>" alt="X" class="signup-social__icon" />
-          </a> -->
         </div>
 
       </form>
