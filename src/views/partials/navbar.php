@@ -69,11 +69,11 @@ $isLoggedIn = isset($_SESSION['user']);
         </a>
       <?php else: ?>
         <a 
-          href="<?= e(baseUrl('/signup')) ?>" 
-          class="text-sm font-semibold px-6 py-2.5 rounded-full text-white transition-opacity hover:opacity-90 <?= $isSignup ? 'border border-[#06b6d4]' : '' ?>"
+          href="<?= e(baseUrl('/pricing')) ?>" 
+          class="text-sm font-semibold px-6 py-2.5 rounded-full text-white transition-opacity hover:opacity-90"
           style="background-color: <?= e($accentColor) ?>;"
         >
-          Free Demo
+          Pricing
         </a>
       <?php endif; ?>
     </div>
@@ -117,11 +117,11 @@ $isLoggedIn = isset($_SESSION['user']);
           </a>
         <?php else: ?>
           <a 
-            href="<?= e(baseUrl('/signup')) ?>" 
+            href="<?= e(baseUrl('/pricing')) ?>" 
             class="text-center text-white py-2.5 rounded-full font-semibold"
             style="background-color: <?= e($accentColor) ?>;"
           >
-            Free Demo
+            Pricing
           </a>
         <?php endif; ?>
       </div>

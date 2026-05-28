@@ -232,7 +232,7 @@ $oldInput = $_SESSION['old_input'] ?? [];
         <!-- Divider -->
         <div class="signup-divider">
           <span class="signup-divider__line"></span>
-          <span class="signup-divider__text">Or Sign Up with</span>
+          <span class="signup-divider__text">Or</span>
           <span class="signup-divider__line"></span>
         </div>
 
@@ -240,6 +240,7 @@ $oldInput = $_SESSION['old_input'] ?? [];
         <div class="signup-social">
           <a href="#" id="signup-google" class="signup-social__btn" aria-label="Sign up with Google">
             <img src="<?= e(baseUrl('/assets/images/Sign up/google.png')) ?>" alt="Google" class="signup-social__icon" />
+            <span class="signup-social__text">Sign up with Google</span>
           </a>
         </div>
 

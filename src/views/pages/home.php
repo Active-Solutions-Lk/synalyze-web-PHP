@@ -30,7 +30,16 @@
         <?= e($hero['subheadline']) ?>
       </p>
 
-      <div class="relative max-w-2xl mx-auto">
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-6 md:gap-10 mt-8 md:mt-12">
+        <a href="<?= e(baseUrl('/signup')) ?>" class="flex items-center justify-center gap-3 px-6 py-3.5 sm:px-8 md:px-12 md:py-5 rounded-[1.5rem] bg-[#3d8c7c] text-white text-base sm:text-lg md:text-[1.65rem] hover:bg-[#439283] transition-colors shadow-lg shadow-[#3d8c7c]/20 w-full sm:w-auto">
+          Request Free Demo
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-8 h-8 ml-2">
+            <path d="M3.478 2.404a.75.75 0 00-.926.941l2.432 7.905H13.5a.75.75 0 010 1.5H4.984l-2.432 7.905a.75.75 0 00.926.94 60.519 60.519 0 0018.445-8.986.75.75 0 000-1.218A60.517 60.517 0 003.478 2.404z" />
+          </svg>
+        </a>        
+      </div>
+
+      <!-- <div class="relative max-w-2xl mx-auto">
         <div class="flex items-center w-full h-16 rounded-full bg-white shadow-2xl overflow-hidden px-3 sm:px-6">
           <?= lucide_icon('Search', 'text-gray-900 shrink-0 w-6 h-6 mr-4') ?>
           <input
@@ -39,7 +48,7 @@
             class="w-full h-full bg-transparent text-gray-900 text-lg focus:outline-none font-medium placeholder:text-gray-900 placeholder:font-bold"
           />
         </div>
-      </div>
+      </div> -->
     </div>
   </section>
 
@@ -233,7 +242,7 @@
 
       <div class="flex flex-col sm:flex-row items-center justify-center gap-8 w-full">
         <a href="<?= e(baseUrl('/signup')) ?>" class="flex items-center justify-center gap-3 px-6 py-3.5 sm:px-8 md:px-12 md:py-5 rounded-[1.5rem] bg-[#3d8c7c] text-white text-base sm:text-lg md:text-[1.65rem] hover:bg-[#439283] transition-colors shadow-lg shadow-[#3d8c7c]/20 w-full sm:w-auto">
-          Request Free Demo
+          Free Demo
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-8 h-8 ml-2">
             <path d="M3.478 2.404a.75.75 0 00-.926.941l2.432 7.905H13.5a.75.75 0 010 1.5H4.984l-2.432 7.905a.75.75 0 00.926.94 60.519 60.519 0 0018.445-8.986.75.75 0 000-1.218A60.517 60.517 0 003.478 2.404z" />
           </svg>
