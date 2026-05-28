@@ -8,6 +8,21 @@
     <div class="absolute inset-0 z-0 bg-gradient-to-b from-black/60 via-black/20 to-[#16171B]"></div>
 
     <div class="container relative z-10 mx-auto px-6 text-center max-w-5xl">
+      <!-- Success Alerts -->
+      <?php if (isset($_SESSION['success'])): ?>
+        <div class="signup-alert signup-alert--success max-w-3xl mx-auto mb-8 text-left">
+          <div class="signup-alert__icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="signup-alert-svg">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <div class="signup-alert__content">
+            <p class="signup-alert__msg"><?= e($_SESSION['success']) ?></p>
+          </div>
+        </div>
+        <?php unset($_SESSION['success']); ?>
+      <?php endif; ?>
+
       <h1 class="text-3xl sm:text-5xl md:text-7xl lg:text-[5rem] font-bold text-white tracking-tight leading-[1.1] mb-6 uppercase">
         <?= e($hero['headline']) ?>
       </h1>

@@ -87,7 +87,7 @@ class LoginController {
             unset($_SESSION['user']);
         }
         $_SESSION['success'] = "You have been logged out successfully.";
-        header("Location: " . baseUrl('/login'));
+        header("Location: " . baseUrl('/'));
         exit;
     }
 }

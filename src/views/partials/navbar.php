@@ -52,7 +52,21 @@ $isLoggedIn = isset($_SESSION['user']);
     <!-- Desktop Session Actions -->
     <div class="hidden lg:flex items-center gap-6">
       <?php if ($isLoggedIn): ?>
-        <a href="http://sg-analyzer.synalyze.net:3000/auth/login" target="_blank" rel="noopener noreferrer" class="text-base font-medium text-white transition-colors hover:text-[#06b6d4] border border-[#06b6d4] rounded-full px-5 py-2">Access Portal</a>
+        <a 
+          href="<?= e(baseUrl('/dashboard')) ?>" 
+          class="text-sm font-semibold px-6 py-2.5 rounded-full text-white transition-opacity hover:opacity-90 <?= $isDashboard ? 'border border-[#06b6d4]' : '' ?>"
+          style="background-color: <?= e($accentColor) ?>;"
+        >
+          Dashboard
+        </a>
+        <a 
+          href="http://sg-analyzer.synalyze.net:3000/auth/login" 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          class="text-sm font-semibold px-6 py-2.5 text-white transition-colors hover:text-[#06b6d4] border border-[#06b6d4] rounded-full"
+        >
+          Access Portal
+        </a>
       <?php else: ?>
         <a 
           href="<?= e(baseUrl('/signup')) ?>" 
@@ -82,11 +96,25 @@ $isLoggedIn = isset($_SESSION['user']);
       <a href="<?= e(baseUrl('/#how-it-works')) ?>" class="text-white hover:text-[#06b6d4] transition-colors py-2 border-b border-white/5">How It Works</a>
       <a href="<?= e(baseUrl('/#features')) ?>" class="text-white hover:text-[#06b6d4] transition-colors py-2 border-b border-white/5">Features</a>
       <a href="<?= e(baseUrl('/#deployment')) ?>" class="text-white hover:text-[#06b6d4] transition-colors py-2 border-b border-white/5">Deployment</a>
-      <a href="<?= e(baseUrl('/qa')) ?>" class="text-white hover:text-[#06b6d4] transition-colors py-2 border-b border-white/5">Support</a>
+      <a href="<?= e(baseUrl('/qa')) ?>" class="text-white hover:text-[#06b6d4] transition-colors py-2 border-b border-white/5">FAQs</a>
       
       <div class="flex flex-col gap-4 mt-2">
         <?php if ($isLoggedIn): ?>
-          <a href="http://sg-analyzer.synalyze.net:3000/auth/login" target="_blank" rel="noopener noreferrer" class="text-center text-white py-2 border border-[#06b6d4] rounded-full hover:bg-white/5">Access Portal</a>
+          <a 
+            href="<?= e(baseUrl('/dashboard')) ?>" 
+            class="text-center text-white py-2.5 rounded-full font-semibold"
+            style="background-color: <?= e($accentColor) ?>;"
+          >
+            Dashboard
+          </a>
+          <a 
+            href="http://sg-analyzer.synalyze.net:3000/auth/login" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            class="text-center text-white py-2 border border-[#06b6d4] rounded-full hover:bg-white/5"
+          >
+            Access Portal
+          </a>
         <?php else: ?>
           <a 
             href="<?= e(baseUrl('/signup')) ?>" 

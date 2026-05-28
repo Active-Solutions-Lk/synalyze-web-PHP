@@ -32,7 +32,7 @@ $logoUrl = $settings['logoUrl'] ?? '';
         <div class="flex flex-col gap-2 mt-4 text-white font-bold text-[1rem]">
           <a href="tel:+94764404456" class="hover:text-[#3d8c7c] transition-colors">076 440 4456</a>
           <a href="mailto:vipsupport@activelk.com" class="hover:text-[#3d8c7c] transition-colors">vipsupport@activelk.com</a>
-          <a href="http://sg-analyzer.synalyze.net:3000/" target="_blank" rel="noopener noreferrer" class="hover:text-[#3d8c7c] transition-colors break-all">http://sg-analyzer.synalyze.net:3000/</a>
+          <!-- <a href="http://sg-analyzer.synalyze.net:3000/" target="_blank" rel="noopener noreferrer" class="hover:text-[#3d8c7c] transition-colors break-all">http://sg-analyzer.synalyze.net:3000/</a> -->
         </div>
       </div>
 
