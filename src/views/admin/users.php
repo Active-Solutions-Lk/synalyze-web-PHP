@@ -74,54 +74,6 @@
   background-color: rgba(255, 255, 255, 0.02);
 }
 
-/* Status Badges */
-.status-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 4px 12px;
-  border-radius: 999px;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  white-space: nowrap;
-}
-
-.status-badge.active {
-  background-color: rgba(20, 184, 166, 0.12);
-  border: 1px solid rgba(20, 184, 166, 0.35);
-  color: #2dd4bf;
-}
-
-.status-badge.inactive {
-  background-color: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: #6b7280;
-}
-
-.status-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  display: inline-block;
-  flex-shrink: 0;
-}
-
-.status-dot.active {
-  background-color: #2dd4bf;
-  box-shadow: 0 0 6px rgba(45, 212, 180, 0.7);
-  animation: pulse-dot 2s infinite;
-}
-
-.status-dot.inactive {
-  background-color: #4b5563;
-}
-
-@keyframes pulse-dot {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.4; }
-}
 </style>
 
 <div class="space-y-6">
@@ -184,7 +136,7 @@
               <th class="py-4 px-6">User Profile</th>
               <th class="py-4 px-6">Contact Info</th>
               <th class="py-4 px-6">Address</th>
-              <th class="py-4 px-6">Status</th>
+
               <th class="py-4 px-6">Registered Date</th>
               <th class="py-4 px-6 text-center">Actions</th>
             </tr>
@@ -224,18 +176,6 @@
                   <?= e($user['address']) ?>
                 </td>
 
-                <!-- Status -->
-                <td class="py-4 px-6">
-                  <?php
-                    $isActive = (isset($user['status']) && $user['status'] === 'active');
-                    $badgeClass = $isActive ? 'active' : 'inactive';
-                    $label = $isActive ? 'Active' : 'Inactive';
-                  ?>
-                  <span class="status-badge <?= $badgeClass ?>">
-                    <span class="status-dot <?= $badgeClass ?>"></span>
-                    <?= $label ?>
-                  </span>
-                </td>
 
                 <!-- Registered Date -->
                 <td class="py-4 px-6 text-gray-400">
@@ -261,7 +201,7 @@
 
             <?php if (empty($users)): ?>
               <tr>
-                <td colspan="7" class="py-12 text-center">
+                <td colspan="6" class="py-12 text-center">
                   <div class="flex flex-col items-center justify-center gap-3">
                     <div class="w-12 h-12 rounded-full bg-gray-800/50 flex items-center justify-center text-gray-500">
                       <?= lucide_icon('Users', 'w-6 h-6') ?>
