@@ -28,6 +28,7 @@ $router->add('/pricing', 'PricingController@index');
 $router->add('/contact', 'ContactController@index');
 $router->add('/qa', 'QAController@index');
 $router->add('/support', 'QAController@index');
+$router->add('/docs', 'DocsController@index');
 $router->add('/signup', 'SignupController@index');
 $router->add('/login', 'LoginController@index');
 $router->add('/dashboard', 'DashboardController@index');

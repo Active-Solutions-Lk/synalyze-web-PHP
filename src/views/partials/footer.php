@@ -59,7 +59,7 @@ $logoUrl = $settings['logoUrl'] ?? '';
           <div>
             <h4 class="text-white font-bold mb-5 text-lg">Support</h4>
             <ul class="space-y-3 text-gray-300 font-medium">
-              <li><a href="#" class="hover:text-white transition-colors">Documentation</a></li>
+              <li><a href="<?= e(baseUrl('/docs')) ?>" class="hover:text-white transition-colors">Documentation</a></li>
               <li><a href="<?= e(baseUrl('/qa')) ?>" class="hover:text-white transition-colors">FAQs</a></li>
               <!-- <li><a href="#" class="hover:text-white transition-colors">Support Center</a></li>
               <li><a href="#" class="hover:text-white transition-colors">Status</a></li> -->

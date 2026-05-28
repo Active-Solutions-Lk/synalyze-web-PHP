@@ -214,9 +214,9 @@
                 <?php endif; ?>
               </div>
 
-              <button class="w-full py-4 rounded-xl text-lg md:text-3xl font-semibold transition-all duration-300 <?= $isCloud ? 'bg-[#1e8a79] text-white hover:bg-[#239d89] shadow-lg shadow-[#1e8a79]/15' : 'bg-transparent text-white border-2 border-[#1e8a79] hover:bg-[#1e8a79]/10' ?>">
+              <a href="<?= e(baseUrl('/docs#deployment')) ?>" class="w-full py-4 rounded-xl text-lg md:text-3xl font-semibold transition-all duration-300 text-center flex items-center justify-center <?= $isCloud ? 'bg-[#1e8a79] text-white hover:bg-[#239d89] shadow-lg shadow-[#1e8a79]/15' : 'bg-transparent text-white border-2 border-[#1e8a79] hover:bg-[#1e8a79]/10' ?>">
                 Learn More
-              </button>
+              </a>
             </div>
           <?php endforeach; ?>
         </div>
