@@ -52,16 +52,8 @@ $isLoggedIn = isset($_SESSION['user']);
     <!-- Desktop Session Actions -->
     <div class="hidden lg:flex items-center gap-6">
       <?php if ($isLoggedIn): ?>
-        <a href="<?= e(baseUrl('/dashboard')) ?>" class="text-base font-medium text-white transition-colors <?= $isDashboard ? 'border border-[#06b6d4] rounded-full px-5 py-2 text-white' : 'hover:text-[#06b6d4]' ?>">Dashboard</a>
-        <a 
-          href="<?= e(baseUrl('/logout')) ?>" 
-          class="text-sm font-semibold px-6 py-2.5 rounded-full text-white transition-opacity hover:opacity-90"
-          style="background-color: #ef4444;"
-        >
-          Logout
-        </a>
-      <?php else: ?>
         <a href="http://sg-analyzer.synalyze.net:3000/auth/login" target="_blank" rel="noopener noreferrer" class="text-base font-medium text-white transition-colors hover:text-[#06b6d4] border border-[#06b6d4] rounded-full px-5 py-2">Access Portal</a>
+      <?php else: ?>
         <a 
           href="<?= e(baseUrl('/signup')) ?>" 
           class="text-sm font-semibold px-6 py-2.5 rounded-full text-white transition-opacity hover:opacity-90 <?= $isSignup ? 'border border-[#06b6d4]' : '' ?>"
@@ -94,19 +86,11 @@ $isLoggedIn = isset($_SESSION['user']);
       
       <div class="flex flex-col gap-4 mt-2">
         <?php if ($isLoggedIn): ?>
-          <a href="<?= e(baseUrl('/dashboard')) ?>" class="text-center text-white py-2 border border-white/20 rounded-lg hover:bg-white/5">Dashboard</a>
-          <a 
-            href="<?= e(baseUrl('/logout')) ?>" 
-            class="text-center text-white py-2 rounded-lg font-semibold"
-            style="background-color: #ef4444;"
-          >
-            Logout
-          </a>
+          <a href="http://sg-analyzer.synalyze.net:3000/auth/login" target="_blank" rel="noopener noreferrer" class="text-center text-white py-2 border border-[#06b6d4] rounded-full hover:bg-white/5">Access Portal</a>
         <?php else: ?>
-          <a href="http://sg-analyzer.synalyze.net:3000/auth/login" target="_blank" rel="noopener noreferrer" class="rounded-full px-5 py-2 text-center text-white py-2 border border-[#06b6d4] rounded-lg hover:bg-white/5">Access Portal</a>
           <a 
             href="<?= e(baseUrl('/signup')) ?>" 
-            class="text-center text-white py-2 rounded-lg font-semibold"
+            class="text-center text-white py-2.5 rounded-full font-semibold"
             style="background-color: <?= e($accentColor) ?>;"
           >
             Free Demo
