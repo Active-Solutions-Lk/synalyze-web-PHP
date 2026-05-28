@@ -157,8 +157,8 @@ document.addEventListener("DOMContentLoaded", () => {
         // Select country
         countryItems.forEach(function(li) {
             li.addEventListener('click', function() {
-                var code = li.getAttribute('data-code') || '+1';
-                var flag = li.getAttribute('data-flag') || '🇺🇸';
+                var code = li.getAttribute('data-code') || '+94';
+                var flag = li.getAttribute('data-flag') || '🇱🇰';
                 if (phoneCodeSpan) phoneCodeSpan.textContent = code;
                 if (phoneFlagSpan) phoneFlagSpan.textContent = flag;
                 phoneDropdown.hidden = true;

@@ -61,7 +61,7 @@ $isLoggedIn = isset($_SESSION['user']);
           Logout
         </a>
       <?php else: ?>
-        <a href="<?= e(baseUrl('/login')) ?>" class="text-base font-medium text-white transition-colors <?= $isLogin ? 'border border-[#06b6d4] rounded-full px-5 py-2 text-white' : 'hover:text-[#06b6d4]' ?>">Sign In</a>
+        <a href="http://sg-analyzer.synalyze.net:3000/auth/login" target="_blank" rel="noopener noreferrer" class="text-base font-medium text-white transition-colors hover:text-[#06b6d4] border border-[#06b6d4] rounded-full px-5 py-2">Access Portal</a>
         <a 
           href="<?= e(baseUrl('/signup')) ?>" 
           class="text-sm font-semibold px-6 py-2.5 rounded-full text-white transition-opacity hover:opacity-90 <?= $isSignup ? 'border border-[#06b6d4]' : '' ?>"
@@ -103,7 +103,7 @@ $isLoggedIn = isset($_SESSION['user']);
             Logout
           </a>
         <?php else: ?>
-          <a href="<?= e(baseUrl('/login')) ?>" class="text-center text-white py-2 border border-white/20 rounded-lg hover:bg-white/5">Sign In</a>
+          <a href="http://sg-analyzer.synalyze.net:3000/auth/login" target="_blank" rel="noopener noreferrer" class="rounded-full px-5 py-2 text-center text-white py-2 border border-[#06b6d4] rounded-lg hover:bg-white/5">Access Portal</a>
           <a 
             href="<?= e(baseUrl('/signup')) ?>" 
             class="text-center text-white py-2 rounded-lg font-semibold"

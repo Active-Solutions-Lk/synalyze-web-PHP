@@ -440,9 +440,10 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 48px;
+  width: 150px;
   height: 48px;
-  border-radius: 50%;
+  border: none;
+  border-radius: 10px;
   background-color: #1e2030;
   border: 1px solid #374151;
   transition: background-color 0.2s, transform 0.15s, border-color 0.2s;
@@ -519,7 +520,7 @@ body {
   }
 
   .signup-social__btn {
-    width: 44px;
+    width: 200px;
     height: 44px;
   }
 

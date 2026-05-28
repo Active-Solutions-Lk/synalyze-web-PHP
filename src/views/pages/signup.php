@@ -107,8 +107,8 @@ $oldInput = $_SESSION['old_input'] ?? [];
           <label for="signup-phone" class="signup-label">Phone Number <span class="signup-required">*</span></label>
           <div class="signup-phone-wrap">
             <button type="button" id="phone-country-btn" class="signup-phone-country" aria-label="Select country code">
-              <span class="phone-flag-emoji" id="phone-flag-emoji">🇺🇸</span>
-              <span id="phone-country-code">+1</span>
+              <span class="phone-flag-emoji" id="phone-flag-emoji">🇱🇰</span>
+              <span id="phone-country-code">+94</span>
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="phone-chevron">
                 <path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
               </svg>
@@ -226,7 +226,8 @@ $oldInput = $_SESSION['old_input'] ?? [];
         <!-- Already have account -->
         <p class="signup-signin-link">
           Already Have An Account ?
-          <a href="<?= e(baseUrl('/login')) ?>" class="signup-signin-anchor">Sign In</a>
+          <!-- <a href="<?= e(baseUrl('/login')) ?>" class="signup-signin-anchor">Sign In</a> -->
+          <a href="http://sg-analyzer.synalyze.net:3000/auth/login" target="_blank" rel="noopener noreferrer" class="signup-signin-anchor">Access Portal</a>
         </p>
 
         <!-- Divider -->
@@ -241,12 +242,12 @@ $oldInput = $_SESSION['old_input'] ?? [];
           <a href="#" id="signup-google" class="signup-social__btn" aria-label="Sign up with Google">
             <img src="<?= e(baseUrl('/assets/images/Sign up/google.png')) ?>" alt="Google" class="signup-social__icon" />
           </a>
-          <a href="#" id="signup-facebook" class="signup-social__btn" aria-label="Sign up with Facebook">
+          <!-- <a href="#" id="signup-facebook" class="signup-social__btn" aria-label="Sign up with Facebook">
             <img src="<?= e(baseUrl('/assets/images/Sign up/fb.png')) ?>" alt="Facebook" class="signup-social__icon" />
           </a>
           <a href="#" id="signup-x" class="signup-social__btn" aria-label="Sign up with X">
             <img src="<?= e(baseUrl('/assets/images/Sign up/X.png')) ?>" alt="X" class="signup-social__icon" />
-          </a>
+          </a> -->
         </div>
 
       </form>
