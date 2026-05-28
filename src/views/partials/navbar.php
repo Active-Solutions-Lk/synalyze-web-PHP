@@ -46,7 +46,7 @@ $isLoggedIn = isset($_SESSION['user']);
       <a href="<?= e(baseUrl('/#how-it-works')) ?>" class="hover:text-[#06b6d4] transition-colors">How It Works</a>
       <a href="<?= e(baseUrl('/#features')) ?>" class="hover:text-[#06b6d4] transition-colors">Features</a>
       <a href="<?= e(baseUrl('/#deployment')) ?>" class="hover:text-[#06b6d4] transition-colors">Deployment</a>
-      <a href="<?= e(baseUrl('/qa')) ?>" class="<?= $isSupport ? 'border border-[#06b6d4] rounded-full px-5 py-2 text-white' : 'hover:text-[#06b6d4] transition-colors' ?>">Support</a>
+      <a href="<?= e(baseUrl('/qa')) ?>" class="<?= $isSupport ? 'border border-[#06b6d4] rounded-full px-5 py-2 text-white' : 'hover:text-[#06b6d4] transition-colors' ?>">FAQs</a>
     </nav>
 
     <!-- Desktop Session Actions -->

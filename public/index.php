@@ -8,6 +8,9 @@ if (php_sapi_name() === 'cli-server') {
 }
 
 // Front Controller
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
 // Autoloading could be set up here if using composer. For now we will manually require.
 require_once dirname(__DIR__) . '/config/app.php';
