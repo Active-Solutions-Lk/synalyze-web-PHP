@@ -10,35 +10,38 @@ $_SESSION['captcha'] = $captcha_text;
 
 $width = 200;
 $height = 60;
-$image = imagecreatetruecolor($width, $height);
 
-$bg_color = imagecolorallocate($image, 255, 255, 255);
-$text_color = imagecolorallocate($image, 0, 0, 0);
-$line_color = imagecolorallocatealpha($image, 0, 0, 0, 100);
-$dot_color = imagecolorallocatealpha($image, 0, 0, 0, 90);
+header('Content-Type: image/svg+xml');
+echo '<?xml version="1.0" encoding="UTF-8"?>' . "\n";
+?>
+<svg width="<?= $width ?>" height="<?= $height ?>" viewBox="0 0 <?= $width ?> <?= $height ?>" xmlns="http://www.w3.org/2000/svg">
+    <!-- Background -->
+    <rect width="<?= $width ?>" height="<?= $height ?>" fill="#ffffff" />
+    
+    <!-- Grid Lines (Noise) -->
+    <?php for ($i = 0; $i < 10; $i++): ?>
+        <line x1="<?= rand(0, $width) ?>" y1="0" x2="<?= rand(0, $width) ?>" y2="<?= $height ?>" stroke="rgba(0,0,0,0.15)" stroke-width="<?= rand(1, 3) ?>" />
+        <line x1="0" y1="<?= rand(0, $height) ?>" x2="<?= $width ?>" y2="<?= rand(0, $height) ?>" stroke="rgba(0,0,0,0.15)" stroke-width="<?= rand(1, 3) ?>" />
+    <?php endfor; ?>
 
-imagefilledrectangle($image, 0, 0, $width, $height, $bg_color);
+    <!-- Noise Dots -->
+    <?php for ($i = 0; $i < 40; $i++): ?>
+        <circle cx="<?= rand(0, $width) ?>" cy="<?= rand(0, $height) ?>" r="<?= rand(1, 3) ?>" fill="rgba(0,0,0,0.2)" />
+    <?php endfor; ?>
 
-// Draw grid lines
-for ($i = 0; $i < 6; $i++) {
-    imageline($image, rand(0, $width), 0, rand(0, $width), $height, $line_color);
-    imageline($image, 0, rand(0, $height), $width, rand(0, $height), $line_color);
-}
-
-// Draw noise dots
-for ($i = 0; $i < 40; $i++) {
-    imagefilledellipse($image, rand(0, $width), rand(0, $height), 3, 3, $dot_color);
-}
-
-// Draw text
-// Note: imagettftext requires a TTF font file. For simplicity, we use imagestring or basic GD text if TTF is not available.
-// The NextJS project used Canvas, so we will try to make it look decent with GD's imagestring if no TTF.
-for ($i = 0; $i < strlen($captcha_text); $i++) {
-    $x = ($width / 7) * ($i + 1) + rand(-3, 3);
-    $y = ($height / 2) - 10 + rand(-5, 5);
-    imagestring($image, 5, $x, $y, $captcha_text[$i], $text_color);
-}
-
-header('Content-type: image/png');
-imagepng($image);
-imagedestroy($image);
+    <!-- Text -->
+    <?php 
+    for ($i = 0; $i < strlen($captcha_text); $i++) {
+        $x = 20 + ($i * 26) + rand(-4, 4);
+        $y = 40 + rand(-5, 5);
+        $rotation = rand(-20, 20);
+        $fontSize = rand(26, 32);
+        $color = 'rgba('.rand(0, 150).','.rand(0, 150).','.rand(0, 150).',1)';
+        ?>
+        <text x="<?= $x ?>" y="<?= $y ?>" font-family="monospace, sans-serif" font-size="<?= $fontSize ?>" font-weight="bold" fill="<?= $color ?>" transform="rotate(<?= $rotation ?> <?= $x ?> <?= $y ?>)">
+            <?= $captcha_text[$i] ?>
+        </text>
+        <?php
+    }
+    ?>
+</svg>

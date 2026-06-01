@@ -186,7 +186,7 @@
     <h2 class="text-3xl md:text-[48px] lg:text-[53px] text-white mb-8 tracking-tight">
       <?= e($pageData['locationTitle']) ?>
     </h2>
-    <div class="w-full max-w-6xl max-h-5xl mx-auto rounded-3xl border border-white/[0.04] overflow-hidden bg-[#17202c]/60 backdrop-blur-sm shadow-2xl h-[250px] sm:h-[350px] md:h-[450px] transition-all duration-500 hover:border-white/[0.1]">
+    <div class="w-full max-w-5xl max-h-8xl mx-auto rounded-3xl border border-white/[0.04] overflow-hidden bg-[#17202c]/60 backdrop-blur-sm shadow-2xl h-[450px] sm:h-[550px] md:h-[650px] transition-all duration-500 hover:border-white/[0.1]">
       <iframe
         src="<?= e($pageData['mapEmbedUrl']) ?>"
         width="100%"
