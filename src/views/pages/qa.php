@@ -32,7 +32,7 @@
 
 .faq-card:hover {
   background-color: #142232;
-  border-color: rgba(20, 184, 166, 0.1);
+  border-color: rgba(var(--accent-rgb), 0.25);
   transform: translateY(-1px);
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
 }
@@ -77,7 +77,7 @@
 .faq-chevron {
   width: 24px;
   height: 24px;
-  color: #14b8a6; /* Beautiful mint teal */
+  color: var(--accent-color);
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   flex-shrink: 0;
   margin-left: 12px;
@@ -150,7 +150,7 @@ details[open] .faq-chevron {
 
 <div class="relative font-sans pt-28 md:pt-48 pb-0">
   <!-- Top glow backdrop -->
-  <div class="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(61,140,124,0.1)_0%,transparent_50%)] pointer-events-none"></div>
+  <div class="absolute inset-0 pointer-events-none" style="background-image: radial-gradient(circle at top, rgba(var(--accent-rgb), 0.1) 0%, transparent 50%);"></div>
 
   <div class="container relative z-10 mx-auto px-6 max-w-5xl">
     <!-- Header -->
@@ -160,9 +160,9 @@ details[open] .faq-chevron {
       </h1>
       <p class="text-base md:text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
         Here are some common questions about SYNALYZE. If you can't find the answer you're looking for, please visit our
-        <a href="<?= e(baseUrl('/support')) ?>" class="text-[#14b8a6] hover:underline font-medium transition-colors">Support Center</a>
+        <a href="<?= e(baseUrl('/support')) ?>" class="text-accent hover:underline font-medium transition-colors">Support Center</a>
         or
-        <a href="<?= e(baseUrl('/contact')) ?>" class="text-[#14b8a6] hover:underline font-medium transition-colors">Contact Us</a>
+        <a href="<?= e(baseUrl('/contact')) ?>" class="text-accent hover:underline font-medium transition-colors">Contact Us</a>
       </p>
     </div>
 

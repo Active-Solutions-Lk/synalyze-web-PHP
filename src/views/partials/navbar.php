@@ -4,7 +4,7 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 $settings = get_settings();
 $siteName = $settings['siteName'] ?? 'SYNALYZE';
-$accentColor = $settings['themeAccentColor'] ?? '#3d8c7c';
+$accentColor = $settings['themeAccentColor'] ?? '#00CED1';
 $logoUrl = $settings['logoUrl'] ?? '';
 
 // Determine active state dynamics
@@ -21,9 +21,28 @@ $isLogin = ($currentPath === '/login');
 $isSignup = ($currentPath === '/signup');
 $isDashboard = ($currentPath === '/dashboard');
 $isSupport = ($currentPath === '/qa');
+$isDocs = ($currentPath === '/docs');
 
 $isLoggedIn = isset($_SESSION['user']);
 ?>
+<style>
+.nav-link {
+  transition: color 0.3s, border-color 0.3s, background-color 0.3s;
+}
+.nav-link.border-accent {
+  color: #ffffff !important;
+  border-color: var(--accent-color) !important;
+  background-color: rgba(var(--accent-rgb), 0.1) !important;
+}
+.nav-link-mobile {
+  transition: color 0.3s;
+}
+.nav-link-mobile.active-mobile {
+  color: var(--accent-color) !important;
+  font-weight: 600 !important;
+}
+</style>
+
 <header class="top-0 z-50 w-full" style="position: fixed; background-color: #16171ba3; backdrop-filter: blur(8px);">
   <div class="container mx-auto px-6 h-16 lg:h-24 flex items-center justify-between">
     <a href="<?= e(baseUrl('/')) ?>" class="flex items-center gap-2">
@@ -42,11 +61,12 @@ $isLoggedIn = isset($_SESSION['user']);
     
     <!-- Desktop Navigation -->
     <nav class="hidden lg:flex items-center gap-8 text-base font-large text-white" id="desktop-nav">
-      <a href="<?= e(baseUrl('/')) ?>" class="nav-link <?= $isHome ? 'border border-[#06b6d4] rounded-full px-5 py-2 text-white' : 'hover:text-[#06b6d4] transition-colors' ?>" data-target="home">Home</a>
-      <a href="<?= e(baseUrl('/#how-it-works')) ?>" class="nav-link hover:text-[#06b6d4] transition-colors" data-target="how-it-works">How It Works</a>
-      <a href="<?= e(baseUrl('/#features')) ?>" class="nav-link hover:text-[#06b6d4] transition-colors" data-target="features">Features</a>
-      <a href="<?= e(baseUrl('/#deployment')) ?>" class="nav-link hover:text-[#06b6d4] transition-colors" data-target="deployment">Deployment</a>
-      <a href="<?= e(baseUrl('/qa')) ?>" class="nav-link <?= $isSupport ? 'border border-[#06b6d4] rounded-full px-5 py-2 text-white' : 'hover:text-[#06b6d4] transition-colors' ?>" data-target="qa">FAQs</a>
+      <a href="<?= e(baseUrl('/')) ?>" class="nav-link <?= $isHome ? 'border border-accent rounded-full px-5 py-2 text-white' : 'hover:text-accent transition-colors' ?>" data-target="home">Home</a>
+      <a href="<?= e(baseUrl('/#how-it-works')) ?>" class="nav-link hover:text-accent transition-colors" data-target="how-it-works">How It Works</a>
+      <a href="<?= e(baseUrl('/#features')) ?>" class="nav-link hover:text-accent transition-colors" data-target="features">Features</a>
+      <a href="<?= e(baseUrl('/#deployment')) ?>" class="nav-link hover:text-accent transition-colors" data-target="deployment">Deployment</a>
+      <a href="<?= e(baseUrl('/qa')) ?>" class="nav-link <?= $isSupport ? 'border border-accent rounded-full px-5 py-2 text-white' : 'hover:text-accent transition-colors' ?>" data-target="qa">FAQs</a>
+      <a href="<?= e(baseUrl('/docs')) ?>" class="nav-link <?= $isDocs ? 'border border-accent rounded-full px-5 py-2 text-white' : 'hover:text-accent transition-colors' ?>" data-target="docs">Docs</a>
     </nav>
 
     <!-- Desktop Session Actions -->
@@ -54,7 +74,7 @@ $isLoggedIn = isset($_SESSION['user']);
       <?php if ($isLoggedIn): ?>
         <a 
           href="<?= e(baseUrl('/dashboard')) ?>" 
-          class="text-sm font-semibold px-6 py-2.5 rounded-full text-white transition-opacity hover:opacity-90 <?= $isDashboard ? 'border border-[#06b6d4]' : '' ?>"
+          class="text-sm font-semibold px-6 py-2.5 rounded-full text-white transition-opacity hover:opacity-90 <?= $isDashboard ? 'border border-accent' : '' ?>"
           style="background-color: <?= e($accentColor) ?>;"
         >
           Dashboard
@@ -63,7 +83,7 @@ $isLoggedIn = isset($_SESSION['user']);
           href="http://sg-analyzer.synalyze.net:3000/auth/login" 
           target="_blank" 
           rel="noopener noreferrer" 
-          class="text-sm font-semibold px-6 py-2.5 text-white transition-colors hover:text-[#06b6d4] border border-[#06b6d4] rounded-full"
+          class="text-sm font-semibold px-6 py-2.5 text-white transition-colors hover:text-accent border border-accent rounded-full"
         >
           Access Portal
         </a>
@@ -92,11 +112,12 @@ $isLoggedIn = isset($_SESSION['user']);
   <!-- Mobile Menu Panel -->
   <div id="mobile-menu" class="lg:hidden bg-[#16171B] border-t border-white/10">
     <div class="container mx-auto px-6 py-4 flex flex-col gap-4" id="mobile-nav">
-      <a href="<?= e(baseUrl('/')) ?>" class="nav-link-mobile <?= $isHome ? 'text-white font-semibold' : 'text-white hover:text-[#06b6d4]' ?> transition-colors py-2 border-b border-white/5" data-target="home">Home</a>
-      <a href="<?= e(baseUrl('/#how-it-works')) ?>" class="nav-link-mobile text-white hover:text-[#06b6d4] transition-colors py-2 border-b border-white/5" data-target="how-it-works">How It Works</a>
-      <a href="<?= e(baseUrl('/#features')) ?>" class="nav-link-mobile text-white hover:text-[#06b6d4] transition-colors py-2 border-b border-white/5" data-target="features">Features</a>
-      <a href="<?= e(baseUrl('/#deployment')) ?>" class="nav-link-mobile text-white hover:text-[#06b6d4] transition-colors py-2 border-b border-white/5" data-target="deployment">Deployment</a>
-      <a href="<?= e(baseUrl('/qa')) ?>" class="nav-link-mobile <?= $isSupport ? 'text-white font-semibold' : 'text-white hover:text-[#06b6d4]' ?> transition-colors py-2 border-b border-white/5" data-target="qa">FAQs</a>
+      <a href="<?= e(baseUrl('/')) ?>" class="nav-link-mobile <?= $isHome ? 'active-mobile' : 'text-white hover:text-accent' ?> transition-colors py-2 border-b border-white/5" data-target="home">Home</a>
+      <a href="<?= e(baseUrl('/#how-it-works')) ?>" class="nav-link-mobile text-white hover:text-accent transition-colors py-2 border-b border-white/5" data-target="how-it-works">How It Works</a>
+      <a href="<?= e(baseUrl('/#features')) ?>" class="nav-link-mobile text-white hover:text-accent transition-colors py-2 border-b border-white/5" data-target="features">Features</a>
+      <a href="<?= e(baseUrl('/#deployment')) ?>" class="nav-link-mobile text-white hover:text-accent transition-colors py-2 border-b border-white/5" data-target="deployment">Deployment</a>
+      <a href="<?= e(baseUrl('/qa')) ?>" class="nav-link-mobile <?= $isSupport ? 'active-mobile' : 'text-white hover:text-accent' ?> transition-colors py-2 border-b border-white/5" data-target="qa">FAQs</a>
+      <a href="<?= e(baseUrl('/docs')) ?>" class="nav-link-mobile <?= $isDocs ? 'active-mobile' : 'text-white hover:text-accent' ?> transition-colors py-2 border-b border-white/5" data-target="docs">Docs</a>
       
       <div class="flex flex-col gap-4 mt-2">
         <?php if ($isLoggedIn): ?>
@@ -111,7 +132,7 @@ $isLoggedIn = isset($_SESSION['user']);
             href="http://sg-analyzer.synalyze.net:3000/auth/login" 
             target="_blank" 
             rel="noopener noreferrer" 
-            class="text-center text-white py-2 border border-[#06b6d4] rounded-full hover:bg-white/5"
+            class="text-center text-white py-2 border border-accent rounded-full hover:bg-white/5"
           >
             Access Portal
           </a>
@@ -138,10 +159,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const desktopLinks = document.querySelectorAll('#desktop-nav .nav-link');
   const mobileLinks = document.querySelectorAll('#mobile-nav .nav-link-mobile');
 
-  const desktopActive = ['border', 'border-[#06b6d4]', 'rounded-full', 'px-5', 'py-2', 'text-white'];
-  const desktopInactive = ['hover:text-[#06b6d4]', 'transition-colors'];
-  const mobileActive = ['text-white', 'font-semibold'];
-  const mobileInactive = ['text-white', 'hover:text-[#06b6d4]'];
+  const desktopActive = ['border', 'border-accent', 'rounded-full', 'px-5', 'py-2', 'text-white'];
+  const desktopInactive = ['hover:text-accent', 'transition-colors'];
+  const mobileActive = ['active-mobile'];
+  const mobileInactive = ['text-white', 'hover:text-accent'];
 
   function setActiveNav(targetId) {
     desktopLinks.forEach(link => {

@@ -3,9 +3,9 @@ $accentColor = get_settings()['themeAccentColor'] ?? '#3d8c7c';
 ?>
 <div class="relative font-sans pt-12 pb-24 text-white">
   <!-- Glowing background elements -->
-  <div class="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(61,140,124,0.12)_0%,transparent_50%)] pointer-events-none z-0"></div>
-  <div class="absolute top-[40%] left-[-10%] w-[500px] h-[500px] rounded-full bg-[#3d8c7c]/5 blur-[120px] pointer-events-none"></div>
-  <div class="absolute bottom-[20%] right-[-10%] w-[500px] h-[500px] rounded-full bg-[#06b6d4]/5 blur-[120px] pointer-events-none"></div>
+  <div class="absolute inset-0 pointer-events-none z-0" style="background-image: radial-gradient(circle at top, rgba(var(--accent-rgb), 0.12) 0%, transparent 50%);"></div>
+  <div class="absolute top-[40%] left-[-10%] w-[500px] h-[500px] rounded-full blur-[120px] pointer-events-none" style="background-color: rgba(var(--accent-rgb), 0.05);"></div>
+  <div class="absolute bottom-[20%] right-[-10%] w-[500px] h-[500px] rounded-full blur-[120px] pointer-events-none" style="background-color: rgba(var(--accent-rgb), 0.05);"></div>
 
 <style>
 /* Core Documentation Layout */
@@ -117,21 +117,21 @@ $accentColor = get_settings()['themeAccentColor'] ?? '#3d8c7c';
   }
 }
 
-/* Active navigation link */
 .docs-menu-item.active {
-  color: #ffffff;
-  background-color: rgba(6, 182, 212, 0.15);
-  border-color: rgba(6, 182, 212, 0.4);
+  color: var(--accent-color) !important;
+  background-color: rgba(var(--accent-rgb), 0.15) !important;
+  border-color: rgba(var(--accent-rgb), 0.4) !important;
 }
 
 @media (min-width: 1024px) {
   .docs-menu-item.active {
-    background-color: rgba(255, 255, 255, 0.04);
-    border-left: 2px solid #06b6d4;
-    border-top: none;
-    border-right: none;
-    border-bottom: none;
-    border-radius: 0 12px 12px 0;
+    color: var(--accent-color) !important;
+    background-color: rgba(var(--accent-rgb), 0.08) !important;
+    border-left: 3px solid var(--accent-color) !important;
+    border-top: none !important;
+    border-right: none !important;
+    border-bottom: none !important;
+    border-radius: 0 12px 12px 0 !important;
   }
 }
 
@@ -152,8 +152,8 @@ $accentColor = get_settings()['themeAccentColor'] ?? '#3d8c7c';
     
     <!-- Hero Header & Search Section -->
     <div class="flex flex-col items-center text-center mb-16 max-w-4xl mx-auto">
-      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#3d8c7c]/10 border border-[#3d8c7c]/20 text-sm font-semibold mb-6">
-        <span class="w-2 h-2 rounded-full bg-[#06b6d4] animate-pulse"></span>
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-accent-glow text-accent text-sm font-semibold mb-6">
+        <span class="w-2 h-2 rounded-full bg-accent animate-pulse"></span>
         SYNALYZE Knowledge Base
       </div>
       <h1 class="text-3xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-6">
@@ -165,7 +165,7 @@ $accentColor = get_settings()['themeAccentColor'] ?? '#3d8c7c';
 
       <!-- Live Search Box -->
       <!-- <div class="relative w-full max-w-2xl group">
-        <div class="absolute -inset-1 bg-gradient-to-r from-[#3d8c7c] to-[#06b6d4] rounded-2xl blur opacity-25 group-hover:opacity-40 transition duration-300"></div>
+        <div class="absolute -inset-1 rounded-2xl blur opacity-25 group-hover:opacity-40 transition duration-300" style="background-image: linear-gradient(to right, var(--accent-color), rgba(var(--accent-rgb), 0.5));"></div>
         <div class="relative flex items-center bg-[#181a20] border border-white/10 rounded-2xl overflow-hidden px-5 py-4">
           <?= lucide_icon('Search', 'text-gray-400 shrink-0 w-6 h-6 mr-4') ?>
           <input
@@ -217,9 +217,9 @@ $accentColor = get_settings()['themeAccentColor'] ?? '#3d8c7c';
         
         <!-- SECTION 1: Getting Started -->
         <section id="getting-started" class="docs-section scroll-mt-28 bg-[#181a20]/30 border border-white/5 rounded-3xl p-8 md:p-12 shadow-2xl relative overflow-hidden transition-all duration-300 hover:border-white/10">
-          <div class="absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl from-[#3d8c7c]/5 to-transparent rounded-full pointer-events-none"></div>
+          <div class="absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl rounded-full pointer-events-none" style="background-image: linear-gradient(to bottom left, rgba(var(--accent-rgb), 0.05), transparent);"></div>
           <div class="flex items-center gap-4 mb-6">
-            <div class="w-12 h-12 rounded-2xl bg-[#3d8c7c]/10 flex items-center justify-center text-[#3d8c7c]">
+            <div class="w-12 h-12 rounded-2xl flex items-center justify-center" style="background-color: rgba(var(--accent-rgb), 0.1); color: var(--accent-color);">
               <?= lucide_icon('BookOpen', 'w-6 h-6') ?>
             </div>
             <h2 class="text-3xl font-bold tracking-tight">Getting Started</h2>
@@ -235,22 +235,22 @@ $accentColor = get_settings()['themeAccentColor'] ?? '#3d8c7c';
             
             <div class="bg-[#111216] rounded-2xl p-6 border border-white/5 mt-8">
               <h4 class="text-white font-bold mb-4 flex items-center gap-2 text-lg">
-                <?= lucide_icon('Cpu', 'text-[#06b6d4] w-5 h-5') ?>
+                <?= lucide_icon('Cpu', 'text-accent w-5 h-5') ?>
                 How SYNALYZE Works
               </h4>
               <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm text-gray-400">
                 <div class="space-y-2 bg-white/5 p-4 rounded-xl">
-                  <span class="text-xs uppercase font-extrabold text-[#06b6d4]">Step 1</span>
+                  <span class="text-xs uppercase font-extrabold text-accent">Step 1</span>
                   <h5 class="text-white font-semibold">NAS Forwarding</h5>
                   <p class="text-xs leading-normal">Your NAS device streams syslogs securely via standard UDP/TCP protocol pipelines.</p>
                 </div>
                 <div class="space-y-2 bg-white/5 p-4 rounded-xl">
-                  <span class="text-xs uppercase font-extrabold text-[#06b6d4]">Step 2</span>
+                  <span class="text-xs uppercase font-extrabold text-accent">Step 2</span>
                   <h5 class="text-white font-semibold">Cloud Processing</h5>
                   <p class="text-xs leading-normal">SYNALYZE ingestion pipelines filter, parse, and structure nested syslog payloads instantly.</p>
                 </div>
                 <div class="space-y-2 bg-white/5 p-4 rounded-xl">
-                  <span class="text-xs uppercase font-extrabold text-[#06b6d4]">Step 3</span>
+                  <span class="text-xs uppercase font-extrabold text-accent">Step 3</span>
                   <h5 class="text-white font-semibold">Interactive Audit</h5>
                   <p class="text-xs leading-normal">Interactive tables, timelines, and downloadable reports reflect the logs immediately.</p>
                 </div>
@@ -261,9 +261,9 @@ $accentColor = get_settings()['themeAccentColor'] ?? '#3d8c7c';
 
         <!-- SECTION 2: Syslog Integration -->
         <section id="integration" class="docs-section scroll-mt-28 bg-[#181a20]/30 border border-white/5 rounded-3xl p-8 md:p-12 shadow-2xl relative overflow-hidden transition-all duration-300 hover:border-white/10">
-          <div class="absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl from-[#06b6d4]/5 to-transparent rounded-full pointer-events-none"></div>
+          <div class="absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl rounded-full pointer-events-none" style="background-image: linear-gradient(to bottom left, rgba(var(--accent-rgb), 0.05), transparent);"></div>
           <div class="flex items-center gap-4 mb-6">
-            <div class="w-12 h-12 rounded-2xl bg-[#06b6d4]/10 flex items-center justify-center text-[#06b6d4]">
+            <div class="w-12 h-12 rounded-2xl flex items-center justify-center" style="background-color: rgba(var(--accent-rgb), 0.1); color: var(--accent-color);">
               <?= lucide_icon('Terminal', 'w-6 h-6') ?>
             </div>
             <h2 class="text-3xl font-bold tracking-tight">Syslog Integration</h2>
@@ -278,7 +278,7 @@ $accentColor = get_settings()['themeAccentColor'] ?? '#3d8c7c';
             <div class="border border-white/5 rounded-2xl bg-[#111216]/50 overflow-hidden">
               <div class="bg-[#111216] px-6 py-4 border-b border-white/5 flex items-center justify-between">
                 <div class="flex items-center gap-3">
-                  <span class="w-8 h-8 rounded-lg bg-[#3d8c7c]/20 flex items-center justify-center text-[#3d8c7c] font-bold text-sm">S</span>
+                  <span class="w-8 h-8 rounded-lg flex items-center justify-center font-bold text-sm" style="background-color: rgba(var(--accent-rgb), 0.2); color: var(--accent-color);">S</span>
                   <h3 class="text-white font-semibold text-lg">Synology NAS Setup Guide</h3>
                 </div>
                 <span class="text-xs text-gray-400 font-mono bg-white/5 px-2 py-1 rounded">Syslog V2</span>
@@ -305,22 +305,22 @@ $accentColor = get_settings()['themeAccentColor'] ?? '#3d8c7c';
                     <tbody class="divide-y divide-white/5 text-gray-300">
                       <tr>
                         <td class="py-2.5 font-semibold text-white">Server address</td>
-                        <td class="py-2.5 font-mono text-[#06b6d4]">sg-analyzer.synalyze.net</td>
+                        <td class="py-2.5 font-mono text-accent">sg-analyzer.synalyze.net</td>
                         <td class="py-2.5 text-gray-400">Destination hostname for the active cloud pipeline</td>
                       </tr>
                       <tr>
                         <td class="py-2.5 font-semibold text-white">Port</td>
-                        <td class="py-2.5 font-mono text-[#06b6d4]">514</td>
+                        <td class="py-2.5 font-mono text-accent">514</td>
                         <td class="py-2.5 text-gray-400">Standard secure port for log streaming</td>
                       </tr>
                       <tr>
                         <td class="py-2.5 font-semibold text-white">Transfer protocol</td>
-                        <td class="py-2.5 font-mono text-[#06b6d4]">UDP</td>
+                        <td class="py-2.5 font-mono text-accent">UDP</td>
                         <td class="py-2.5 text-gray-400">Low-latency User Datagram Protocol connection</td>
                       </tr>
                       <tr>
                         <td class="py-2.5 font-semibold text-white">Log format</td>
-                        <td class="py-2.5 font-mono text-[#06b6d4]">IETF (RFC 5424)</td>
+                        <td class="py-2.5 font-mono text-accent">IETF (RFC 5424)</td>
                         <td class="py-2.5 text-gray-400">Recommended standard syslog format structure</td>
                       </tr>
                     </tbody>
@@ -331,7 +331,7 @@ $accentColor = get_settings()['themeAccentColor'] ?? '#3d8c7c';
                   <p class="mb-2 text-xs text-gray-400 font-semibold">Example Syslog Destination Connection String:</p>
                   <div class="bg-[#111216] border border-white/5 rounded-xl p-3 flex items-center justify-between font-mono text-xs">
                     <span id="conn-synology" class="text-gray-300">udp://sg-analyzer.synalyze.net:514</span>
-                    <button onclick="copyToClipboard('conn-synology', this)" class="text-xs text-[#06b6d4] hover:underline flex items-center gap-1">
+                    <button onclick="copyToClipboard('conn-synology', this)" class="text-xs text-accent hover:underline flex items-center gap-1">
                       <?= lucide_icon('Copy', 'w-4 h-4') ?>
                       <span>Copy</span>
                     </button>
@@ -344,7 +344,7 @@ $accentColor = get_settings()['themeAccentColor'] ?? '#3d8c7c';
             <div class="border border-white/5 rounded-2xl bg-[#111216]/50 overflow-hidden mt-6">
               <div class="bg-[#111216] px-6 py-4 border-b border-white/5 flex items-center justify-between">
                 <div class="flex items-center gap-3">
-                  <span class="w-8 h-8 rounded-lg bg-[#06b6d4]/20 flex items-center justify-center text-[#06b6d4] font-bold text-sm">Q</span>
+                  <span class="w-8 h-8 rounded-lg flex items-center justify-center font-bold text-sm" style="background-color: rgba(var(--accent-rgb), 0.2); color: var(--accent-color);">Q</span>
                   <h3 class="text-white font-semibold text-lg">QNAP NAS Setup Guide</h3>
                 </div>
                 <span class="text-xs text-gray-400 font-mono bg-white/5 px-2 py-1 rounded">QuLog</span>
@@ -369,7 +369,7 @@ $accentColor = get_settings()['themeAccentColor'] ?? '#3d8c7c';
                   <p class="mb-2 text-xs text-gray-400 font-semibold">Test Payload Connection Host:</p>
                   <div class="bg-[#111216] border border-white/5 rounded-xl p-3 flex items-center justify-between font-mono text-xs">
                     <span id="conn-qnap" class="text-gray-300">sg-analyzer.synalyze.net</span>
-                    <button onclick="copyToClipboard('conn-qnap', this)" class="text-xs text-[#06b6d4] hover:underline flex items-center gap-1">
+                    <button onclick="copyToClipboard('conn-qnap', this)" class="text-xs text-accent hover:underline flex items-center gap-1">
                       <?= lucide_icon('Copy', 'w-4 h-4') ?>
                       <span>Copy</span>
                     </button>
@@ -383,9 +383,9 @@ $accentColor = get_settings()['themeAccentColor'] ?? '#3d8c7c';
 
         <!-- SECTION 3: Core Features -->
         <section id="features" class="docs-section scroll-mt-28 bg-[#181a20]/30 border border-white/5 rounded-3xl p-8 md:p-12 shadow-2xl relative overflow-hidden transition-all duration-300 hover:border-white/10">
-          <div class="absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl from-[#3d8c7c]/5 to-transparent rounded-full pointer-events-none"></div>
+          <div class="absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl rounded-full pointer-events-none" style="background-image: linear-gradient(to bottom left, rgba(var(--accent-rgb), 0.05), transparent);"></div>
           <div class="flex items-center gap-4 mb-6">
-            <div class="w-12 h-12 rounded-2xl bg-[#3d8c7c]/10 flex items-center justify-center text-[#3d8c7c]">
+            <div class="w-12 h-12 rounded-2xl flex items-center justify-center" style="background-color: rgba(var(--accent-rgb), 0.1); color: var(--accent-color);">
               <?= lucide_icon('Shield', 'w-6 h-6') ?>
             </div>
             <h2 class="text-3xl font-bold tracking-tight">Core Features</h2>
@@ -398,7 +398,7 @@ $accentColor = get_settings()['themeAccentColor'] ?? '#3d8c7c';
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
               <div class="bg-[#111216] border border-white/5 p-6 rounded-2xl space-y-3">
-                <div class="text-[#06b6d4]"><?= lucide_icon('Search', 'w-8 h-8') ?></div>
+                <div class="text-accent"><?= lucide_icon('Search', 'w-8 h-8') ?></div>
                 <h4 class="text-white font-bold text-lg">Real-Time Access Auditing</h4>
                 <p class="text-sm text-gray-400 leading-normal">
                   Record exact file access history, creation details, and directory changes. Trace user IP details, connection types, and modification events immediately.
@@ -406,7 +406,7 @@ $accentColor = get_settings()['themeAccentColor'] ?? '#3d8c7c';
               </div>
 
               <div class="bg-[#111216] border border-white/5 p-6 rounded-2xl space-y-3">
-                <div class="text-[#06b6d4]"><?= lucide_icon('BarChart3', 'w-8 h-8') ?></div>
+                <div class="text-accent"><?= lucide_icon('BarChart3', 'w-8 h-8') ?></div>
                 <h4 class="text-white font-bold text-lg">Beautiful Data Visualization</h4>
                 <p class="text-sm text-gray-400 leading-normal">
                   Convert complex syslog strings into interactive chart interfaces, activity flow maps, traffic density indicators, and system capacity graphs.
@@ -414,7 +414,7 @@ $accentColor = get_settings()['themeAccentColor'] ?? '#3d8c7c';
               </div>
 
               <div class="bg-[#111216] border border-white/5 p-6 rounded-2xl space-y-3">
-                <div class="text-[#06b6d4]"><?= lucide_icon('BellRing', 'w-8 h-8') ?></div>
+                <div class="text-accent"><?= lucide_icon('BellRing', 'w-8 h-8') ?></div>
                 <h4 class="text-white font-bold text-lg">Intelligent Alerts & Triggers</h4>
                 <p class="text-sm text-gray-400 leading-normal">
                   Establish threshold alarms for anomalous activities like recursive file moves, off-hours administrative access, or consecutive brute force login failures.
@@ -422,7 +422,7 @@ $accentColor = get_settings()['themeAccentColor'] ?? '#3d8c7c';
               </div>
 
               <div class="bg-[#111216] border border-white/5 p-6 rounded-2xl space-y-3">
-                <div class="text-[#06b6d4]"><?= lucide_icon('FileText', 'w-8 h-8') ?></div>
+                <div class="text-accent"><?= lucide_icon('FileText', 'w-8 h-8') ?></div>
                 <h4 class="text-white font-bold text-lg">Structured Report Exports</h4>
                 <p class="text-sm text-gray-400 leading-normal">
                   Create compliance reports for ISO 27001, HIPAA, or internal audits. Securely download and compile filtered audit histories in XLSX, CSV, or PDF formats.
@@ -434,9 +434,9 @@ $accentColor = get_settings()['themeAccentColor'] ?? '#3d8c7c';
 
         <!-- SECTION 4: Deployment Details -->
         <section id="deployment" class="docs-section scroll-mt-28 bg-[#181a20]/30 border border-white/5 rounded-3xl p-8 md:p-12 shadow-2xl relative overflow-hidden transition-all duration-300 hover:border-white/10">
-          <div class="absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl from-[#06b6d4]/5 to-transparent rounded-full pointer-events-none"></div>
+          <div class="absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl rounded-full pointer-events-none" style="background-image: linear-gradient(to bottom left, rgba(var(--accent-rgb), 0.05), transparent);"></div>
           <div class="flex items-center gap-4 mb-6">
-            <div class="w-12 h-12 rounded-2xl bg-[#06b6d4]/10 flex items-center justify-center text-[#06b6d4]">
+            <div class="w-12 h-12 rounded-2xl flex items-center justify-center" style="background-color: rgba(var(--accent-rgb), 0.1); color: var(--accent-color);">
               <?= lucide_icon('Server', 'w-6 h-6') ?>
             </div>
             <h2 class="text-3xl font-bold tracking-tight">Deployment Details</h2>
@@ -449,11 +449,11 @@ $accentColor = get_settings()['themeAccentColor'] ?? '#3d8c7c';
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
               <!-- Cloud Model -->
-              <div class="border border-[#3d8c7c]/40 bg-[#12222c]/40 rounded-2xl p-6 flex flex-col justify-between">
+              <div class="rounded-2xl p-6 flex flex-col justify-between" style="border: 1px solid rgba(var(--accent-rgb), 0.3); background-color: rgba(var(--accent-rgb), 0.05);">
                 <div class="space-y-4">
                   <div class="flex items-center justify-between">
-                    <span class="px-2.5 py-0.5 rounded text-[10px] uppercase font-bold bg-[#1e8a79] text-white">Recommended</span>
-                    <?= lucide_icon('Cloud', 'text-[#3d8c7c] w-7 h-7') ?>
+                    <span class="px-2.5 py-0.5 rounded text-[10px] uppercase font-bold text-white bg-accent">Recommended</span>
+                    <?= lucide_icon('Cloud', 'text-accent w-7 h-7') ?>
                   </div>
                   <h4 class="text-white text-xl font-bold">Cloud Hosted SaaS</h4>
                   <p class="text-sm text-gray-400 leading-relaxed">
@@ -461,13 +461,13 @@ $accentColor = get_settings()['themeAccentColor'] ?? '#3d8c7c';
                   </p>
                   <ul class="text-xs text-gray-400 space-y-2 pt-2">
                     <li class="flex items-center gap-2">
-                      <span class="text-[#3d8c7c]">✓</span> Zero server maintenance requirements
+                      <span class="text-accent">✓</span> Zero server maintenance requirements
                     </li>
                     <li class="flex items-center gap-2">
-                      <span class="text-[#3d8c7c]">✓</span> Secure remote TLS token access
+                      <span class="text-accent">✓</span> Secure remote TLS token access
                     </li>
                     <li class="flex items-center gap-2">
-                      <span class="text-[#3d8c7c]">✓</span> Automatic scaling of storage buckets
+                      <span class="text-accent">✓</span> Automatic scaling of storage buckets
                     </li>
                   </ul>
                 </div>
@@ -478,7 +478,7 @@ $accentColor = get_settings()['themeAccentColor'] ?? '#3d8c7c';
                 <div class="space-y-4">
                   <div class="flex items-center justify-between">
                     <span class="px-2.5 py-0.5 rounded text-[10px] uppercase font-bold bg-white/5 text-gray-400">Enterprise</span>
-                    <?= lucide_icon('HardDrive', 'text-[#06b6d4] w-7 h-7') ?>
+                    <?= lucide_icon('HardDrive', 'text-accent w-7 h-7') ?>
                   </div>
                   <h4 class="text-white text-xl font-bold">On-Premise (Private Cloud)</h4>
                   <p class="text-sm text-gray-400 leading-relaxed">
@@ -486,13 +486,13 @@ $accentColor = get_settings()['themeAccentColor'] ?? '#3d8c7c';
                   </p>
                   <ul class="text-xs text-gray-400 space-y-2 pt-2">
                     <li class="flex items-center gap-2">
-                      <span class="text-[#06b6d4]">✓</span> Absolute data sovereignty and control
+                      <span class="text-accent">✓</span> Absolute data sovereignty and control
                     </li>
                     <li class="flex items-center gap-2">
-                      <span class="text-[#06b6d4]">✓</span> Zero outbound traffic to external systems
+                      <span class="text-accent">✓</span> Zero outbound traffic to external systems
                     </li>
                     <li class="flex items-center gap-2">
-                      <span class="text-[#06b6d4]">✓</span> Integrates with local AD / LDAP directory servers
+                      <span class="text-accent">✓</span> Integrates with local AD / LDAP directory servers
                     </li>
                   </ul>
                 </div>
@@ -503,9 +503,9 @@ $accentColor = get_settings()['themeAccentColor'] ?? '#3d8c7c';
 
         <!-- SECTION 5: Troubleshooting -->
         <section id="troubleshooting" class="docs-section scroll-mt-28 bg-[#181a20]/30 border border-white/5 rounded-3xl p-8 md:p-12 shadow-2xl relative overflow-hidden transition-all duration-300 hover:border-white/10">
-          <div class="absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl from-[#3d8c7c]/5 to-transparent rounded-full pointer-events-none"></div>
+          <div class="absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl rounded-full pointer-events-none" style="background-image: linear-gradient(to bottom left, rgba(var(--accent-rgb), 0.05), transparent);"></div>
           <div class="flex items-center gap-4 mb-6">
-            <div class="w-12 h-12 rounded-2xl bg-[#3d8c7c]/10 flex items-center justify-center text-[#3d8c7c]">
+            <div class="w-12 h-12 rounded-2xl flex items-center justify-center" style="background-color: rgba(var(--accent-rgb), 0.1); color: var(--accent-color);">
               <?= lucide_icon('HelpCircle', 'w-6 h-6') ?>
             </div>
             <h2 class="text-3xl font-bold tracking-tight">Troubleshooting</h2>
@@ -520,9 +520,9 @@ $accentColor = get_settings()['themeAccentColor'] ?? '#3d8c7c';
               <details class="bg-[#111216] border border-white/5 rounded-xl group p-4">
                 <summary class="flex items-center justify-between font-semibold text-white cursor-pointer select-none">
                   <span>1. NAS log sending shows success, but Dashboard is empty</span>
-                  <span class="text-[#06b6d4] transition-transform duration-300 group-open:rotate-180">▼</span>
+                  <span class="text-accent transition-transform duration-300 group-open:rotate-180">▼</span>
                 </summary>
-                <div class="text-xs text-gray-400 mt-3 pl-2 border-l border-[#06b6d4]/40 leading-relaxed">
+                <div class="text-xs text-gray-400 mt-3 pl-2 border-l leading-relaxed" style="border-left-color: rgba(var(--accent-rgb), 0.4);">
                   Verify that the active user registration email in the portal matches the configured Synology/QNAP device client tokens, and that the storage account matches. If there is a system identity gap, log entries will filter to safe backup blocks rather than rendering on standard user screens.
                 </div>
               </details>
@@ -530,9 +530,9 @@ $accentColor = get_settings()['themeAccentColor'] ?? '#3d8c7c';
               <details class="bg-[#111216] border border-white/5 rounded-xl group p-4">
                 <summary class="flex items-center justify-between font-semibold text-white cursor-pointer select-none">
                   <span>2. Port 514 Connection Timeouts</span>
-                  <span class="text-[#06b6d4] transition-transform duration-300 group-open:rotate-180">▼</span>
+                  <span class="text-accent transition-transform duration-300 group-open:rotate-180">▼</span>
                 </summary>
-                <div class="text-xs text-gray-400 mt-3 pl-2 border-l border-[#06b6d4]/40 leading-relaxed">
+                <div class="text-xs text-gray-400 mt-3 pl-2 border-l leading-relaxed" style="border-left-color: rgba(var(--accent-rgb), 0.4);">
                   Verify that outbound internet traffic configurations on your localized office firewall allow outgoing UDP packets on Port 514. Some enterprise corporate routers block outbound standard syslog pipelines by default.
                 </div>
               </details>
@@ -540,25 +540,25 @@ $accentColor = get_settings()['themeAccentColor'] ?? '#3d8c7c';
               <details class="bg-[#111216] border border-white/5 rounded-xl group p-4">
                 <summary class="flex items-center justify-between font-semibold text-white cursor-pointer select-none">
                   <span>3. High Volume Log Sync Throttle</span>
-                  <span class="text-[#06b6d4] transition-transform duration-300 group-open:rotate-180">▼</span>
+                  <span class="text-accent transition-transform duration-300 group-open:rotate-180">▼</span>
                 </summary>
-                <div class="text-xs text-gray-400 mt-3 pl-2 border-l border-[#06b6d4]/40 leading-relaxed">
+                <div class="text-xs text-gray-400 mt-3 pl-2 border-l leading-relaxed" style="border-left-color: rgba(var(--accent-rgb), 0.4);">
                   For devices with heavy system logging (above 100 entries per second), we recommend using QNAP/Synology local caching buffers or upgrading your active subscription to the Business tier to scale sync execution queues.
                 </div>
               </details>
             </div>
 
             <!-- Support Box -->
-            <div class="bg-gradient-to-r from-[#1b7569]/30 to-[#0e4e5e]/30 border border-[#3d8c7c]/30 rounded-2xl p-6 mt-8">
+            <div class="border rounded-2xl p-6 mt-8" style="border-color: rgba(var(--accent-rgb), 0.3); background-image: linear-gradient(to right, rgba(var(--accent-rgb), 0.15), rgba(var(--accent-rgb), 0.05));">
               <h4 class="text-white font-bold mb-2 text-lg">Still Need Assistance?</h4>
               <p class="text-sm text-gray-300 leading-normal mb-4">
                 Our active VIP engineering support is online 24/7 to help you configure custom router pipelines or troubleshoot syslog connections.
               </p>
               <div class="flex flex-wrap gap-4 text-xs">
-                <a href="<?= e(baseUrl('/contact')) ?>" class="bg-[#3d8c7c] hover:bg-[#439283] text-white px-4 py-2 rounded-lg font-semibold transition-colors flex items-center gap-1.5">
+                <a href="<?= e(baseUrl('/contact')) ?>" class="button-accent text-white px-4 py-2 rounded-lg font-semibold transition-all flex items-center gap-1.5">
                   <?= lucide_icon('Mail', 'w-4 h-4') ?> Contact VIP Support
                 </a>
-                <a href="tel:+94764404456" class="border border-[#3d8c7c]/40 hover:bg-white/5 text-white px-4 py-2 rounded-lg font-semibold transition-colors flex items-center gap-1.5">
+                <a href="tel:+94764404456" class="border text-white px-4 py-2 rounded-lg font-semibold transition-colors flex items-center gap-1.5" style="border-color: rgba(var(--accent-rgb), 0.4);">
                   <?= lucide_icon('Phone', 'w-4 h-4') ?> 076 440 4456
                 </a>
               </div>

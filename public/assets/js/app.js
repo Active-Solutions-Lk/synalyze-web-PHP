@@ -80,12 +80,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const btnAnnual = document.getElementById('btn-annual');
     if (btnMonthly && btnAnnual) {
         btnMonthly.addEventListener('click', () => {
-            btnMonthly.className = "bg-[#3d8c7c] text-white px-6 py-2 rounded-full font-bold text-lg";
+            btnMonthly.className = "bg-accent text-white px-6 py-2 rounded-full font-bold text-lg";
             btnAnnual.className = "border border-white/20 text-white px-6 py-2 rounded-full font-bold text-lg hover:bg-white/5 transition-colors";
             document.querySelectorAll('[data-monthly]').forEach(el => el.textContent = el.getAttribute('data-monthly'));
         });
         btnAnnual.addEventListener('click', () => {
-            btnAnnual.className = "bg-[#3d8c7c] text-white px-6 py-2 rounded-full font-bold text-lg";
+            btnAnnual.className = "bg-accent text-white px-6 py-2 rounded-full font-bold text-lg";
             btnMonthly.className = "border border-white/20 text-white px-6 py-2 rounded-full font-bold text-lg hover:bg-white/5 transition-colors";
             document.querySelectorAll('[data-annual]').forEach(el => el.textContent = el.getAttribute('data-annual'));
         });

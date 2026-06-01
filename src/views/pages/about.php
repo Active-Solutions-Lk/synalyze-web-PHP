@@ -1,5 +1,5 @@
 <div class="relative font-sans overflow-x-hidden">
-  <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(61,140,124,0.12)_0%,transparent_75%)] pointer-events-none z-0"></div>
+  <div class="absolute inset-0 pointer-events-none z-0" style="background-image: radial-gradient(circle at center, rgba(var(--accent-rgb), 0.12) 0%, transparent 75%);"></div>
   <div class="h-16 md:h-24 bg-black relative z-20 w-full"></div>
 
   <!-- Hero Section -->
@@ -32,7 +32,8 @@
 
         <a
           href="#who-we-are"
-          class="inline-flex items-center gap-3 px-8 py-3.5 rounded-full bg-[#1b7569] hover:bg-[#238c7f] text-white text-2xl font-medium transition-all duration-300 shadow-lg shadow-[#1b7569]/20"
+          style="background-color: var(--accent-color); box-shadow: 0 10px 30px rgba(var(--accent-rgb), 0.25);"
+          class="inline-flex items-center gap-3 px-8 py-3.5 rounded-full text-white text-2xl font-medium transition-all duration-300 hover:opacity-90"
         >
           <?= e($pageData['heroButtonText']) ?>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-7 h-7">
@@ -73,9 +74,9 @@
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
         <?php foreach ($whatWeDoCards as $card): ?>
-          <div class="relative group p-10 rounded-[2rem] border border-[#2b716f]/30 bg-[#161d24]/40 backdrop-blur-sm flex flex-col justify-center items-center text-center shadow-2xl transition-all duration-300 hover:border-[#3d8c7c] hover:shadow-[#3d8c7c]/10 hover:-translate-y-1">
+          <div style="border-color: rgba(var(--accent-rgb), 0.3);" class="relative group p-10 rounded-[2rem] border bg-[#161d24]/40 backdrop-blur-sm flex flex-col justify-center items-center text-center shadow-2xl transition-all duration-300 hover:border-accent hover:shadow-accent hover:-translate-y-1">
             <div class="flex justify-center mb-6">
-              <?= lucide_icon($card['iconName'], 'w-20 h-20 text-white', '1.5') ?>
+              <span class="text-accent"><?= lucide_icon($card['iconName'], 'w-20 h-20', '1.5') ?></span>
             </div>
             <h3 class="text-2xl md:text-4xl font-bold text-white mb-4">
               <?= e($card['title']) ?>
@@ -102,7 +103,7 @@
         <?php foreach ($whyChooseUsItems as $item): ?>
           <div class="flex items-start gap-6 group">
             <div class="flex-shrink-0 mt-1">
-              <svg class="w-8 h-8 text-white transition-transform duration-300 group-hover:scale-110" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+              <svg class="w-8 h-8 text-accent transition-transform duration-300 group-hover:scale-110" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
                 <polyline points="20 6 9 17 4 12" />
               </svg>
             </div>

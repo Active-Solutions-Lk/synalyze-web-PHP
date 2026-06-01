@@ -19,9 +19,9 @@
     </h2>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
       <!-- Phone Card -->
-      <div class="relative p-10 rounded-[18px] bg-[#17202c] shadow-2xl flex flex-col items-center text-center transition-all duration-300 border border-white/[0.03] hover:border-white/[0.08] hover:-translate-y-1">
+      <div class="relative p-10 rounded-[18px] bg-[#17202c] shadow-2xl flex flex-col items-center text-center transition-all duration-300 border border-white/[0.03] hover:border-accent hover:shadow-accent hover:-translate-y-1">
         <div class="flex items-center justify-center gap-3.5 mb-8">
-          <?= lucide_icon('Phone', 'w-10 h-10 text-white') ?>
+          <?= lucide_icon('Phone', 'w-10 h-10 text-accent') ?>
           <h3 class="text-2xl lg:text-[35px] text-white tracking-tight leading-none font-medium"><?= e($pageData['phoneTitle']) ?></h3>
         </div>
 
@@ -38,9 +38,9 @@
       </div>
 
       <!-- Email Card -->
-      <div class="relative p-10 rounded-[18px] bg-[#17202c] shadow-2xl flex flex-col items-center text-center transition-all duration-300 border border-white/[0.03] hover:border-white/[0.08] hover:-translate-y-1">
+      <div class="relative p-10 rounded-[18px] bg-[#17202c] shadow-2xl flex flex-col items-center text-center transition-all duration-300 border border-white/[0.03] hover:border-accent hover:shadow-accent hover:-translate-y-1">
         <div class="flex items-center justify-center gap-3.5 mb-8">
-          <?= lucide_icon('Mail', 'w-10 h-10 text-white') ?>
+          <?= lucide_icon('Mail', 'w-10 h-10 text-accent') ?>
           <h3 class="text-2xl lg:text-[35px] text-white tracking-tight leading-none font-medium"><?= e($pageData['emailTitle']) ?></h3>
         </div>
 
@@ -61,9 +61,9 @@
       </div>
 
       <!-- Address Card -->
-      <div class="relative p-10 rounded-[18px] bg-[#17202c] shadow-2xl flex flex-col items-center text-center transition-all duration-300 border border-white/[0.03] hover:border-white/[0.08] hover:-translate-y-1">
+      <div class="relative p-10 rounded-[18px] bg-[#17202c] shadow-2xl flex flex-col items-center text-center transition-all duration-300 border border-white/[0.03] hover:border-accent hover:shadow-accent hover:-translate-y-1">
         <div class="flex items-center justify-center gap-3.5 mb-8">
-          <?= lucide_icon('MapPin', 'w-10 h-10 text-white') ?>
+          <?= lucide_icon('MapPin', 'w-10 h-10 text-accent') ?>
           <h3 class="text-2xl lg:text-[35px] text-white tracking-tight leading-none font-medium"><?= e($pageData['addressTitle']) ?></h3>
         </div>
 
@@ -173,7 +173,7 @@
         </div>
 
         <div class="pt-4 text-center">
-          <button type="submit" class="flex items-center justify-center gap-3 px-12 py-5 rounded-xl text-white text-[2rem] transition-all duration-300 w-full sm:w-[300px] mx-auto bg-[#1b766d] hover:bg-[#439283] transform active:scale-95 cursor-pointer shadow-lg shadow-[#1b766d]/20 font-medium">
+          <button type="submit" style="background-color: var(--accent-color); box-shadow: 0 10px 30px rgba(var(--accent-rgb), 0.25);" class="flex items-center justify-center gap-3 px-12 py-5 rounded-xl text-white text-[2rem] hover:opacity-90 transform active:scale-95 cursor-pointer font-medium w-full sm:w-[300px] mx-auto transition-all">
             Submit
           </button>
         </div>

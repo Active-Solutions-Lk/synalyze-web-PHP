@@ -7,7 +7,7 @@
         Pricing Plans
       </h1>
       <div class="flex items-center justify-center gap-3">
-        <button id="btn-monthly" class="bg-[#3d8c7c] text-white px-6 py-2 rounded-full font-bold text-lg">Monthly</button>
+        <button id="btn-monthly" class="bg-accent text-white px-6 py-2 rounded-full font-bold text-lg">Monthly</button>
         <button id="btn-annual" class="border border-white/20 text-white px-6 py-2 rounded-full font-bold text-lg hover:bg-white/5 transition-colors">Annually</button>
       </div>
     </div>
@@ -41,7 +41,7 @@
           <ul class="space-y-3 mb-8 flex-1">
             <?php foreach ($tier['features'] as $f): ?>
               <li class="flex items-start gap-3 text-gray-300 text-[1.15rem]">
-                <span class="text-white font-bold">✓</span>
+                <span class="text-accent font-bold">✓</span>
                 <span><?= e($f['name']) ?></span>
               </li>
             <?php endforeach; ?>
@@ -65,7 +65,7 @@
             </div>
           </div>
 
-          <button class="w-full py-4 rounded-xl border border-[#3d8c7c] bg-[#1b222b] text-white font-semibold text-2xl lg:text-4xl hover:bg-[#3d8c7c]/10 transition-colors">
+          <button class="w-full py-4 rounded-xl border border-accent bg-[#1b222b] text-white font-semibold text-2xl lg:text-4xl bg-accent-glow-hover transition-colors">
             <?= e($tier['ctaText']) ?>
           </button>
         </div>
@@ -77,7 +77,7 @@
       <h1 class="text-center text-3xl sm:text-4xl md:text-[5rem] text-white mb-14 tracking-tight">Add-ons & Customizations</h1>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
         <?php foreach ($addons as $addon): ?>
-          <div class="bg-[#12222c] rounded-2xl p-6 md:p-10 lg:p-14 border border-[#3d8c7c]/40 hover:border-[#3d8c7c] transition-all duration-300 flex flex-col items-center text-center justify-center min-h-[220px]">
+          <div style="border-color: rgba(var(--accent-rgb), 0.4);" onmouseover="this.style.borderColor='var(--accent-color)';" onmouseout="this.style.borderColor='rgba(var(--accent-rgb), 0.4)';" class="bg-[#12222c] rounded-2xl p-6 md:p-10 lg:p-14 border transition-all duration-300 flex flex-col items-center text-center justify-center min-h-[220px]">
             <h3 class="text-white text-3xl md:text-[3rem] font-semibold mb-4 tracking-tight leading-tight"><?= e($addon['name']) ?></h3>
             <p class="text-white/80 text-xl md:text-[1.5rem] leading-snug whitespace-pre-line max-w-[90%]"><?= e($addon['description']) ?></p>
           </div>
