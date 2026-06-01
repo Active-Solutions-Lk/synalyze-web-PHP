@@ -157,8 +157,8 @@
 
         <div class="space-y-4">
           <label class="text-base md:text-lg text-white block">CAPTCHA</label>
-          <div class="flex flex-col gap-4">
-            <div class="flex items-center gap-3">
+          <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+            <div class="flex items-center gap-3 shrink-0">
               <img src="<?= e(baseUrl('/captcha.php')) ?>" id="captcha-img" alt="CAPTCHA" class="rounded-lg shadow-inner border border-transparent h-[60px] w-[200px]" />
               <div class="flex flex-col gap-2">
                 <button type="button" onclick="document.getElementById('captcha-img').src='<?= e(baseUrl('/captcha.php')) ?>?'+Math.random();" class="p-1.5 rounded-md hover:bg-white/5 text-white transition-colors cursor-pointer" title="Reload CAPTCHA">
@@ -166,9 +166,7 @@
                 </button>
               </div>
             </div>
-            <div class="flex items-center gap-3">
-              <input type="text" name="captcha" required class="flex-1 bg-[#243040] text-white rounded-lg p-3.5 focus:outline-none text-center font-bold tracking-wider text-base" placeholder="Enter CAPTCHA" />
-            </div>
+            <input type="text" name="captcha" required class="w-full sm:flex-1 bg-[#243040] text-white rounded-lg p-3.5 focus:outline-none text-center font-bold tracking-wider text-base h-[60px]" placeholder="Enter CAPTCHA" />
           </div>
         </div>
 
