@@ -89,11 +89,11 @@ $isLoggedIn = isset($_SESSION['user']);
         </a>
       <?php else: ?>
         <a 
-          href="<?= e(baseUrl('/pricing')) ?>" 
+          href="<?= e(baseUrl('/contact')) ?>" 
           class="text-sm font-semibold px-6 py-2.5 rounded-full text-white transition-opacity hover:opacity-90"
           style="background-color: <?= e($accentColor) ?>;"
         >
-          Pricing
+          Contact
         </a>
       <?php endif; ?>
     </div>
@@ -138,11 +138,11 @@ $isLoggedIn = isset($_SESSION['user']);
           </a>
         <?php else: ?>
           <a 
-            href="<?= e(baseUrl('/pricing')) ?>" 
+            href="<?= e(baseUrl('/contact')) ?>" 
             class="text-center text-white py-2.5 rounded-full font-semibold"
             style="background-color: <?= e($accentColor) ?>;"
           >
-            Pricing
+            Contact
           </a>
         <?php endif; ?>
       </div>
