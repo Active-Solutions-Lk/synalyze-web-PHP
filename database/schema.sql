@@ -154,3 +154,72 @@ CREATE TABLE IF NOT EXISTS users (
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
+CREATE TABLE IF NOT EXISTS DocsPage (
+    id INTEGER PRIMARY KEY DEFAULT 1,
+    eyebrowText TEXT NOT NULL DEFAULT 'SYNALYZE Knowledge Base',
+    headline TEXT NOT NULL DEFAULT 'Documentation',
+    subheadline TEXT NOT NULL DEFAULT 'Learn how to navigate and maximize the Synalyzer platform''s monitoring capabilities for your global enterprise NAS fleet.',
+    gettingStartedIntro TEXT NOT NULL,
+    onboardingTitle TEXT NOT NULL DEFAULT '4-Step Onboarding Flow',
+    integrationIntro TEXT NOT NULL,
+    integrationSetupTitle TEXT NOT NULL DEFAULT 'Synology NAS Setup Guide',
+    integrationSetupSubtitle TEXT NOT NULL DEFAULT 'Syslog V2',
+    integrationSetupPortNote TEXT NOT NULL,
+    modulesIntro TEXT NOT NULL,
+    deploymentIntro TEXT NOT NULL,
+    complianceTitle TEXT NOT NULL DEFAULT 'Standards & Compliance',
+    supportIntro TEXT NOT NULL,
+    supportFaqTitle TEXT NOT NULL DEFAULT 'Troubleshooting',
+    supportContactTitle TEXT NOT NULL DEFAULT 'Get in Touch',
+    supportPhone TEXT NOT NULL DEFAULT '011 732 5200',
+    supportEmail TEXT NOT NULL DEFAULT 'support@synalyze.net',
+    supportEmailNote TEXT NOT NULL,
+    supportHoursWeekdays TEXT NOT NULL,
+    supportHoursSaturdays TEXT NOT NULL,
+    supportHoursSundays TEXT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS DocsOnboardingStep (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    stepNumber TEXT NOT NULL,
+    title TEXT NOT NULL,
+    description TEXT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS DocsIntegrationField (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    fieldName TEXT NOT NULL,
+    fieldValue TEXT NOT NULL,
+    description TEXT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS DocsModule (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    iconName TEXT NOT NULL,
+    title TEXT NOT NULL,
+    description TEXT NOT NULL,
+    bulletPoints TEXT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS DocsDeploymentOption (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    badge TEXT NOT NULL,
+    iconName TEXT NOT NULL,
+    title TEXT NOT NULL,
+    description TEXT NOT NULL,
+    bulletPoints TEXT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS DocsComplianceItem (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    title TEXT NOT NULL,
+    description TEXT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS DocsTroubleshootingFaq (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    question TEXT NOT NULL,
+    answer TEXT NOT NULL
+);
+
+

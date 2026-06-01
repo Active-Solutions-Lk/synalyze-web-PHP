@@ -30,6 +30,7 @@
           ['name' => 'Contact Page', 'href' => '/admin/contact', 'icon' => 'contact-round'],
           ['name' => 'Pricing', 'href' => '/admin/pricing', 'icon' => 'credit-card'],
           ['name' => 'FAQs', 'href' => '/admin/faqs', 'icon' => 'help-circle'],
+          ['name' => 'Docs Page', 'href' => '/admin/docs', 'icon' => 'book-open'],
           ['name' => 'Users', 'href' => '/admin/users', 'icon' => 'users'],
       ];
 

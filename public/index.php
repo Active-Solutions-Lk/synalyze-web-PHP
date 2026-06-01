@@ -103,6 +103,33 @@ $router->add('/admin/about/why/create', 'AboutAdminController@createWhyItem');
 $router->add('/admin/about/why/delete', 'AboutAdminController@deleteWhyItem');
 $router->add('/admin/about/why/update', 'AboutAdminController@updateWhyItem');
 
+$router->add('/admin/docs', 'DocsAdminController@index');
+$router->add('/admin/docs/page/update', 'DocsAdminController@updatePage');
+
+$router->add('/admin/docs/onboarding/create', 'DocsAdminController@createOnboarding');
+$router->add('/admin/docs/onboarding/update', 'DocsAdminController@updateOnboarding');
+$router->add('/admin/docs/onboarding/delete', 'DocsAdminController@deleteOnboarding');
+
+$router->add('/admin/docs/integration/create', 'DocsAdminController@createIntegration');
+$router->add('/admin/docs/integration/update', 'DocsAdminController@updateIntegration');
+$router->add('/admin/docs/integration/delete', 'DocsAdminController@deleteIntegration');
+
+$router->add('/admin/docs/module/create', 'DocsAdminController@createModule');
+$router->add('/admin/docs/module/update', 'DocsAdminController@updateModule');
+$router->add('/admin/docs/module/delete', 'DocsAdminController@deleteModule');
+
+$router->add('/admin/docs/deployment/create', 'DocsAdminController@createDeployment');
+$router->add('/admin/docs/deployment/update', 'DocsAdminController@updateDeployment');
+$router->add('/admin/docs/deployment/delete', 'DocsAdminController@deleteDeployment');
+
+$router->add('/admin/docs/compliance/create', 'DocsAdminController@createCompliance');
+$router->add('/admin/docs/compliance/update', 'DocsAdminController@updateCompliance');
+$router->add('/admin/docs/compliance/delete', 'DocsAdminController@deleteCompliance');
+
+$router->add('/admin/docs/faq/create', 'DocsAdminController@createFaq');
+$router->add('/admin/docs/faq/update', 'DocsAdminController@updateFaq');
+$router->add('/admin/docs/faq/delete', 'DocsAdminController@deleteFaq');
+
 // Resolve URL path using REQUEST_URI instead of $_GET
 $basePath = str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME']));
 if ($basePath === '/') $basePath = '';

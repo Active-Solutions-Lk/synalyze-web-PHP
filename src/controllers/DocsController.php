@@ -1,8 +1,19 @@
 <?php
+require_once dirname(__DIR__) . '/models/DocsModel.php';
 
 class DocsController {
     public function index() {
-        $pageTitle = "Documentation - Synalyze";
+        $model = new DocsModel();
+        $docsPage = $model->getDocsPage();
+        
+        $onboardingSteps = $model->getOnboardingSteps();
+        $integrationFields = $model->getIntegrationFields();
+        $modules = $model->getModules();
+        $deploymentOptions = $model->getDeploymentOptions();
+        $complianceItems = $model->getComplianceItems();
+        $faqs = $model->getTroubleshootingFaqs();
+        
+        $pageTitle = ($docsPage['headline'] ?? "Documentation") . " - Synalyze";
         
         ob_start();
         require dirname(__DIR__) . '/views/pages/docs.php';
