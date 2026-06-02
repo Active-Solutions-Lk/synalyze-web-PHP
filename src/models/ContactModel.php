@@ -6,4 +6,13 @@ class ContactModel {
     public function getContactPageData() {
         return $this->pdo->query("SELECT * FROM ContactPage LIMIT 1")->fetch();
     }
+
+    public function saveSubmission(string $name, string $email, ?string $company, string $subject, string $message): bool {
+        $stmt = $this->pdo->prepare("INSERT INTO contact_submissions (name, email, company, subject, message) VALUES (?, ?, ?, ?, ?)");
+        return $stmt->execute([$name, $email, $company, $subject, $message]);
+    }
+
+    public function getAllSubmissions(): array {
+        return $this->pdo->query("SELECT * FROM contact_submissions ORDER BY submitted_at DESC")->fetchAll();
+    }
 }

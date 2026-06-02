@@ -25,9 +25,12 @@ class SettingsAdminController {
         session_start();
         $pdo = \Core\Database::getInstance()->getConnection();
         
-        $stmt = $pdo->prepare("UPDATE globalsettings SET siteName = ?, themeAccentColor = ?, primaryBackgroundColor = ? WHERE id = 1");
+        $stmt = $pdo->prepare("UPDATE globalsettings SET siteName = ?, ownerEmail = ?, smtpUsername = ?, smtpPassword = ?, themeAccentColor = ?, primaryBackgroundColor = ? WHERE id = 1");
         $stmt->execute([
             $_POST['siteName'],
+            $_POST['ownerEmail'],
+            $_POST['smtpUsername'],
+            $_POST['smtpPassword'],
             $_POST['themeAccentColor'],
             $_POST['primaryBackgroundColor']
         ]);

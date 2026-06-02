@@ -18,6 +18,25 @@
       </div>
       
       <div>
+        <label class="block text-sm font-medium text-gray-400 mb-2">Contact Notification Email</label>
+        <input type="email" name="ownerEmail" value="<?= e($settings['ownerEmail'] ?? 'heshanithennakoon118@gmail.com') ?>" required class="w-full bg-[#242424] border border-gray-700 rounded-md p-3 text-white focus:outline-none focus:border-[#00CED1]">
+        <p class="text-xs text-gray-500 mt-1">This is the email address that receives all message notifications sent through the contact form.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+          <label class="block text-sm font-medium text-gray-400 mb-2">SMTP Sender Email (Username)</label>
+          <input type="email" name="smtpUsername" value="<?= e($settings['smtpUsername'] ?? '') ?>" required class="w-full bg-[#242424] border border-gray-700 rounded-md p-3 text-white focus:outline-none focus:border-[#00CED1]">
+          <p class="text-xs text-gray-500 mt-1">The email account used to send the notification (e.g. your Gmail address).</p>
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-400 mb-2">SMTP App Password</label>
+          <input type="password" name="smtpPassword" value="<?= e($settings['smtpPassword'] ?? '') ?>" required class="w-full bg-[#242424] border border-gray-700 rounded-md p-3 text-white focus:outline-none focus:border-[#00CED1]">
+          <p class="text-xs text-gray-500 mt-1">The App Password generated from your email provider for SMTP.</p>
+        </div>
+      </div>
+      
+      <div>
         <label class="block text-sm font-medium text-gray-400 mb-2">Theme Accent Color</label>
         <div class="flex items-center gap-4">
           <input type="color" name="themeAccentColor" value="<?= e($settings['themeAccentColor']) ?>" class="w-12 h-12 rounded bg-transparent border-0 cursor-pointer">

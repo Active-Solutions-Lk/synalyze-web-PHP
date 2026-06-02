@@ -11,8 +11,9 @@ class ContactAdminController {
     public function index() {
         $model = new ContactModel();
         $pageData = $model->getContactPageData();
+        $submissions = $model->getAllSubmissions();
         
-        $pageTitle = "Contact Page - Admin";
+        $pageTitle = "Contact Page & Inbox - Admin";
         
         ob_start();
         require dirname(__DIR__, 2) . '/views/admin/contact.php';

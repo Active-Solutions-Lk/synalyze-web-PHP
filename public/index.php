@@ -13,9 +13,11 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 // Autoloading could be set up here if using composer. For now we will manually require.
+require_once dirname(__DIR__) . '/vendor/autoload.php';
 require_once dirname(__DIR__) . '/config/app.php';
 require_once dirname(__DIR__) . '/src/core/helpers.php';
 require_once dirname(__DIR__) . '/src/core/Database.php';
+require_once dirname(__DIR__) . '/src/core/Mailer.php';
 require_once dirname(__DIR__) . '/src/core/Router.php';
 
 // Instantiate Router

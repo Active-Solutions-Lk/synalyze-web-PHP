@@ -3,7 +3,8 @@ CREATE TABLE IF NOT EXISTS globalsettings (
     siteName TEXT NOT NULL,
     logoUrl TEXT,
     themeAccentColor TEXT NOT NULL DEFAULT '#00CED1',
-    primaryBackgroundColor TEXT NOT NULL DEFAULT '#0A0A0A'
+    primaryBackgroundColor TEXT NOT NULL DEFAULT '#0A0A0A',
+    ownerEmail TEXT NOT NULL DEFAULT 'heshanithennakoon118@gmail.com'
 );
 
 CREATE TABLE IF NOT EXISTS herosection (
@@ -220,6 +221,16 @@ CREATE TABLE IF NOT EXISTS DocsTroubleshootingFaq (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     question TEXT NOT NULL,
     answer TEXT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS contact_submissions (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    email TEXT NOT NULL,
+    company TEXT,
+    subject TEXT NOT NULL,
+    message TEXT NOT NULL,
+    submitted_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
 
