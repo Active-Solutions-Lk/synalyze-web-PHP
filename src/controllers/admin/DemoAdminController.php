@@ -28,11 +28,15 @@ class DemoAdminController {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $id = $_POST['id'] ?? null;
             $synalyzeUrl = trim($_POST['synalyze_url'] ?? '');
-            $username = trim($_POST['username'] ?? '');
-            $password = $_POST['password'] ?? '';
+            $activationKey = trim($_POST['activation_key'] ?? '');
 
-            if (!$id || empty($synalyzeUrl) || empty($username) || empty($password)) {
+            if (!$id || empty($synalyzeUrl) || empty($activationKey)) {
                 $this->redirectError("Please fill in all credential fields.", $id);
+            }
+
+            // Enforce format XXXX-XXXX-XXXX (12 uppercase English alphabetic letters only)
+            if (!preg_match('/^[A-Z]{4}-[A-Z]{4}-[A-Z]{4}$/', $activationKey)) {
+                $this->redirectError("Invalid activation key format. Must be 12 uppercase English letters formatted as XXXX-XXXX-XXXX (e.g. PAKQ-VMEA-HUMK).", $id);
             }
 
             $model = new DemoRequestModel();
@@ -47,12 +51,11 @@ class DemoAdminController {
                 $request['email'],
                 $request['full_name'],
                 $synalyzeUrl,
-                $username,
-                $password
+                $activationKey
             );
 
             if ($emailSent) {
-                $model->markCredentialSent($id);
+                $model->markCredentialSent($id, $activationKey);
                 $this->redirectSuccess("Credentials successfully sent to " . e($request['email']) . ".");
             } else {
                 $this->redirectError("Failed to send the email. Please check SMTP settings.", $id);

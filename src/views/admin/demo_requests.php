@@ -227,6 +227,14 @@
                     <span class="text-xs px-2.5 py-1 rounded-full font-semibold badge-sent" title="Sent at: <?= e($request['credential_sent_at']) ?>">
                       🟢 Credentials Sent
                     </span>
+                    <?php if (!empty($request['activation_key'])): ?>
+                      <div class="mt-2 text-xs font-mono bg-black/40 border border-gray-800 rounded px-2 py-1.5 text-gray-300 flex items-center justify-between gap-2 max-w-[200px]" title="Activation Key">
+                        <span class="truncate selection:all" id="table-key-<?= $request['id'] ?>"><?= e($request['activation_key']) ?></span>
+                        <button type="button" onclick="copyToClipboard('<?= e($request['activation_key']) ?>', this)" class="text-gray-500 hover:text-teal-400 transition-colors flex items-center shrink-0" title="Copy Key">
+                          <?= lucide_icon('Copy', 'w-3 h-3') ?>
+                        </button>
+                      </div>
+                    <?php endif; ?>
                   <?php endif; ?>
                 </td>
 
@@ -255,32 +263,20 @@
                   <div class="max-w-2xl mx-auto bg-[#181818] border border-gray-800/80 rounded-xl p-6 shadow-inner space-y-4">
                     <div class="flex items-center gap-2 border-b border-gray-800 pb-3 mb-2">
                       <?= lucide_icon('Send', 'w-4 h-4 text-teal-400') ?>
-                      <h4 class="font-bold text-white text-sm">Send Sandbox Credentials to <?= e($request['full_name']) ?></h4>
+                      <h4 class="font-bold text-white text-sm">Send Activation Key to <?= e($request['full_name']) ?></h4>
                     </div>
 
                     <form method="POST" action="<?= e(baseUrl('/admin/demo/send')) ?>" class="space-y-4">
                       <input type="hidden" name="id" value="<?= $request['id'] ?>">
                       
-                      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div class="flex flex-col gap-1">
-                          <label class="text-xs font-bold uppercase tracking-wider text-gray-400">Synalyze Sandbox URL</label>
-                          <input type="text" name="synalyze_url" value="http://sg-analyzer.synalyze.net:3000" class="admin-input-small" required>
-                        </div>
-                        <div class="flex flex-col gap-1">
-                          <label class="text-xs font-bold uppercase tracking-wider text-gray-400">Sandbox Username / Email</label>
-                          <input type="text" name="username" value="<?= e($request['email']) ?>" class="admin-input-small" required>
-                        </div>
+                      <div class="flex flex-col gap-1">
+                        <label class="text-xs font-bold uppercase tracking-wider text-gray-400">Synalyze Sandbox URL</label>
+                        <input type="text" name="synalyze_url" value="http://sg-analyzer.synalyze.net:3000" class="admin-input-small" required>
                       </div>
                       
                       <div class="flex flex-col gap-1">
-                        <label class="text-xs font-bold uppercase tracking-wider text-gray-400">Temporary Password</label>
-                        <div class="flex gap-2">
-                          <input type="text" name="password" id="pass-<?= $request['id'] ?>" value="Synalyze@<?= rand(1000, 9999) ?>" class="admin-input-small flex-grow" required>
-                          <button type="button" onclick="generatePass(<?= $request['id'] ?>)" class="admin-btn-secondary py-2 px-3 text-xs shrink-0 flex items-center justify-center gap-1.5">
-                            <?= lucide_icon('RefreshCw', 'w-3.5 h-3.5') ?>
-                            Regenerate
-                          </button>
-                        </div>
+                        <label class="text-xs font-bold uppercase tracking-wider text-gray-400">Activation Key</label>
+                        <input type="text" name="activation_key" value="<?= e($request['activation_key'] ?? '') ?>" placeholder="PAKQ-VMEA-HUMK" pattern="^[a-zA-Z]{4}-[a-zA-Z]{4}-[a-zA-Z]{4}$" title="Activation key must be 12 English letters formatted as XXXX-XXXX-XXXX" oninput="this.value = this.value.toUpperCase();" class="admin-input-small font-mono tracking-wider" required>
                       </div>
                       
                       <div class="flex justify-end gap-3 pt-2">
@@ -288,7 +284,7 @@
                           Cancel
                         </button>
                         <button type="submit" class="admin-btn-primary py-2 px-5 text-xs">
-                          Send Credentials Email
+                          Send Activation Key
                         </button>
                       </div>
                     </form>
@@ -337,12 +333,47 @@ function toggleCredForm(id) {
   }
 }
 
-function generatePass(id) {
-  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%&*';
-  let pass = 'Synalyze@';
-  for (let i = 0; i < 4; i++) {
-    pass += chars.charAt(Math.floor(Math.random() * chars.length));
+function copyToClipboard(text, btn) {
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(text).then(() => {
+      showCopiedFeedback(btn);
+    }).catch(err => {
+      fallbackCopy(text, btn);
+    });
+  } else {
+    fallbackCopy(text, btn);
   }
-  document.getElementById('pass-' + id).value = pass;
 }
+
+function fallbackCopy(text, btn) {
+  const textArea = document.createElement("textarea");
+  textArea.value = text;
+  textArea.style.top = "0";
+  textArea.style.left = "0";
+  textArea.style.position = "fixed";
+  document.body.appendChild(textArea);
+  textArea.focus();
+  textArea.select();
+  try {
+    const successful = document.execCommand('copy');
+    if (successful) {
+      showCopiedFeedback(btn);
+    } else {
+      alert('Unable to copy key.');
+    }
+  } catch (err) {
+    alert('Oops, unable to copy key.');
+  }
+  document.body.removeChild(textArea);
+}
+
+function showCopiedFeedback(btn) {
+  const originalHTML = btn.innerHTML;
+  btn.innerHTML = '<span style="color: #2dd4bf; font-size: 10px; font-weight: bold; margin-right: 4px;">✓ Copied</span>';
+  setTimeout(() => {
+    btn.innerHTML = originalHTML;
+  }, 2000);
+}
+
+
 </script>

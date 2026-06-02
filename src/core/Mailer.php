@@ -404,8 +404,7 @@ class Mailer {
         string $userEmail,
         string $userName,
         string $synalyzeUrl,
-        string $username,
-        string $password
+        string $activationKey
     ): bool {
         $config = require dirname(__DIR__, 2) . '/config/app.php';
 
@@ -435,7 +434,7 @@ class Mailer {
             $mail->addAddress($userEmail);
 
             $mail->isHTML(true);
-            $mail->Subject = 'Your Synalyzer Demo Credentials';
+            $mail->Subject = 'Your Synalyzer Demo Activation Key';
 
             $body = '
             <!DOCTYPE html>
@@ -553,23 +552,24 @@ class Mailer {
                             Thank you for requesting a demo of the Synalyzer platform. We are excited to grant you access to our enterprise-grade NAS fleet monitoring and syslog analytics environment.
                         </p>
                         <p style="font-size: 15px; line-height: 1.6; color: #E2E8F0;">
-                            Your temporary credentials have been generated. You can now log in and explore the full suite of real-time monitoring dashboard tools.
+                            Your sandbox environment has been provisioned. Use the activation key below to activate and access your demo.
                         </p>
                         
                         <div class="credentials-box">
                             <div class="credential-row">
                                 <div class="credential-label">Demo Platform URL</div>
-                                <div class="credential-value" style="font-family: sans-serif; font-size: 15px;"><a href="' . e($synalyzeUrl) . '" style="color: #00CED1; text-decoration: none;">' . e($synalyzeUrl) . '</a></div>
+                                <div class="credential-value" style="font-family: sans-serif; font-size: 15px;">
+                                    <a href="' . e($synalyzeUrl) . '" style="color: #00CED1; text-decoration: none; font-weight: bold;">' . e($synalyzeUrl) . ' ↗</a>
+                                </div>
                             </div>
-                            <div style="height: 15px;"></div>
+                            <div style="height: 20px;"></div>
                             <div class="credential-row">
-                                <div class="credential-label">Username / Email</div>
-                                <div class="credential-value">' . e($username) . '</div>
-                            </div>
-                            <div style="height: 15px;"></div>
-                            <div class="credential-row">
-                                <div class="credential-label">Temporary Password</div>
-                                <div class="credential-value" style="color: #FF5A5F;">' . e($password) . '</div>
+                                <div class="credential-label">Activation Key</div>
+                                <div style="margin-top: 8px; display: inline-flex; align-items: center; background: #0D0D0D; border: 1px solid #333333; border-radius: 6px; padding: 12px 18px;">
+                                    <span style="font-family: \'Courier New\', Courier, monospace; font-size: 18px; color: #FFFFFF; font-weight: bold; letter-spacing: 1.5px; -webkit-user-select: all; -moz-user-select: all; -ms-user-select: all; user-select: all;">' . e($activationKey) . '</span>
+                                    <span style="margin-left: 12px; color: #00CED1; font-size: 16px; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;">📋</span>
+                                </div>
+                                <div style="font-size: 12px; color: #718096; margin-top: 6px; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;">(Double-click or click the key above to highlight and copy it instantly)</div>
                             </div>
                         </div>
 
@@ -578,7 +578,7 @@ class Mailer {
                         </div>
 
                         <p style="font-size: 14px; color: #A0AEC0; margin-top: 30px; line-height: 1.5; border-top: 1px solid #2D3748; padding-top: 20px;">
-                            <strong>Security Note:</strong> We highly recommend updating your temporary password upon logging into the platform for the first time.
+                            <strong>Security Note:</strong> Please keep this activation key confidential and do not share it with unauthorized personnel.
                         </p>
                     </div>
                     <div class="footer">
@@ -591,7 +591,7 @@ class Mailer {
             ';
 
             $mail->Body = $body;
-            $mail->AltBody = "Your Synalyzer Demo Sandbox is Ready!\n\nAccess Link: $synalyzeUrl\nUsername: $username\nTemporary Password: $password\n\nPlease log in and explore the sandbox.";
+            $mail->AltBody = "Your Synalyzer Demo Sandbox is Ready!\n\nAccess Link: $synalyzeUrl\nActivation Key: $activationKey\n\nPlease use the link and key above to activate and explore the sandbox.";
 
             $mail->send();
             return true;

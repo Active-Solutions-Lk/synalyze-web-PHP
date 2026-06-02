@@ -243,5 +243,6 @@ CREATE TABLE IF NOT EXISTS demo_requests (
     status TEXT NOT NULL DEFAULT 'pending',
     requested_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     credential_sent_at DATETIME,
+    activation_key TEXT,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );

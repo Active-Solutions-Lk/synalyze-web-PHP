@@ -51,7 +51,7 @@ class DemoRequestModel {
     public function getAllRequests($search = '') {
         if (!empty($search)) {
             $stmt = $this->pdo->prepare("
-                SELECT id, user_id, full_name, company_name, email, phone, status, requested_at, credential_sent_at
+                SELECT id, user_id, full_name, company_name, email, phone, status, requested_at, credential_sent_at, activation_key
                 FROM demo_requests
                 WHERE full_name LIKE ? OR email LIKE ? OR company_name LIKE ? OR phone LIKE ?
                 ORDER BY requested_at DESC
@@ -60,7 +60,7 @@ class DemoRequestModel {
             $stmt->execute([$searchTerm, $searchTerm, $searchTerm, $searchTerm]);
         } else {
             $stmt = $this->pdo->query("
-                SELECT id, user_id, full_name, company_name, email, phone, status, requested_at, credential_sent_at
+                SELECT id, user_id, full_name, company_name, email, phone, status, requested_at, credential_sent_at, activation_key
                 FROM demo_requests
                 ORDER BY requested_at DESC
             ");
@@ -96,16 +96,18 @@ class DemoRequestModel {
      * Marks a demo request as completed/credentials sent.
      *
      * @param int $requestId
+     * @param string $activationKey
      * @return bool
      */
-    public function markCredentialSent($requestId) {
+    public function markCredentialSent($requestId, $activationKey) {
         $stmt = $this->pdo->prepare("
             UPDATE demo_requests
-            SET status = 'credentials_sent', credential_sent_at = ?
+            SET status = 'credentials_sent', credential_sent_at = ?, activation_key = ?
             WHERE id = ?
         ");
         return $stmt->execute([
             date('Y-m-d H:i:s'),
+            $activationKey,
             $requestId
         ]);
     }
