@@ -8,8 +8,8 @@ class ContactModel {
     }
 
     public function saveSubmission(string $name, string $email, ?string $company, string $subject, string $message): bool {
-        $stmt = $this->pdo->prepare("INSERT INTO contact_submissions (name, email, company, subject, message) VALUES (?, ?, ?, ?, ?)");
-        return $stmt->execute([$name, $email, $company, $subject, $message]);
+        $stmt = $this->pdo->prepare("INSERT INTO contact_submissions (name, email, company, subject, message, submitted_at) VALUES (?, ?, ?, ?, ?, ?)");
+        return $stmt->execute([$name, $email, $company, $subject, $message, date('Y-m-d H:i:s')]);
     }
 
     public function getAllSubmissions(): array {

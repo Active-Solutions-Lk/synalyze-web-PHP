@@ -1,4 +1,7 @@
 <?php
+// Set global timezone to Asia/Colombo (Sri Lanka)
+date_default_timezone_set('Asia/Colombo');
+
 // If running via PHP built-in server, serve static files directly
 if (php_sapi_name() === 'cli-server') {
     $path = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);

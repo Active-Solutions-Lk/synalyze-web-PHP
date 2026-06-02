@@ -27,8 +27,8 @@ class UserModel {
      */
     public function createUser($data) {
         $stmt = $this->pdo->prepare("
-            INSERT INTO users (full_name, company_name, address, phone, email, password)
-            VALUES (?, ?, ?, ?, ?, ?)
+            INSERT INTO users (full_name, company_name, address, phone, email, password, created_at)
+            VALUES (?, ?, ?, ?, ?, ?, ?)
         ");
         
         // Hash the password securely before saving
@@ -40,7 +40,8 @@ class UserModel {
             $data['address'],
             $data['phone'],
             $data['email'],
-            $hashedPassword
+            $hashedPassword,
+            date('Y-m-d H:i:s')
         ]);
     }
 
