@@ -367,10 +367,6 @@ class Mailer {
                                     <div class="meta-label">Requested At</div>
                                     <div class="meta-value">' . date('Y-m-d H:i:s') . '</div>
                                 </td>
-                                <td style="padding-bottom: 15px; vertical-align: top;">
-                                    <div class="meta-label">Status</div>
-                                    <div class="meta-value" style="color: #FFD700; font-weight: 700;">🟡 PENDING</div>
-                                </td>
                             </tr>
                         </table>
 
@@ -423,6 +419,7 @@ class Mailer {
 
         try {
             $mail->isSMTP();
+            $mail->CharSet    = 'UTF-8';
             $mail->Host       = $config['smtp_host'];
             $mail->SMTPAuth   = true;
             $mail->Username   = $smtpUser;
@@ -449,39 +446,8 @@ class Mailer {
                         background-color: #0A0A0A;
                         color: #E2E8F0;
                         margin: 0;
-                        padding: 40px 20px;
+                        padding: 0;
                         -webkit-font-smoothing: antialiased;
-                    }
-                    .container {
-                        max-width: 600px;
-                        margin: 0 auto;
-                        background: #121212;
-                        border: 1px solid #2D3748;
-                        border-radius: 12px;
-                        overflow: hidden;
-                        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-                    }
-                    .header {
-                        background: linear-gradient(135deg, #00CED1 0%, #008B8B 100%);
-                        padding: 30px 40px;
-                        text-align: left;
-                    }
-                    .header h1 {
-                        color: #000000;
-                        font-size: 24px;
-                        font-weight: 800;
-                        margin: 0;
-                        text-transform: uppercase;
-                        letter-spacing: 1.5px;
-                    }
-                    .header p {
-                        color: #1F2937;
-                        font-size: 14px;
-                        margin: 5px 0 0 0;
-                        font-weight: 500;
-                    }
-                    .content {
-                        padding: 40px;
                     }
                     .btn-action {
                         display: inline-block;
@@ -494,98 +460,71 @@ class Mailer {
                         letter-spacing: 1px;
                         text-decoration: none;
                         border-radius: 6px;
-                        margin: 25px 0;
+                        margin: 15px 0;
                         box-shadow: 0 4px 14px rgba(0, 206, 209, 0.4);
-                        transition: transform 0.2s, box-shadow 0.2s;
-                    }
-                    .credentials-box {
-                        background: #1A1A1A;
-                        border: 1px solid #2D3748;
-                        border-radius: 8px;
-                        padding: 24px;
-                        margin: 25px 0;
-                    }
-                    .credential-row {
-                        margin-bottom: 12px;
-                    }
-                    .credential-row:last-child {
-                        margin-bottom: 0;
-                    }
-                    .credential-label {
-                        font-size: 11px;
-                        text-transform: uppercase;
-                        color: #00CED1;
-                        font-weight: 700;
-                        letter-spacing: 1px;
-                        margin-bottom: 4px;
-                    }
-                    .credential-value {
-                        font-size: 16px;
-                        font-family: \'Courier New\', Courier, monospace;
-                        color: #FFFFFF;
-                        font-weight: bold;
-                    }
-                    .footer {
-                        background: #0D0D0D;
-                        padding: 20px 40px;
-                        text-align: center;
-                        border-top: 1px solid #1A1A1A;
-                    }
-                    .footer p {
-                        font-size: 12px;
-                        color: #718096;
-                        margin: 0;
                     }
                 </style>
             </head>
-            <body>
-                <div class="container">
-                    <div class="header">
-                        <h1>Synalyze</h1>
-                        <p>Your Demo Sandbox is Ready</p>
-                    </div>
-                    <div class="content">
-                        <p style="font-size: 16px; line-height: 1.6; color: #FFFFFF; font-weight: 600;">
-                            Hello ' . e($userName) . ',
-                        </p>
-                        <p style="font-size: 15px; line-height: 1.6; color: #E2E8F0;">
-                            Thank you for requesting a demo of the Synalyzer platform. We are excited to grant you access to our enterprise-grade NAS fleet monitoring and syslog analytics environment.
-                        </p>
-                        <p style="font-size: 15px; line-height: 1.6; color: #E2E8F0;">
-                            Your sandbox environment has been provisioned. Use the activation key below to activate and access your demo.
-                        </p>
-                        
-                        <div class="credentials-box">
-                            <div class="credential-row">
-                                <div class="credential-label">Demo Platform URL</div>
-                                <div class="credential-value" style="font-family: sans-serif; font-size: 15px;">
-                                    <a href="' . e($synalyzeUrl) . '" style="color: #00CED1; text-decoration: none; font-weight: bold;">' . e($synalyzeUrl) . ' ↗</a>
+            <body style="background-color: #0A0A0A; margin: 0; padding: 0;">
+                <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color: #0A0A0A; min-width: 100%; margin: 0; padding: 40px 0;">
+                    <tr>
+                        <td align="center" style="background-color: #0A0A0A;">
+                            <div style="max-width: 600px; width: 100%; margin: 0 auto; background: #121212; border: 1px solid #2D3748; border-radius: 12px; overflow: hidden; text-align: left; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);">
+                                <div style="background: linear-gradient(135deg, #00CED1 0%, #008B8B 100%); padding: 30px 40px;">
+                                    <h1 style="color: #000000; font-size: 24px; font-weight: 800; margin: 0; text-transform: uppercase; letter-spacing: 1.5px;">Synalyze</h1>
+                                    <p style="color: #1F2937; font-size: 14px; margin: 5px 0 0 0; font-weight: 500;">Your Demo Sandbox is Ready</p>
+                                </div>
+                                <div style="padding: 40px;">
+                                    <p style="font-size: 16px; line-height: 1.6; color: #FFFFFF; font-weight: 600; margin-top: 0;">
+                                        Hello ' . e($userName) . ',
+                                    </p>
+                                    <p style="font-size: 15px; line-height: 1.6; color: #E2E8F0; margin-bottom: 20px;">
+                                        Thank you for requesting a demo of the Synalyzer platform. We are excited to grant you access to our NAS fleet monitoring and syslog analytics environment.
+                                    </p>
+                                    <p style="font-size: 15px; line-height: 1.6; color: #E2E8F0; margin-bottom: 25px;">
+                                        Use the activation key below to activate and access your demo.
+                                    </p>
+                                    
+                                    <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background: #1A1A1A; border: 1px solid #2D3748; border-radius: 8px; margin: 25px 0; border-collapse: collapse;">
+                                        <tr>
+                                            <td style="padding: 24px;">
+                                                <div style="font-size: 11px; text-transform: uppercase; color: #00CED1; font-weight: 700; letter-spacing: 1px; margin-bottom: 6px;">Demo Platform URL</div>
+                                                <div style="font-size: 16px; font-family: sans-serif; font-weight: bold; margin-bottom: 20px;">
+                                                    <a href="' . e($synalyzeUrl) . '" style="color: #FFFFFF; text-decoration: none; border-bottom: 1px dashed #00CED1;">' . e($synalyzeUrl) . '</a>
+                                                </div>
+                                                
+                                                <div style="font-size: 11px; text-transform: uppercase; color: #00CED1; font-weight: 700; letter-spacing: 1px; margin-bottom: 6px;">Activation Key</div>
+                                                <table cellpadding="0" cellspacing="0" border="0" style="background: #0D0D0D; border: 1px solid #333333; border-radius: 6px; border-collapse: collapse;">
+                                                    <tr>
+                                                        <td style="padding: 12px 18px; font-family: \'Courier New\', Courier, monospace; font-size: 18px; color: #FFFFFF; font-weight: bold; letter-spacing: 1.5px; -webkit-user-select: all; -moz-user-select: all; -ms-user-select: all; user-select: all;">
+                                                            ' . e($activationKey) . '
+                                                        </td>
+                                                        <td style="padding: 12px 18px 12px 0; color: #00CED1; font-size: 16px; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; vertical-align: middle;">
+                                                            📋
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                                <div style="font-size: 12px; color: #718096; margin-top: 8px; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;">(Click the key above to highlight and copy it instantly)</div>
+                                            </td>
+                                        </tr>
+                                    </table>
+
+                                    <div style="text-align: center; margin: 30px 0 20px 0;">
+                                        <a href="' . e($synalyzeUrl) . '" class="btn-action" target="_blank" style="display: inline-block; padding: 14px 28px; background-color: #00CED1; color: #000000 !important; font-weight: 700; font-size: 15px; text-transform: uppercase; letter-spacing: 1px; text-decoration: none; border-radius: 6px; box-shadow: 0 4px 14px rgba(0, 206, 209, 0.4);">Access Your Demo Sandbox</a>
+                                    </div>
+
+                                    <p style="font-size: 14px; color: #A0AEC0; margin-top: 30px; line-height: 1.5; border-top: 1px solid #2D3748; padding-top: 20px; margin-bottom: 0;">
+                                        <strong>Security Note:</strong> Please keep this activation key confidential and do not share it with unauthorized personnel.
+                                    </p>
+                                </div>
+                                <div style="background: #0D0D0D; padding: 20px 40px; text-align: center; border-top: 1px solid #1A1A1A;">
+                                    <p style="font-size: 12px; color: #718096; margin: 0;">Please do not reply to this automated message.</p>
+                                    <p style="font-size: 12px; color: #718096; margin: 5px 0 0 0;">&copy; ' . date('Y') . ' Synalyze. All rights reserved.</p>
                                 </div>
                             </div>
-                            <div style="height: 20px;"></div>
-                            <div class="credential-row">
-                                <div class="credential-label">Activation Key</div>
-                                <div style="margin-top: 8px; display: inline-flex; align-items: center; background: #0D0D0D; border: 1px solid #333333; border-radius: 6px; padding: 12px 18px;">
-                                    <span style="font-family: \'Courier New\', Courier, monospace; font-size: 18px; color: #FFFFFF; font-weight: bold; letter-spacing: 1.5px; -webkit-user-select: all; -moz-user-select: all; -ms-user-select: all; user-select: all;">' . e($activationKey) . '</span>
-                                    <span style="margin-left: 12px; color: #00CED1; font-size: 16px; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;">📋</span>
-                                </div>
-                                <div style="font-size: 12px; color: #718096; margin-top: 6px; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;">(Double-click or click the key above to highlight and copy it instantly)</div>
-                            </div>
-                        </div>
-
-                        <div style="text-align: center;">
-                            <a href="' . e($synalyzeUrl) . '" class="btn-action" target="_blank">Access Your Demo Sandbox</a>
-                        </div>
-
-                        <p style="font-size: 14px; color: #A0AEC0; margin-top: 30px; line-height: 1.5; border-top: 1px solid #2D3748; padding-top: 20px;">
-                            <strong>Security Note:</strong> Please keep this activation key confidential and do not share it with unauthorized personnel.
-                        </p>
-                    </div>
-                    <div class="footer">
-                        <p>This email was sent to ' . e($userEmail) . '. Please do not reply to this automated message.</p>
-                        <p style="margin-top: 5px;">&copy; ' . date('Y') . ' Synalyze. All rights reserved.</p>
-                    </div>
-                </div>
+                        </td>
+                    </tr>
+                </table>
             </body>
             </html>
             ';
