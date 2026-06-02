@@ -89,17 +89,10 @@ class SignupController {
                     ];
                     
                     if ($userModel->createUser($userData)) {
-                        $newUser = $userModel->getUserByEmail($email);
-                        $_SESSION['user'] = [
-                            'id'           => $newUser['id'],
-                            'full_name'    => $newUser['full_name'],
-                            'email'        => $newUser['email'],
-                            'company_name' => $newUser['company_name'] ?? ''
-                        ];
-                        $_SESSION['success'] = "Welcome to SYNALYZE, " . e($newUser['full_name']) . "! Your account is ready. You can now access the portal.";
+                        $_SESSION['success'] = "Welcome to SYNALYZE, " . e($fullName) . "! Your account is ready. Please log in to request your free demo.";
                         unset($_SESSION['old_input']);
                         unset($_SESSION['errors']);
-                        header("Location: " . baseUrl('/signup'));
+                        header("Location: " . baseUrl('/login'));
                         exit;
                     } else {
                         $errors[] = "Something went wrong during registration. Please try again.";

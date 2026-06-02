@@ -98,6 +98,12 @@ $router->add('/admin/contact/update', 'ContactAdminController@update');
 $router->add('/admin/users', 'UsersAdminController@index');
 $router->add('/admin/users/delete', 'UsersAdminController@delete');
 
+// Demo Request public and admin routes
+$router->add('/demo/request', 'DemoController@submit');
+$router->add('/admin/demo', 'DemoAdminController@index');
+$router->add('/admin/demo/send', 'DemoAdminController@sendCredentials');
+$router->add('/admin/demo/delete', 'DemoAdminController@delete');
+
 
 $router->add('/admin/about', 'AboutAdminController@index');
 $router->add('/admin/about/hero/update', 'AboutAdminController@updateHero');

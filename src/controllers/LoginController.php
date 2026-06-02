@@ -59,7 +59,7 @@ class LoginController {
                     ];
 
 
-                    $_SESSION['success'] = "Welcome back, " . e($user['full_name']) . "!";
+                    $_SESSION['success'] = "Welcome back, " . e($user['full_name']) . "! Click 'Request Free Demo' to request your demo.";
                     unset($_SESSION['old_input']);
                     unset($_SESSION['errors']);
 

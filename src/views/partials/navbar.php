@@ -80,20 +80,24 @@ $isLoggedIn = isset($_SESSION['user']);
           Dashboard
         </a>
         <a 
-          href="http://sg-analyzer.synalyze.net:3000/auth/login" 
-          target="_blank" 
-          rel="noopener noreferrer" 
+          href="<?= e(baseUrl('/logout')) ?>" 
           class="text-sm font-semibold px-6 py-2.5 text-white transition-colors hover:text-accent border border-accent rounded-full"
         >
-          Access Portal
+          Logout
         </a>
       <?php else: ?>
         <a 
-          href="<?= e(baseUrl('/contact')) ?>" 
+          href="<?= e(baseUrl('/signup')) ?>" 
+          class="text-sm font-semibold px-6 py-2.5 text-white transition-colors hover:text-accent border border-accent rounded-full"
+        >
+          Sign Up
+        </a>
+        <a 
+          href="<?= e(baseUrl('/login')) ?>" 
           class="text-sm font-semibold px-6 py-2.5 rounded-full text-white transition-opacity hover:opacity-90"
           style="background-color: <?= e($accentColor) ?>;"
         >
-          Contact
+          Log In
         </a>
       <?php endif; ?>
     </div>
@@ -129,20 +133,24 @@ $isLoggedIn = isset($_SESSION['user']);
             Dashboard
           </a>
           <a 
-            href="http://sg-analyzer.synalyze.net:3000/auth/login" 
-            target="_blank" 
-            rel="noopener noreferrer" 
+            href="<?= e(baseUrl('/logout')) ?>" 
             class="text-center text-white py-2 border border-accent rounded-full hover:bg-white/5"
           >
-            Access Portal
+            Logout
           </a>
         <?php else: ?>
           <a 
-            href="<?= e(baseUrl('/contact')) ?>" 
+            href="<?= e(baseUrl('/signup')) ?>" 
+            class="text-center text-white py-2 border border-accent rounded-full hover:bg-white/5"
+          >
+            Sign Up
+          </a>
+          <a 
+            href="<?= e(baseUrl('/login')) ?>" 
             class="text-center text-white py-2.5 rounded-full font-semibold"
             style="background-color: <?= e($accentColor) ?>;"
           >
-            Contact
+            Log In
           </a>
         <?php endif; ?>
       </div>

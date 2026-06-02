@@ -32,6 +32,7 @@
           ['name' => 'FAQs', 'href' => '/admin/faqs', 'icon' => 'help-circle'],
           ['name' => 'Docs Page', 'href' => '/admin/docs', 'icon' => 'book-open'],
           ['name' => 'Users', 'href' => '/admin/users', 'icon' => 'users'],
+          ['name' => 'Demo Requests', 'href' => '/admin/demo', 'icon' => 'play-circle'],
       ];
 
       $currentPath = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);

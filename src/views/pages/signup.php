@@ -225,8 +225,8 @@ $oldInput = $_SESSION['old_input'] ?? [];
 
         <!-- Already have account -->
         <p class="signup-signin-link">
-          Already Have An Account ?
-          <a href="http://sg-analyzer.synalyze.net:3000/auth/login" target="_blank" rel="noopener noreferrer" class="signup-signin-anchor">Access Portal</a>
+          Already Have An Account?
+          <a href="<?= e(baseUrl('/login')) ?>" class="signup-signin-anchor">Log In</a>
         </p>
 
         <!-- Divider -->

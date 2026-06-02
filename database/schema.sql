@@ -233,4 +233,15 @@ CREATE TABLE IF NOT EXISTS contact_submissions (
     submitted_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
-
+CREATE TABLE IF NOT EXISTS demo_requests (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER NOT NULL UNIQUE,
+    full_name TEXT NOT NULL,
+    company_name TEXT,
+    email TEXT NOT NULL,
+    phone TEXT NOT NULL,
+    status TEXT NOT NULL DEFAULT 'pending',
+    requested_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    credential_sent_at DATETIME,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);

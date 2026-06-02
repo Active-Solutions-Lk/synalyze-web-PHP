@@ -94,5 +94,17 @@ class UserModel {
         $stmt->execute([$email]);
         return $stmt->fetch(\PDO::FETCH_ASSOC);
     }
+
+    /**
+     * Retrieves a user by their ID.
+     *
+     * @param int $id
+     * @return array|false
+     */
+    public function getUserById($id) {
+        $stmt = $this->pdo->prepare("SELECT * FROM users WHERE id = ?");
+        $stmt->execute([$id]);
+        return $stmt->fetch(\PDO::FETCH_ASSOC);
+    }
 }
 

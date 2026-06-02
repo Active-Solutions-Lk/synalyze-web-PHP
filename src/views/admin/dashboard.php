@@ -14,6 +14,7 @@
         ['title' => 'Pricing', 'desc' => 'Plans, features, add-ons', 'href' => '/admin/pricing', 'icon' => 'credit-card'],
         ['title' => 'FAQs', 'desc' => 'Manage questions & answers', 'href' => '/admin/faqs', 'icon' => 'help-circle'],
         ['title' => 'Users', 'desc' => 'View & manage registered users', 'href' => '/admin/users', 'icon' => 'users'],
+        ['title' => 'Demo Requests', 'desc' => 'Manage requests and credentials', 'href' => '/admin/demo', 'icon' => 'play-circle'],
     ];
 
     foreach ($cards as $card):

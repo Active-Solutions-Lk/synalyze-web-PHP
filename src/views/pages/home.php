@@ -8,7 +8,7 @@
     <div class="absolute inset-0 z-0 bg-gradient-to-b from-black/60 via-black/20 to-[#16171B]"></div>
 
     <div class="container relative z-10 mx-auto px-6 text-center max-w-5xl">
-      <!-- Success Alerts -->
+      <!-- Success/Demo Alerts -->
       <?php if (isset($_SESSION['success'])): ?>
         <div class="signup-alert signup-alert--success max-w-3xl mx-auto mb-8 text-left">
           <div class="signup-alert__icon">
@@ -23,6 +23,46 @@
         <?php unset($_SESSION['success']); ?>
       <?php endif; ?>
 
+      <?php if (isset($_SESSION['demo_success'])): ?>
+        <div class="signup-alert signup-alert--success max-w-3xl mx-auto mb-8 text-left">
+          <div class="signup-alert__icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="signup-alert-svg">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </div>
+          <div class="signup-alert__content">
+            <p class="signup-alert__msg"><?= e($_SESSION['demo_success']) ?></p>
+          </div>
+        </div>
+        <?php unset($_SESSION['demo_success']); ?>
+      <?php endif; ?>
+
+      <?php if (isset($_SESSION['demo_info'])): ?>
+        <div class="signup-alert signup-alert--success max-w-3xl mx-auto mb-8 text-left" style="border-color: var(--accent-color); background-color: rgba(var(--accent-rgb), 0.1);">
+          <div class="signup-alert__icon">
+            <?= lucide_icon('Info', 'w-6 h-6 text-accent') ?>
+          </div>
+          <div class="signup-alert__content">
+            <p class="signup-alert__msg" style="color: #ffffff;"><?= e($_SESSION['demo_info']) ?></p>
+          </div>
+        </div>
+        <?php unset($_SESSION['demo_info']); ?>
+      <?php endif; ?>
+
+      <?php if (isset($_SESSION['demo_error'])): ?>
+        <div class="signup-alert signup-alert--error max-w-3xl mx-auto mb-8 text-left">
+          <div class="signup-alert__icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="signup-alert-svg">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+            </svg>
+          </div>
+          <div class="signup-alert__content">
+            <p class="signup-alert__msg"><?= e($_SESSION['demo_error']) ?></p>
+          </div>
+        </div>
+        <?php unset($_SESSION['demo_error']); ?>
+      <?php endif; ?>
+
       <h1 class="text-3xl sm:text-5xl md:text-7xl lg:text-[5rem] font-bold text-white tracking-tight leading-[1.1] mb-6 uppercase">
         <?= e($hero['headline']) ?>
       </h1>
@@ -31,12 +71,28 @@
       </p>
 
       <div class="flex flex-col sm:flex-row items-center justify-center gap-6 md:gap-10 mt-8 md:mt-12">
-        <a href="<?= e(baseUrl('/signup')) ?>" style="background-color: var(--accent-color); box-shadow: 0 10px 30px rgba(var(--accent-rgb), 0.25);" class="flex items-center justify-center gap-3 px-6 py-3.5 sm:px-8 md:px-12 md:py-5 rounded-[1.5rem] text-white text-base sm:text-lg md:text-[1.65rem] hover:opacity-90 transition-all w-full sm:w-auto">
-          Request Free Demo
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-8 h-8 ml-2">
-            <path d="M3.478 2.404a.75.75 0 00-.926.941l2.432 7.905H13.5a.75.75 0 010 1.5H4.984l-2.432 7.905a.75.75 0 00.926.94 60.519 60.519 0 0018.445-8.986.75.75 0 000-1.218A60.517 60.517 0 003.478 2.404z" />
-          </svg>
-        </a>        
+        <?php if (!isset($_SESSION['user'])): ?>
+          <a href="<?= e(baseUrl('/signup')) ?>" style="background-color: var(--accent-color); box-shadow: 0 10px 30px rgba(var(--accent-rgb), 0.25);" class="flex items-center justify-center gap-3 px-6 py-3.5 sm:px-8 md:px-12 md:py-5 rounded-[1.5rem] text-white text-base sm:text-lg md:text-[1.65rem] hover:opacity-90 transition-all w-full sm:w-auto">
+            Request Free Demo
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-8 h-8 ml-2">
+              <path d="M3.478 2.404a.75.75 0 00-.926.941l2.432 7.905H13.5a.75.75 0 010 1.5H4.984l-2.432 7.905a.75.75 0 00.926.94 60.519 60.519 0 0018.445-8.986.75.75 0 000-1.218A60.517 60.517 0 003.478 2.404z" />
+            </svg>
+          </a>
+        <?php elseif ($hasDemoRequested): ?>
+          <button disabled style="background-color: #2D3748; cursor: not-allowed;" class="flex items-center justify-center gap-3 px-6 py-3.5 sm:px-8 md:px-12 md:py-5 rounded-[1.5rem] text-gray-400 text-base sm:text-lg md:text-[1.65rem] w-full sm:w-auto opacity-75" title="Demo already requested">
+            Demo Already Requested
+            <?= lucide_icon('CheckCircle', 'w-8 h-8 ml-2 text-green-500') ?>
+          </button>
+        <?php else: ?>
+          <form action="<?= e(baseUrl('/demo/request')) ?>" method="POST" class="w-full sm:w-auto">
+            <button type="submit" style="background-color: var(--accent-color); box-shadow: 0 10px 30px rgba(var(--accent-rgb), 0.25);" class="flex items-center justify-center gap-3 px-6 py-3.5 sm:px-8 md:px-12 md:py-5 rounded-[1.5rem] text-white text-base sm:text-lg md:text-[1.65rem] hover:opacity-90 transition-all w-full">
+              Request Free Demo
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-8 h-8 ml-2">
+                <path d="M3.478 2.404a.75.75 0 00-.926.941l2.432 7.905H13.5a.75.75 0 010 1.5H4.984l-2.432 7.905a.75.75 0 00.926.94 60.519 60.519 0 0018.445-8.986.75.75 0 000-1.218A60.517 60.517 0 003.478 2.404z" />
+              </svg>
+            </button>
+          </form>
+        <?php endif; ?>
       </div>
 
       <!-- <div class="relative max-w-2xl mx-auto">
@@ -242,12 +298,28 @@
       </div>
 
       <div class="flex flex-col sm:flex-row items-center justify-center gap-8 w-full">
-        <a href="<?= e(baseUrl('/signup')) ?>" style="background-color: var(--accent-color); box-shadow: 0 10px 30px rgba(var(--accent-rgb), 0.25);" class="flex items-center justify-center gap-3 px-6 py-3.5 sm:px-8 md:px-12 md:py-5 rounded-[1.5rem] text-white text-base sm:text-lg md:text-[1.65rem] hover:opacity-90 transition-all w-full sm:w-auto">
-          Free Demo
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-8 h-8 ml-2">
-            <path d="M3.478 2.404a.75.75 0 00-.926.941l2.432 7.905H13.5a.75.75 0 010 1.5H4.984l-2.432 7.905a.75.75 0 00.926.94 60.519 60.519 0 0018.445-8.986.75.75 0 000-1.218A60.517 60.517 0 003.478 2.404z" />
-          </svg>
-        </a>
+        <?php if (!isset($_SESSION['user'])): ?>
+          <a href="<?= e(baseUrl('/signup')) ?>" style="background-color: var(--accent-color); box-shadow: 0 10px 30px rgba(var(--accent-rgb), 0.25);" class="flex items-center justify-center gap-3 px-6 py-3.5 sm:px-8 md:px-12 md:py-5 rounded-[1.5rem] text-white text-base sm:text-lg md:text-[1.65rem] hover:opacity-90 transition-all w-full sm:w-auto">
+            Free Demo
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-8 h-8 ml-2">
+              <path d="M3.478 2.404a.75.75 0 00-.926.941l2.432 7.905H13.5a.75.75 0 010 1.5H4.984l-2.432 7.905a.75.75 0 00.926.94 60.519 60.519 0 0018.445-8.986.75.75 0 000-1.218A60.517 60.517 0 003.478 2.404z" />
+            </svg>
+          </a>
+        <?php elseif ($hasDemoRequested): ?>
+          <button disabled style="background-color: #2D3748; cursor: not-allowed;" class="flex items-center justify-center gap-3 px-6 py-3.5 sm:px-8 md:px-12 md:py-5 rounded-[1.5rem] text-gray-400 text-base sm:text-lg md:text-[1.65rem] w-full sm:w-auto opacity-75 animate-pulse" title="Demo already requested">
+            Demo Already Requested
+            <?= lucide_icon('CheckCircle', 'w-8 h-8 ml-2 text-green-500') ?>
+          </button>
+        <?php else: ?>
+          <form action="<?= e(baseUrl('/demo/request')) ?>" method="POST" class="w-full sm:w-auto">
+            <button type="submit" style="background-color: var(--accent-color); box-shadow: 0 10px 30px rgba(var(--accent-rgb), 0.25);" class="flex items-center justify-center gap-3 px-6 py-3.5 sm:px-8 md:px-12 md:py-5 rounded-[1.5rem] text-white text-base sm:text-lg md:text-[1.65rem] hover:opacity-90 transition-all w-full">
+              Free Demo
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-8 h-8 ml-2">
+                <path d="M3.478 2.404a.75.75 0 00-.926.941l2.432 7.905H13.5a.75.75 0 010 1.5H4.984l-2.432 7.905a.75.75 0 00.926.94 60.519 60.519 0 0018.445-8.986.75.75 0 000-1.218A60.517 60.517 0 003.478 2.404z" />
+              </svg>
+            </button>
+          </form>
+        <?php endif; ?>
         <a href="<?= e(baseUrl('/contact')) ?>" class="px-6 py-3.5 sm:px-8 md:px-12 md:py-5 rounded-[1.5rem] bg-white text-accent text-base sm:text-lg md:text-[1.65rem] hover:bg-gray-100 transition-colors shadow-lg w-full sm:w-auto flex items-center justify-center">
           Contact Us
         </a>
