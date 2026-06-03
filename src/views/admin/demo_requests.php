@@ -270,7 +270,7 @@
                       <input type="hidden" name="id" value="<?= $request['id'] ?>">
                       
                       <div class="flex flex-col gap-1">
-                        <label class="text-xs font-bold uppercase tracking-wider text-gray-400">Synalyze Sandbox URL</label>
+                        <label class="text-xs font-bold uppercase tracking-wider text-gray-400">Synalyze URL</label>
                         <input type="text" name="synalyze_url" value="http://sg-analyzer.synalyze.net:3000" class="admin-input-small" required>
                       </div>
                       

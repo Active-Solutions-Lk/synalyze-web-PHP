@@ -472,7 +472,7 @@ class Mailer {
                             <div style="max-width: 600px; width: 100%; margin: 0 auto; background: #121212; border: 1px solid #2D3748; border-radius: 12px; overflow: hidden; text-align: left; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);">
                                 <div style="background: linear-gradient(135deg, #00CED1 0%, #008B8B 100%); padding: 30px 40px;">
                                     <h1 style="color: #000000; font-size: 24px; font-weight: 800; margin: 0; text-transform: uppercase; letter-spacing: 1.5px;">Synalyze</h1>
-                                    <p style="color: #1F2937; font-size: 14px; margin: 5px 0 0 0; font-weight: 500;">Your Demo Sandbox is Ready</p>
+                                    <p style="color: #1F2937; font-size: 14px; margin: 5px 0 0 0; font-weight: 500;">Your Demo Portal is Ready</p>
                                 </div>
                                 <div style="padding: 40px;">
                                     <p style="font-size: 16px; line-height: 1.6; color: #FFFFFF; font-weight: 600; margin-top: 0;">
@@ -510,11 +510,14 @@ class Mailer {
                                     </table>
 
                                     <div style="text-align: center; margin: 30px 0 20px 0;">
-                                        <a href="' . e($synalyzeUrl) . '" class="btn-action" target="_blank" style="display: inline-block; padding: 14px 28px; background-color: #00CED1; color: #000000 !important; font-weight: 700; font-size: 15px; text-transform: uppercase; letter-spacing: 1px; text-decoration: none; border-radius: 6px; box-shadow: 0 4px 14px rgba(0, 206, 209, 0.4);">Access Your Demo Sandbox</a>
+                                        <a href="' . e($synalyzeUrl) . '" class="btn-action" target="_blank" style="display: inline-block; padding: 14px 28px; background-color: #00CED1; color: #000000 !important; font-weight: 700; font-size: 15px; text-transform: uppercase; letter-spacing: 1px; text-decoration: none; border-radius: 6px; box-shadow: 0 4px 14px rgba(0, 206, 209, 0.4);">Access Your Demo Portal</a>
                                     </div>
 
                                     <p style="font-size: 14px; color: #A0AEC0; margin-top: 30px; line-height: 1.5; border-top: 1px solid #2D3748; padding-top: 20px; margin-bottom: 0;">
                                         <strong>Security Note:</strong> Please keep this activation key confidential and do not share it with unauthorized personnel.
+                                    </p>
+                                    <p style="font-size: 13px; color: #A0AEC0; margin-top: 12px; line-height: 1.5; margin-bottom: 0;">
+                                        📎 <strong>Guides Attached:</strong> We have attached the Synalyzer <em>Installation Guide</em> and <em>User Guide</em> to help you get started.
                                     </p>
                                 </div>
                                 <div style="background: #0D0D0D; padding: 20px 40px; text-align: center; border-top: 1px solid #1A1A1A;">
@@ -530,7 +533,21 @@ class Mailer {
             ';
 
             $mail->Body = $body;
-            $mail->AltBody = "Your Synalyzer Demo Sandbox is Ready!\n\nAccess Link: $synalyzeUrl\nActivation Key: $activationKey\n\nPlease use the link and key above to activate and explore the sandbox.";
+            $mail->AltBody = "Your Synalyzer Demo Portal is Ready!\n\nAccess Link: $synalyzeUrl\nActivation Key: $activationKey\n\nPlease use the link and key above to activate and explore the Portal.";
+
+            // Attach PDF guides with graceful fallback
+            $guidesPath = dirname(__DIR__, 2) . '/public/assets/guides/';
+            foreach ([
+                ['Installation Guide.pdf', 'Synalyzer Installation Guide.pdf'],
+                ['User guide.pdf', 'Synalyzer User Guide.pdf'],
+            ] as [$file, $name]) {
+                $fullPath = $guidesPath . $file;
+                if (file_exists($fullPath)) {
+                    $mail->addAttachment($fullPath, $name);
+                } else {
+                    error_log("Mailer: Guide attachment not found at $fullPath");
+                }
+            }
 
             $mail->send();
             return true;

@@ -118,12 +118,13 @@ $isLoggedIn = isset($_SESSION['user']);
   <!-- Mobile Menu Panel -->
   <div id="mobile-menu" class="lg:hidden bg-[#16171B] border-t border-white/10">
     <div class="container mx-auto px-6 py-4 flex flex-col gap-4" id="mobile-nav">
-      <a href="<?= e(baseUrl('/')) ?>" class="nav-link-mobile <?= $isHome ? 'active-mobile' : 'text-white hover:text-accent' ?> transition-colors py-2 border-b border-white/5" data-target="home">Home</a>
-      <a href="<?= e(baseUrl('/#how-it-works')) ?>" class="nav-link-mobile text-white hover:text-accent transition-colors py-2 border-b border-white/5" data-target="how-it-works">How It Works</a>
-      <a href="<?= e(baseUrl('/#features')) ?>" class="nav-link-mobile text-white hover:text-accent transition-colors py-2 border-b border-white/5" data-target="features">Features</a>
-      <a href="<?= e(baseUrl('/#deployment')) ?>" class="nav-link-mobile text-white hover:text-accent transition-colors py-2 border-b border-white/5" data-target="deployment">Deployment</a>
-      <a href="<?= e(baseUrl('/qa')) ?>" class="nav-link-mobile <?= $isSupport ? 'active-mobile' : 'text-white hover:text-accent' ?> transition-colors py-2 border-b border-white/5" data-target="qa">FAQs</a>
-      <a href="<?= e(baseUrl('/docs')) ?>" class="nav-link-mobile <?= $isDocs ? 'active-mobile' : 'text-white hover:text-accent' ?> transition-colors py-2 border-b border-white/5" data-target="docs">Docs</a>
+      <a href="<?= e(baseUrl('/')) ?>" class="nav-link-mobile <?= $isHome ? 'active-mobile' : 'text-white hover:text-accent' ?> transition-colors py-1 border-b border-white/5" data-target="home">Home</a>
+      <a href="<?= e(baseUrl('/#how-it-works')) ?>" class="nav-link-mobile text-white hover:text-accent transition-colors py-1 border-b border-white/5" data-target="how-it-works">How It Works</a>
+      <a href="<?= e(baseUrl('/#features')) ?>" class="nav-link-mobile text-white hover:text-accent transition-colors py-1 border-b border-white/5" data-target="features">Features</a>
+      <a href="<?= e(baseUrl('/#deployment')) ?>" class="nav-link-mobile text-white hover:text-accent transition-colors py-1 border-b border-white/5" data-target="deployment">Deployment</a>
+      <a href="<?= e(baseUrl('/qa')) ?>" class="nav-link-mobile <?= $isSupport ? 'active-mobile' : 'text-white hover:text-accent' ?> transition-colors py-1 border-b border-white/5" data-target="qa">FAQs</a>
+      <a href="<?= e(baseUrl('/docs')) ?>" class="nav-link-mobile <?= $isDocs ? 'active-mobile' : 'text-white hover:text-accent' ?> transition-colors py-1 border-b border-white/5" data-target="docs">Docs</a>
+      <a href="<?= e(baseUrl('/contact')) ?>" class="nav-link-mobile <?= $isContact ? 'active-mobile' : 'text-white hover:text-accent' ?> transition-colors py-1 border-b border-white/5" data-target="contact">Contact Us</a>
       
       <div class="flex flex-col gap-4 mt-2">
         <?php if ($isLoggedIn): ?>

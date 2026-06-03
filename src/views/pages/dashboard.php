@@ -113,7 +113,7 @@ $accentColor = get_settings()['themeAccentColor'] ?? '#3d8c7c';
 
             <div class="rounded-xl border border-[#00CED1]/20 bg-[#00CED1]/5 p-5 space-y-4" style="box-shadow: 0 0 24px rgba(0,206,209,0.06);">
 
-              <!-- Sandbox URL -->
+              <!-- Portal URL -->
               <div class="space-y-2">
                 <span class="text-[10px] font-bold uppercase tracking-widest text-[#00CED1]">Demo Platform URL</span>
                 <div class="flex flex-wrap items-center gap-3">
@@ -126,7 +126,7 @@ $accentColor = get_settings()['themeAccentColor'] ?? '#3d8c7c';
                      class="shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all duration-200 hover:opacity-90"
                      style="background: linear-gradient(135deg, #00CED1, #008B8B); color: #000;">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"/></svg>
-                    Access Sandbox
+                    Access Portal
                   </a>
                 </div>
               </div>
