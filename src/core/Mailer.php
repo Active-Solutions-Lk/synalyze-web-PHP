@@ -556,4 +556,98 @@ class Mailer {
             return false;
         }
     }
+
+    /**
+     * Send a beautifully formatted HTML email update to a subscriber.
+     */
+    public static function sendUpdateEmail(
+        string $toEmail,
+        string $subject,
+        string $message
+    ): bool {
+        $config = require dirname(__DIR__, 2) . '/config/app.php';
+
+        try {
+            $pdo = \Core\Database::getInstance()->getConnection();
+            $stmt = $pdo->query("SELECT smtpUsername, smtpPassword FROM globalsettings WHERE id = 1");
+            $settings = $stmt->fetch(PDO::FETCH_ASSOC);
+            $smtpUser = !empty($settings['smtpUsername']) ? $settings['smtpUsername'] : $config['smtp_username'];
+            $smtpPass = !empty($settings['smtpPassword']) ? $settings['smtpPassword'] : $config['smtp_password'];
+        } catch (\Exception $e) {
+            $smtpUser = $config['smtp_username'];
+            $smtpPass = $config['smtp_password'];
+        }
+
+        $mail = new PHPMailer(true);
+
+        try {
+            $mail->isSMTP();
+            $mail->CharSet    = 'UTF-8';
+            $mail->Host       = $config['smtp_host'];
+            $mail->SMTPAuth   = true;
+            $mail->Username   = $smtpUser;
+            $mail->Password   = $smtpPass;
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+            $mail->Port       = $config['smtp_port'];
+
+            $mail->setFrom($smtpUser, $config['smtp_from_name']);
+            $mail->addAddress($toEmail);
+
+            $mail->isHTML(true);
+            $mail->Subject = $subject;
+
+            $body = '
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>' . e($subject) . '</title>
+                <style>
+                    body {
+                        font-family: \'Inter\', \'Segoe UI\', Helvetica, Arial, sans-serif;
+                        background-color: #0A0A0A;
+                        color: #E2E8F0;
+                        margin: 0;
+                        padding: 0;
+                        -webkit-font-smoothing: antialiased;
+                    }
+                </style>
+            </head>
+            <body style="background-color: #0A0A0A; margin: 0; padding: 0;">
+                <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color: #0A0A0A; min-width: 100%; margin: 0; padding: 40px 0;">
+                    <tr>
+                        <td align="center" style="background-color: #0A0A0A;">
+                            <div style="max-width: 600px; width: 100%; margin: 0 auto; background: #121212; border: 1px solid #2D3748; border-radius: 12px; overflow: hidden; text-align: left; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);">
+                                <div style="background: linear-gradient(135deg, #00CED1 0%, #008B8B 100%); padding: 30px 40px;">
+                                    <h1 style="color: #000000; font-size: 24px; font-weight: 800; margin: 0; text-transform: uppercase; letter-spacing: 1.5px;">Synalyze</h1>
+                                    <p style="color: #1F2937; font-size: 14px; margin: 5px 0 0 0; font-weight: 500;">Latest Updates & Announcements</p>
+                                </div>
+                                <div style="padding: 40px;">
+                                    <h2 style="color: #FFFFFF; font-size: 20px; font-weight: 700; margin-top: 0; margin-bottom: 20px;">' . e($subject) . '</h2>
+                                    <div style="font-size: 15px; line-height: 1.6; color: #E2E8F0; margin-bottom: 20px; white-space: pre-wrap;">' . nl2br(e($message)) . '</div>
+                                </div>
+                                <div style="background: #0D0D0D; padding: 20px 40px; text-align: center; border-top: 1px solid #1A1A1A;">
+                                    <p style="font-size: 12px; color: #718096; margin: 0;">You are receiving this because you subscribed to updates from Synalyze.</p>
+                                    <p style="font-size: 12px; color: #718096; margin: 5px 0 0 0;">&copy; ' . date('Y') . ' Synalyze. All rights reserved.</p>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </body>
+            </html>
+            ';
+
+            $mail->Body = $body;
+            $mail->AltBody = $message;
+
+            $mail->send();
+            return true;
+        } catch (Exception $e) {
+            error_log("PHPMailer failed to send update email: " . $mail->ErrorInfo);
+            return false;
+        }
+    }
 }
+

@@ -98,6 +98,14 @@ $router->add('/admin/contact/update', 'ContactAdminController@update');
 $router->add('/admin/users', 'UsersAdminController@index');
 $router->add('/admin/users/delete', 'UsersAdminController@delete');
 
+// Newsletter subscriber public and admin routes
+$router->add('/subscribe', 'SubscribeController@submit');
+$router->add('/unsubscribe', 'SubscribeController@unsubscribe');
+$router->add('/admin/subscribers', 'SubscribersAdminController@index');
+$router->add('/admin/subscribers/delete', 'SubscribersAdminController@delete');
+$router->add('/admin/subscribers/send', 'SubscribersAdminController@sendEmail');
+
+
 // Demo Request public and admin routes
 $router->add('/demo/request', 'DemoController@submit');
 $router->add('/admin/demo', 'DemoAdminController@index');
