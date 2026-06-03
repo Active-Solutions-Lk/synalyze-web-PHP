@@ -79,10 +79,19 @@
             </svg>
           </a>
         <?php elseif ($hasDemoRequested): ?>
-          <button disabled style="background-color: #2D3748; cursor: not-allowed;" class="flex items-center justify-center gap-3 px-6 py-3.5 sm:px-8 md:px-12 md:py-5 rounded-[1.5rem] text-gray-400 text-base sm:text-lg md:text-[1.65rem] w-full sm:w-auto opacity-75" title="Demo already requested">
-            Demo Already Requested
-            <?= lucide_icon('CheckCircle', 'w-8 h-8 ml-2 text-green-500') ?>
-          </button>
+          <div class="flex flex-col items-center w-full sm:w-auto">
+            <button disabled style="background-color: #2D3748; cursor: not-allowed;" class="flex items-center justify-center gap-3 px-6 py-3.5 sm:px-8 md:px-12 md:py-5 rounded-[1.5rem] text-gray-400 text-xl sm:text-lg md:text-[1.65rem] w-full sm:w-auto opacity-75" title="Demo already requested">
+              Demo Already Requested
+              <?= lucide_icon('CheckCircle', 'w-8 h-8 ml-2 text-green-500') ?>
+            </button>
+            <div class="mt-2 text-center">
+              <a href="<?= e(baseUrl('/dashboard')) ?>"
+                 style="color: #00CED1; font-size: 1.15rem; font-weight: 600;
+                        text-decoration: underline; text-underline-offset: 3px;">
+                See More
+              </a>
+            </div>
+          </div>
         <?php else: ?>
           <form action="<?= e(baseUrl('/demo/request')) ?>" method="POST" class="w-full sm:w-auto">
             <button type="submit" style="background-color: var(--accent-color); box-shadow: 0 10px 30px rgba(var(--accent-rgb), 0.25);" class="flex items-center justify-center gap-3 px-6 py-3.5 sm:px-8 md:px-12 md:py-5 rounded-[1.5rem] text-white text-base sm:text-lg md:text-[1.65rem] hover:opacity-90 transition-all w-full">
@@ -94,17 +103,6 @@
           </form>
         <?php endif; ?>
       </div>
-
-      <!-- <div class="relative max-w-2xl mx-auto">
-        <div class="flex items-center w-full h-16 rounded-full bg-white shadow-2xl overflow-hidden px-3 sm:px-6">
-          <?= lucide_icon('Search', 'text-gray-900 shrink-0 w-6 h-6 mr-4') ?>
-          <input
-            type="text"
-            placeholder="<?= e($hero['searchPlaceholder']) ?>"
-            class="w-full h-full bg-transparent text-gray-900 text-lg focus:outline-none font-medium placeholder:text-gray-900 placeholder:font-bold"
-          />
-        </div>
-      </div> -->
     </div>
   </section>
 
@@ -306,10 +304,19 @@
             </svg>
           </a>
         <?php elseif ($hasDemoRequested): ?>
-          <button disabled style="background-color: #2D3748; cursor: not-allowed;" class="flex items-center justify-center gap-3 px-6 py-3.5 sm:px-8 md:px-12 md:py-5 rounded-[1.5rem] text-gray-400 text-base sm:text-lg md:text-[1.65rem] w-full sm:w-auto opacity-75 animate-pulse" title="Demo already requested">
-            Demo Already Requested
-            <?= lucide_icon('CheckCircle', 'w-8 h-8 ml-2 text-green-500') ?>
-          </button>
+          <div class="flex flex-col items-center w-full sm:w-auto">
+            <button disabled style="background-color: #2D3748; cursor: not-allowed;" class="flex items-center justify-center gap-3 px-6 py-3.5 sm:px-8 md:px-12 md:py-5 rounded-[1.5rem] text-gray-400 text-xl sm:text-lg md:text-[1.65rem] w-full sm:w-auto opacity-75 animate-pulse" title="Demo already requested">
+              Demo Already Requested
+              <?= lucide_icon('CheckCircle', 'w-8 h-8 ml-2 text-green-500') ?>
+            </button>
+            <div class="mt-2 text-center">
+              <a href="<?= e(baseUrl('/dashboard')) ?>"
+                 style="color: #00CED1; font-size: 0.85rem; font-weight: 600;
+                        text-decoration: underline; text-underline-offset: 3px;">
+                See More
+              </a>
+            </div>
+          </div>
         <?php else: ?>
           <form action="<?= e(baseUrl('/demo/request')) ?>" method="POST" class="w-full sm:w-auto">
             <button type="submit" style="background-color: var(--accent-color); box-shadow: 0 10px 30px rgba(var(--accent-rgb), 0.25);" class="flex items-center justify-center gap-3 px-6 py-3.5 sm:px-8 md:px-12 md:py-5 rounded-[1.5rem] text-white text-base sm:text-lg md:text-[1.65rem] hover:opacity-90 transition-all w-full">
