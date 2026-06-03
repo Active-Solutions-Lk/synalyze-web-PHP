@@ -22,6 +22,7 @@ $isSignup = ($currentPath === '/signup');
 $isDashboard = ($currentPath === '/dashboard');
 $isSupport = ($currentPath === '/qa');
 $isDocs = ($currentPath === '/docs');
+$isContact = ($currentPath === '/contact');
 
 $isLoggedIn = isset($_SESSION['user']);
 ?>
@@ -67,6 +68,7 @@ $isLoggedIn = isset($_SESSION['user']);
       <a href="<?= e(baseUrl('/#deployment')) ?>" class="nav-link hover:text-accent transition-colors" data-target="deployment">Deployment</a>
       <a href="<?= e(baseUrl('/qa')) ?>" class="nav-link <?= $isSupport ? 'border border-accent rounded-full px-5 py-2 text-white' : 'hover:text-accent transition-colors' ?>" data-target="qa">FAQs</a>
       <a href="<?= e(baseUrl('/docs')) ?>" class="nav-link <?= $isDocs ? 'border border-accent rounded-full px-5 py-2 text-white' : 'hover:text-accent transition-colors' ?>" data-target="docs">Docs</a>
+      <a href="<?= e(baseUrl('/contact')) ?>" class="nav-link <?= $isContact ? 'border border-accent rounded-full px-5 py-2 text-white' : 'hover:text-accent transition-colors' ?>" data-target="contact">Contact Us</a>
     </nav>
 
     <!-- Desktop Session Actions -->

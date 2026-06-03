@@ -51,7 +51,7 @@ class DemoRequestModel {
     public function getAllRequests($search = '') {
         if (!empty($search)) {
             $stmt = $this->pdo->prepare("
-                SELECT id, user_id, full_name, company_name, email, phone, status, requested_at, credential_sent_at, activation_key
+                SELECT id, user_id, full_name, company_name, email, phone, status, requested_at, credential_sent_at, activation_key, synalyze_url
                 FROM demo_requests
                 WHERE full_name LIKE ? OR email LIKE ? OR company_name LIKE ? OR phone LIKE ?
                 ORDER BY requested_at DESC
@@ -60,7 +60,7 @@ class DemoRequestModel {
             $stmt->execute([$searchTerm, $searchTerm, $searchTerm, $searchTerm]);
         } else {
             $stmt = $this->pdo->query("
-                SELECT id, user_id, full_name, company_name, email, phone, status, requested_at, credential_sent_at, activation_key
+                SELECT id, user_id, full_name, company_name, email, phone, status, requested_at, credential_sent_at, activation_key, synalyze_url
                 FROM demo_requests
                 ORDER BY requested_at DESC
             ");
@@ -97,17 +97,19 @@ class DemoRequestModel {
      *
      * @param int $requestId
      * @param string $activationKey
+     * @param string $synalyzeUrl
      * @return bool
      */
-    public function markCredentialSent($requestId, $activationKey) {
+    public function markCredentialSent($requestId, $activationKey, $synalyzeUrl = '') {
         $stmt = $this->pdo->prepare("
             UPDATE demo_requests
-            SET status = 'credentials_sent', credential_sent_at = ?, activation_key = ?
+            SET status = 'credentials_sent', credential_sent_at = ?, activation_key = ?, synalyze_url = ?
             WHERE id = ?
         ");
         return $stmt->execute([
             date('Y-m-d H:i:s'),
             $activationKey,
+            $synalyzeUrl,
             $requestId
         ]);
     }

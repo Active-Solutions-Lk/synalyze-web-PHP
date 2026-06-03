@@ -28,6 +28,10 @@ class DashboardController {
 
         $pageTitle = 'Your Dashboard - Synalyze';
         
+        require_once dirname(__DIR__) . '/models/DemoRequestModel.php';
+        $demoModel = new DemoRequestModel();
+        $demoRequest = $demoModel->getRequestByUserId($user['id']);
+
         ob_start();
         require dirname(__DIR__) . '/views/pages/dashboard.php';
         $content = ob_get_clean();

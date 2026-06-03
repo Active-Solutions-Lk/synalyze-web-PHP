@@ -55,7 +55,7 @@ class DemoAdminController {
             );
 
             if ($emailSent) {
-                $model->markCredentialSent($id, $activationKey);
+                $model->markCredentialSent($id, $activationKey, $synalyzeUrl);
                 $this->redirectSuccess("Credentials successfully sent to " . e($request['email']) . ".");
             } else {
                 $this->redirectError("Failed to send the email. Please check SMTP settings.", $id);
