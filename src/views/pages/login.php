@@ -9,7 +9,7 @@ $oldInput = $_SESSION['old_input'] ?? [];
   <!-- Left-page/Full-page background image -->
   <div class="login-bg">
     <img
-      src="<?= e(baseUrl('/assets/images/Sign up/Signin background.png')) ?>"
+      src="<?= e(baseUrl('/assets/images/Sign up/Signin background.webp')) ?>"
       alt="Synalyze Platform"
       class="login-bg__img"
     />
@@ -90,7 +90,7 @@ $oldInput = $_SESSION['old_input'] ?? [];
               autocomplete="current-password"
             />
             <button type="button" class="signup-eye-btn" data-target="login-password" aria-label="Toggle password visibility">
-              <img src="<?= e(baseUrl('/assets/images/Sign up/no view (eye).png')) ?>" alt="Show" class="signup-eye-icon" />
+              <img src="<?= e(baseUrl('/assets/images/Sign up/no view (eye).webp')) ?>" alt="Show" class="signup-eye-icon" />
             </button>
           </div>
         </div>

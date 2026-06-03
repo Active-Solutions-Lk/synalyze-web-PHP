@@ -3,7 +3,7 @@
   <section class="relative pt-28 sm:pt-36 md:pt-48 pb-16 md:pb-32 flex flex-col items-center justify-center min-h-[90vh] overflow-hidden">
     <div
       class="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat transition-transform duration-1000 hover:scale-105"
-      style="background-image: url('<?= e(baseUrl('/assets/images/1.png')) ?>')"
+      style="background-image: url('<?= e(baseUrl('/assets/images/1.webp')) ?>')"
     ></div>
     <div class="absolute inset-0 z-0 bg-gradient-to-b from-black/60 via-black/20 to-[#16171B]"></div>
 

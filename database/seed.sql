@@ -1,5 +1,5 @@
 INSERT INTO globalsettings (id, siteName, logoUrl, themeAccentColor, primaryBackgroundColor) VALUES 
-(1, 'Synalyze', '/assets/images/Logo.png', '#00CED1', '#0A0A0A');
+(1, 'Synalyze', '/assets/images/Logo.webp', '#00CED1', '#0A0A0A');
 
 INSERT INTO herosection (id, eyebrowText, headline, subheadline, searchPlaceholder, ctaButtonText) VALUES 
 (1, 'TAKE CONTROL OF YOUR DATA', 'Take Control of Your Data', 'Be informed about your NAS. With SYANALYZE, you get an easy-to-use file activity logging solution to audit your NAS usage and manage unchecked data growth.', 'Search...', 'Start Free Trial');
@@ -18,8 +18,8 @@ INSERT INTO howitworksstep (stepNumber, title, description) VALUES
 (3, 'Analyze & Report', 'Access comprehensive reports and insights through our intuitive web dashboard.');
 
 INSERT INTO deploymentoption (name, subtitle, description, bulletPoints, imageUrl) VALUES 
-('Cloud Based', '', 'Let us handle the infrastructure. Quick setup with zero maintenance.', '["No server management required","Automatic updates & scaling","99.9% uptime SLA","Global data centers","Instant provisioning"]', '/assets/images/Deployment Options/Deployment Options-02.png'),
-('On-Premises', '', 'Deploy on your own infrastructure for complete control and compliance.', '["Full data sovereignty","Custom security policies","Air-gapped environments","Integration with existing tools","Dedicated support"]', '/assets/images/Deployment Options/Deployment Options-01.png');
+('Cloud Based', '', 'Let us handle the infrastructure. Quick setup with zero maintenance.', '["No server management required","Automatic updates & scaling","99.9% uptime SLA","Global data centers","Instant provisioning"]', '/assets/images/Deployment Options/Deployment Options-02.webp'),
+('On-Premises', '', 'Deploy on your own infrastructure for complete control and compliance.', '["Full data sovereignty","Custom security policies","Air-gapped environments","Integration with existing tools","Dedicated support"]', '/assets/images/Deployment Options/Deployment Options-01.webp');
 
 INSERT INTO pricingtier (name, displayTitle, idealForText, featuresSubtitle, deploymentOptions, monthlyPrice, annualPrice, ctaText, highlighted) VALUES 
 ('$49/mo', 'Basic', 'Small businesses\nand startups', '', '["Cloud-Based"]', 49, 490, 'Get Started', 0),

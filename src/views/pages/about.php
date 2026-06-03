@@ -6,7 +6,7 @@
   <section class="relative pt-10 md:pt-20 pb-20 min-h-[75vh] flex items-center overflow-hidden">
     <div
       class="absolute inset-0 z-0 bg-cover bg-right bg-no-repeat"
-      style="background-image: url('<?= e(baseUrl('/assets/images/about/about.png')) ?>')"
+      style="background-image: url('<?= e(baseUrl('/assets/images/about/about.webp')) ?>')"
     ></div>
     <div class="absolute inset-0 z-0 bg-gradient-to-b from-transparent via-[#16171B]/30 to-[#16171B]"></div>
 
@@ -17,7 +17,7 @@
           <span class="inline-flex items-center gap-4 mt-2">
             <span class="font-light text-white">with </span>
             <img
-              src="<?= e(baseUrl('/assets/images/Logo.png')) ?>"
+              src="<?= e(baseUrl('/assets/images/Logo.webp')) ?>"
               alt="SYNALYZE"
               width="290"
               height="70"

@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&family=Geist:wght@100..900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="<?= e(baseUrl('/assets/css/app.css')) ?>">
-  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://unpkg.com/lucide@0.475.0/dist/umd/lucide.min.js" defer></script>
 </head>
 <body class="bg-[#0A0A0A] text-gray-100 flex min-h-screen flex-col md:flex-row">
 

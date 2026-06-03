@@ -9,7 +9,7 @@ $oldInput = $_SESSION['old_input'] ?? [];
   <!-- Full-page background image -->
   <div class="signup-bg">
     <img
-      src="<?= e(baseUrl('/assets/images/Sign up/Signup background.png')) ?>"
+      src="<?= e(baseUrl('/assets/images/Sign up/Signup background.webp')) ?>"
       alt="Synalyze Platform"
       class="signup-bg__img"
     />
@@ -181,7 +181,7 @@ $oldInput = $_SESSION['old_input'] ?? [];
               autocomplete="new-password"
             />
             <button type="button" class="signup-eye-btn" data-target="signup-password" aria-label="Toggle password visibility">
-              <img src="<?= e(baseUrl('/assets/images/Sign up/no view (eye).png')) ?>" alt="Show" class="signup-eye-icon" />
+              <img src="<?= e(baseUrl('/assets/images/Sign up/no view (eye).webp')) ?>" alt="Show" class="signup-eye-icon" />
             </button>
           </div>
         </div>
@@ -199,7 +199,7 @@ $oldInput = $_SESSION['old_input'] ?? [];
               autocomplete="new-password"
             />
             <button type="button" class="signup-eye-btn" data-target="signup-confirm-password" aria-label="Toggle confirm password visibility">
-              <img src="<?= e(baseUrl('/assets/images/Sign up/no view (eye).png')) ?>" alt="Show" class="signup-eye-icon" />
+              <img src="<?= e(baseUrl('/assets/images/Sign up/no view (eye).webp')) ?>" alt="Show" class="signup-eye-icon" />
             </button>
           </div>
         </div>
@@ -239,7 +239,7 @@ $oldInput = $_SESSION['old_input'] ?? [];
         <!-- Social Logins -->
         <div class="signup-social">
           <a href="#" id="signup-google" class="signup-social__btn" aria-label="Sign up with Google">
-            <img src="<?= e(baseUrl('/assets/images/Sign up/google.png')) ?>" alt="Google" class="signup-social__icon" />
+            <img src="<?= e(baseUrl('/assets/images/Sign up/google.webp')) ?>" alt="Google" class="signup-social__icon" />
             <span class="signup-social__text">Sign up with Google</span>
           </a>
         </div>
