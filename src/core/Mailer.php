@@ -355,7 +355,7 @@ class Mailer {
                             <tr>
                                 <td style="padding-bottom: 15px; vertical-align: top;">
                                     <div class="meta-label">Email</div>
-                                    <div class="meta-value"><a href="mailto:' . e($userEmail) . '" style="color: #00CED1; text-decoration: none;">' . e($userEmail) . '</a></div>
+                                    <div class="meta-value">' . e($userEmail) . '</div>
                                 </td>
                                 <td style="padding-bottom: 15px; vertical-align: top;">
                                     <div class="meta-label">Phone Number</div>
@@ -371,7 +371,7 @@ class Mailer {
                         </table>
 
                         <p style="font-size: 14px; color: #A0AEC0; margin-top: 25px; line-height: 1.5; border-top: 1px solid #2D3748; padding-top: 20px;">
-                            <strong>Action Required:</strong> Log in to your Synalyze admin dashboard to review this request and dispatch demo credentials to the user.
+                            <strong>Action Required:</strong> Log in to your <a href="' . rtrim($config['base_url'], '/') . '/admin" style="color: #00CED1; text-decoration: underline; font-weight: bold;">Synalyze admin dashboard</a> to review this request and dispatch demo credentials to the user.
                         </p>
                     </div>
                     <div class="footer">
@@ -646,6 +646,110 @@ class Mailer {
             return true;
         } catch (Exception $e) {
             error_log("PHPMailer failed to send update email: " . $mail->ErrorInfo);
+            return false;
+        }
+    }
+
+    /**
+     * Send a beautifully formatted HTML welcome email to a new subscriber.
+     */
+    public static function sendSubscriberWelcomeEmail(string $subscriberEmail): bool {
+        $config = require dirname(__DIR__, 2) . '/config/app.php';
+
+        try {
+            $pdo = \Core\Database::getInstance()->getConnection();
+            $stmt = $pdo->query("SELECT smtpUsername, smtpPassword FROM globalsettings WHERE id = 1");
+            $settings = $stmt->fetch(PDO::FETCH_ASSOC);
+            $smtpUser = !empty($settings['smtpUsername']) ? $settings['smtpUsername'] : $config['smtp_username'];
+            $smtpPass = !empty($settings['smtpPassword']) ? $settings['smtpPassword'] : $config['smtp_password'];
+        } catch (\Exception $e) {
+            $smtpUser = $config['smtp_username'];
+            $smtpPass = $config['smtp_password'];
+        }
+
+        $mail = new PHPMailer(true);
+
+        try {
+            $mail->isSMTP();
+            $mail->CharSet    = 'UTF-8';
+            $mail->Host       = $config['smtp_host'];
+            $mail->SMTPAuth   = true;
+            $mail->Username   = $smtpUser;
+            $mail->Password   = $smtpPass;
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+            $mail->Port       = $config['smtp_port'];
+
+            $mail->setFrom($smtpUser, $config['smtp_from_name']);
+            $mail->addAddress($subscriberEmail);
+
+            $mail->isHTML(true);
+            $mail->Subject = 'Welcome to Synalyze Updates!';
+
+            $body = '
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>Welcome to Synalyze</title>
+                <style>
+                    body {
+                        font-family: \'Inter\', \'Segoe UI\', Helvetica, Arial, sans-serif;
+                        background-color: #0A0A0A;
+                        color: #E2E8F0;
+                        margin: 0;
+                        padding: 0;
+                        -webkit-font-smoothing: antialiased;
+                    }
+                </style>
+            </head>
+            <body style="background-color: #0A0A0A; margin: 0; padding: 0;">
+                <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color: #0A0A0A; min-width: 100%; margin: 0; padding: 40px 0;">
+                    <tr>
+                        <td align="center" style="background-color: #0A0A0A;">
+                            <div style="max-width: 600px; width: 100%; margin: 0 auto; background: #121212; border: 1px solid #2D3748; border-radius: 12px; overflow: hidden; text-align: left; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);">
+                                <div style="background: linear-gradient(135deg, #00CED1 0%, #008B8B 100%); padding: 30px 40px;">
+                                    <h1 style="color: #000000; font-size: 24px; font-weight: 800; margin: 0; text-transform: uppercase; letter-spacing: 1.5px;">Synalyze</h1>
+                                    <p style="color: #1F2937; font-size: 14px; margin: 5px 0 0 0; font-weight: 500;">Subscription Confirmed</p>
+                                </div>
+                                <div style="padding: 40px;">
+                                    <h2 style="color: #FFFFFF; font-size: 20px; font-weight: 700; margin-top: 0; margin-bottom: 20px;">Thanks for Subscribing!</h2>
+                                    <p style="font-size: 15px; line-height: 1.6; color: #E2E8F0; margin-bottom: 15px;">
+                                        Hi ' . e($userName) . ',
+                                    </p>
+                                    <p style="font-size: 15px; line-height: 1.6; color: #E2E8F0; margin-bottom: 15px;">
+                                        Thank you for subscribing to Synalyze updates. You are now on the list to receive the latest updates, announcements, and guides on NAS fleet monitoring and syslog analytics.
+                                    </p>
+                                    <p style="font-size: 15px; line-height: 1.6; color: #E2E8F0; margin-bottom: 25px;">
+                                        We promise to send only high-value content and keep emails to a minimum.
+                                    </p>
+                                    
+                                    <div style="background: #1A1A1A; border-left: 4px solid #00CED1; border-radius: 4px; padding: 20px; margin-top: 25px;">
+                                        <div style="font-size: 11px; text-transform: uppercase; color: #00CED1; font-weight: 700; letter-spacing: 1px; margin-bottom: 6px;">How to Unsubscribe</div>
+                                        <p style="font-size: 14px; line-height: 1.5; color: #A0AEC0; margin: 0;">
+                                            If you ever wish to stop receiving updates, simply visit the Synalyze website, log in, and click the <strong>Unsubscribe</strong> button in the footer.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div style="background: #0D0D0D; padding: 20px 40px; text-align: center; border-top: 1px solid #1A1A1A;">
+                                    <p style="font-size: 12px; color: #718096; margin: 0;">You are receiving this because you subscribed to updates from Synalyze.</p>
+                                    <p style="font-size: 12px; color: #718096; margin: 5px 0 0 0;">&copy; ' . date('Y') . ' Synalyze. All rights reserved.</p>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </body>
+            </html>
+            ';
+
+            $mail->Body = $body;
+            $mail->AltBody = "Thanks for subscribing to Synalyze Updates!\n\nYou will receive the latest updates and announcements about NAS fleet monitoring and syslog analytics.\n\nTo unsubscribe, visit the website and click the Unsubscribe button in the footer.";
+
+            $mail->send();
+            return true;
+        } catch (Exception $e) {
+            error_log("PHPMailer failed to send welcome email: " . $mail->ErrorInfo);
             return false;
         }
     }

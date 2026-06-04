@@ -44,6 +44,7 @@ class SubscribeController {
             $result = $model->subscribe($email);
 
             if ($result === 'ok') {
+                Mailer::sendSubscriberWelcomeEmail($email);
                 echo json_encode([
                     'success' => true,
                     'message' => "You're subscribed! Thank you."
