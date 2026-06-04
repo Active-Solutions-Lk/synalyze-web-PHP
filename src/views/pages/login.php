@@ -107,6 +107,21 @@ $oldInput = $_SESSION['old_input'] ?? [];
           to Sign up
         </p>
 
+        <!-- Divider -->
+        <div class="signup-divider">
+          <span class="signup-divider__line"></span>
+          <span class="signup-divider__text">Or</span>
+          <span class="signup-divider__line"></span>
+        </div>
+
+        <!-- Social Logins -->
+        <div class="signup-social">
+          <a href="<?= e(baseUrl('/auth/google/login')) ?>" id="login-google" class="signup-social__btn" aria-label="Sign in with Google">
+            <img src="<?= e(baseUrl('/assets/images/Sign up/google.webp')) ?>" alt="Google" class="signup-social__icon" />
+            <span class="signup-social__text">Sign in with Google</span>
+          </a>
+        </div>
+
       </form>
     </div>
   </div>

@@ -11,7 +11,7 @@ class GoogleAuthController {
     }
 
     /**
-     * Redirects the user to Google's OAuth consent page.
+     * Redirects the user to Google's OAuth consent page for signup.
      */
     public function redirect() {
         $clientId = $this->config['google_client_id'] ?? '';
@@ -24,15 +24,48 @@ class GoogleAuthController {
         }
 
         // Generate dynamic state to prevent CSRF
-        $state = bin2hex(random_bytes(16));
-        $_SESSION['oauth_state'] = $state;
+        $nonce = bin2hex(random_bytes(16));
+        $statePayload = base64_encode(json_encode(['nonce' => $nonce, 'intent' => 'signup']));
+        $_SESSION['oauth_state'] = $nonce;
 
         $params = [
             'client_id'     => $clientId,
             'redirect_uri'  => $redirectUri,
             'response_type' => 'code',
             'scope'         => 'openid email profile',
-            'state'         => $state,
+            'state'         => $statePayload,
+            'prompt'        => 'select_account'
+        ];
+
+        $authUrl = 'https://accounts.google.com/o/oauth2/v2/auth?' . http_build_query($params);
+        header("Location: " . $authUrl);
+        exit;
+    }
+
+    /**
+     * Redirects the user to Google's OAuth consent page for login.
+     */
+    public function loginRedirect() {
+        $clientId = $this->config['google_client_id'] ?? '';
+        $redirectUri = $this->config['google_redirect_uri'] ?? '';
+
+        if (empty($clientId) || empty($redirectUri)) {
+            $_SESSION['errors'] = ["Google OAuth is not configured properly."];
+            header("Location: " . baseUrl('/login'));
+            exit;
+        }
+
+        // Generate dynamic state to prevent CSRF
+        $nonce = bin2hex(random_bytes(16));
+        $statePayload = base64_encode(json_encode(['nonce' => $nonce, 'intent' => 'login']));
+        $_SESSION['oauth_state'] = $nonce;
+
+        $params = [
+            'client_id'     => $clientId,
+            'redirect_uri'  => $redirectUri,
+            'response_type' => 'code',
+            'scope'         => 'openid email profile',
+            'state'         => $statePayload,
             'prompt'        => 'select_account'
         ];
 
@@ -48,13 +81,20 @@ class GoogleAuthController {
         $errors = [];
         
         // 1. Verify State Parameter (CSRF validation)
-        $state = $_GET['state'] ?? '';
+        $statePayload = $_GET['state'] ?? '';
         $sessionState = $_SESSION['oauth_state'] ?? '';
         unset($_SESSION['oauth_state']); // consumed immediately
 
-        if (empty($state) || $state !== $sessionState) {
+        $decodedState = json_decode(base64_decode($statePayload), true);
+        $nonce = $decodedState['nonce'] ?? '';
+        $intent = $decodedState['intent'] ?? 'signup';
+
+        // Default redirect location for errors based on intent
+        $errorRedirect = $intent === 'login' ? baseUrl('/login') : baseUrl('/signup');
+
+        if (empty($nonce) || empty($sessionState) || !hash_equals($sessionState, $nonce)) {
             $_SESSION['errors'] = ["Invalid state parameter. Possible CSRF attack."];
-            header("Location: " . baseUrl('/signup'));
+            header("Location: " . $errorRedirect);
             exit;
         }
 
@@ -62,7 +102,7 @@ class GoogleAuthController {
         $code = $_GET['code'] ?? '';
         if (empty($code)) {
             $_SESSION['errors'] = ["Authorization code not returned from Google."];
-            header("Location: " . baseUrl('/signup'));
+            header("Location: " . $errorRedirect);
             exit;
         }
 
@@ -92,7 +132,7 @@ class GoogleAuthController {
 
         if ($httpCode !== 200) {
             $_SESSION['errors'] = ["Failed to retrieve access token from Google."];
-            header("Location: " . baseUrl('/signup'));
+            header("Location: " . $errorRedirect);
             exit;
         }
 
@@ -101,7 +141,7 @@ class GoogleAuthController {
 
         if (empty($accessToken)) {
             $_SESSION['errors'] = ["Access token is empty."];
-            header("Location: " . baseUrl('/signup'));
+            header("Location: " . $errorRedirect);
             exit;
         }
 
@@ -119,7 +159,7 @@ class GoogleAuthController {
 
         if ($userHttpCode !== 200) {
             $_SESSION['errors'] = ["Failed to retrieve user profile from Google."];
-            header("Location: " . baseUrl('/signup'));
+            header("Location: " . $errorRedirect);
             exit;
         }
 
@@ -130,7 +170,7 @@ class GoogleAuthController {
 
         if (empty($googleId) || empty($email)) {
             $_SESSION['errors'] = ["Google account did not return a valid user ID or email."];
-            header("Location: " . baseUrl('/signup'));
+            header("Location: " . $errorRedirect);
             exit;
         }
 
@@ -160,18 +200,25 @@ class GoogleAuthController {
                 exit;
             }
 
-            // Case C: New registration, redirect to Complete Profile page
-            $_SESSION['google_signup_data'] = [
-                'google_id' => $googleId,
-                'email'     => $email,
-                'full_name' => $fullName
-            ];
-            header("Location: " . baseUrl('/signup/google/complete'));
-            exit;
+            // Case C: New registration / Login without account
+            if ($intent === 'login') {
+                $_SESSION['errors'] = ["No SYNALYZE account found for this Google account. Please sign up first."];
+                header("Location: " . baseUrl('/login'));
+                exit;
+            } else {
+                // New registration, redirect to Complete Profile page
+                $_SESSION['google_signup_data'] = [
+                    'google_id' => $googleId,
+                    'email'     => $email,
+                    'full_name' => $fullName
+                ];
+                header("Location: " . baseUrl('/signup/google/complete'));
+                exit;
+            }
 
         } catch (Exception $e) {
             $_SESSION['errors'] = ["Database error: " . $e->getMessage()];
-            header("Location: " . baseUrl('/signup'));
+            header("Location: " . $errorRedirect);
             exit;
         }
     }

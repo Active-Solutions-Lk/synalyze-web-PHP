@@ -41,6 +41,7 @@ $router->add('/logout', 'LoginController@logout');
 
 // Google OAuth routes
 $router->add('/auth/google', 'GoogleAuthController@redirect');
+$router->add('/auth/google/login', 'GoogleAuthController@loginRedirect');
 $router->add('/auth/google/callback', 'GoogleAuthController@callback');
 $router->add('/signup/google/complete', 'GoogleAuthController@complete');
 
