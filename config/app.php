@@ -16,7 +16,12 @@ return [
     'smtp_from_name' => 'Synalyze Contact Form',
 
     // Google OAuth 2.0 Credentials
-    'google_client_id'     => '1084912737312-81u4g5rciv5j7l8r556lsgk3l3lv299o.apps.googleusercontent.com',
-    'google_client_secret' => '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',
-    'google_redirect_uri'  => 'https://www.synalyze.net/auth/google/callback',
+    // 'google_client_id'     => '1084912737312-81u4g5rciv5j7l8r556lsgk3l3lv299o.apps.googleusercontent.com',
+    // 'google_client_secret' => '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',
+    // 'google_redirect_uri'  => 'https://www.synalyze.net/auth/google/callback',
+
+    // Google OAuth 2.0 Credentials (Localhost)
+    'google_client_id'     => '1084912737312-5hk94u3458gapug4k477oia3faccb7sp.apps.googleusercontent.com',
+    'google_client_secret' => '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',
+    'google_redirect_uri'  => 'http://localhost:8000/auth/google/callback',
 ];
