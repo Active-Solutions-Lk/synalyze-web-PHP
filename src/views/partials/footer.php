@@ -227,9 +227,9 @@ document.addEventListener('DOMContentLoaded', function() {
     <div class="mt-18 pt-8 flex flex-col md:flex-row justify-between items-center gap-2 text-gray-300 font-medium">
       <p>© <?= date('Y') ?> <?= e($siteName) ?>. All Rights Reserved by Active Solutions.</p>
       <div>
-        <a href="#" class="hover:text-white transition-colors underline decoration-transparent hover:decoration-white underline-offset-4">Terms of Use</a>
+        <a href="<?= e(baseUrl('/terms')) ?>" class="hover:text-white transition-colors underline decoration-transparent hover:decoration-white underline-offset-4">Terms of Use</a>
         <span class="mx-3">|</span>
-        <a href="#" class="hover:text-white transition-colors underline decoration-transparent hover:decoration-white underline-offset-4">Privacy Policy</a>
+        <a href="<?= e(baseUrl('/privacy')) ?>" class="hover:text-white transition-colors underline decoration-transparent hover:decoration-white underline-offset-4">Privacy Policy</a>
       </div>
     </div>
   </div>
