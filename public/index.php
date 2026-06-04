@@ -39,9 +39,16 @@ $router->add('/login', 'LoginController@index');
 $router->add('/dashboard', 'DashboardController@index');
 $router->add('/logout', 'LoginController@logout');
 
+// Google OAuth routes
+$router->add('/auth/google', 'GoogleAuthController@redirect');
+$router->add('/auth/google/callback', 'GoogleAuthController@callback');
+$router->add('/signup/google/complete', 'GoogleAuthController@complete');
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $requestPath = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-    if (strpos($requestPath, '/signup') !== false || strpos($_GET['url'] ?? '', 'signup') !== false) {
+    if (strpos($requestPath, '/signup/google/complete') !== false || strpos($_GET['url'] ?? '', 'signup/google/complete') !== false) {
+        $router->add('/signup/google/complete', 'GoogleAuthController@completeSubmit');
+    } elseif (strpos($requestPath, '/signup') !== false || strpos($_GET['url'] ?? '', 'signup') !== false) {
         $router->add('/signup', 'SignupController@submit');
     }
     if (strpos($requestPath, '/login') !== false || strpos($_GET['url'] ?? '', 'login') !== false) {

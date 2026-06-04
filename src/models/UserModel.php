@@ -106,5 +106,55 @@ class UserModel {
         $stmt->execute([$id]);
         return $stmt->fetch(\PDO::FETCH_ASSOC);
     }
+
+    /**
+     * Retrieves a user by their Google ID.
+     *
+     * @param string $googleId
+     * @return array|false
+     */
+    public function getUserByGoogleId($googleId) {
+        $stmt = $this->pdo->prepare("SELECT * FROM users WHERE google_id = ?");
+        $stmt->execute([$googleId]);
+        return $stmt->fetch(\PDO::FETCH_ASSOC);
+    }
+
+    /**
+     * Links a Google ID to an existing user account.
+     *
+     * @param int $userId
+     * @param string $googleId
+     * @return bool
+     */
+    public function linkGoogleAccount($userId, $googleId) {
+        $stmt = $this->pdo->prepare("UPDATE users SET google_id = ?, auth_provider = 'google' WHERE id = ?");
+        return $stmt->execute([$googleId, $userId]);
+    }
+
+    /**
+     * Inserts a new Google user into the database.
+     *
+     * @param array $data
+     * @return bool
+     */
+    public function createGoogleUser($data) {
+        $stmt = $this->pdo->prepare("
+            INSERT INTO users (full_name, company_name, address, phone, email, password, google_id, auth_provider, created_at)
+            VALUES (?, ?, ?, ?, ?, ?, ?, 'google', ?)
+        ");
+        
+        $hashedPassword = password_hash($data['password'], PASSWORD_DEFAULT);
+        
+        return $stmt->execute([
+            $data['full_name'],
+            $data['company_name'] ?? null,
+            $data['address'],
+            $data['phone'],
+            $data['email'],
+            $hashedPassword,
+            $data['google_id'],
+            date('Y-m-d H:i:s')
+        ]);
+    }
 }
 

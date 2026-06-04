@@ -1,7 +1,6 @@
 <?php
 $settings = get_settings();
 $accentColor = $settings['themeAccentColor'] ?? '#3d8c7c';
-$oldInput = $_SESSION['old_input'] ?? [];
 ?>
 
 <div class="signup-page">
@@ -21,25 +20,11 @@ $oldInput = $_SESSION['old_input'] ?? [];
 
       <!-- Heading -->
       <div class="signup-heading">
-        <h1 class="signup-heading__title">Create your account</h1>
-        <p class="signup-heading__sub">Join SYNALYZE and start managing your workflow smarter and faster</p>
+        <h1 class="signup-heading__title">Complete your profile</h1>
+        <p class="signup-heading__sub">Just a few more details to set up your SYNALYZE account</p>
       </div>
 
       <!-- Alerts -->
-      <?php if (isset($_SESSION['success'])): ?>
-        <div class="signup-alert signup-alert--success">
-          <div class="signup-alert__icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="signup-alert-svg">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
-          </div>
-          <div class="signup-alert__content">
-            <p class="signup-alert__msg"><?= e($_SESSION['success']) ?></p>
-          </div>
-        </div>
-        <?php unset($_SESSION['success']); ?>
-      <?php endif; ?>
-
       <?php if (isset($_SESSION['errors']) && !empty($_SESSION['errors'])): ?>
         <div class="signup-alert signup-alert--error">
           <div class="signup-alert__icon">
@@ -59,7 +44,7 @@ $oldInput = $_SESSION['old_input'] ?? [];
       <?php endif; ?>
 
       <!-- Form -->
-      <form id="signup-form" class="signup-form" method="POST" action="<?= e(baseUrl('/signup')) ?>" novalidate>
+      <form id="signup-form" class="signup-form" method="POST" action="<?= e(baseUrl('/signup/google/complete')) ?>" novalidate>
 
         <!-- Full Name -->
         <div class="signup-field">
@@ -71,7 +56,21 @@ $oldInput = $_SESSION['old_input'] ?? [];
             class="signup-input"
             required
             autocomplete="name"
-            value="<?= e($oldInput['full_name'] ?? '') ?>"
+            value="<?= e($oldInput['full_name'] ?? $googleData['full_name'] ?? '') ?>"
+          />
+        </div>
+
+        <!-- Email (Read-only) -->
+        <div class="signup-field">
+          <label for="signup-email" class="signup-label">Email Address <span class="signup-optional">(verified by Google)</span></label>
+          <input
+            id="signup-email"
+            type="email"
+            class="signup-input"
+            readonly
+            disabled
+            value="<?= e($googleData['email'] ?? '') ?>"
+            style="opacity: 0.6; cursor: not-allowed;"
           />
         </div>
 
@@ -154,20 +153,6 @@ $oldInput = $_SESSION['old_input'] ?? [];
           </div>
         </div>
 
-        <!-- Email -->
-        <div class="signup-field">
-          <label for="signup-email" class="signup-label">Email <span class="signup-required">*</span></label>
-          <input
-            id="signup-email"
-            type="email"
-            name="email"
-            class="signup-input"
-            required
-            autocomplete="email"
-            value="<?= e($oldInput['email'] ?? '') ?>"
-          />
-        </div>
-
         <!-- Password -->
         <div class="signup-field">
           <label for="signup-password" class="signup-label">Password <span class="signup-required">*</span></label>
@@ -220,29 +205,8 @@ $oldInput = $_SESSION['old_input'] ?? [];
 
         <!-- Submit -->
         <button type="submit" id="signup-submit" class="signup-submit">
-          Create Account
+          Complete Account Creation
         </button>
-
-        <!-- Already have account -->
-        <p class="signup-signin-link">
-          Already Have An Account?
-          <a href="<?= e(baseUrl('/login')) ?>" class="signup-signin-anchor">Log In</a>
-        </p>
-
-        <!-- Divider -->
-        <div class="signup-divider">
-          <span class="signup-divider__line"></span>
-          <span class="signup-divider__text">Or</span>
-          <span class="signup-divider__line"></span>
-        </div>
-
-        <!-- Social Logins -->
-        <div class="signup-social">
-          <a href="<?= e(baseUrl('/auth/google')) ?>" id="signup-google" class="signup-social__btn" aria-label="Sign up with Google">
-            <img src="<?= e(baseUrl('/assets/images/Sign up/google.webp')) ?>" alt="Google" class="signup-social__icon" />
-            <span class="signup-social__text">Sign up with Google</span>
-          </a>
-        </div>
 
       </form>
     </div>
@@ -250,4 +214,3 @@ $oldInput = $_SESSION['old_input'] ?? [];
 
 </div>
 <?php unset($_SESSION['old_input']); ?>
-
