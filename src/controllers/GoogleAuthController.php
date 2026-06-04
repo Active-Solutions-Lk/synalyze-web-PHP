@@ -185,6 +185,11 @@ class GoogleAuthController {
             exit;
         }
 
+        // Generate dynamic CSRF token to prevent CSRF attacks
+        if (empty($_SESSION['csrf_token'])) {
+            $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+        }
+
         $pageTitle = 'Complete Your Profile - Synalyze';
         $noBackground = true;
         $noFooter = true;
@@ -205,6 +210,16 @@ class GoogleAuthController {
     public function completeSubmit() {
         if (!isset($_SESSION['google_signup_data'])) {
             header("Location: " . baseUrl('/signup'));
+            exit;
+        }
+
+        // Validate CSRF token
+        $csrfToken = $_POST['csrf_token'] ?? '';
+        $sessionToken = $_SESSION['csrf_token'] ?? '';
+
+        if (empty($csrfToken) || !hash_equals($sessionToken, $csrfToken)) {
+            $_SESSION['errors'] = ["CSRF token verification failed. Please try again."];
+            header("Location: " . baseUrl('/signup/google/complete'));
             exit;
         }
 

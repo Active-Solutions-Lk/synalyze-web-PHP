@@ -95,7 +95,7 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: top center;
+  object-position: 25% center;
   display: block;
 }
 
@@ -570,6 +570,12 @@ body {
   color: #f87171;
 }
 
+.signup-alert--info {
+  background-color: rgba(6, 182, 212, 0.1);
+  border: 1px solid rgba(6, 182, 212, 0.3);
+  color: #22d3ee;
+}
+
 .signup-alert__icon {
   flex-shrink: 0;
   margin-top: 0.125rem;
@@ -625,7 +631,7 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
+  object-position: 25% center;
   display: block;
 }
 
@@ -892,7 +898,7 @@ body {
     object-position: 25% center !important; /* Keep Synology NAS device in view */
   }
   .signup-bg__img {
-    object-position: 30% center !important; /* Keep signup graphics centered */
+    object-position: 25% center !important; /* Keep Synology NAS device in view */
   }
 }
 

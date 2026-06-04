@@ -21,7 +21,18 @@ $accentColor = $settings['themeAccentColor'] ?? '#3d8c7c';
       <!-- Heading -->
       <div class="signup-heading">
         <h1 class="signup-heading__title">Complete your profile</h1>
-        <p class="signup-heading__sub">Just a few more details to set up your SYNALYZE account</p>
+      </div>
+
+      <!-- Info Alert -->
+      <div class="signup-alert signup-alert--info">
+        <div class="signup-alert__icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="signup-alert-svg">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        </div>
+        <div class="signup-alert__content">
+          <p class="signup-alert__msg">A few additional details are required to complete your account creation.</p>
+        </div>
       </div>
 
       <!-- Alerts -->
@@ -45,6 +56,7 @@ $accentColor = $settings['themeAccentColor'] ?? '#3d8c7c';
 
       <!-- Form -->
       <form id="signup-form" class="signup-form" method="POST" action="<?= e(baseUrl('/signup/google/complete')) ?>" novalidate>
+        <input type="hidden" name="csrf_token" value="<?= e($_SESSION['csrf_token'] ?? '') ?>" />
 
         <!-- Full Name -->
         <div class="signup-field">
