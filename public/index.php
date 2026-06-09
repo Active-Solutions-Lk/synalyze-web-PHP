@@ -12,6 +12,20 @@ if (php_sapi_name() === 'cli-server') {
 
 // Front Controller
 if (session_status() === PHP_SESSION_NONE) {
+    $params = [
+        'lifetime' => 86400,
+        'path' => '/',
+        'httponly' => true,
+        'samesite' => 'Lax'
+    ];
+    
+    $host = $_SERVER['HTTP_HOST'] ?? '';
+    if (strpos($host, 'synalyze.net') !== false) {
+        $params['domain'] = '.synalyze.net'; // Share cookie across www and non-www
+        $params['secure'] = true; // Require HTTPS on production
+    }
+    
+    session_set_cookie_params($params);
     session_start();
 }
 

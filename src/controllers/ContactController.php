@@ -53,7 +53,7 @@ class ContactController {
 
         // Fetch owner notification email from settings
         $settings = get_settings();
-        $ownerEmail = $settings['ownerEmail'] ?? 'heshanithennakoon118@gmail.com';
+        $ownerEmail = $settings['ownerEmail'] ?? 'system@synalyze.net';
 
         // Send email notification (fails gracefully if credentials aren't set)
         $emailSent = Mailer::sendContactNotification($ownerEmail, $name, $email, $company, $subject, $message);

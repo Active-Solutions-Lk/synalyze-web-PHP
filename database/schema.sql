@@ -4,7 +4,7 @@ CREATE TABLE IF NOT EXISTS globalsettings (
     logoUrl TEXT,
     themeAccentColor TEXT NOT NULL DEFAULT '#00CED1',
     primaryBackgroundColor TEXT NOT NULL DEFAULT '#0A0A0A',
-    ownerEmail TEXT NOT NULL DEFAULT 'heshanithennakoon118@gmail.com'
+    ownerEmail TEXT NOT NULL DEFAULT 'system@synalyze.net'
 );
 
 CREATE TABLE IF NOT EXISTS herosection (

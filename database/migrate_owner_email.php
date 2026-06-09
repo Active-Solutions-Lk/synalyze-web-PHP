@@ -18,7 +18,7 @@ try {
     }
 
     if (!$hasOwnerEmail) {
-        $pdo->exec("ALTER TABLE globalsettings ADD COLUMN ownerEmail TEXT NOT NULL DEFAULT 'heshanithennakoon118@gmail.com'");
+        $pdo->exec("ALTER TABLE globalsettings ADD COLUMN ownerEmail TEXT NOT NULL DEFAULT 'system@synalyze.net'");
         echo "Successfully added 'ownerEmail' column to 'globalsettings' table.\n";
     } else {
         echo "'ownerEmail' column already exists in 'globalsettings' table.\n";
