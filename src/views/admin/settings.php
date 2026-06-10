@@ -10,6 +10,13 @@
     </div>
   <?php endif; ?>
 
+  <?php if (isset($_SESSION['error'])): ?>
+    <div class="p-4 rounded-md bg-red-900/50 border border-red-500 text-red-300 mb-6">
+      <?= e($_SESSION['error']) ?>
+      <?php unset($_SESSION['error']); ?>
+    </div>
+  <?php endif; ?>
+
   <div class="bg-[#1A1A1A] border border-gray-800 rounded-xl p-6">
     <form method="POST" action="<?= e(baseUrl('/admin/settings/update')) ?>" class="space-y-6">
       <div>
@@ -55,6 +62,38 @@
       <div class="pt-4">
         <button type="submit" class="bg-[#00CED1] hover:bg-[#00a3a6] text-black font-bold py-2 px-6 rounded-md transition-colors">
           Save Settings
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <div class="bg-[#1A1A1A] border border-gray-800 rounded-xl p-6 mt-8">
+    <h3 class="text-xl font-bold text-white mb-6">Change Admin Credentials</h3>
+    <form method="POST" action="<?= e(baseUrl('/admin/settings/credentials')) ?>" class="space-y-6">
+      <div>
+        <label class="block text-sm font-medium text-gray-400 mb-2">New Username</label>
+        <input type="text" name="username" value="<?= e($adminUsername) ?>" required class="w-full bg-[#242424] border border-gray-700 rounded-md p-3 text-white focus:outline-none focus:border-[#00CED1]">
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+          <label class="block text-sm font-medium text-gray-400 mb-2">New Password</label>
+          <input type="password" name="new_password" placeholder="Leave blank to keep current password" class="w-full bg-[#242424] border border-gray-700 rounded-md p-3 text-white focus:outline-none focus:border-[#00CED1]">
+        </div>
+        <div>
+          <label class="block text-sm font-medium text-gray-400 mb-2">Confirm New Password</label>
+          <input type="password" name="confirm_password" placeholder="Confirm new password" class="w-full bg-[#242424] border border-gray-700 rounded-md p-3 text-white focus:outline-none focus:border-[#00CED1]">
+        </div>
+      </div>
+
+      <div class="border-t border-gray-800 pt-6">
+        <label class="block text-sm font-medium text-gray-400 mb-2">Current Password <span class="text-red-500">*</span></label>
+        <input type="password" name="current_password" required placeholder="Enter current password to verify identity" class="w-full bg-[#242424] border border-gray-700 rounded-md p-3 text-white focus:outline-none focus:border-[#00CED1]">
+      </div>
+
+      <div class="pt-4">
+        <button type="submit" class="bg-[#00CED1] hover:bg-[#00a3a6] text-black font-bold py-2 px-6 rounded-md transition-colors">
+          Update Credentials
         </button>
       </div>
     </form>

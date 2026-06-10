@@ -34,6 +34,7 @@
           ['name' => 'Users', 'href' => '/admin/users', 'icon' => 'users'],
           ['name' => 'Subscribers', 'href' => '/admin/subscribers', 'icon' => 'mail'],
           ['name' => 'Demo Requests', 'href' => '/admin/demo', 'icon' => 'play-circle'],
+          ['name' => 'Logout', 'href' => '/admin/logout', 'icon' => 'log-out'],
       ];
 
       $currentPath = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);

@@ -61,6 +61,11 @@ $router->add('/auth/google/login', 'GoogleAuthController@loginRedirect');
 $router->add('/auth/google/callback', 'GoogleAuthController@callback');
 $router->add('/signup/google/complete', 'GoogleAuthController@complete');
 
+// Admin routes
+$router->add('/admin/login', 'AdminLoginController@index');
+$router->add('/admin/logout', 'AdminLoginController@logout');
+$router->add('/admin', 'AdminController@dashboard');
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $requestPath = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
     if (strpos($requestPath, '/signup/google/complete') !== false || strpos($_GET['url'] ?? '', 'signup/google/complete') !== false) {
@@ -68,7 +73,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } elseif (strpos($requestPath, '/signup') !== false || strpos($_GET['url'] ?? '', 'signup') !== false) {
         $router->add('/signup', 'SignupController@submit');
     }
-    if (strpos($requestPath, '/login') !== false || strpos($_GET['url'] ?? '', 'login') !== false) {
+    if (strpos($requestPath, '/admin/login') !== false || strpos($_GET['url'] ?? '', 'admin/login') !== false) {
+        $router->add('/admin/login', 'AdminLoginController@submit');
+    } elseif (strpos($requestPath, '/login') !== false || strpos($_GET['url'] ?? '', 'login') !== false) {
         $router->add('/login', 'LoginController@submit');
     }
     if (strpos($requestPath, '/contact') !== false || strpos($_GET['url'] ?? '', 'contact') !== false) {
@@ -76,11 +83,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-// Admin routes
-$router->add('/admin', 'AdminController@dashboard');
-
 $router->add('/admin/settings', 'SettingsAdminController@index');
 $router->add('/admin/settings/update', 'SettingsAdminController@update');
+$router->add('/admin/settings/credentials', 'SettingsAdminController@updateCredentials');
 
 $router->add('/admin/faqs', 'FaqsAdminController@index');
 $router->add('/admin/faqs/category/create', 'FaqsAdminController@createCategory');

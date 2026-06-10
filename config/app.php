@@ -48,4 +48,8 @@ return [
     'google_client_id'     => $_ENV['GOOGLE_CLIENT_ID'] ?? '1084912737312-5hk94u3458gapug4k477oia3faccb7sp.apps.googleusercontent.com',
     'google_client_secret' => $_ENV['GOOGLE_CLIENT_SECRET'] ?? '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',
     'google_redirect_uri'  => $_ENV['GOOGLE_REDIRECT_URI'] ?? 'http://localhost:8000/auth/google/callback',
+
+    // Admin Credentials
+    'admin_username'       => $_ENV['ADMIN_USERNAME'] ?? 'admin',
+    'admin_password'       => $_ENV['ADMIN_PASSWORD'] ?? '$2y$10$PX9c8/qQxzhWNh8CIHC3JuFITiETbXMYZOnXr0U981.no7jR3atA6', // default admin123
 ];
