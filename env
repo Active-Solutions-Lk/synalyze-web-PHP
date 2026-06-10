@@ -1,0 +1,11 @@
+DB_PATH=database/synalyze.sqlite
+
+SMTP_HOST=mail.synalyze.net
+SMTP_PORT=465
+SMTP_USERNAME=system@synalyze.net
+SMTP_PASSWORD=sysreP@req
+SMTP_FROM_NAME="Synalyze Contact Form"
+
+GOOGLE_CLIENT_ID=1084912737312-5hk94u3458gapug4k477oia3faccb7sp.apps.googleusercontent.com
+GOOGLE_CLIENT_SECRET=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
+GOOGLE_REDIRECT_URI=http://localhost:8000/auth/google/callback

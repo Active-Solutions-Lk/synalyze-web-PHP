@@ -4,9 +4,6 @@ class GoogleAuthController {
     private $config;
 
     public function __construct() {
-        if (session_status() === PHP_SESSION_NONE) {
-            session_start();
-        }
         $this->config = require dirname(__DIR__, 2) . '/config/app.php';
     }
 
