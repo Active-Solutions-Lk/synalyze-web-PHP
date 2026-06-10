@@ -230,19 +230,19 @@ $oldInput = $_SESSION['old_input'] ?? [];
         </p>
 
         <!-- Divider -->
-        <div class="signup-divider">
+        <!-- <div class="signup-divider">
           <span class="signup-divider__line"></span>
           <span class="signup-divider__text">Or</span>
           <span class="signup-divider__line"></span>
-        </div>
+        </div> -->
 
         <!-- Social Logins -->
-        <div class="signup-social">
+        <!-- <div class="signup-social">
           <a href="<?= e(baseUrl('/auth/google')) ?>" id="signup-google" class="signup-social__btn" aria-label="Sign up with Google">
             <img src="<?= e(baseUrl('/assets/images/Sign up/google.webp')) ?>" alt="Google" class="signup-social__icon" />
             <span class="signup-social__text">Sign up with Google</span>
           </a>
-        </div>
+        </div> -->
 
       </form>
     </div>
