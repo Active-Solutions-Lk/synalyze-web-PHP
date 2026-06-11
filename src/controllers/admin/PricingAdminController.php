@@ -15,7 +15,8 @@ class PricingAdminController {
     public function index() {
         $model = new PricingModel();
         
-        $tiers = $model->getPricingTiers();
+        $cloudTiers = $model->getPricingTiersByType('cloud');
+        $onPremTiers = $model->getPricingTiersByType('on-premises');
         $addons = $model->getPricingAddons();
         $deploymentOptions = $model->getPricingDeploymentOptions();
         
@@ -30,11 +31,20 @@ class PricingAdminController {
 
     public function createTier() {
         $pdo = \Core\Database::getInstance()->getConnection();
-        $stmt = $pdo->prepare("INSERT INTO pricingtier (name, displayTitle, idealForText, featuresSubtitle, deploymentOptions, monthlyPrice, annualPrice, ctaText) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+        $highlighted = isset($_POST['highlighted']) ? 1 : 0;
+        $sortOrder = isset($_POST['sortOrder']) ? (int)$_POST['sortOrder'] : 0;
+        
+        $stmt = $pdo->prepare("INSERT INTO pricingtier (name, displayTitle, deploymentType, idealForText, featuresSubtitle, price, ctaText, highlighted, sortOrder) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
         $stmt->execute([
-            $_POST['name'], $_POST['displayTitle'], $_POST['idealForText'], 
-            $_POST['featuresSubtitle'], $_POST['deploymentOptions'], 
-            $_POST['monthlyPrice'], $_POST['annualPrice'], $_POST['ctaText']
+            $_POST['name'], 
+            $_POST['displayTitle'], 
+            $_POST['deploymentType'],
+            $_POST['idealForText'], 
+            $_POST['featuresSubtitle'], 
+            $_POST['price'], 
+            $_POST['ctaText'],
+            $highlighted,
+            $sortOrder
         ]);
         $this->redirectSuccess("Pricing tier added.");
     }
@@ -76,11 +86,20 @@ class PricingAdminController {
 
     public function updateTier() {
         $pdo = \Core\Database::getInstance()->getConnection();
-        $stmt = $pdo->prepare("UPDATE pricingtier SET name=?, displayTitle=?, idealForText=?, featuresSubtitle=?, deploymentOptions=?, monthlyPrice=?, annualPrice=?, ctaText=? WHERE id=?");
+        $highlighted = isset($_POST['highlighted']) ? 1 : 0;
+        $sortOrder = isset($_POST['sortOrder']) ? (int)$_POST['sortOrder'] : 0;
+
+        $stmt = $pdo->prepare("UPDATE pricingtier SET name=?, displayTitle=?, deploymentType=?, idealForText=?, featuresSubtitle=?, price=?, ctaText=?, highlighted=?, sortOrder=? WHERE id=?");
         $stmt->execute([
-            $_POST['name'], $_POST['displayTitle'], $_POST['idealForText'], 
-            $_POST['featuresSubtitle'], $_POST['deploymentOptions'], 
-            $_POST['monthlyPrice'], $_POST['annualPrice'], $_POST['ctaText'],
+            $_POST['name'], 
+            $_POST['displayTitle'], 
+            $_POST['deploymentType'],
+            $_POST['idealForText'], 
+            $_POST['featuresSubtitle'], 
+            $_POST['price'], 
+            $_POST['ctaText'],
+            $highlighted,
+            $sortOrder,
             $_POST['id']
         ]);
         $this->redirectSuccess("Pricing tier updated.");

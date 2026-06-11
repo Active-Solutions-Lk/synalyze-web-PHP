@@ -12,140 +12,303 @@
 
   <!-- Subscription Tiers -->
   <div class="bg-[#1A1A1A] border border-gray-800 rounded-xl p-6">
-    <h3 class="text-xl font-bold text-[#00CED1] border-b border-gray-700 pb-2 mb-6">Subscription Tiers</h3>
+    <h3 class="text-xl font-bold text-[#00CED1] border-b border-gray-700 pb-2 mb-4">Subscription Tiers</h3>
     
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-      <?php foreach ($tiers as $tier): ?>
-        <div class="bg-[#242424] p-5 rounded-lg border border-gray-700 flex flex-col justify-between" id="tier-container-<?= $tier['id'] ?>">
-          <!-- View Mode -->
-          <div id="view-tier-<?= $tier['id'] ?>" class="space-y-4 h-full flex flex-col justify-between">
-            <div class="space-y-2">
-              <div class="flex justify-between items-start">
-                <h4 class="font-bold text-white text-xl"><?= e($tier['displayTitle']) ?></h4>
-                <div class="flex gap-2">
-                  <button onclick="toggleEdit('tier', <?= $tier['id'] ?>, true)" class="text-gray-400 hover:text-white p-1 transition-colors" title="Edit Plan">
-                    <?= lucide_icon('Edit2', 'w-4 h-4') ?>
-                  </button>
-                  <form method="POST" action="<?= e(baseUrl('/admin/pricing/tier/delete')) ?>" onsubmit="return confirm('Delete this tier and all its features?');" class="inline">
-                    <input type="hidden" name="id" value="<?= $tier['id'] ?>">
-                    <button type="submit" class="text-red-400 hover:text-red-300 p-1 transition-colors" title="Delete Plan">
-                      <?= lucide_icon('Trash2', 'w-4 h-4') ?>
-                    </button>
-                  </form>
-                </div>
-              </div>
-              <div class="text-2xl font-semibold text-white tracking-tight"><?= e($tier['name']) ?></div>
-              <div class="text-gray-400 text-xs">Monthly: $<?= e($tier['monthlyPrice']) ?> | Annual: $<?= e($tier['annualPrice']) ?></div>
-              <?php if ($tier['idealForText']): ?>
-                <div class="text-xs text-gray-500 italic mt-1">Ideal for: <?= e($tier['idealForText']) ?></div>
-              <?php endif; ?>
-            </div>
-
-            <!-- Features for this tier -->
-            <div class="bg-[#1A1A1A] p-3 rounded-lg border border-gray-800 mt-4 space-y-2">
-              <div class="text-xs text-[#00CED1] uppercase font-bold tracking-wider mb-2">Included Features</div>
-              <div class="space-y-2 max-h-48 overflow-y-auto pr-1">
-                <?php foreach ($tier['features'] as $f): ?>
-                  <div class="flex justify-between items-center text-sm text-gray-300 border-b border-gray-800/50 pb-1" id="feature-row-<?= $f['id'] ?>">
-                    <!-- View Feature -->
-                    <div id="view-feature-<?= $f['id'] ?>" class="flex justify-between items-center w-full">
-                      <span class="truncate pr-2"><?= e($f['name']) ?></span>
-                      <div class="flex gap-1 shrink-0">
-                        <button onclick="toggleEdit('feature', <?= $f['id'] ?>, true)" class="text-gray-400 hover:text-white p-0.5">
-                          <?= lucide_icon('Edit2', 'w-3 h-3') ?>
-                        </button>
-                        <form method="POST" action="<?= e(baseUrl('/admin/pricing/feature/delete')) ?>" class="inline">
-                          <input type="hidden" name="id" value="<?= $f['id'] ?>">
-                          <button type="submit" class="text-red-400 hover:text-red-300 p-0.5"><?= lucide_icon('X', 'w-3 h-3') ?></button>
-                        </form>
-                      </div>
-                    </div>
-                    
-                    <!-- Edit Feature Form -->
-                    <form method="POST" action="<?= e(baseUrl('/admin/pricing/feature/update')) ?>" id="edit-feature-<?= $f['id'] ?>" class="hidden flex gap-2 w-full">
-                      <input type="hidden" name="id" value="<?= $f['id'] ?>">
-                      <input type="text" name="name" value="<?= e($f['name']) ?>" required class="flex-1 bg-[#242424] border border-gray-700 rounded p-1 text-white text-xs focus:outline-none focus:border-[#00CED1]">
-                      <button type="button" onclick="toggleEdit('feature', <?= $f['id'] ?>, false)" class="bg-gray-700 hover:bg-gray-600 text-white px-1.5 py-0.5 rounded text-[10px]">X</button>
-                      <button type="submit" class="bg-[#00CED1] text-black hover:bg-[#00a3a6] px-1.5 py-0.5 rounded text-[10px] font-bold">✓</button>
-                    </form>
-                  </div>
-                <?php endforeach; ?>
-              </div>
-              
-              <form method="POST" action="<?= e(baseUrl('/admin/pricing/feature/create')) ?>" class="flex gap-2 pt-2 border-t border-gray-800 mt-2">
-                <input type="hidden" name="pricingTierId" value="<?= $tier['id'] ?>">
-                <input type="text" name="name" placeholder="Add feature..." required class="flex-1 bg-[#242424] border border-gray-700 rounded p-1 text-white text-xs focus:outline-none focus:border-[#00CED1]">
-                <button type="submit" class="bg-[#00CED1] hover:bg-[#00a3a6] text-black font-bold px-2 py-1 rounded text-xs">+</button>
-              </form>
-            </div>
-          </div>
-
-          <!-- Edit Mode -->
-          <form method="POST" action="<?= e(baseUrl('/admin/pricing/tier/update')) ?>" id="edit-tier-<?= $tier['id'] ?>" class="hidden space-y-3">
-            <input type="hidden" name="id" value="<?= $tier['id'] ?>">
-            <h4 class="text-white font-bold border-b border-gray-700 pb-1 mb-2 text-sm">Edit Plan Details</h4>
-            
-            <div class="grid grid-cols-2 gap-2 text-xs">
-              <div>
-                <label class="text-gray-400 block mb-0.5">Plan Name</label>
-                <input type="text" name="name" value="<?= e($tier['name']) ?>" required class="w-full bg-[#1A1A1A] border border-gray-700 rounded p-1 text-white text-xs focus:outline-none focus:border-[#00CED1]">
-              </div>
-              <div>
-                <label class="text-gray-400 block mb-0.5">Display Title</label>
-                <input type="text" name="displayTitle" value="<?= e($tier['displayTitle']) ?>" required class="w-full bg-[#1A1A1A] border border-gray-700 rounded p-1 text-white text-xs focus:outline-none focus:border-[#00CED1]">
-              </div>
-              <div>
-                <label class="text-gray-400 block mb-0.5">Monthly Price</label>
-                <input type="number" step="0.01" name="monthlyPrice" value="<?= e($tier['monthlyPrice']) ?>" required class="w-full bg-[#1A1A1A] border border-gray-700 rounded p-1 text-white text-xs focus:outline-none focus:border-[#00CED1]">
-              </div>
-              <div>
-                <label class="text-gray-400 block mb-0.5">Annual Price</label>
-                <input type="number" step="0.01" name="annualPrice" value="<?= e($tier['annualPrice']) ?>" required class="w-full bg-[#1A1A1A] border border-gray-700 rounded p-1 text-white text-xs focus:outline-none focus:border-[#00CED1]">
-              </div>
-              <div class="col-span-2">
-                <label class="text-gray-400 block mb-0.5">Ideal For Text</label>
-                <textarea name="idealForText" class="w-full bg-[#1A1A1A] border border-gray-700 rounded p-1 text-white text-xs h-12 focus:outline-none focus:border-[#00CED1]"><?= e($tier['idealForText']) ?></textarea>
-              </div>
-              <div class="col-span-2">
-                <label class="text-gray-400 block mb-0.5">Features Subtitle</label>
-                <input type="text" name="featuresSubtitle" value="<?= e($tier['featuresSubtitle']) ?>" class="w-full bg-[#1A1A1A] border border-gray-700 rounded p-1 text-white text-xs focus:outline-none focus:border-[#00CED1]">
-              </div>
-              <div class="col-span-2">
-                <label class="text-gray-400 block mb-0.5">Deployment Options (JSON Array)</label>
-                <textarea name="deploymentOptions" required class="w-full bg-[#1A1A1A] border border-gray-700 rounded p-1 text-white font-mono text-[10px] h-12 focus:outline-none focus:border-[#00CED1]"><?= e($tier['deploymentOptions']) ?></textarea>
-              </div>
-              <div class="col-span-2">
-                <label class="text-gray-400 block mb-0.5">CTA Text</label>
-                <input type="text" name="ctaText" value="<?= e($tier['ctaText']) ?>" required class="w-full bg-[#1A1A1A] border border-gray-700 rounded p-1 text-white text-xs focus:outline-none focus:border-[#00CED1]">
-              </div>
-            </div>
-            
-            <div class="flex gap-2 justify-end pt-2">
-              <button type="button" onclick="toggleEdit('tier', <?= $tier['id'] ?>, false)" class="bg-gray-700 hover:bg-gray-600 text-white px-3 py-1 rounded text-xs">Cancel</button>
-              <button type="submit" class="bg-[#00CED1] hover:bg-[#00a3a6] text-black font-bold px-3 py-1 rounded text-xs">Save</button>
-            </div>
-          </form>
-        </div>
-      <?php endforeach; ?>
+    <!-- Tab Navigation -->
+    <div class="flex gap-4 border-b border-gray-800 pb-3 mb-6">
+      <button onclick="switchAdminPricingTab('cloud')" id="tab-btn-cloud" class="px-4 py-2 text-sm font-bold text-[#00CED1] border-b-2 border-[#00CED1] focus:outline-none">
+        ☁ Cloud Tiers
+      </button>
+      <button onclick="switchAdminPricingTab('onprem')" id="tab-btn-onprem" class="px-4 py-2 text-sm font-bold text-gray-400 border-b-2 border-transparent hover:text-white focus:outline-none">
+        🖥 On-Premises Tiers
+      </button>
     </div>
 
-    <!-- Create Tier Form -->
-    <form method="POST" action="<?= e(baseUrl('/admin/pricing/tier/create')) ?>" class="space-y-3 pt-6 border-t border-gray-800">
-      <h4 class="text-white font-bold mb-2">Add New Plan Tier</h4>
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <input type="text" name="displayTitle" placeholder="Display Title (e.g. Enterprise)" required class="w-full bg-[#242424] border border-gray-700 rounded-md p-2 text-white text-sm focus:outline-none focus:border-[#00CED1]">
-        <input type="text" name="name" placeholder="Pricing Display (e.g. $99/mo)" required class="w-full bg-[#242424] border border-gray-700 rounded-md p-2 text-white text-sm focus:outline-none focus:border-[#00CED1]">
-        <input type="number" step="0.01" name="monthlyPrice" placeholder="Monthly Price ($)" required class="w-full bg-[#242424] border border-gray-700 rounded-md p-2 text-white text-sm focus:outline-none focus:border-[#00CED1]">
-        <input type="number" step="0.01" name="annualPrice" placeholder="Annual Price ($)" required class="w-full bg-[#242424] border border-gray-700 rounded-md p-2 text-white text-sm focus:outline-none focus:border-[#00CED1]">
-        
-        <textarea name="idealForText" placeholder="Ideal For Text (Subtext explaining target audience)" class="w-full bg-[#242424] border border-gray-700 rounded-md p-2 text-white text-sm md:col-span-2 h-16 focus:outline-none focus:border-[#00CED1]"></textarea>
-        <textarea name="deploymentOptions" placeholder='Deployment Options JSON array, e.g. ["On-Premise\nSelf-hosted server"]' required class="w-full bg-[#242424] border border-gray-700 rounded-md p-2 text-white font-mono text-xs md:col-span-2 h-16 focus:outline-none focus:border-[#00CED1]"></textarea>
-        
-        <input type="text" name="featuresSubtitle" placeholder="Features Section Subtitle" class="w-full bg-[#242424] border border-gray-700 rounded-md p-2 text-white text-sm md:col-span-2 focus:outline-none focus:border-[#00CED1]">
-        <input type="text" name="ctaText" placeholder="CTA Button Text (e.g. Contact Sales)" required class="w-full bg-[#242424] border border-gray-700 rounded-md p-2 text-white text-sm md:col-span-2 focus:outline-none focus:border-[#00CED1]">
+    <!-- CLOUD TIERS TAB -->
+    <div id="admin-cloud-tab" class="space-y-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <?php foreach ($cloudTiers as $tier): ?>
+          <div class="bg-[#242424] p-5 rounded-lg border border-gray-700 flex flex-col justify-between" id="tier-container-<?= $tier['id'] ?>">
+            <!-- View Mode -->
+            <div id="view-tier-<?= $tier['id'] ?>" class="space-y-4 h-full flex flex-col justify-between">
+              <div class="space-y-2">
+                <div class="flex justify-between items-start">
+                  <h4 class="font-bold text-white text-xl"><?= e($tier['displayTitle']) ?></h4>
+                  <div class="flex gap-2">
+                    <button onclick="toggleEdit('tier', <?= $tier['id'] ?>, true)" class="text-gray-400 hover:text-white p-1 transition-colors" title="Edit Plan">
+                      <?= lucide_icon('Edit2', 'w-4 h-4') ?>
+                    </button>
+                    <form method="POST" action="<?= e(baseUrl('/admin/pricing/tier/delete')) ?>" onsubmit="return confirm('Delete this tier and all its features?');" class="inline">
+                      <input type="hidden" name="id" value="<?= $tier['id'] ?>">
+                      <button type="submit" class="text-red-400 hover:text-red-300 p-1 transition-colors" title="Delete Plan">
+                        <?= lucide_icon('Trash2', 'w-4 h-4') ?>
+                      </button>
+                    </form>
+                  </div>
+                </div>
+                <div class="text-gray-400 text-xs font-semibold uppercase">Plan Name: <span class="text-white normal-case"><?= e($tier['name']) ?></span></div>
+                <div class="text-gray-400 text-xs font-semibold uppercase">Price Text: <span class="text-white normal-case"><?= e($tier['price']) ?></span></div>
+                <div class="text-gray-400 text-xs font-semibold uppercase">Sort Order: <span class="text-white normal-case"><?= e($tier['sortOrder']) ?></span></div>
+                <div class="text-gray-400 text-xs font-semibold uppercase">Highlighted: <span class="text-white normal-case"><?= $tier['highlighted'] ? 'Yes' : 'No' ?></span></div>
+                <?php if ($tier['idealForText']): ?>
+                  <div class="text-xs text-gray-500 italic mt-1">Ideal for: <?= e($tier['idealForText']) ?></div>
+                <?php endif; ?>
+              </div>
+
+              <!-- Features for this tier -->
+              <div class="bg-[#1A1A1A] p-3 rounded-lg border border-gray-800 mt-4 space-y-2">
+                <div class="text-xs text-[#00CED1] uppercase font-bold tracking-wider mb-2">Included Features</div>
+                <div class="space-y-2 max-h-48 overflow-y-auto pr-1">
+                  <?php foreach ($tier['features'] as $f): ?>
+                    <div class="flex justify-between items-center text-sm text-gray-300 border-b border-gray-800/50 pb-1" id="feature-row-<?= $f['id'] ?>">
+                      <!-- View Feature -->
+                      <div id="view-feature-<?= $f['id'] ?>" class="flex justify-between items-center w-full">
+                        <span class="truncate pr-2"><?= e($f['name']) ?></span>
+                        <div class="flex gap-1 shrink-0">
+                          <button onclick="toggleEdit('feature', <?= $f['id'] ?>, true)" class="text-gray-400 hover:text-white p-0.5">
+                            <?= lucide_icon('Edit2', 'w-3 h-3') ?>
+                          </button>
+                          <form method="POST" action="<?= e(baseUrl('/admin/pricing/feature/delete')) ?>" class="inline">
+                            <input type="hidden" name="id" value="<?= $f['id'] ?>">
+                            <button type="submit" class="text-red-400 hover:text-red-300 p-0.5"><?= lucide_icon('X', 'w-3 h-3') ?></button>
+                          </form>
+                        </div>
+                      </div>
+                      
+                      <!-- Edit Feature Form -->
+                      <form method="POST" action="<?= e(baseUrl('/admin/pricing/feature/update')) ?>" id="edit-feature-<?= $f['id'] ?>" class="hidden flex gap-2 w-full">
+                        <input type="hidden" name="id" value="<?= $f['id'] ?>">
+                        <input type="text" name="name" value="<?= e($f['name']) ?>" required class="flex-1 bg-[#242424] border border-gray-700 rounded p-1 text-white text-xs focus:outline-none focus:border-[#00CED1]">
+                        <button type="button" onclick="toggleEdit('feature', <?= $f['id'] ?>, false)" class="bg-gray-700 hover:bg-gray-600 text-white px-1.5 py-0.5 rounded text-[10px]">X</button>
+                        <button type="submit" class="bg-[#00CED1] text-black hover:bg-[#00a3a6] px-1.5 py-0.5 rounded text-[10px] font-bold">✓</button>
+                      </form>
+                    </div>
+                  <?php endforeach; ?>
+                </div>
+                
+                <form method="POST" action="<?= e(baseUrl('/admin/pricing/feature/create')) ?>" class="flex gap-2 pt-2 border-t border-gray-800 mt-2">
+                  <input type="hidden" name="pricingTierId" value="<?= $tier['id'] ?>">
+                  <input type="text" name="name" placeholder="Add feature..." required class="flex-1 bg-[#242424] border border-gray-700 rounded p-1 text-white text-xs focus:outline-none focus:border-[#00CED1]">
+                  <button type="submit" class="bg-[#00CED1] hover:bg-[#00a3a6] text-black font-bold px-2 py-1 rounded text-xs">+</button>
+                </form>
+              </div>
+            </div>
+
+            <!-- Edit Mode -->
+            <form method="POST" action="<?= e(baseUrl('/admin/pricing/tier/update')) ?>" id="edit-tier-<?= $tier['id'] ?>" class="hidden space-y-3">
+              <input type="hidden" name="id" value="<?= $tier['id'] ?>">
+              <input type="hidden" name="deploymentType" value="cloud">
+              <h4 class="text-white font-bold border-b border-gray-700 pb-1 mb-2 text-sm">Edit Plan Details</h4>
+              
+              <div class="grid grid-cols-2 gap-2 text-xs">
+                <div>
+                  <label class="text-gray-400 block mb-0.5">Plan Name</label>
+                  <input type="text" name="name" value="<?= e($tier['name']) ?>" required class="w-full bg-[#1A1A1A] border border-gray-700 rounded p-1 text-white text-xs focus:outline-none focus:border-[#00CED1]">
+                </div>
+                <div>
+                  <label class="text-gray-400 block mb-0.5">Display Title</label>
+                  <input type="text" name="displayTitle" value="<?= e($tier['displayTitle']) ?>" required class="w-full bg-[#1A1A1A] border border-gray-700 rounded p-1 text-white text-xs focus:outline-none focus:border-[#00CED1]">
+                </div>
+                <div>
+                  <label class="text-gray-400 block mb-0.5">Price Display</label>
+                  <input type="text" name="price" value="<?= e($tier['price']) ?>" required class="w-full bg-[#1A1A1A] border border-gray-700 rounded p-1 text-white text-xs focus:outline-none focus:border-[#00CED1]">
+                </div>
+                <div>
+                  <label class="text-gray-400 block mb-0.5">Sort Order</label>
+                  <input type="number" name="sortOrder" value="<?= e($tier['sortOrder']) ?>" required class="w-full bg-[#1A1A1A] border border-gray-700 rounded p-1 text-white text-xs focus:outline-none focus:border-[#00CED1]">
+                </div>
+                <div class="col-span-2">
+                  <label class="text-gray-400 block mb-0.5">Ideal For Text</label>
+                  <textarea name="idealForText" class="w-full bg-[#1A1A1A] border border-gray-700 rounded p-1 text-white text-xs h-12 focus:outline-none focus:border-[#00CED1]"><?= e($tier['idealForText']) ?></textarea>
+                </div>
+                <div class="col-span-2">
+                  <label class="text-gray-400 block mb-0.5">Features Subtitle</label>
+                  <input type="text" name="featuresSubtitle" value="<?= e($tier['featuresSubtitle']) ?>" class="w-full bg-[#1A1A1A] border border-gray-700 rounded p-1 text-white text-xs focus:outline-none focus:border-[#00CED1]">
+                </div>
+                <div class="col-span-2">
+                  <label class="text-gray-400 block mb-0.5">CTA Text</label>
+                  <input type="text" name="ctaText" value="<?= e($tier['ctaText']) ?>" required class="w-full bg-[#1A1A1A] border border-gray-700 rounded p-1 text-white text-xs focus:outline-none focus:border-[#00CED1]">
+                </div>
+                <div class="col-span-2 flex items-center gap-2 pt-1">
+                  <input type="checkbox" name="highlighted" value="1" id="edit-highlight-<?= $tier['id'] ?>" <?= $tier['highlighted'] ? 'checked' : '' ?> class="rounded border-gray-700 bg-[#1A1A1A] text-[#00CED1] focus:ring-0">
+                  <label for="edit-highlight-<?= $tier['id'] ?>" class="text-gray-400 text-xs cursor-pointer">Highlight this card (Popular/Featured)</label>
+                </div>
+              </div>
+              
+              <div class="flex gap-2 justify-end pt-2">
+                <button type="button" onclick="toggleEdit('tier', <?= $tier['id'] ?>, false)" class="bg-gray-700 hover:bg-gray-600 text-white px-3 py-1 rounded text-xs">Cancel</button>
+                <button type="submit" class="bg-[#00CED1] hover:bg-[#00a3a6] text-black font-bold px-3 py-1 rounded text-xs">Save</button>
+              </div>
+            </form>
+          </div>
+        <?php endforeach; ?>
       </div>
-      <button type="submit" class="bg-[#00CED1] hover:bg-[#00a3a6] text-black font-bold py-2 px-6 rounded-md transition-colors mt-2">Add Subscription Plan</button>
-    </form>
+
+      <!-- Create Cloud Tier Form -->
+      <form method="POST" action="<?= e(baseUrl('/admin/pricing/tier/create')) ?>" class="space-y-3 pt-6 border-t border-gray-800">
+        <input type="hidden" name="deploymentType" value="cloud">
+        <h4 class="text-white font-bold mb-2">Add New Cloud Plan Tier</h4>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <input type="text" name="displayTitle" placeholder="Display Title (e.g. Pro)" required class="w-full bg-[#242424] border border-gray-700 rounded-md p-2 text-white text-sm focus:outline-none focus:border-[#00CED1]">
+          <input type="text" name="name" placeholder="Plan Name (e.g. Professional)" required class="w-full bg-[#242424] border border-gray-700 rounded-md p-2 text-white text-sm focus:outline-none focus:border-[#00CED1]">
+          <input type="text" name="price" placeholder="Pricing Display (e.g. $149/mo or Custom)" required class="w-full bg-[#242424] border border-gray-700 rounded-md p-2 text-white text-sm focus:outline-none focus:border-[#00CED1]">
+          
+          <input type="number" name="sortOrder" placeholder="Sort Order (e.g. 1, 2, 3)" required class="w-full bg-[#242424] border border-gray-700 rounded-md p-2 text-white text-sm focus:outline-none focus:border-[#00CED1]">
+          <input type="text" name="ctaText" placeholder="CTA Button Text (e.g. Get Started)" required class="w-full bg-[#242424] border border-gray-700 rounded-md p-2 text-white text-sm focus:outline-none focus:border-[#00CED1]">
+          <div class="flex items-center gap-2">
+            <input type="checkbox" name="highlighted" value="1" id="cloud-highlighted" class="rounded border-gray-700 bg-[#242424] text-[#00CED1] focus:ring-0">
+            <label for="cloud-highlighted" class="text-gray-400 text-sm cursor-pointer">Highlight this card</label>
+          </div>
+
+          <textarea name="idealForText" placeholder="Ideal For Text (Subtext explaining target audience)" class="w-full bg-[#242424] border border-gray-700 rounded-md p-2 text-white text-sm md:col-span-3 h-16 focus:outline-none focus:border-[#00CED1]"></textarea>
+          <input type="text" name="featuresSubtitle" placeholder="Features Section Subtitle (Optional)" class="w-full bg-[#242424] border border-gray-700 rounded-md p-2 text-white text-sm md:col-span-3 focus:outline-none focus:border-[#00CED1]">
+        </div>
+        <button type="submit" class="bg-[#00CED1] hover:bg-[#00a3a6] text-black font-bold py-2 px-6 rounded-md transition-colors mt-2">Add Cloud Plan</button>
+      </form>
+    </div>
+
+    <!-- ON-PREMISES TIERS TAB -->
+    <div id="admin-onprem-tab" class="space-y-8 hidden">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <?php foreach ($onPremTiers as $tier): ?>
+          <div class="bg-[#242424] p-5 rounded-lg border border-gray-700 flex flex-col justify-between" id="tier-container-<?= $tier['id'] ?>">
+            <!-- View Mode -->
+            <div id="view-tier-<?= $tier['id'] ?>" class="space-y-4 h-full flex flex-col justify-between">
+              <div class="space-y-2">
+                <div class="flex justify-between items-start">
+                  <h4 class="font-bold text-white text-xl"><?= e($tier['displayTitle']) ?></h4>
+                  <div class="flex gap-2">
+                    <button onclick="toggleEdit('tier', <?= $tier['id'] ?>, true)" class="text-gray-400 hover:text-white p-1 transition-colors" title="Edit Plan">
+                      <?= lucide_icon('Edit2', 'w-4 h-4') ?>
+                    </button>
+                    <form method="POST" action="<?= e(baseUrl('/admin/pricing/tier/delete')) ?>" onsubmit="return confirm('Delete this tier and all its features?');" class="inline">
+                      <input type="hidden" name="id" value="<?= $tier['id'] ?>">
+                      <button type="submit" class="text-red-400 hover:text-red-300 p-1 transition-colors" title="Delete Plan">
+                        <?= lucide_icon('Trash2', 'w-4 h-4') ?>
+                      </button>
+                    </form>
+                  </div>
+                </div>
+                <div class="text-gray-400 text-xs font-semibold uppercase">Plan Name: <span class="text-white normal-case"><?= e($tier['name']) ?></span></div>
+                <div class="text-gray-400 text-xs font-semibold uppercase">Price Text: <span class="text-white normal-case"><?= e($tier['price']) ?></span></div>
+                <div class="text-gray-400 text-xs font-semibold uppercase">Sort Order: <span class="text-white normal-case"><?= e($tier['sortOrder']) ?></span></div>
+                <div class="text-gray-400 text-xs font-semibold uppercase">Highlighted: <span class="text-white normal-case"><?= $tier['highlighted'] ? 'Yes' : 'No' ?></span></div>
+                <?php if ($tier['idealForText']): ?>
+                  <div class="text-xs text-gray-500 italic mt-1">Ideal for: <?= e($tier['idealForText']) ?></div>
+                <?php endif; ?>
+              </div>
+
+              <!-- Features for this tier -->
+              <div class="bg-[#1A1A1A] p-3 rounded-lg border border-gray-800 mt-4 space-y-2">
+                <div class="text-xs text-[#00CED1] uppercase font-bold tracking-wider mb-2">Included Features</div>
+                <div class="space-y-2 max-h-48 overflow-y-auto pr-1">
+                  <?php foreach ($tier['features'] as $f): ?>
+                    <div class="flex justify-between items-center text-sm text-gray-300 border-b border-gray-800/50 pb-1" id="feature-row-<?= $f['id'] ?>">
+                      <!-- View Feature -->
+                      <div id="view-feature-<?= $f['id'] ?>" class="flex justify-between items-center w-full">
+                        <span class="truncate pr-2"><?= e($f['name']) ?></span>
+                        <div class="flex gap-1 shrink-0">
+                          <button onclick="toggleEdit('feature', <?= $f['id'] ?>, true)" class="text-gray-400 hover:text-white p-0.5">
+                            <?= lucide_icon('Edit2', 'w-3 h-3') ?>
+                          </button>
+                          <form method="POST" action="<?= e(baseUrl('/admin/pricing/feature/delete')) ?>" class="inline">
+                            <input type="hidden" name="id" value="<?= $f['id'] ?>">
+                            <button type="submit" class="text-red-400 hover:text-red-300 p-0.5"><?= lucide_icon('X', 'w-3 h-3') ?></button>
+                          </form>
+                        </div>
+                      </div>
+                      
+                      <!-- Edit Feature Form -->
+                      <form method="POST" action="<?= e(baseUrl('/admin/pricing/feature/update')) ?>" id="edit-feature-<?= $f['id'] ?>" class="hidden flex gap-2 w-full">
+                        <input type="hidden" name="id" value="<?= $f['id'] ?>">
+                        <input type="text" name="name" value="<?= e($f['name']) ?>" required class="flex-1 bg-[#242424] border border-gray-700 rounded p-1 text-white text-xs focus:outline-none focus:border-[#00CED1]">
+                        <button type="button" onclick="toggleEdit('feature', <?= $f['id'] ?>, false)" class="bg-gray-700 hover:bg-gray-600 text-white px-1.5 py-0.5 rounded text-[10px]">X</button>
+                        <button type="submit" class="bg-[#00CED1] text-black hover:bg-[#00a3a6] px-1.5 py-0.5 rounded text-[10px] font-bold">✓</button>
+                      </form>
+                    </div>
+                  <?php endforeach; ?>
+                </div>
+                
+                <form method="POST" action="<?= e(baseUrl('/admin/pricing/feature/create')) ?>" class="flex gap-2 pt-2 border-t border-gray-800 mt-2">
+                  <input type="hidden" name="pricingTierId" value="<?= $tier['id'] ?>">
+                  <input type="text" name="name" placeholder="Add feature..." required class="flex-1 bg-[#242424] border border-gray-700 rounded p-1 text-white text-xs focus:outline-none focus:border-[#00CED1]">
+                  <button type="submit" class="bg-[#00CED1] hover:bg-[#00a3a6] text-black font-bold px-2 py-1 rounded text-xs">+</button>
+                </form>
+              </div>
+            </div>
+
+            <!-- Edit Mode -->
+            <form method="POST" action="<?= e(baseUrl('/admin/pricing/tier/update')) ?>" id="edit-tier-<?= $tier['id'] ?>" class="hidden space-y-3">
+              <input type="hidden" name="id" value="<?= $tier['id'] ?>">
+              <input type="hidden" name="deploymentType" value="on-premises">
+              <h4 class="text-white font-bold border-b border-gray-700 pb-1 mb-2 text-sm">Edit Plan Details</h4>
+              
+              <div class="grid grid-cols-2 gap-2 text-xs">
+                <div>
+                  <label class="text-gray-400 block mb-0.5">Plan Name</label>
+                  <input type="text" name="name" value="<?= e($tier['name']) ?>" required class="w-full bg-[#1A1A1A] border border-gray-700 rounded p-1 text-white text-xs focus:outline-none focus:border-[#00CED1]">
+                </div>
+                <div>
+                  <label class="text-gray-400 block mb-0.5">Display Title</label>
+                  <input type="text" name="displayTitle" value="<?= e($tier['displayTitle']) ?>" required class="w-full bg-[#1A1A1A] border border-gray-700 rounded p-1 text-white text-xs focus:outline-none focus:border-[#00CED1]">
+                </div>
+                <div>
+                  <label class="text-gray-400 block mb-0.5">Price Display</label>
+                  <input type="text" name="price" value="<?= e($tier['price']) ?>" required class="w-full bg-[#1A1A1A] border border-gray-700 rounded p-1 text-white text-xs focus:outline-none focus:border-[#00CED1]">
+                </div>
+                <div>
+                  <label class="text-gray-400 block mb-0.5">Sort Order</label>
+                  <input type="number" name="sortOrder" value="<?= e($tier['sortOrder']) ?>" required class="w-full bg-[#1A1A1A] border border-gray-700 rounded p-1 text-white text-xs focus:outline-none focus:border-[#00CED1]">
+                </div>
+                <div class="col-span-2">
+                  <label class="text-gray-400 block mb-0.5">Ideal For Text</label>
+                  <textarea name="idealForText" class="w-full bg-[#1A1A1A] border border-gray-700 rounded p-1 text-white text-xs h-12 focus:outline-none focus:border-[#00CED1]"><?= e($tier['idealForText']) ?></textarea>
+                </div>
+                <div class="col-span-2">
+                  <label class="text-gray-400 block mb-0.5">Features Subtitle</label>
+                  <input type="text" name="featuresSubtitle" value="<?= e($tier['featuresSubtitle']) ?>" class="w-full bg-[#1A1A1A] border border-gray-700 rounded p-1 text-white text-xs focus:outline-none focus:border-[#00CED1]">
+                </div>
+                <div class="col-span-2">
+                  <label class="text-gray-400 block mb-0.5">CTA Text</label>
+                  <input type="text" name="ctaText" value="<?= e($tier['ctaText']) ?>" required class="w-full bg-[#1A1A1A] border border-gray-700 rounded p-1 text-white text-xs focus:outline-none focus:border-[#00CED1]">
+                </div>
+                <div class="col-span-2 flex items-center gap-2 pt-1">
+                  <input type="checkbox" name="highlighted" value="1" id="edit-highlight-onprem-<?= $tier['id'] ?>" <?= $tier['highlighted'] ? 'checked' : '' ?> class="rounded border-gray-700 bg-[#1A1A1A] text-[#00CED1] focus:ring-0">
+                  <label for="edit-highlight-onprem-<?= $tier['id'] ?>" class="text-gray-400 text-xs cursor-pointer">Highlight this card (Recommended/Featured)</label>
+                </div>
+              </div>
+              
+              <div class="flex gap-2 justify-end pt-2">
+                <button type="button" onclick="toggleEdit('tier', <?= $tier['id'] ?>, false)" class="bg-gray-700 hover:bg-gray-600 text-white px-3 py-1 rounded text-xs">Cancel</button>
+                <button type="submit" class="bg-[#00CED1] hover:bg-[#00a3a6] text-black font-bold px-3 py-1 rounded text-xs">Save</button>
+              </div>
+            </form>
+          </div>
+        <?php endforeach; ?>
+      </div>
+
+      <!-- Create On-Premises Tier Form -->
+      <form method="POST" action="<?= e(baseUrl('/admin/pricing/tier/create')) ?>" class="space-y-3 pt-6 border-t border-gray-800">
+        <input type="hidden" name="deploymentType" value="on-premises">
+        <h4 class="text-white font-bold mb-2">Add New On-Premises Plan Tier</h4>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <input type="text" name="displayTitle" placeholder="Display Title (e.g. Manageable)" required class="w-full bg-[#242424] border border-gray-700 rounded-md p-2 text-white text-sm focus:outline-none focus:border-[#00CED1]">
+          <input type="text" name="name" placeholder="Plan Name (e.g. Manageable)" required class="w-full bg-[#242424] border border-gray-700 rounded-md p-2 text-white text-sm focus:outline-none focus:border-[#00CED1]">
+          <input type="text" name="price" placeholder="Pricing Display (e.g. Contact Sales)" required class="w-full bg-[#242424] border border-gray-700 rounded-md p-2 text-white text-sm focus:outline-none focus:border-[#00CED1]">
+          
+          <input type="number" name="sortOrder" placeholder="Sort Order (e.g. 1, 2, 3)" required class="w-full bg-[#242424] border border-gray-700 rounded-md p-2 text-white text-sm focus:outline-none focus:border-[#00CED1]">
+          <input type="text" name="ctaText" placeholder="CTA Button Text (e.g. Contact Sales)" required class="w-full bg-[#242424] border border-gray-700 rounded-md p-2 text-white text-sm focus:outline-none focus:border-[#00CED1]">
+          <div class="flex items-center gap-2">
+            <input type="checkbox" name="highlighted" value="1" id="onprem-highlighted" class="rounded border-gray-700 bg-[#242424] text-[#00CED1] focus:ring-0">
+            <label for="onprem-highlighted" class="text-gray-400 text-sm cursor-pointer">Highlight this card</label>
+          </div>
+
+          <textarea name="idealForText" placeholder="Ideal For Text (Subtext explaining target audience)" class="w-full bg-[#242424] border border-gray-700 rounded-md p-2 text-white text-sm md:col-span-3 h-16 focus:outline-none focus:border-[#00CED1]"></textarea>
+          <input type="text" name="featuresSubtitle" placeholder="Features Section Subtitle (Optional)" class="w-full bg-[#242424] border border-gray-700 rounded-md p-2 text-white text-sm md:col-span-3 focus:outline-none focus:border-[#00CED1]">
+        </div>
+        <button type="submit" class="bg-[#00CED1] hover:bg-[#00a3a6] text-black font-bold py-2 px-6 rounded-md transition-colors mt-2">Add On-Premises Plan</button>
+      </form>
+    </div>
   </div>
 
   <!-- Optional Add-ons & Customizations -->
@@ -311,4 +474,33 @@ function toggleEdit(type, id, show) {
     }
   }
 }
+
+function switchAdminPricingTab(tab) {
+  sessionStorage.setItem('adminPricingTab', tab);
+  const btnCloud = document.getElementById('tab-btn-cloud');
+  const btnOnprem = document.getElementById('tab-btn-onprem');
+  const tabCloud = document.getElementById('admin-cloud-tab');
+  const tabOnprem = document.getElementById('admin-onprem-tab');
+  
+  if (tab === 'cloud') {
+    btnCloud.className = "px-4 py-2 text-sm font-bold text-[#00CED1] border-b-2 border-[#00CED1] focus:outline-none";
+    btnOnprem.className = "px-4 py-2 text-sm font-bold text-gray-400 border-b-2 border-transparent hover:text-white focus:outline-none";
+    tabCloud.classList.remove('hidden');
+    tabOnprem.classList.add('hidden');
+  } else {
+    btnOnprem.className = "px-4 py-2 text-sm font-bold text-[#00CED1] border-b-2 border-[#00CED1] focus:outline-none";
+    btnCloud.className = "px-4 py-2 text-sm font-bold text-gray-400 border-b-2 border-transparent hover:text-white focus:outline-none";
+    tabOnprem.classList.remove('hidden');
+    tabCloud.classList.add('hidden');
+  }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  const savedTab = sessionStorage.getItem('adminPricingTab');
+  if (savedTab === 'onprem') {
+    switchAdminPricingTab('onprem');
+  } else {
+    switchAdminPricingTab('cloud');
+  }
+});
 </script>

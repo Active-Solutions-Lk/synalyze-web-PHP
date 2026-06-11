@@ -4,7 +4,8 @@ require_once dirname(__DIR__) . '/models/PricingModel.php';
 class PricingController {
     public function index() {
         $pricingModel = new PricingModel();
-        $tiers = $pricingModel->getPricingTiers();
+        $cloudTiers = $pricingModel->getPricingTiersByType('cloud');
+        $onPremTiers = $pricingModel->getPricingTiersByType('on-premises');
         $addons = $pricingModel->getPricingAddons();
         
         $deploymentOptions = $pricingModel->getPricingDeploymentOptions();

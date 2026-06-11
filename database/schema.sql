@@ -71,13 +71,13 @@ CREATE TABLE IF NOT EXISTS pricingtier (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     name TEXT NOT NULL,
     displayTitle TEXT,
+    deploymentType TEXT NOT NULL DEFAULT 'cloud',
     idealForText TEXT,
     featuresSubtitle TEXT,
-    deploymentOptions TEXT,
-    monthlyPrice REAL NOT NULL,
-    annualPrice REAL NOT NULL,
-    ctaText TEXT NOT NULL,
-    highlighted INTEGER NOT NULL DEFAULT 0
+    price TEXT NOT NULL DEFAULT 'Contact Sales',
+    ctaText TEXT NOT NULL DEFAULT 'Get Started',
+    highlighted INTEGER NOT NULL DEFAULT 0,
+    sortOrder INTEGER NOT NULL DEFAULT 0
 );
 
 CREATE TABLE IF NOT EXISTS pricingfeature (

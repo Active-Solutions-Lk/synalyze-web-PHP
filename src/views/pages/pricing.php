@@ -6,28 +6,40 @@
       <h1 class="text-3xl sm:text-4xl md:text-[5rem] text-white mb-8 tracking-tight">
         Pricing Plans
       </h1>
-      <div class="flex items-center justify-center gap-3">
-        <button id="btn-monthly" class="bg-accent text-white px-6 py-2 rounded-full font-bold text-lg">Monthly</button>
-        <button id="btn-annual" class="border border-white/20 text-white px-6 py-2 rounded-full font-bold text-lg hover:bg-white/5 transition-colors">Annually</button>
+      <div>
+        <button id="btn-cloud" class="w-1/2 bg-accent text-white px-6 py-2.5 rounded-full font-bold text-lg transition-all duration-300">
+          Cloud
+        </button>
+        <button id="btn-onprem" class="w-1/2 text-gray-400 hover:text-white px-6 py-2.5 rounded-full font-bold text-lg transition-all duration-300">
+          On-Premises
+        </button>
       </div>
     </div>
 
-    <!-- Pricing Cards -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 mb-32 max-w-full mx-auto">
-      <?php foreach ($tiers as $tier): 
-        $deploymentOpts = json_decode($tier['deploymentOptions'], true) ?: [];
+    <?php 
+      $cloudCount = count($cloudTiers);
+      $cloudGridClass = $cloudCount === 2 ? 'md:grid-cols-2 max-w-4xl' : ($cloudCount === 1 ? 'md:grid-cols-1 max-w-md' : 'md:grid-cols-3 max-w-full');
+    ?>
+    <!-- Cloud Pricing Cards Grid -->
+    <div id="cloud-pricing-container" class="grid grid-cols-1 <?= $cloudGridClass ?> gap-6 lg:gap-8 mb-32 mx-auto transition-opacity duration-300">
+      <?php foreach ($cloudTiers as $tier): 
+        $isHighlighted = $tier['highlighted'] ?? 0;
       ?>
-        <div class="pricing-card bg-[#1b222b] rounded-[1.5rem] p-6 sm:p-8 lg:p-14 flex flex-col relative">
+        <div class="pricing-card bg-[#1b222b] rounded-[1.5rem] p-6 sm:p-8 lg:p-14 flex flex-col relative <?= $isHighlighted ? 'border-2 border-accent shadow-[0_0_25px_rgba(0,206,209,0.15)]' : 'border border-white/5' ?>">
+          <?php if ($isHighlighted): ?>
+            <span class="absolute -top-4 left-1/2 -translate-x-1/2 bg-accent text-black text-sm uppercase font-extrabold tracking-widest px-4 py-1.5 rounded-full shadow-lg">Popular</span>
+          <?php endif; ?>
+
           <div class="flex justify-between items-start mb-6">
-            <h3 class="text-2xl text-white"><?= e($tier['displayTitle']) ?></h3>
+            <h3 class="text-2xl text-white font-semibold"><?= e($tier['displayTitle']) ?></h3>
             <div class="text-right">
               <div class="text-white text-sm font-semibold">Ideal for</div>
               <div class="text-gray-400 text-[0.75rem] leading-tight whitespace-pre-line text-right"><?= e($tier['idealForText']) ?></div>
             </div>
           </div>
 
-          <h2 class="text-4xl sm:text-5xl lg:text-[3.5rem] text-white leading-none mb-10">
-            <?= e($tier['name']) ?>
+          <h2 class="text-3xl sm:text-1xl lg:text-[1.5rem] text-white font-bold leading-none mb-10">
+            <?= e($tier['price']) ?>
           </h2>
           
           <div class="text-white font-medium text-[1.2rem] mb-6 min-h-[1.5rem]">
@@ -38,7 +50,7 @@
             <?php endif; ?>
           </div>
 
-          <ul class="space-y-3 mb-8 flex-1">
+          <ul class="space-y-3 mb-10 flex-1">
             <?php foreach ($tier['features'] as $f): ?>
               <li class="flex items-start gap-3 text-gray-300 text-[1.15rem]">
                 <span class="text-accent font-bold">✓</span>
@@ -47,23 +59,55 @@
             <?php endforeach; ?>
           </ul>
 
-          <div class="mb-10 text-gray-300 text-[1.3rem] flex flex-col gap-1">
-            <div class="flex items-start gap-2">
-              <span class="font-bold text-white whitespace-nowrap">Deployment Options :</span>
-              <div class="flex flex-col leading-tight">
-                <?php foreach ($deploymentOpts as $opt): 
-                   $parts = explode("\n", $opt);
-                ?>
-                  <div class="mb-1">
-                    <span class="text-gray-300"><?= e($parts[0]) ?></span>
-                    <?php if (count($parts) > 1): ?>
-                      <br/><span class="text-[0.9rem] text-gray-400"><?= e($parts[1]) ?></span>
-                    <?php endif; ?>
-                  </div>
-                <?php endforeach; ?>
-              </div>
+          <button class="w-full py-4 rounded-xl border border-accent bg-[#1b222b] text-white font-semibold text-2xl lg:text-4xl bg-accent-glow-hover transition-colors">
+            <?= e($tier['ctaText']) ?>
+          </button>
+        </div>
+      <?php endforeach; ?>
+    </div>
+
+    <?php 
+      $onPremCount = count($onPremTiers);
+      $onPremGridClass = $onPremCount === 2 ? 'md:grid-cols-2 max-w-4xl' : ($onPremCount === 1 ? 'md:grid-cols-1 max-w-md' : 'md:grid-cols-3 max-w-full');
+    ?>
+    <!-- On-Premises Pricing Cards Grid -->
+    <div id="onprem-pricing-container" class="hidden grid grid-cols-1 <?= $onPremGridClass ?> gap-6 lg:gap-8 mb-32 mx-auto transition-opacity duration-300">
+      <?php foreach ($onPremTiers as $tier): 
+        $isHighlighted = $tier['highlighted'] ?? 0;
+      ?>
+        <div class="pricing-card bg-[#1b222b] rounded-[1.5rem] p-6 sm:p-8 lg:p-14 flex flex-col relative <?= $isHighlighted ? 'border-2 border-accent shadow-[0_0_25px_rgba(0,206,209,0.15)]' : 'border border-white/5' ?>">
+          <?php if ($isHighlighted): ?>
+            <span class="absolute -top-4 left-1/2 -translate-x-1/2 bg-accent text-black text-sm uppercase font-extrabold tracking-widest px-4 py-1.5 rounded-full shadow-lg">Recommended</span>
+          <?php endif; ?>
+
+          <div class="flex justify-between items-start mb-6">
+            <h3 class="text-2xl text-white font-semibold"><?= e($tier['displayTitle']) ?></h3>
+            <div class="text-right">
+              <div class="text-white text-sm font-semibold">Ideal for</div>
+              <div class="text-gray-400 text-[0.75rem] leading-tight whitespace-pre-line text-right"><?= e($tier['idealForText']) ?></div>
             </div>
           </div>
+
+          <h2 class="text-3xl sm:text-1xl lg:text-[1.5rem] text-white font-bold leading-none mb-10">
+            <?= e($tier['price']) ?>
+          </h2>
+          
+          <div class="text-white font-medium text-[1.2rem] mb-6 min-h-[1.5rem]">
+            <?php if ($tier['featuresSubtitle']): ?>
+              <span><?= e($tier['featuresSubtitle']) ?></span>
+            <?php else: ?>
+              <span>&nbsp;</span>
+            <?php endif; ?>
+          </div>
+
+          <ul class="space-y-3 mb-10 flex-1">
+            <?php foreach ($tier['features'] as $f): ?>
+              <li class="flex items-start gap-3 text-gray-300 text-[1.15rem]">
+                <span class="text-accent font-bold">✓</span>
+                <span><?= e($f['name']) ?></span>
+              </li>
+            <?php endforeach; ?>
+          </ul>
 
           <button class="w-full py-4 rounded-xl border border-accent bg-[#1b222b] text-white font-semibold text-2xl lg:text-4xl bg-accent-glow-hover transition-colors">
             <?= e($tier['ctaText']) ?>
@@ -116,3 +160,32 @@
   
   <div class="h-48 bg-gradient-to-b from-transparent to-[#111111] relative z-10 w-full pointer-events-none"></div>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const btnCloud = document.getElementById('btn-cloud');
+  const btnOnprem = document.getElementById('btn-onprem');
+  const cloudContainer = document.getElementById('cloud-pricing-container');
+  const onpremContainer = document.getElementById('onprem-pricing-container');
+
+  btnCloud.addEventListener('click', function() {
+    // Buttons styling
+    btnCloud.className = "w-1/2 bg-accent text-white px-6 py-2.5 rounded-full font-bold text-lg transition-all duration-300";
+    btnOnprem.className = "w-1/2 text-gray-400 hover:text-white px-6 py-2.5 rounded-full font-bold text-lg transition-all duration-300";
+    
+    // Containers toggle
+    cloudContainer.classList.remove('hidden');
+    onpremContainer.classList.add('hidden');
+  });
+
+  btnOnprem.addEventListener('click', function() {
+    // Buttons styling
+    btnOnprem.className = "w-1/2 bg-accent text-white px-6 py-2.5 rounded-full font-bold text-lg transition-all duration-300";
+    btnCloud.className = "w-1/2 text-gray-400 hover:text-white px-6 py-2.5 rounded-full font-bold text-lg transition-all duration-300";
+    
+    // Containers toggle
+    onpremContainer.classList.remove('hidden');
+    cloudContainer.classList.add('hidden');
+  });
+});
+</script>
