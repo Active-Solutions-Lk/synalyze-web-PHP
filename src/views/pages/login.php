@@ -102,7 +102,7 @@ $oldInput = $_SESSION['old_input'] ?? [];
 
         <!-- Redirect to Sign up -->
         <p class="login-signup-text">
-          Are you new to Synalyzer?
+          Are you new to Synalyze?
           <a href="<?= e(baseUrl('/signup')) ?>" class="login-signup-anchor">Click here</a>
           to Sign up
         </p>

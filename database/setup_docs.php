@@ -114,14 +114,14 @@ try {
     $stmtPage->execute([
         'SYNALYZE Knowledge Base',
         'Documentation',
-        'Learn how to navigate and maximize the Synalyzer platform\'s monitoring capabilities for your global enterprise NAS fleet.',
+        'Learn how to navigate and maximize the Synalyze platform\'s monitoring capabilities for your global enterprise NAS fleet.',
         "Welcome to the <strong class=\"text-white\">SYNALYZE</strong> documentation workspace. SYNALYZE is a state-of-the-art Network Attached Storage (NAS) log management and security auditing software developed by <strong class=\"text-white\">Active Solutions</strong>.\n\nOur architecture captures, securely archives, and visualizes system actions, file modifications, access sessions, and configuration activities across your entire global enterprise NAS fleet.",
         '4-Step Onboarding Flow',
         'To begin auditing your storage activity, configure your NAS hardware to stream syslogs to the SYNALYZE platform. Below is the setup guide for Synology devices.',
         'Synology NAS Setup Guide',
         'Syslog V2',
         '<strong>Important Note on Ports:</strong> Unlike standard syslog servers that use a generic port (like 514), SYNALYZE generates a unique, isolated port for every customer and device (e.g. 2016, 2024). You must check the <strong>Device Management</strong> module in your dashboard to find the exact port assigned to your NAS before completing the setup.',
-        'In-Depth Software Documentation detailing step-by-step instructions for every feature and module in the Synalyzer dashboard.',
+        'In-Depth Software Documentation detailing step-by-step instructions for every feature and module in the Synalyze dashboard.',
         'SYNALYZE is engineered for enterprise versatility, offering two primary hosting models alongside rigorous security architectures to match your company\'s data sovereignty, internal compliance, and IT policies.',
         'Standards & Compliance',
         'Need technical assistance or have inquiries? Our team is ready to help you configure custom router pipelines or troubleshoot syslog connections.',
@@ -196,13 +196,13 @@ try {
             'FolderLock', 
             'Secure Folders', 
             'Hardened monitoring for sensitive directory paths such as HR, Finance, or intellectual property.',
-            "Configuration: First, in your machine's collector settings, define the exact directory paths (like 'C:/Finance' or '/var/www') that you want to monitor.\nMonitoring Access: In the Synalyzer dashboard, go to the Secure Folders module. Here you'll see a dedicated feed of only the logs associated with your protected directories.\nIntruder Detection: If an unauthorized user or IP interacts with a monitored folder, this module automatically flags the event as an 'Intruder' and triggers an alert.\nReviewing the Log Trail: Click on any file operation event to see the exact timestamp, the user account involved, and whether they read, modified, or deleted the file."
+            "Configuration: First, in your machine's collector settings, define the exact directory paths (like 'C:/Finance' or '/var/www') that you want to monitor.\nMonitoring Access: In the Synalyze dashboard, go to the Secure Folders module. Here you'll see a dedicated feed of only the logs associated with your protected directories.\nIntruder Detection: If an unauthorized user or IP interacts with a monitored folder, this module automatically flags the event as an 'Intruder' and triggers an alert.\nReviewing the Log Trail: Click on any file operation event to see the exact timestamp, the user account involved, and whether they read, modified, or deleted the file."
         ],
         [
             'Shield', 
             'Honeypot Decoys', 
             'Deception-based detection strategy to trap internal or external threats silently.',
-            "Creating a Bait File: Create a fake, highly enticing file on your servers — for example, 'root_passwords.txt'. Put it somewhere an intruder would look, but regular employees wouldn't.\nSetting up the Trap: In the Synalyzer collector configuration for that device, specify the path to your new bait file as a Honeypot trap.\nSilent Monitoring: The Honeypot module monitors that file silently. Legitimate users have no reason to touch it, so any interaction is a guaranteed threat.\nImmediate Escalation: If the file is opened or copied, an immediate Critical Alert is fired, and the Honeypot dashboard will show you the exact IP and user account of the intruder."
+            "Creating a Bait File: Create a fake, highly enticing file on your servers — for example, 'root_passwords.txt'. Put it somewhere an intruder would look, but regular employees wouldn't.\nSetting up the Trap: In the Synalyze collector configuration for that device, specify the path to your new bait file as a Honeypot trap.\nSilent Monitoring: The Honeypot module monitors that file silently. Legitimate users have no reason to touch it, so any interaction is a guaranteed threat.\nImmediate Escalation: If the file is opened or copied, an immediate Critical Alert is fired, and the Honeypot dashboard will show you the exact IP and user account of the intruder."
         ],
         [
             'Server', 
@@ -213,8 +213,8 @@ try {
         [
             'Users', 
             'Administration (RBAC)', 
-            'Security governance and user management for the Synalyzer platform itself.',
-            "Managing Users: Go to the Administration page to see all accounts that have access to the Synalyzer dashboard. You can create new accounts or disable old ones.\nRole Assignment: When creating a user, assign them a specific Role (e.g., Viewer, Operator, Super Admin). This principle of least privilege ensures they only see what they need to.\nAudit Logging: The System Audit Log shows what your administrators are doing inside the dashboard — such as if an admin edits another user's permissions or deletes an alert.\nRevoking Access: If an employee leaves, simply click 'Deactivate' next to their name. Their access is revoked instantly, keeping the platform inherently secure."
+            'Security governance and user management for the Synalyze platform itself.',
+            "Managing Users: Go to the Administration page to see all accounts that have access to the Synalyze dashboard. You can create new accounts or disable old ones.\nRole Assignment: When creating a user, assign them a specific Role (e.g., Viewer, Operator, Super Admin). This principle of least privilege ensures they only see what they need to.\nAudit Logging: The System Audit Log shows what your administrators are doing inside the dashboard — such as if an admin edits another user's permissions or deletes an alert.\nRevoking Access: If an employee leaves, simply click 'Deactivate' next to their name. Their access is revoked instantly, keeping the platform inherently secure."
         ],
         [
             'Key', 

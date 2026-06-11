@@ -160,7 +160,7 @@ CREATE TABLE IF NOT EXISTS DocsPage (
     id INTEGER PRIMARY KEY DEFAULT 1,
     eyebrowText TEXT NOT NULL DEFAULT 'SYNALYZE Knowledge Base',
     headline TEXT NOT NULL DEFAULT 'Documentation',
-    subheadline TEXT NOT NULL DEFAULT 'Learn how to navigate and maximize the Synalyzer platform''s monitoring capabilities for your global enterprise NAS fleet.',
+    subheadline TEXT NOT NULL DEFAULT 'Learn how to navigate and maximize the Synalyze platform''s monitoring capabilities for your global enterprise NAS fleet.',
     gettingStartedIntro TEXT NOT NULL,
     onboardingTitle TEXT NOT NULL DEFAULT '4-Step Onboarding Flow',
     integrationIntro TEXT NOT NULL,

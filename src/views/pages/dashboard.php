@@ -26,7 +26,7 @@ $accentColor = get_settings()['themeAccentColor'] ?? '#3d8c7c';
         <h2 class="text-3xl md:text-4xl font-bold text-white mb-2">
           Hello, <span style="color: <?= e($accentColor) ?>;"><?= e($user['full_name']) ?></span>!
         </h2>
-        <p class="text-gray-400">Welcome to your personal Synalyzer platform account dashboard.</p>
+        <p class="text-gray-400">Welcome to your personal Synalyze platform account dashboard.</p>
       </div>
       <div class="flex items-center gap-3">
         <a href="<?= e(baseUrl('/logout')) ?>" class="dashboard-logout-btn">
@@ -101,7 +101,7 @@ $accentColor = get_settings()['themeAccentColor'] ?? '#3d8c7c';
                   <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#D97706] opacity-75"></span>
                   <span class="relative inline-flex rounded-full h-2 w-2 bg-[#D97706]"></span>
                 </span>
-                <h4 class="text-2xl font-bold text-white uppercase tracking-widest">Synalyzer Demo Status</h4>
+                <h4 class="text-2xl font-bold text-white uppercase tracking-widest">Synalyze Demo Status</h4>
               </div>
 
               <div class="rounded-xl border border-[#00CED1] bg-[#D97706]/5 p-5 space-y-4" style="box-shadow: 0 0 24px rgba(217,119,6,0.06);">
@@ -134,14 +134,14 @@ $accentColor = get_settings()['themeAccentColor'] ?? '#3d8c7c';
                   <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#10B981] opacity-75"></span>
                   <span class="relative inline-flex rounded-full h-2 w-2 bg-[#10B981]"></span>
                 </span>
-                <h4 class="text-2xl font-bold text-white uppercase tracking-widest">Synalyzer Demo Access</h4>
+                <h4 class="text-2xl font-bold text-white uppercase tracking-widest">Synalyze Demo Access</h4>
               </div>
 
               <div class="rounded-xl border border-[#00CED1] bg-[#D97706]/5 p-5 space-y-4" style="box-shadow: 0 0 24px rgba(0,206,209,0.06);">
                 
                 <div class="flex items-start justify-between flex-wrap gap-4">
                   <div>
-                    <h5 class="text-white font-bold text-xl mb-1">Synalyzer Demo Access Granted</h5>
+                    <h5 class="text-white font-bold text-xl mb-1">Synalyze Demo Access Granted</h5>
                     <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#10B981]/10 text-[#10B981] text-[15px] font-bold uppercase tracking-wider mb-2">
                       Credentials Sent
                     </div>
@@ -212,7 +212,7 @@ $accentColor = get_settings()['themeAccentColor'] ?? '#3d8c7c';
                     </div>
                     <div class="flex items-start gap-2 text-xl text-gray-300">
                       <span class="text-[#00CED1] shrink-0">✅</span>
-                      <p>A confirmation email containing your Synalyzer URL, activation key, User Guide, and Installation Guide has been sent to your registered email address.</p>
+                      <p>A confirmation email containing your Synalyze URL, activation key, User Guide, and Installation Guide has been sent to your registered email address.</p>
                     </div>
                   </div>
 

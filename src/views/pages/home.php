@@ -121,10 +121,10 @@
           <div class="flex flex-col lg:flex-row items-center justify-center gap-12 lg:gap-16 w-full">
             <?php if (isset($howItWorks[0])): ?>
               <div class="flex items-center">
-                <span class="text-[12rem] lg:text-[18rem] font-bold text-accent leading-none z-20 select-none tracking-tighter">
+                <span class="text-[12rem] font-bold text-accent leading-none z-20 select-none tracking-tighter">
                   <?= e($howItWorks[0]['stepNumber']) ?>
                 </span>
-                <div class="relative -ml-12 lg:-ml-20 bg-[#111d2a] border border-white/[0.06] rounded-2xl pt-6 pb-6 pr-8 pl-16 lg:pl-24 w-full max-w-[420px] shadow-2xl z-10">
+                <div class="relative -ml-12 lg:-ml-20 works-card rounded-2xl pt-6 pb-6 pr-8 w-full shadow-2xl z-10">
                   <h3 class="card-title mb-2">
                     <?= e($howItWorks[0]['title']) ?>
                   </h3>
@@ -137,10 +137,10 @@
 
             <?php if (isset($howItWorks[1])): ?>
               <div class="flex items-center">
-                <span class="text-[12rem] lg:text-[18rem] font-bold text-accent leading-none z-20 select-none tracking-tighter">
+                <span class="text-[12rem] font-bold text-accent leading-none z-20 select-none tracking-tighter">
                   <?= e($howItWorks[1]['stepNumber']) ?>
                 </span>
-                <div class="relative -ml-12 lg:-ml-20 bg-[#111d2a] border border-white/[0.06] rounded-2xl pt-6 pb-6 pr-8 pl-16 lg:pl-24 w-full max-w-[420px] shadow-2xl z-10">
+                <div class="relative -ml-12 lg:-ml-20 works-card rounded-2xl pt-6 pb-6 pr-8 w-full shadow-2xl z-10">
                   <h3 class="card-title mb-2">
                     <?= e($howItWorks[1]['title']) ?>
                   </h3>
@@ -156,10 +156,10 @@
           <?php if (isset($howItWorks[2])): ?>
             <div class="flex items-center justify-center w-full">
               <div class="flex items-center">
-                <span class="text-[12rem] lg:text-[18rem] font-bold text-accent leading-none z-20 select-none tracking-tighter">
+                <span class="text-[12rem] font-bold text-accent leading-none z-20 select-none tracking-tighter">
                   <?= e($howItWorks[2]['stepNumber']) ?>
                 </span>
-                <div class="relative -ml-12 lg:-ml-20 bg-[#111d2a] border border-white/[0.06] rounded-2xl pt-6 pb-6 pr-8 pl-16 lg:pl-24 w-full max-w-[420px] shadow-2xl z-10">
+                <div class="relative -ml-12 lg:-ml-20 works-card rounded-2xl pt-6 pb-6 pr-8 w-full shadow-2xl z-10">
                   <h3 class="card-title mb-2">
                     <?= e($howItWorks[2]['title']) ?>
                   </h3>
@@ -202,7 +202,7 @@
             </div>
 
             <div style="background-color: var(--accent-color);" class="h-36 md:h-44 flex items-center justify-center opacity-90">
-              <?= lucide_icon($feature['iconName'], 'text-white w-16 h-16', '1.5') ?>
+              <?= lucide_icon($feature['iconName'], 'text-white w-24 h-24', '1.5') ?>
             </div>
           </div>
         <?php endforeach; ?>

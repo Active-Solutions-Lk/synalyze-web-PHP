@@ -338,7 +338,7 @@ class Mailer {
                     </div>
                     <div class="content">
                         <p style="font-size: 16px; line-height: 1.6; margin-bottom: 25px; color: #E2E8F0;">
-                            A user has requested access to the Synalyzer demo environment. Here are the details of the request:
+                            A user has requested access to the Synalyze demo environment. Here are the details of the request:
                         </p>
                         
                         <table style="width:100%; border-collapse: collapse; margin-bottom: 20px;">
@@ -431,7 +431,7 @@ class Mailer {
             $mail->addAddress($userEmail);
 
             $mail->isHTML(true);
-            $mail->Subject = 'Your Synalyzer Demo Activation Key';
+            $mail->Subject = 'Your Synalyze Demo Activation Key';
 
             $body = '
             <!DOCTYPE html>
@@ -479,7 +479,7 @@ class Mailer {
                                         Hello ' . e($userName) . ',
                                     </p>
                                     <p style="font-size: 15px; line-height: 1.6; color: #E2E8F0; margin-bottom: 20px;">
-                                        Thank you for requesting a demo of the Synalyzer platform. We are excited to grant you access to our NAS fleet monitoring and syslog analytics environment.
+                                        Thank you for requesting a demo of the Synalyze platform. We are excited to grant you access to our NAS fleet monitoring and syslog analytics environment.
                                     </p>
                                     <p style="font-size: 15px; line-height: 1.6; color: #E2E8F0; margin-bottom: 25px;">
                                         Use the activation key below to activate and access your demo.
@@ -517,7 +517,7 @@ class Mailer {
                                         <strong>Security Note:</strong> Please keep this activation key confidential and do not share it with unauthorized personnel.
                                     </p>
                                     <p style="font-size: 13px; color: #A0AEC0; margin-top: 12px; line-height: 1.5; margin-bottom: 0;">
-                                        📎 <strong>Guides Attached:</strong> We have attached the Synalyzer <em>Installation Guide</em> and <em>User Guide</em> to help you get started.
+                                        📎 <strong>Guides Attached:</strong> We have attached the Synalyze <em>Installation Guide</em> and <em>User Guide</em> to help you get started.
                                     </p>
                                 </div>
                                 <div style="background: #0D0D0D; padding: 20px 40px; text-align: center; border-top: 1px solid #1A1A1A;">
@@ -533,13 +533,13 @@ class Mailer {
             ';
 
             $mail->Body = $body;
-            $mail->AltBody = "Your Synalyzer Demo Portal is Ready!\n\nAccess Link: $synalyzeUrl\nActivation Key: $activationKey\n\nPlease use the link and key above to activate and explore the Portal.";
+            $mail->AltBody = "Your Synalyze Demo Portal is Ready!\n\nAccess Link: $synalyzeUrl\nActivation Key: $activationKey\n\nPlease use the link and key above to activate and explore the Portal.";
 
             // Attach PDF guides with graceful fallback
             $guidesPath = dirname(__DIR__, 2) . '/public/assets/guides/';
             foreach ([
-                ['Installation Guide.pdf', 'Synalyzer Installation Guide.pdf'],
-                ['User guide.pdf', 'Synalyzer User Guide.pdf'],
+                ['Installation Guide.pdf', 'Synalyze Installation Guide.pdf'],
+                ['User guide.pdf', 'Synalyze User Guide.pdf'],
             ] as [$file, $name]) {
                 $fullPath = $guidesPath . $file;
                 if (file_exists($fullPath)) {
