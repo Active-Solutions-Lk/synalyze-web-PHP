@@ -158,7 +158,11 @@
               <div class="text-gray-400 text-sm mb-2 leading-relaxed"><?= e($opt['description']) ?></div>
               <div class="text-xs text-gray-500 font-mono bg-[#1A1A1A] p-2 rounded border border-gray-800">Bullets: <?= e($opt['bulletPoints']) ?></div>
               <?php if ($opt['imageUrl']): ?>
-                <div class="text-[10px] text-gray-500 mt-2">Image: <code class="bg-[#1A1A1A] px-1 rounded text-white"><?= e($opt['imageUrl']) ?></code></div>
+                <div class="text-[10px] text-gray-500 mt-2 flex flex-col gap-2">
+                  <div>Image: <code class="bg-[#1A1A1A] px-1 rounded text-white"><?= e($opt['imageUrl']) ?></code></div>
+                  <img src="<?= e(baseUrl($opt['imageUrl'])) ?>" alt="Preview" class="w-24 h-16 object-contain rounded border border-gray-700 bg-black/20 p-1" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
+                  <span class="text-xs text-red-400 hidden">Error loading image</span>
+                </div>
               <?php endif; ?>
             </div>
             <div class="flex gap-2 shrink-0">
@@ -195,7 +199,11 @@
             </div>
             <div>
               <label class="text-xs text-gray-400 font-semibold uppercase block mb-1">Image URL</label>
-              <input type="text" name="imageUrl" value="<?= e($opt['imageUrl']) ?>" class="w-full bg-[#1A1A1A] border border-gray-700 rounded p-2 text-white text-sm focus:outline-none focus:border-[#00CED1]">
+              <input type="text" name="imageUrl" id="edit-option-img-val-<?= $opt['id'] ?>" value="<?= e($opt['imageUrl']) ?>" oninput="updateLivePreview(<?= $opt['id'] ?>, this.value)" class="w-full bg-[#1A1A1A] border border-gray-700 rounded p-2 text-white text-sm focus:outline-none focus:border-[#00CED1]">
+              <div class="mt-2">
+                <img id="edit-option-preview-<?= $opt['id'] ?>" src="<?= e(baseUrl($opt['imageUrl'])) ?>" alt="Preview" class="w-24 h-16 object-contain rounded border border-gray-700 bg-black/20 p-1" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" onload="this.style.display='block'; this.nextElementSibling.style.display='none';" />
+                <span class="text-xs text-gray-500 hidden italic">No image / invalid URL</span>
+              </div>
             </div>
             <div class="flex gap-2 justify-end pt-1">
               <button type="button" onclick="toggleEdit('option', <?= $opt['id'] ?>, false)" class="bg-gray-700 hover:bg-gray-600 text-white px-3 py-1 rounded text-xs">Cancel</button>
@@ -213,7 +221,11 @@
         <textarea name="description" placeholder="Description" required class="w-full bg-[#242424] border border-gray-700 rounded-md p-2 text-white focus:outline-none focus:border-[#00CED1]"></textarea>
         <textarea name="bulletPoints" placeholder='Bullet Points (JSON Array, e.g. ["Item 1", "Item 2"])' required class="w-full bg-[#242424] border border-gray-700 rounded-md p-2 text-white font-mono focus:outline-none focus:border-[#00CED1]"></textarea>
         <div class="md:col-span-2">
-          <input type="text" name="imageUrl" placeholder="Image URL (e.g. /assets/images/1.png)" class="w-full bg-[#242424] border border-gray-700 rounded-md p-2 text-white focus:outline-none focus:border-[#00CED1]">
+          <input type="text" name="imageUrl" id="create-option-img-val" placeholder="Image URL (e.g. /assets/images/1.png)" oninput="updateCreatePreview(this.value)" class="w-full bg-[#242424] border border-gray-700 rounded-md p-2 text-white focus:outline-none focus:border-[#00CED1]">
+          <div class="mt-2">
+            <img id="create-option-preview" src="" alt="Preview" class="w-24 h-16 object-contain rounded border border-gray-700 bg-black/20 p-1 hidden" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" onload="this.style.display='block'; this.nextElementSibling.style.display='none';" />
+            <span class="text-xs text-gray-500 hidden italic">No preview available</span>
+          </div>
         </div>
       </div>
       <button type="submit" class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-md w-full md:w-auto">Add Deployment Option</button>
@@ -222,6 +234,43 @@
 </div>
 
 <script>
+const BASE_URL = <?= json_encode(baseUrl()) ?>;
+
+function updateLivePreview(id, value) {
+  const img = document.getElementById(`edit-option-preview-${id}`);
+  const errSpan = img ? img.nextElementSibling : null;
+  if (img) {
+    if (!value.trim()) {
+      img.style.display = 'none';
+      if (errSpan) {
+        errSpan.textContent = 'No image / invalid URL';
+        errSpan.classList.remove('hidden');
+      }
+      return;
+    }
+    const resolvedUrl = value.startsWith('http') || value.startsWith('//') ? value : (BASE_URL.replace(/\/$/, '') + '/' + value.replace(/^\//, ''));
+    img.src = resolvedUrl;
+    img.style.display = 'block';
+    if (errSpan) errSpan.classList.add('hidden');
+  }
+}
+
+function updateCreatePreview(value) {
+  const img = document.getElementById('create-option-preview');
+  const errSpan = img ? img.nextElementSibling : null;
+  if (img) {
+    if (!value.trim()) {
+      img.style.display = 'none';
+      if (errSpan) errSpan.classList.add('hidden');
+      return;
+    }
+    const resolvedUrl = value.startsWith('http') || value.startsWith('//') ? value : (BASE_URL.replace(/\/$/, '') + '/' + value.replace(/^\//, ''));
+    img.src = resolvedUrl;
+    img.style.display = 'block';
+    if (errSpan) errSpan.classList.add('hidden');
+  }
+}
+
 function toggleEdit(type, id, show) {
   const viewEl = document.getElementById(`view-${type}-${id}`);
   const editEl = document.getElementById(`edit-${type}-${id}`);

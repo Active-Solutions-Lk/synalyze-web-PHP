@@ -51,7 +51,7 @@
                 <div class="text-gray-400 text-xs font-semibold uppercase">Sort Order: <span class="text-white normal-case"><?= e($tier['sortOrder']) ?></span></div>
                 <div class="text-gray-400 text-xs font-semibold uppercase">Highlighted: <span class="text-white normal-case"><?= $tier['highlighted'] ? 'Yes' : 'No' ?></span></div>
                 <?php if ($tier['idealForText']): ?>
-                  <div class="text-xs text-gray-500 italic mt-1">Ideal for: <?= e($tier['idealForText']) ?></div>
+                  <div class="text-xs text-gray-500 italic mt-1"><?= e($tier['idealForTitle'] ?? 'Ideal for') ?>: <?= e($tier['idealForText']) ?></div>
                 <?php endif; ?>
               </div>
 
@@ -118,6 +118,10 @@
                   <input type="number" name="sortOrder" value="<?= e($tier['sortOrder']) ?>" required class="w-full bg-[#1A1A1A] border border-gray-700 rounded p-1 text-white text-xs focus:outline-none focus:border-[#00CED1]">
                 </div>
                 <div class="col-span-2">
+                  <label class="text-gray-400 block mb-0.5">Ideal For Title</label>
+                  <input type="text" name="idealForTitle" value="<?= e($tier['idealForTitle'] ?? 'Ideal for') ?>" class="w-full bg-[#1A1A1A] border border-gray-700 rounded p-1 text-white text-xs focus:outline-none focus:border-[#00CED1]">
+                </div>
+                <div class="col-span-2">
                   <label class="text-gray-400 block mb-0.5">Ideal For Text</label>
                   <textarea name="idealForText" class="w-full bg-[#1A1A1A] border border-gray-700 rounded p-1 text-white text-xs h-12 focus:outline-none focus:border-[#00CED1]"><?= e($tier['idealForText']) ?></textarea>
                 </div>
@@ -131,7 +135,7 @@
                 </div>
                 <div class="col-span-2 flex items-center gap-2 pt-1">
                   <input type="checkbox" name="highlighted" value="1" id="edit-highlight-<?= $tier['id'] ?>" <?= $tier['highlighted'] ? 'checked' : '' ?> class="rounded border-gray-700 bg-[#1A1A1A] text-[#00CED1] focus:ring-0">
-                  <label for="edit-highlight-<?= $tier['id'] ?>" class="text-gray-400 text-xs cursor-pointer">Highlight this card (Popular/Featured)</label>
+                  <label for="edit-highlight-<?= $tier['id'] ?>" class="text-gray-400 text-xs cursor-pointer">Highlight this card (Recommended/Featured)</label>
                 </div>
               </div>
               
@@ -160,6 +164,7 @@
             <label for="cloud-highlighted" class="text-gray-400 text-sm cursor-pointer">Highlight this card</label>
           </div>
 
+          <input type="text" name="idealForTitle" placeholder="Ideal For Title (e.g. Ideal for)" value="Ideal for" class="w-full bg-[#242424] border border-gray-700 rounded-md p-2 text-white text-sm md:col-span-3 focus:outline-none focus:border-[#00CED1]">
           <textarea name="idealForText" placeholder="Ideal For Text (Subtext explaining target audience)" class="w-full bg-[#242424] border border-gray-700 rounded-md p-2 text-white text-sm md:col-span-3 h-16 focus:outline-none focus:border-[#00CED1]"></textarea>
           <input type="text" name="featuresSubtitle" placeholder="Features Section Subtitle (Optional)" class="w-full bg-[#242424] border border-gray-700 rounded-md p-2 text-white text-sm md:col-span-3 focus:outline-none focus:border-[#00CED1]">
         </div>
@@ -194,7 +199,7 @@
                 <div class="text-gray-400 text-xs font-semibold uppercase">Sort Order: <span class="text-white normal-case"><?= e($tier['sortOrder']) ?></span></div>
                 <div class="text-gray-400 text-xs font-semibold uppercase">Highlighted: <span class="text-white normal-case"><?= $tier['highlighted'] ? 'Yes' : 'No' ?></span></div>
                 <?php if ($tier['idealForText']): ?>
-                  <div class="text-xs text-gray-500 italic mt-1">Ideal for: <?= e($tier['idealForText']) ?></div>
+                  <div class="text-xs text-gray-500 italic mt-1"><?= e($tier['idealForTitle'] ?? 'Ideal for') ?>: <?= e($tier['idealForText']) ?></div>
                 <?php endif; ?>
               </div>
 
@@ -261,6 +266,10 @@
                   <input type="number" name="sortOrder" value="<?= e($tier['sortOrder']) ?>" required class="w-full bg-[#1A1A1A] border border-gray-700 rounded p-1 text-white text-xs focus:outline-none focus:border-[#00CED1]">
                 </div>
                 <div class="col-span-2">
+                  <label class="text-gray-400 block mb-0.5">Ideal For Title</label>
+                  <input type="text" name="idealForTitle" value="<?= e($tier['idealForTitle'] ?? 'Ideal for') ?>" class="w-full bg-[#1A1A1A] border border-gray-700 rounded p-1 text-white text-xs focus:outline-none focus:border-[#00CED1]">
+                </div>
+                <div class="col-span-2">
                   <label class="text-gray-400 block mb-0.5">Ideal For Text</label>
                   <textarea name="idealForText" class="w-full bg-[#1A1A1A] border border-gray-700 rounded p-1 text-white text-xs h-12 focus:outline-none focus:border-[#00CED1]"><?= e($tier['idealForText']) ?></textarea>
                 </div>
@@ -294,15 +303,16 @@
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
           <input type="text" name="displayTitle" placeholder="Display Title (e.g. Manageable)" required class="w-full bg-[#242424] border border-gray-700 rounded-md p-2 text-white text-sm focus:outline-none focus:border-[#00CED1]">
           <input type="text" name="name" placeholder="Plan Name (e.g. Manageable)" required class="w-full bg-[#242424] border border-gray-700 rounded-md p-2 text-white text-sm focus:outline-none focus:border-[#00CED1]">
-          <input type="text" name="price" placeholder="Pricing Display (e.g. Contact Sales)" required class="w-full bg-[#242424] border border-gray-700 rounded-md p-2 text-white text-sm focus:outline-none focus:border-[#00CED1]">
+          <input type="text" name="price" placeholder="Pricing Display (e.g. GET STARTED)" required class="w-full bg-[#242424] border border-gray-700 rounded-md p-2 text-white text-sm focus:outline-none focus:border-[#00CED1]">
           
           <input type="number" name="sortOrder" placeholder="Sort Order (e.g. 1, 2, 3)" required class="w-full bg-[#242424] border border-gray-700 rounded-md p-2 text-white text-sm focus:outline-none focus:border-[#00CED1]">
-          <input type="text" name="ctaText" placeholder="CTA Button Text (e.g. Contact Sales)" required class="w-full bg-[#242424] border border-gray-700 rounded-md p-2 text-white text-sm focus:outline-none focus:border-[#00CED1]">
+          <input type="text" name="ctaText" placeholder="CTA Button Text (e.g. GET STARTED)" required class="w-full bg-[#242424] border border-gray-700 rounded-md p-2 text-white text-sm focus:outline-none focus:border-[#00CED1]">
           <div class="flex items-center gap-2">
             <input type="checkbox" name="highlighted" value="1" id="onprem-highlighted" class="rounded border-gray-700 bg-[#242424] text-[#00CED1] focus:ring-0">
             <label for="onprem-highlighted" class="text-gray-400 text-sm cursor-pointer">Highlight this card</label>
           </div>
 
+          <input type="text" name="idealForTitle" placeholder="Ideal For Title (e.g. Ideal for)" value="Ideal for" class="w-full bg-[#242424] border border-gray-700 rounded-md p-2 text-white text-sm md:col-span-3 focus:outline-none focus:border-[#00CED1]">
           <textarea name="idealForText" placeholder="Ideal For Text (Subtext explaining target audience)" class="w-full bg-[#242424] border border-gray-700 rounded-md p-2 text-white text-sm md:col-span-3 h-16 focus:outline-none focus:border-[#00CED1]"></textarea>
           <input type="text" name="featuresSubtitle" placeholder="Features Section Subtitle (Optional)" class="w-full bg-[#242424] border border-gray-700 rounded-md p-2 text-white text-sm md:col-span-3 focus:outline-none focus:border-[#00CED1]">
         </div>
@@ -402,7 +412,11 @@
               <?php endif; ?>
               <div class="text-gray-400 text-sm mb-2 leading-relaxed"><?= e($opt['description']) ?></div>
               <?php if ($opt['imageUrl']): ?>
-                <div class="text-[10px] text-gray-500 mt-2">Image: <code class="bg-[#1A1A1A] px-1 rounded text-white"><?= e($opt['imageUrl']) ?></code></div>
+                <div class="text-[10px] text-gray-500 mt-2 flex flex-col gap-2">
+                  <div>Image: <code class="bg-[#1A1A1A] px-1 rounded text-white"><?= e($opt['imageUrl']) ?></code></div>
+                  <img src="<?= e(baseUrl($opt['imageUrl'])) ?>" alt="Preview" class="w-24 h-16 object-contain rounded border border-gray-700 bg-black/20 p-1" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
+                  <span class="text-xs text-red-400 hidden">Error loading image</span>
+                </div>
               <?php endif; ?>
             </div>
             <div class="flex gap-2 shrink-0">
@@ -435,7 +449,11 @@
             </div>
             <div>
               <label class="text-xs text-gray-400 font-semibold uppercase block mb-1">Image URL</label>
-              <input type="text" name="imageUrl" value="<?= e($opt['imageUrl']) ?>" class="w-full bg-[#1A1A1A] border border-gray-700 rounded p-2 text-white text-sm focus:outline-none focus:border-[#00CED1]">
+              <input type="text" name="imageUrl" id="edit-option-img-val-<?= $opt['id'] ?>" value="<?= e($opt['imageUrl']) ?>" oninput="updateLivePreview(<?= $opt['id'] ?>, this.value)" class="w-full bg-[#1A1A1A] border border-gray-700 rounded p-2 text-white text-sm focus:outline-none focus:border-[#00CED1]">
+              <div class="mt-2">
+                <img id="edit-option-preview-<?= $opt['id'] ?>" src="<?= e(baseUrl($opt['imageUrl'])) ?>" alt="Preview" class="w-24 h-16 object-contain rounded border border-gray-700 bg-black/20 p-1" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" onload="this.style.display='block'; this.nextElementSibling.style.display='none';" />
+                <span class="text-xs text-gray-500 hidden italic">No image / invalid URL</span>
+              </div>
             </div>
             <div class="flex gap-2 justify-end pt-1">
               <button type="button" onclick="toggleEdit('option', <?= $opt['id'] ?>, false)" class="bg-gray-700 hover:bg-gray-600 text-white px-3 py-1 rounded text-xs">Cancel</button>
@@ -452,7 +470,11 @@
         <input type="text" name="subtitle" placeholder="Subtitle (Optional)" class="w-full bg-[#242424] border border-gray-700 rounded-md p-2 text-white focus:outline-none focus:border-[#00CED1]">
         <textarea name="description" placeholder="Description" required class="w-full bg-[#242424] border border-gray-700 rounded-md p-2 text-white focus:outline-none focus:border-[#00CED1]"></textarea>
         <div class="md:col-span-2">
-          <input type="text" name="imageUrl" placeholder="Image URL (e.g. /assets/images/1.png)" class="w-full bg-[#242424] border border-gray-700 rounded-md p-2 text-white focus:outline-none focus:border-[#00CED1]">
+          <input type="text" name="imageUrl" id="create-option-img-val" placeholder="Image URL (e.g. /assets/images/1.png)" oninput="updateCreatePreview(this.value)" class="w-full bg-[#242424] border border-gray-700 rounded-md p-2 text-white focus:outline-none focus:border-[#00CED1]">
+          <div class="mt-2">
+            <img id="create-option-preview" src="" alt="Preview" class="w-24 h-16 object-contain rounded border border-gray-700 bg-black/20 p-1 hidden" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" onload="this.style.display='block'; this.nextElementSibling.style.display='none';" />
+            <span class="text-xs text-gray-500 hidden italic">No preview available</span>
+          </div>
         </div>
       </div>
       <button type="submit" class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-md w-full md:w-auto">Add Deployment Option</button>
@@ -461,6 +483,43 @@
 </div>
 
 <script>
+const BASE_URL = <?= json_encode(baseUrl()) ?>;
+
+function updateLivePreview(id, value) {
+  const img = document.getElementById(`edit-option-preview-${id}`);
+  const errSpan = img ? img.nextElementSibling : null;
+  if (img) {
+    if (!value.trim()) {
+      img.style.display = 'none';
+      if (errSpan) {
+        errSpan.textContent = 'No image / invalid URL';
+        errSpan.classList.remove('hidden');
+      }
+      return;
+    }
+    const resolvedUrl = value.startsWith('http') || value.startsWith('//') ? value : (BASE_URL.replace(/\/$/, '') + '/' + value.replace(/^\//, ''));
+    img.src = resolvedUrl;
+    img.style.display = 'block';
+    if (errSpan) errSpan.classList.add('hidden');
+  }
+}
+
+function updateCreatePreview(value) {
+  const img = document.getElementById('create-option-preview');
+  const errSpan = img ? img.nextElementSibling : null;
+  if (img) {
+    if (!value.trim()) {
+      img.style.display = 'none';
+      if (errSpan) errSpan.classList.add('hidden');
+      return;
+    }
+    const resolvedUrl = value.startsWith('http') || value.startsWith('//') ? value : (BASE_URL.replace(/\/$/, '') + '/' + value.replace(/^\//, ''));
+    img.src = resolvedUrl;
+    img.style.display = 'block';
+    if (errSpan) errSpan.classList.add('hidden');
+  }
+}
+
 function toggleEdit(type, id, show) {
   const viewEl = document.getElementById(`view-${type}-${id}`);
   const editEl = document.getElementById(`edit-${type}-${id}`);

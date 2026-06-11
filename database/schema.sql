@@ -72,10 +72,11 @@ CREATE TABLE IF NOT EXISTS pricingtier (
     name TEXT NOT NULL,
     displayTitle TEXT,
     deploymentType TEXT NOT NULL DEFAULT 'cloud',
+    idealForTitle TEXT DEFAULT 'Ideal for',
     idealForText TEXT,
     featuresSubtitle TEXT,
-    price TEXT NOT NULL DEFAULT 'Contact Sales',
-    ctaText TEXT NOT NULL DEFAULT 'Get Started',
+    price TEXT NOT NULL DEFAULT 'GET STARTED',
+    ctaText TEXT NOT NULL DEFAULT 'GET STARTED',
     highlighted INTEGER NOT NULL DEFAULT 0,
     sortOrder INTEGER NOT NULL DEFAULT 0
 );

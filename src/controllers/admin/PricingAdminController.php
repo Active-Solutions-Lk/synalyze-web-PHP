@@ -34,11 +34,12 @@ class PricingAdminController {
         $highlighted = isset($_POST['highlighted']) ? 1 : 0;
         $sortOrder = isset($_POST['sortOrder']) ? (int)$_POST['sortOrder'] : 0;
         
-        $stmt = $pdo->prepare("INSERT INTO pricingtier (name, displayTitle, deploymentType, idealForText, featuresSubtitle, price, ctaText, highlighted, sortOrder) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        $stmt = $pdo->prepare("INSERT INTO pricingtier (name, displayTitle, deploymentType, idealForTitle, idealForText, featuresSubtitle, price, ctaText, highlighted, sortOrder) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
         $stmt->execute([
             $_POST['name'], 
             $_POST['displayTitle'], 
             $_POST['deploymentType'],
+            $_POST['idealForTitle'] ?? 'Ideal for',
             $_POST['idealForText'], 
             $_POST['featuresSubtitle'], 
             $_POST['price'], 
@@ -89,11 +90,12 @@ class PricingAdminController {
         $highlighted = isset($_POST['highlighted']) ? 1 : 0;
         $sortOrder = isset($_POST['sortOrder']) ? (int)$_POST['sortOrder'] : 0;
 
-        $stmt = $pdo->prepare("UPDATE pricingtier SET name=?, displayTitle=?, deploymentType=?, idealForText=?, featuresSubtitle=?, price=?, ctaText=?, highlighted=?, sortOrder=? WHERE id=?");
+        $stmt = $pdo->prepare("UPDATE pricingtier SET name=?, displayTitle=?, deploymentType=?, idealForTitle=?, idealForText=?, featuresSubtitle=?, price=?, ctaText=?, highlighted=?, sortOrder=? WHERE id=?");
         $stmt->execute([
             $_POST['name'], 
             $_POST['displayTitle'], 
             $_POST['deploymentType'],
+            $_POST['idealForTitle'] ?? 'Ideal for',
             $_POST['idealForText'], 
             $_POST['featuresSubtitle'], 
             $_POST['price'], 

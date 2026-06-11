@@ -9,7 +9,7 @@ try {
         name = 'Turnkey Appliance',
         displayTitle = 'Turnkey Appliance',
         idealForText = 'Organizations seeking a plug-and-play hardware solution delivered directly to their data center.',
-        featuresSubtitle = 'Hardware & Software Includes:'
+        featuresSubtitle = ' '
         WHERE id = 4");
     $stmt1->execute();
     
@@ -18,7 +18,7 @@ try {
         name = 'Software License',
         displayTitle = 'Software License',
         idealForText = 'Enterprises with existing infrastructure preferring to deploy Synalyze on their own hardware or VMs.',
-        featuresSubtitle = 'Software Includes:'
+        featuresSubtitle = ' '
         WHERE id = 5");
     $stmt2->execute();
     
