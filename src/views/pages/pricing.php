@@ -3,14 +3,14 @@
 
   <div class="container relative z-10 mx-auto px-6 max-w-[1550px]">
     <div class="text-center mb-16">
-      <h1 class="text-3xl sm:text-4xl md:text-[5rem] text-white mb-8 tracking-tight">
+      <h1 class="page-hero-title mb-8">
         Pricing Plans
       </h1>
-      <div>
-        <button id="btn-cloud" class="w-1/2 bg-accent text-white px-6 py-2.5 rounded-full font-bold text-lg transition-all duration-300">
+      <div class="inline-flex p-1 bg-[#111d2a] border border-white/[0.06] rounded-full max-w-xs sm:max-w-sm w-full mx-auto justify-center">
+        <button id="btn-cloud" class="w-1/2 bg-accent text-white px-4 py-2 rounded-full font-bold text-sm sm:text-base transition-all duration-300 cursor-pointer">
           Cloud
         </button>
-        <button id="btn-onprem" class="w-1/2 text-gray-400 hover:text-white px-6 py-2.5 rounded-full font-bold text-lg transition-all duration-300">
+        <button id="btn-onprem" class="w-1/2 text-gray-400 hover:text-white px-4 py-2 rounded-full font-bold text-sm sm:text-base transition-all duration-300 cursor-pointer">
           On-Premises
         </button>
       </div>
@@ -25,24 +25,24 @@
       <?php foreach ($cloudTiers as $tier): 
         $isHighlighted = $tier['highlighted'] ?? 0;
       ?>
-        <div class="pricing-card bg-[#1b222b] rounded-[1.5rem] p-6 sm:p-8 lg:p-14 flex flex-col relative <?= $isHighlighted ? 'border-2 border-accent shadow-[0_0_25px_rgba(0,206,209,0.15)]' : 'border border-white/5' ?>">
+        <div class="pricing-card bg-[#111d2a] rounded-2xl p-6 md:p-10 flex flex-col relative <?= $isHighlighted ? 'border border-accent shadow-[0_0_25px_rgba(var(--accent-rgb),0.15)]' : 'border border-white/[0.06]' ?>">
           <?php if ($isHighlighted): ?>
-            <span class="absolute -top-4 left-1/2 -translate-x-1/2 bg-accent text-black text-sm uppercase font-extrabold tracking-widest px-4 py-1.5 rounded-full shadow-lg">Popular</span>
+            <span class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-accent text-black text-xs uppercase font-extrabold tracking-widest px-4 py-1.5 rounded-full shadow-lg">Popular</span>
           <?php endif; ?>
 
           <div class="flex justify-between items-start mb-6">
-            <h3 class="text-2xl text-white font-semibold"><?= e($tier['displayTitle']) ?></h3>
+            <h3 class="card-title font-semibold"><?= e($tier['displayTitle']) ?></h3>
             <div class="text-right">
-              <div class="text-white text-sm font-semibold">Ideal for</div>
-              <div class="text-gray-400 text-[0.75rem] leading-tight whitespace-pre-line text-right"><?= e($tier['idealForText']) ?></div>
+              <div class="text-white text-xs font-semibold">Ideal for</div>
+              <div class="text-gray-400 text-[10px] sm:text-xs leading-tight whitespace-pre-line text-right"><?= e($tier['idealForText']) ?></div>
             </div>
           </div>
 
-          <h2 class="text-3xl sm:text-1xl lg:text-[1.5rem] text-white font-bold leading-none mb-10">
+          <h2 class="text-2xl md:text-3xl text-white font-bold leading-none mb-8">
             <?= e($tier['price']) ?>
           </h2>
           
-          <div class="text-white font-medium text-[1.2rem] mb-6 min-h-[1.5rem]">
+          <div class="text-white font-semibold text-base mb-4 min-h-[1.5rem]">
             <?php if ($tier['featuresSubtitle']): ?>
               <span><?= e($tier['featuresSubtitle']) ?></span>
             <?php else: ?>
@@ -52,14 +52,14 @@
 
           <ul class="space-y-3 mb-10 flex-1">
             <?php foreach ($tier['features'] as $f): ?>
-              <li class="flex items-start gap-3 text-gray-300 text-[1.15rem]">
+              <li class="flex items-start gap-3 text-gray-300 text-sm md:text-base">
                 <span class="text-accent font-bold">✓</span>
                 <span><?= e($f['name']) ?></span>
               </li>
             <?php endforeach; ?>
           </ul>
 
-          <button class="w-full py-4 rounded-xl border border-accent bg-[#1b222b] text-white font-semibold text-2xl lg:text-4xl bg-accent-glow-hover transition-colors">
+          <button class="w-full py-3 rounded-full border border-accent bg-[#111d2a] text-white font-semibold text-base md:text-lg bg-accent-glow-hover transition-colors cursor-pointer">
             <?= e($tier['ctaText']) ?>
           </button>
         </div>
@@ -75,24 +75,24 @@
       <?php foreach ($onPremTiers as $tier): 
         $isHighlighted = $tier['highlighted'] ?? 0;
       ?>
-        <div class="pricing-card bg-[#1b222b] rounded-[1.5rem] p-6 sm:p-8 lg:p-14 flex flex-col relative <?= $isHighlighted ? 'border-2 border-accent shadow-[0_0_25px_rgba(0,206,209,0.15)]' : 'border border-white/5' ?>">
+        <div class="pricing-card bg-[#111d2a] rounded-2xl p-6 md:p-10 flex flex-col relative <?= $isHighlighted ? 'border border-accent shadow-[0_0_25px_rgba(var(--accent-rgb),0.15)]' : 'border border-white/[0.06]' ?>">
           <?php if ($isHighlighted): ?>
-            <span class="absolute -top-4 left-1/2 -translate-x-1/2 bg-accent text-black text-sm uppercase font-extrabold tracking-widest px-4 py-1.5 rounded-full shadow-lg">Recommended</span>
+            <span class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-accent text-black text-xs uppercase font-extrabold tracking-widest px-4 py-1.5 rounded-full shadow-lg">Recommended</span>
           <?php endif; ?>
 
           <div class="flex justify-between items-start mb-6">
-            <h3 class="text-2xl text-white font-semibold"><?= e($tier['displayTitle']) ?></h3>
+            <h3 class="card-title font-semibold"><?= e($tier['displayTitle']) ?></h3>
             <div class="text-right">
-              <div class="text-white text-sm font-semibold">Ideal for</div>
-              <div class="text-gray-400 text-[0.75rem] leading-tight whitespace-pre-line text-right"><?= e($tier['idealForText']) ?></div>
+              <div class="text-white text-xs font-semibold">Ideal for</div>
+              <div class="text-gray-400 text-[10px] sm:text-xs leading-tight whitespace-pre-line text-right"><?= e($tier['idealForText']) ?></div>
             </div>
           </div>
 
-          <h2 class="text-3xl sm:text-1xl lg:text-[1.5rem] text-white font-bold leading-none mb-10">
+          <h2 class="text-2xl md:text-3xl text-white font-bold leading-none mb-8">
             <?= e($tier['price']) ?>
           </h2>
           
-          <div class="text-white font-medium text-[1.2rem] mb-6 min-h-[1.5rem]">
+          <div class="text-white font-semibold text-base mb-4 min-h-[1.5rem]">
             <?php if ($tier['featuresSubtitle']): ?>
               <span><?= e($tier['featuresSubtitle']) ?></span>
             <?php else: ?>
@@ -102,14 +102,14 @@
 
           <ul class="space-y-3 mb-10 flex-1">
             <?php foreach ($tier['features'] as $f): ?>
-              <li class="flex items-start gap-3 text-gray-300 text-[1.15rem]">
+              <li class="flex items-start gap-3 text-gray-300 text-sm md:text-base">
                 <span class="text-accent font-bold">✓</span>
                 <span><?= e($f['name']) ?></span>
               </li>
             <?php endforeach; ?>
           </ul>
 
-          <button class="w-full py-4 rounded-xl border border-accent bg-[#1b222b] text-white font-semibold text-2xl lg:text-4xl bg-accent-glow-hover transition-colors">
+          <button class="w-full py-3 rounded-full border border-accent bg-[#111d2a] text-white font-semibold text-base md:text-lg bg-accent-glow-hover transition-colors cursor-pointer">
             <?= e($tier['ctaText']) ?>
           </button>
         </div>
@@ -118,12 +118,12 @@
 
     <!-- Add-ons & Customizations -->
     <div class="mb-32 max-w-[1250px] mx-auto">
-      <h1 class="text-center text-3xl sm:text-4xl md:text-[5rem] text-white mb-14 tracking-tight">Add-ons & Customizations</h1>
+      <h2 class="text-center section-title mb-14">Add-ons & Customizations</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
         <?php foreach ($addons as $addon): ?>
-          <div style="border-color: rgba(var(--accent-rgb), 0.4);" onmouseover="this.style.borderColor='var(--accent-color)';" onmouseout="this.style.borderColor='rgba(var(--accent-rgb), 0.4)';" class="bg-[#12222c] rounded-2xl p-6 md:p-10 lg:p-14 border transition-all duration-300 flex flex-col items-center text-center justify-center min-h-[220px]">
-            <h3 class="text-white text-3xl md:text-[3rem] font-semibold mb-4 tracking-tight leading-tight"><?= e($addon['name']) ?></h3>
-            <p class="text-white/80 text-xl md:text-[1.5rem] leading-snug whitespace-pre-line max-w-[90%]"><?= e($addon['description']) ?></p>
+          <div class="pro-card transition-all duration-300 flex flex-col items-center text-center justify-center min-h-[200px]">
+            <h3 class="card-title font-semibold mb-3 tracking-tight leading-tight"><?= e($addon['name']) ?></h3>
+            <p class="text-gray-300 text-sm md:text-base leading-relaxed whitespace-pre-line max-w-[95%]"><?= e($addon['description']) ?></p>
           </div>
         <?php endforeach; ?>
       </div>
@@ -131,7 +131,7 @@
 
     <!-- Deployment Options Explained -->
     <div class="max-w-[1200px] mx-auto pb-16">
-      <h3 class="text-center text-3xl sm:text-4xl md:text-[5rem] text-white mb-18 tracking-tight">Deployment Options Explained</h3>
+      <h2 class="text-center section-title mb-16">Deployment Options Explained</h2>
       
       <div class="flex flex-col gap-14">
         <?php foreach ($deploymentOptions as $opt): ?>
@@ -142,13 +142,13 @@
                <?php endif; ?>
              </div>
              <div class="flex flex-col gap-3 text-center md:text-left">
-                <h4 class="text-white text-3xl md:text-[3rem] leading-tight font-bold">
+                <h3 class="text-white text-xl md:text-2xl leading-tight font-bold">
                  <?= e($opt['name']) ?>
                  <?php if ($opt['subtitle']): ?>
-                    <br/><span class="text-xl md:text-[1.8rem] font-medium">(<?= e($opt['subtitle']) ?>)</span>
+                    <span class="text-gray-400 text-sm md:text-base font-medium block mt-1">(<?= e($opt['subtitle']) ?>)</span>
                  <?php endif; ?>
-               </h4>
-               <p class="text-[#a1a1aa] text-[1.3rem] leading-relaxed max-w-4xl"><?= e($opt['description']) ?></p>
+               </h3>
+               <p class="text-gray-300 text-sm md:text-base leading-relaxed max-w-4xl"><?= e($opt['description']) ?></p>
              </div>
           </div>
         <?php endforeach; ?>
@@ -170,8 +170,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
   btnCloud.addEventListener('click', function() {
     // Buttons styling
-    btnCloud.className = "w-1/2 bg-accent text-white px-6 py-2.5 rounded-full font-bold text-lg transition-all duration-300";
-    btnOnprem.className = "w-1/2 text-gray-400 hover:text-white px-6 py-2.5 rounded-full font-bold text-lg transition-all duration-300";
+    btnCloud.className = "w-1/2 bg-accent text-white px-4 py-2 rounded-full font-bold text-sm sm:text-base transition-all duration-300 cursor-pointer";
+    btnOnprem.className = "w-1/2 text-gray-400 hover:text-white px-4 py-2 rounded-full font-bold text-sm sm:text-base transition-all duration-300 cursor-pointer";
     
     // Containers toggle
     cloudContainer.classList.remove('hidden');
@@ -180,8 +180,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
   btnOnprem.addEventListener('click', function() {
     // Buttons styling
-    btnOnprem.className = "w-1/2 bg-accent text-white px-6 py-2.5 rounded-full font-bold text-lg transition-all duration-300";
-    btnCloud.className = "w-1/2 text-gray-400 hover:text-white px-6 py-2.5 rounded-full font-bold text-lg transition-all duration-300";
+    btnOnprem.className = "w-1/2 bg-accent text-white px-4 py-2 rounded-full font-bold text-sm sm:text-base transition-all duration-300 cursor-pointer";
+    btnCloud.className = "w-1/2 text-gray-400 hover:text-white px-4 py-2 rounded-full font-bold text-sm sm:text-base transition-all duration-300 cursor-pointer";
     
     // Containers toggle
     onpremContainer.classList.remove('hidden');

@@ -63,30 +63,30 @@
         <?php unset($_SESSION['demo_error']); ?>
       <?php endif; ?>
 
-      <h1 class="text-3xl sm:text-5xl md:text-7xl lg:text-[5rem] font-bold text-white tracking-tight leading-[1.1] mb-6 uppercase">
+      <h1 class="page-hero-title mb-6 uppercase">
         <?= e($hero['headline']) ?>
       </h1>
-      <p class="text-lg md:text-xl text-gray-400 mb-14 max-w-3xl mx-auto leading-relaxed">
+      <p class="text-base md:text-lg text-gray-300 mb-10 max-w-3xl mx-auto leading-relaxed">
         <?= e($hero['subheadline']) ?>
       </p>
 
       <div class="flex flex-col sm:flex-row items-center justify-center gap-6 md:gap-10 mt-8 md:mt-12">
         <?php if (!isset($_SESSION['user'])): ?>
-          <a href="<?= e(baseUrl('/signup')) ?>" style="background-color: var(--accent-color); box-shadow: 0 10px 30px rgba(var(--accent-rgb), 0.25);" class="flex items-center justify-center gap-3 px-6 py-3.5 sm:px-8 md:px-12 md:py-5 rounded-[1.5rem] text-white text-base sm:text-lg md:text-[1.65rem] hover:opacity-90 transition-all w-full sm:w-auto">
+          <a href="<?= e(baseUrl('/signup')) ?>" style="background-color: var(--accent-color); box-shadow: 0 10px 30px rgba(var(--accent-rgb), 0.25);" class="flex items-center justify-center gap-3 px-8 py-3.5 rounded-full text-white text-base md:text-lg hover:opacity-90 transition-all w-full sm:w-auto">
             Request Free Demo
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-8 h-8 ml-2">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 ml-1">
               <path d="M3.478 2.404a.75.75 0 00-.926.941l2.432 7.905H13.5a.75.75 0 010 1.5H4.984l-2.432 7.905a.75.75 0 00.926.94 60.519 60.519 0 0018.445-8.986.75.75 0 000-1.218A60.517 60.517 0 003.478 2.404z" />
             </svg>
           </a>
         <?php elseif ($hasDemoRequested): ?>
           <div class="flex flex-col items-center w-full sm:w-auto">
-            <button disabled style="background-color: #2D3748; cursor: not-allowed;" class="flex items-center justify-center gap-3 px-6 py-3.5 sm:px-8 md:px-12 md:py-5 rounded-[1.5rem] text-gray-400 text-xl sm:text-lg md:text-[1.65rem] w-full sm:w-auto opacity-75" title="Demo already requested">
+            <button disabled style="background-color: #2D3748; cursor: not-allowed;" class="flex items-center justify-center gap-3 px-8 py-3.5 rounded-full text-gray-400 text-base md:text-lg w-full sm:w-auto opacity-75" title="Demo already requested">
               Demo Already Requested
-              <?= lucide_icon('CheckCircle', 'w-8 h-8 ml-2 text-green-500') ?>
+              <?= lucide_icon('CheckCircle', 'w-5 h-5 ml-1 text-green-500') ?>
             </button>
             <div class="mt-2 text-center">
               <a href="<?= e(baseUrl('/dashboard')) ?>"
-                 style="color: #00CED1; font-size: 1.15rem; font-weight: 600;
+                 style="color: #00CED1; font-size: 1.05rem; font-weight: 600;
                         text-decoration: underline; text-underline-offset: 3px;">
                 See More
               </a>
@@ -94,9 +94,9 @@
           </div>
         <?php else: ?>
           <form action="<?= e(baseUrl('/demo/request')) ?>" method="POST" class="w-full sm:w-auto">
-            <button type="submit" style="background-color: var(--accent-color); box-shadow: 0 10px 30px rgba(var(--accent-rgb), 0.25);" class="flex items-center justify-center gap-3 px-6 py-3.5 sm:px-8 md:px-12 md:py-5 rounded-[1.5rem] text-white text-base sm:text-lg md:text-[1.65rem] hover:opacity-90 transition-all w-full">
+            <button type="submit" style="background-color: var(--accent-color); box-shadow: 0 10px 30px rgba(var(--accent-rgb), 0.25);" class="flex items-center justify-center gap-3 px-8 py-3.5 rounded-full text-white text-base md:text-lg hover:opacity-90 transition-all w-full">
               Request Free Demo
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-8 h-8 ml-2">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 ml-1">
                 <path d="M3.478 2.404a.75.75 0 00-.926.941l2.432 7.905H13.5a.75.75 0 010 1.5H4.984l-2.432 7.905a.75.75 0 00.926.94 60.519 60.519 0 0018.445-8.986.75.75 0 000-1.218A60.517 60.517 0 003.478 2.404z" />
               </svg>
             </button>
@@ -112,7 +112,7 @@
       <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(30,58,138,0.25)_0%,transparent_70%)] pointer-events-none"></div>
 
       <div class="container relative z-10 mx-auto px-6 max-w-6xl">
-        <h2 class="text-3xl sm:text-5xl md:text-6xl font-bold text-white text-center mb-12 md:mb-24 tracking-tight">
+        <h2 class="section-title text-center mb-12 md:mb-24">
           How It Works
         </h2>
 
@@ -124,11 +124,11 @@
                 <span class="text-[12rem] lg:text-[18rem] font-bold text-accent leading-none z-20 select-none tracking-tighter">
                   <?= e($howItWorks[0]['stepNumber']) ?>
                 </span>
-                <div class="relative -ml-12 lg:-ml-20 bg-gradient-to-r from-transparent via-[#1a2332] via-30% to-[#1a2332] rounded-[2.5rem] pt-8 pb-8 pr-10 pl-16 lg:pl-28 w-full max-w-[420px] shadow-2xl z-10">
-                  <h3 class="text-2xl lg:text-3xl font-bold text-white mb-3">
+                <div class="relative -ml-12 lg:-ml-20 bg-[#111d2a] border border-white/[0.06] rounded-2xl pt-6 pb-6 pr-8 pl-16 lg:pl-24 w-full max-w-[420px] shadow-2xl z-10">
+                  <h3 class="card-title mb-2">
                     <?= e($howItWorks[0]['title']) ?>
                   </h3>
-                  <p class="text-gray-300 text-base lg:text-lg leading-relaxed">
+                  <p class="text-gray-300 text-sm md:text-base leading-relaxed">
                     <?= e($howItWorks[0]['description']) ?>
                   </p>
                 </div>
@@ -140,11 +140,11 @@
                 <span class="text-[12rem] lg:text-[18rem] font-bold text-accent leading-none z-20 select-none tracking-tighter">
                   <?= e($howItWorks[1]['stepNumber']) ?>
                 </span>
-                <div class="relative -ml-12 lg:-ml-20 bg-gradient-to-r from-transparent via-[#1a2332] via-30% to-[#1a2332] rounded-[2.5rem] pt-8 pb-8 pr-10 pl-16 lg:pl-28 w-full max-w-[420px] shadow-2xl z-10">
-                  <h3 class="text-2xl lg:text-3xl font-bold text-white mb-3">
+                <div class="relative -ml-12 lg:-ml-20 bg-[#111d2a] border border-white/[0.06] rounded-2xl pt-6 pb-6 pr-8 pl-16 lg:pl-24 w-full max-w-[420px] shadow-2xl z-10">
+                  <h3 class="card-title mb-2">
                     <?= e($howItWorks[1]['title']) ?>
                   </h3>
-                  <p class="text-gray-300 text-base lg:text-lg leading-relaxed">
+                  <p class="text-gray-300 text-sm md:text-base leading-relaxed">
                     <?= e($howItWorks[1]['description']) ?>
                   </p>
                 </div>
@@ -159,11 +159,11 @@
                 <span class="text-[12rem] lg:text-[18rem] font-bold text-accent leading-none z-20 select-none tracking-tighter">
                   <?= e($howItWorks[2]['stepNumber']) ?>
                 </span>
-                <div class="relative -ml-12 lg:-ml-20 bg-gradient-to-r from-transparent via-[#1a2332] via-30% to-[#1a2332] rounded-[2.5rem] pt-8 pb-8 pr-10 pl-16 lg:pl-28 w-full max-w-[420px] shadow-2xl z-10">
-                  <h3 class="text-2xl lg:text-3xl font-bold text-white mb-3">
+                <div class="relative -ml-12 lg:-ml-20 bg-[#111d2a] border border-white/[0.06] rounded-2xl pt-6 pb-6 pr-8 pl-16 lg:pl-24 w-full max-w-[420px] shadow-2xl z-10">
+                  <h3 class="card-title mb-2">
                     <?= e($howItWorks[2]['title']) ?>
                   </h3>
-                  <p class="text-gray-300 text-base lg:text-lg leading-relaxed">
+                  <p class="text-gray-300 text-sm md:text-base leading-relaxed">
                     <?= e($howItWorks[2]['description']) ?>
                   </p>
                 </div>
@@ -181,28 +181,28 @@
 
     <div class="container relative z-10 mx-auto px-6 max-w-7xl">
       <div class="text-center mb-16">
-        <h2 class="text-3xl sm:text-5xl md:text-6xl font-bold text-white mb-8 tracking-tight">
+        <h2 class="section-title mb-6">
           Powerful Log Analysis Features
         </h2>
-        <p class="text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
+        <p class="text-base md:text-lg text-gray-300 max-w-4xl mx-auto leading-relaxed">
           Built specifically for global NAS brands, with a robust cloud infrastructure for comprehensive data collection and analysis.
         </p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         <?php foreach ($features as $feature): ?>
-          <div style="border-color: var(--accent-color);" class="flex flex-col rounded-[2.5rem] overflow-hidden border shadow-2xl transition-transform hover:-translate-y-2 duration-300">
-            <div class="p-6 md:p-10 flex-1">
-              <h3 class="text-[1.6rem] font-bold text-white mb-4 leading-tight">
+          <div class="flex flex-col rounded-2xl overflow-hidden border border-white/[0.06] bg-[#111d2a] shadow-2xl transition-transform hover:-translate-y-2 duration-300">
+            <div class="p-6 md:p-8 flex-1">
+              <h3 class="card-title mb-3 leading-tight">
                 <?= e($feature['title']) ?>
               </h3>
-              <p class="text-gray-300 text-lg leading-relaxed">
+              <p class="text-gray-400 text-sm md:text-base leading-relaxed">
                 <?= e($feature['description']) ?>
               </p>
             </div>
 
-            <div style="background-color: var(--accent-color);" class="h-48 sm:h-51 md:h-59 flex items-center justify-center">
-              <?= lucide_icon($feature['iconName'], 'text-white w-28 h-28', '1.5') ?>
+            <div style="background-color: var(--accent-color);" class="h-36 md:h-44 flex items-center justify-center opacity-90">
+              <?= lucide_icon($feature['iconName'], 'text-white w-16 h-16', '1.5') ?>
             </div>
           </div>
         <?php endforeach; ?>
@@ -217,10 +217,10 @@
 
       <div class="container relative z-10 mx-auto px-6 max-w-7xl">
         <div class="text-center mb-16">
-          <h2 class="text-3xl sm:text-4xl md:text-6xl font-bold text-white mb-6 tracking-tight">
+          <h2 class="section-title mb-6">
             Deployment Options
           </h2>
-          <p class="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed font-medium">
+          <p class="text-base md:text-lg text-gray-300 max-w-3xl mx-auto leading-relaxed font-medium">
             Choose the deployment model that fits your internal IT policies and compliance requirements.
           </p>
         </div>
@@ -230,7 +230,7 @@
             $isCloud = stripos($option['name'], 'cloud') !== false;
             $bullets = json_decode($option['bulletPoints'], true) ?: [];
           ?>
-            <div class="relative p-6 sm:p-8 md:p-12 rounded-[2rem] border border-white/5 bg-[#141c28] flex flex-col items-stretch justify-between h-full shadow-2xl transition-transform hover:-translate-y-1 duration-300">
+            <div class="pro-card flex flex-col items-stretch justify-between h-full shadow-2xl transition-transform hover:-translate-y-1 duration-300">
               <div>
                 <?php if ($isCloud): ?>
                   <div class="flex justify-end mb-4">
@@ -244,20 +244,20 @@
 
                 <div class="flex items-center gap-3 mb-6 w-full">
                   <?php if ($isCloud): ?>
-                    <span class="text-accent"><?= lucide_icon('Cloud', 'w-10 h-10 shrink-0', '1.8') ?></span>
+                    <span class="text-accent"><?= lucide_icon('Cloud', 'w-8 h-8 shrink-0', '1.8') ?></span>
                   <?php else: ?>
-                    <span class="text-accent"><?= lucide_icon('Server', 'w-10 h-10 shrink-0', '1.8') ?></span>
+                    <span class="text-accent"><?= lucide_icon('Server', 'w-8 h-8 shrink-0', '1.8') ?></span>
                   <?php endif; ?>
-                  <h3 class="text-2xl md:text-4xl font-bold text-white tracking-tight"><?= e($option['name']) ?></h3>
+                  <h3 class="card-title font-bold"><?= e($option['name']) ?></h3>
                 </div>
 
-                <p class="text-gray-300 text-[1.3rem] mb-10 leading-relaxed min-h-[50px]">
+                <p class="text-gray-300 text-base mb-8 leading-relaxed min-h-[50px]">
                   <?= e($option['description']) ?>
                 </p>
 
                 <?php if (!empty($bullets)): ?>
-                  <div class="flex justify-center w-full mb-10">
-                    <ul class="space-y-3.5 flex flex-col items-start w-fit text-gray-300 text-[1.2rem]">
+                  <div class="flex justify-start w-full mb-8">
+                    <ul class="space-y-3 flex flex-col items-start w-fit text-gray-400 text-sm md:text-base">
                       <?php foreach ($bullets as $bullet): ?>
                         <li class="leading-normal flex items-start gap-2">
                           <span class="text-accent">✓</span>
@@ -269,7 +269,7 @@
                 <?php endif; ?>
               </div>
 
-              <a href="<?= e(baseUrl('/docs#deployment')) ?>" style="<?= $isCloud ? 'background-color: var(--accent-color); box-shadow: 0 10px 30px rgba(var(--accent-rgb), 0.2);' : 'border-color: var(--accent-color); color: #ffffff;' ?>" class="w-full py-4 rounded-xl text-lg md:text-3xl font-semibold transition-all duration-300 text-center flex items-center justify-center <?= $isCloud ? 'text-white hover:opacity-90' : 'border-2 bg-transparent hover:bg-white/5' ?>">
+              <a href="<?= e(baseUrl('/docs#deployment')) ?>" style="<?= $isCloud ? 'background-color: var(--accent-color); box-shadow: 0 10px 30px rgba(var(--accent-rgb), 0.2);' : 'border-color: var(--accent-color); color: #ffffff;' ?>" class="w-full py-3 rounded-full text-base md:text-lg font-semibold transition-all duration-300 text-center flex items-center justify-center <?= $isCloud ? 'text-white hover:opacity-90' : 'border bg-transparent hover:bg-white/5' ?>">
                 Learn More
               </a>
             </div>
@@ -287,27 +287,27 @@
       <div class="h-[1px] w-full bg-white mb-20"></div>
 
       <div class="text-center mb-16 w-full">
-        <h2 class="text-3xl sm:text-4xl md:text-6xl font-bold text-white mb-8 tracking-tight leading-tight">
+        <h2 class="section-title mb-6">
           Ready to Take Control of Your<br class="hidden md:block" /> NAS Data?
         </h2>
-        <p class="text-[1.35rem] md:text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
+        <p class="text-base md:text-lg text-gray-300 max-w-4xl mx-auto leading-relaxed">
           We listen to our users. If you have an idea for a report, send us your idea<br class="hidden md:block" /> - if the data is available, we can probably make it.
         </p>
       </div>
 
-      <div class="flex flex-col sm:flex-row items-center justify-center gap-8 w-full">
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-6 md:gap-8 w-full">
         <?php if (!isset($_SESSION['user'])): ?>
-          <a href="<?= e(baseUrl('/signup')) ?>" style="background-color: var(--accent-color); box-shadow: 0 10px 30px rgba(var(--accent-rgb), 0.25);" class="flex items-center justify-center gap-3 px-6 py-3.5 sm:px-8 md:px-12 md:py-5 rounded-[1.5rem] text-white text-base sm:text-lg md:text-[1.65rem] hover:opacity-90 transition-all w-full sm:w-auto">
+          <a href="<?= e(baseUrl('/signup')) ?>" style="background-color: var(--accent-color); box-shadow: 0 10px 30px rgba(var(--accent-rgb), 0.25);" class="flex items-center justify-center gap-3 px-8 py-3.5 rounded-full text-white text-base md:text-lg hover:opacity-90 transition-all w-full sm:w-auto">
             Free Demo
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-8 h-8 ml-2">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 ml-1">
               <path d="M3.478 2.404a.75.75 0 00-.926.941l2.432 7.905H13.5a.75.75 0 010 1.5H4.984l-2.432 7.905a.75.75 0 00.926.94 60.519 60.519 0 0018.445-8.986.75.75 0 000-1.218A60.517 60.517 0 003.478 2.404z" />
             </svg>
           </a>
         <?php elseif ($hasDemoRequested): ?>
           <div class="flex flex-col items-center w-full sm:w-auto">
-            <button disabled style="background-color: #2D3748; cursor: not-allowed;" class="flex items-center justify-center gap-3 px-6 py-3.5 sm:px-8 md:px-12 md:py-5 rounded-[1.5rem] text-gray-400 text-xl sm:text-lg md:text-[1.65rem] w-full sm:w-auto opacity-75 animate-pulse" title="Demo already requested">
+            <button disabled style="background-color: #2D3748; cursor: not-allowed;" class="flex items-center justify-center gap-3 px-8 py-3.5 rounded-full text-gray-400 text-base md:text-lg w-full sm:w-auto opacity-75 animate-pulse" title="Demo already requested">
               Demo Already Requested
-              <?= lucide_icon('CheckCircle', 'w-8 h-8 ml-2 text-green-500') ?>
+              <?= lucide_icon('CheckCircle', 'w-5 h-5 ml-1 text-green-500') ?>
             </button>
             <div class="mt-2 text-center">
               <a href="<?= e(baseUrl('/dashboard')) ?>"
@@ -319,15 +319,15 @@
           </div>
         <?php else: ?>
           <form action="<?= e(baseUrl('/demo/request')) ?>" method="POST" class="w-full sm:w-auto">
-            <button type="submit" style="background-color: var(--accent-color); box-shadow: 0 10px 30px rgba(var(--accent-rgb), 0.25);" class="flex items-center justify-center gap-3 px-6 py-3.5 sm:px-8 md:px-12 md:py-5 rounded-[1.5rem] text-white text-base sm:text-lg md:text-[1.65rem] hover:opacity-90 transition-all w-full">
+            <button type="submit" style="background-color: var(--accent-color); box-shadow: 0 10px 30px rgba(var(--accent-rgb), 0.25);" class="flex items-center justify-center gap-3 px-8 py-3.5 rounded-full text-white text-base md:text-lg hover:opacity-90 transition-all w-full">
               Free Demo
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-8 h-8 ml-2">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 ml-1">
                 <path d="M3.478 2.404a.75.75 0 00-.926.941l2.432 7.905H13.5a.75.75 0 010 1.5H4.984l-2.432 7.905a.75.75 0 00.926.94 60.519 60.519 0 0018.445-8.986.75.75 0 000-1.218A60.517 60.517 0 003.478 2.404z" />
               </svg>
             </button>
           </form>
         <?php endif; ?>
-        <a href="<?= e(baseUrl('/contact')) ?>" class="px-6 py-3.5 sm:px-8 md:px-12 md:py-5 rounded-[1.5rem] bg-white text-accent text-base sm:text-lg md:text-[1.65rem] hover:bg-gray-100 transition-colors shadow-lg w-full sm:w-auto flex items-center justify-center">
+        <a href="<?= e(baseUrl('/contact')) ?>" class="px-8 py-3.5 rounded-full bg-white text-accent text-base md:text-lg hover:bg-gray-100 transition-colors shadow-lg w-full sm:w-auto flex items-center justify-center">
           Contact Us
         </a>
       </div>

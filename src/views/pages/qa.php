@@ -7,11 +7,11 @@
 }
 
 .faq-category-title {
-  font-size: 1.875rem; /* 30px */
-  font-weight: 700;
+  font-size: 1.25rem; /* text-xl */
+  font-weight: 600;
   color: #ffffff;
   letter-spacing: -0.02em;
-  margin-bottom: 24px;
+  margin-bottom: 20px;
   text-align: left;
 }
 
@@ -68,7 +68,7 @@
 }
 
 .faq-question-text {
-  font-size: 1.2rem; /* ~19px */
+  font-size: 1rem; /* text-base */
   font-weight: 600;
   letter-spacing: -0.01em;
   line-height: 1.4;
@@ -99,7 +99,7 @@ details[open] .faq-chevron {
 .faq-answer-text {
   margin-left: 40px; /* Align text perfectly past the 24px icon + 16px gap */
   color: #94a3b8; /* Soft blue-slate text */
-  font-size: 0.95rem; /* ~15px */
+  font-size: 0.875rem; /* text-sm */
   line-height: 1.6;
   font-weight: 400;
 }
@@ -110,7 +110,7 @@ details[open] .faq-chevron {
   }
   
   .faq-category-title {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     margin-bottom: 16px;
   }
   
@@ -119,7 +119,7 @@ details[open] .faq-chevron {
   }
   
   .faq-question-text {
-    font-size: 1.05rem;
+    font-size: 1rem;
   }
   
   .faq-icon-left {
@@ -138,12 +138,20 @@ details[open] .faq-chevron {
   
   .faq-answer-text {
     margin-left: 0; /* Stack layout naturally on mobile devices */
-    font-size: 0.9rem;
+    font-size: 0.875rem;
     padding-top: 4px;
   }
   
   .faq-question-wrap {
     gap: 12px;
+  }
+}
+@media (min-width: 768px) {
+  .faq-category-title {
+    font-size: 1.5rem; /* text-2xl */
+  }
+  .faq-answer-text {
+    font-size: 1rem; /* text-base */
   }
 }
 </style>
@@ -155,10 +163,10 @@ details[open] .faq-chevron {
   <div class="container relative z-10 mx-auto px-6 max-w-5xl">
     <!-- Header -->
     <div class="text-center mb-20">
-      <h1 class="text-3xl sm:text-5xl md:text-6xl font-semibold lg:text-7xl text-white mb-6 tracking-tight">
+      <h1 class="page-hero-title mb-6">
         Frequently Asked Questions
       </h1>
-      <p class="text-base md:text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
+      <p class="text-base md:text-lg text-gray-300 max-w-3xl mx-auto leading-relaxed">
         Here are some common questions about SYNALYZE. If you can't find the answer you're looking for, please visit our
         <a href="<?= e(baseUrl('/support')) ?>" class="text-accent hover:underline font-medium transition-colors">Support Center</a>
         or

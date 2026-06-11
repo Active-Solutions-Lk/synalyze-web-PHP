@@ -121,7 +121,7 @@
   <div class="container relative z-10 mx-auto px-6 max-w-7xl">
     <!-- Header -->
     <div class="text-center mb-16">
-      <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6 tracking-tight">
+      <h1 class="page-hero-title mb-6">
         Privacy Policy
       </h1>
       <p class="text-base md:text-lg text-gray-400 max-w-2xl mx-auto leading-relaxed">
