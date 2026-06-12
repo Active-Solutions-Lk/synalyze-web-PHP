@@ -86,6 +86,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 $router->add('/admin/settings', 'SettingsAdminController@index');
 $router->add('/admin/settings/update', 'SettingsAdminController@update');
 $router->add('/admin/settings/credentials', 'SettingsAdminController@updateCredentials');
+$router->add('/admin/settings/test-email', 'SettingsAdminController@testEmail');
+
 
 $router->add('/admin/faqs', 'FaqsAdminController@index');
 $router->add('/admin/faqs/category/create', 'FaqsAdminController@createCategory');

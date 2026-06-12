@@ -4,6 +4,30 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
 class Mailer {
+    private static function getSmtpConfig(): array {
+        $config = require dirname(__DIR__, 2) . '/config/app.php';
+        try {
+            $pdo = \Core\Database::getInstance()->getConnection();
+            $stmt = $pdo->query("SELECT smtpHost, smtpPort, smtpFromName, smtpUsername, smtpPassword FROM globalsettings WHERE id = 1");
+            $s = $stmt->fetch(PDO::FETCH_ASSOC);
+            return [
+                'host'      => !empty($s['smtpHost'])     ? $s['smtpHost']     : $config['smtp_host'],
+                'port'      => !empty($s['smtpPort'])      ? (int)$s['smtpPort']  : $config['smtp_port'],
+                'from_name' => !empty($s['smtpFromName'])  ? $s['smtpFromName'] : $config['smtp_from_name'],
+                'username'  => !empty($s['smtpUsername'])  ? $s['smtpUsername'] : $config['smtp_username'],
+                'password'  => !empty($s['smtpPassword'])  ? $s['smtpPassword'] : $config['smtp_password'],
+            ];
+        } catch (\Exception $e) {
+            return [
+                'host'      => $config['smtp_host'],
+                'port'      => (int)$config['smtp_port'],
+                'from_name' => $config['smtp_from_name'],
+                'username'  => $config['smtp_username'],
+                'password'  => $config['smtp_password'],
+            ];
+        }
+    }
+
     /**
      * Send a beautifully formatted HTML email notification when a contact form is submitted.
      */
@@ -15,35 +39,21 @@ class Mailer {
         string $subject,
         string $message
     ): bool {
-        // Load configurations
-        $config = require dirname(__DIR__, 2) . '/config/app.php';
-
-        // Fetch SMTP credentials from global settings
-        try {
-            $pdo = \Core\Database::getInstance()->getConnection();
-            $stmt = $pdo->query("SELECT smtpUsername, smtpPassword FROM globalsettings WHERE id = 1");
-            $settings = $stmt->fetch(PDO::FETCH_ASSOC);
-            $smtpUser = !empty($settings['smtpUsername']) ? $settings['smtpUsername'] : $config['smtp_username'];
-            $smtpPass = !empty($settings['smtpPassword']) ? $settings['smtpPassword'] : $config['smtp_password'];
-        } catch (\Exception $e) {
-            $smtpUser = $config['smtp_username'];
-            $smtpPass = $config['smtp_password'];
-        }
-
+        $smtp = self::getSmtpConfig();
         $mail = new PHPMailer(true);
 
         try {
             // Server settings
             $mail->isSMTP();
-            $mail->Host       = $config['smtp_host'];
+            $mail->Host       = $smtp['host'];
             $mail->SMTPAuth   = true;
-            $mail->Username   = $smtpUser;
-            $mail->Password   = $smtpPass;
-            $mail->SMTPSecure = ($config['smtp_port'] == 465) ? PHPMailer::ENCRYPTION_SMTPS : PHPMailer::ENCRYPTION_STARTTLS;
-            $mail->Port       = $config['smtp_port'];
+            $mail->Username   = $smtp['username'];
+            $mail->Password   = $smtp['password'];
+            $mail->SMTPSecure = ($smtp['port'] == 465) ? PHPMailer::ENCRYPTION_SMTPS : PHPMailer::ENCRYPTION_STARTTLS;
+            $mail->Port       = $smtp['port'];
 
             // Recipients
-            $mail->setFrom($smtpUser, $config['smtp_from_name']);
+            $mail->setFrom($smtp['username'], $smtp['from_name']);
             $mail->addAddress($ownerEmail);
             $mail->addReplyTo($senderEmail, $senderName);
 
@@ -228,30 +238,19 @@ class Mailer {
         string $company
     ): bool {
         $config = require dirname(__DIR__, 2) . '/config/app.php';
-
-        try {
-            $pdo = \Core\Database::getInstance()->getConnection();
-            $stmt = $pdo->query("SELECT smtpUsername, smtpPassword FROM globalsettings WHERE id = 1");
-            $settings = $stmt->fetch(PDO::FETCH_ASSOC);
-            $smtpUser = !empty($settings['smtpUsername']) ? $settings['smtpUsername'] : $config['smtp_username'];
-            $smtpPass = !empty($settings['smtpPassword']) ? $settings['smtpPassword'] : $config['smtp_password'];
-        } catch (\Exception $e) {
-            $smtpUser = $config['smtp_username'];
-            $smtpPass = $config['smtp_password'];
-        }
-
+        $smtp = self::getSmtpConfig();
         $mail = new PHPMailer(true);
 
         try {
             $mail->isSMTP();
-            $mail->Host       = $config['smtp_host'];
+            $mail->Host       = $smtp['host'];
             $mail->SMTPAuth   = true;
-            $mail->Username   = $smtpUser;
-            $mail->Password   = $smtpPass;
-            $mail->SMTPSecure = ($config['smtp_port'] == 465) ? PHPMailer::ENCRYPTION_SMTPS : PHPMailer::ENCRYPTION_STARTTLS;
-            $mail->Port       = $config['smtp_port'];
+            $mail->Username   = $smtp['username'];
+            $mail->Password   = $smtp['password'];
+            $mail->SMTPSecure = ($smtp['port'] == 465) ? PHPMailer::ENCRYPTION_SMTPS : PHPMailer::ENCRYPTION_STARTTLS;
+            $mail->Port       = $smtp['port'];
 
-            $mail->setFrom($smtpUser, $config['smtp_from_name']);
+            $mail->setFrom($smtp['username'], $smtp['from_name']);
             $mail->addAddress($ownerEmail);
 
             $mail->isHTML(true);
@@ -402,32 +401,20 @@ class Mailer {
         string $synalyzeUrl,
         string $activationKey
     ): bool {
-        $config = require dirname(__DIR__, 2) . '/config/app.php';
-
-        try {
-            $pdo = \Core\Database::getInstance()->getConnection();
-            $stmt = $pdo->query("SELECT smtpUsername, smtpPassword FROM globalsettings WHERE id = 1");
-            $settings = $stmt->fetch(PDO::FETCH_ASSOC);
-            $smtpUser = !empty($settings['smtpUsername']) ? $settings['smtpUsername'] : $config['smtp_username'];
-            $smtpPass = !empty($settings['smtpPassword']) ? $settings['smtpPassword'] : $config['smtp_password'];
-        } catch (\Exception $e) {
-            $smtpUser = $config['smtp_username'];
-            $smtpPass = $config['smtp_password'];
-        }
-
+        $smtp = self::getSmtpConfig();
         $mail = new PHPMailer(true);
 
         try {
             $mail->isSMTP();
             $mail->CharSet    = 'UTF-8';
-            $mail->Host       = $config['smtp_host'];
+            $mail->Host       = $smtp['host'];
             $mail->SMTPAuth   = true;
-            $mail->Username   = $smtpUser;
-            $mail->Password   = $smtpPass;
-            $mail->SMTPSecure = ($config['smtp_port'] == 465) ? PHPMailer::ENCRYPTION_SMTPS : PHPMailer::ENCRYPTION_STARTTLS;
-            $mail->Port       = $config['smtp_port'];
+            $mail->Username   = $smtp['username'];
+            $mail->Password   = $smtp['password'];
+            $mail->SMTPSecure = ($smtp['port'] == 465) ? PHPMailer::ENCRYPTION_SMTPS : PHPMailer::ENCRYPTION_STARTTLS;
+            $mail->Port       = $smtp['port'];
 
-            $mail->setFrom($smtpUser, $config['smtp_from_name']);
+            $mail->setFrom($smtp['username'], $smtp['from_name']);
             $mail->addAddress($userEmail);
 
             $mail->isHTML(true);
@@ -565,32 +552,20 @@ class Mailer {
         string $subject,
         string $message
     ): bool {
-        $config = require dirname(__DIR__, 2) . '/config/app.php';
-
-        try {
-            $pdo = \Core\Database::getInstance()->getConnection();
-            $stmt = $pdo->query("SELECT smtpUsername, smtpPassword FROM globalsettings WHERE id = 1");
-            $settings = $stmt->fetch(PDO::FETCH_ASSOC);
-            $smtpUser = !empty($settings['smtpUsername']) ? $settings['smtpUsername'] : $config['smtp_username'];
-            $smtpPass = !empty($settings['smtpPassword']) ? $settings['smtpPassword'] : $config['smtp_password'];
-        } catch (\Exception $e) {
-            $smtpUser = $config['smtp_username'];
-            $smtpPass = $config['smtp_password'];
-        }
-
+        $smtp = self::getSmtpConfig();
         $mail = new PHPMailer(true);
 
         try {
             $mail->isSMTP();
             $mail->CharSet    = 'UTF-8';
-            $mail->Host       = $config['smtp_host'];
+            $mail->Host       = $smtp['host'];
             $mail->SMTPAuth   = true;
-            $mail->Username   = $smtpUser;
-            $mail->Password   = $smtpPass;
-            $mail->SMTPSecure = ($config['smtp_port'] == 465) ? PHPMailer::ENCRYPTION_SMTPS : PHPMailer::ENCRYPTION_STARTTLS;
-            $mail->Port       = $config['smtp_port'];
+            $mail->Username   = $smtp['username'];
+            $mail->Password   = $smtp['password'];
+            $mail->SMTPSecure = ($smtp['port'] == 465) ? PHPMailer::ENCRYPTION_SMTPS : PHPMailer::ENCRYPTION_STARTTLS;
+            $mail->Port       = $smtp['port'];
 
-            $mail->setFrom($smtpUser, $config['smtp_from_name']);
+            $mail->setFrom($smtp['username'], $smtp['from_name']);
             $mail->addAddress($toEmail);
 
             $mail->isHTML(true);
@@ -654,32 +629,20 @@ class Mailer {
      * Send a beautifully formatted HTML welcome email to a new subscriber.
      */
     public static function sendSubscriberWelcomeEmail(string $subscriberEmail): bool {
-        $config = require dirname(__DIR__, 2) . '/config/app.php';
-
-        try {
-            $pdo = \Core\Database::getInstance()->getConnection();
-            $stmt = $pdo->query("SELECT smtpUsername, smtpPassword FROM globalsettings WHERE id = 1");
-            $settings = $stmt->fetch(PDO::FETCH_ASSOC);
-            $smtpUser = !empty($settings['smtpUsername']) ? $settings['smtpUsername'] : $config['smtp_username'];
-            $smtpPass = !empty($settings['smtpPassword']) ? $settings['smtpPassword'] : $config['smtp_password'];
-        } catch (\Exception $e) {
-            $smtpUser = $config['smtp_username'];
-            $smtpPass = $config['smtp_password'];
-        }
-
+        $smtp = self::getSmtpConfig();
         $mail = new PHPMailer(true);
 
         try {
             $mail->isSMTP();
             $mail->CharSet    = 'UTF-8';
-            $mail->Host       = $config['smtp_host'];
+            $mail->Host       = $smtp['host'];
             $mail->SMTPAuth   = true;
-            $mail->Username   = $smtpUser;
-            $mail->Password   = $smtpPass;
-            $mail->SMTPSecure = ($config['smtp_port'] == 465) ? PHPMailer::ENCRYPTION_SMTPS : PHPMailer::ENCRYPTION_STARTTLS;
-            $mail->Port       = $config['smtp_port'];
+            $mail->Username   = $smtp['username'];
+            $mail->Password   = $smtp['password'];
+            $mail->SMTPSecure = ($smtp['port'] == 465) ? PHPMailer::ENCRYPTION_SMTPS : PHPMailer::ENCRYPTION_STARTTLS;
+            $mail->Port       = $smtp['port'];
 
-            $mail->setFrom($smtpUser, $config['smtp_from_name']);
+            $mail->setFrom($smtp['username'], $smtp['from_name']);
             $mail->addAddress($subscriberEmail);
 
             $mail->isHTML(true);
@@ -715,7 +678,7 @@ class Mailer {
                                 <div style="padding: 40px;">
                                     <h2 style="color: #FFFFFF; font-size: 20px; font-weight: 700; margin-top: 0; margin-bottom: 20px;">Thanks for Subscribing!</h2>
                                     <p style="font-size: 15px; line-height: 1.6; color: #E2E8F0; margin-bottom: 15px;">
-                                        Hi ' . e($userName) . ',
+                                        Hi ' . e($subscriberEmail) . ',
                                     </p>
                                     <p style="font-size: 15px; line-height: 1.6; color: #E2E8F0; margin-bottom: 15px;">
                                         Thank you for subscribing to Synalyze updates. You are now on the list to receive the latest updates, announcements, and guides on NAS fleet monitoring and syslog analytics.

@@ -29,16 +29,29 @@ class SettingsAdminController {
     }
 
     public function update() {
-        session_start();
         $pdo = \Core\Database::getInstance()->getConnection();
         
-        $stmt = $pdo->prepare("UPDATE globalsettings SET siteName = ?, ownerEmail = ?, ownerPhone = ?, smtpUsername = ?, smtpPassword = ?, themeAccentColor = ?, primaryBackgroundColor = ? WHERE id = 1");
+        $stmt = $pdo->prepare("UPDATE globalsettings SET 
+            siteName = ?, 
+            ownerEmail = ?, 
+            ownerPhone = ?, 
+            smtpUsername = ?, 
+            smtpPassword = ?, 
+            smtpHost = ?, 
+            smtpPort = ?, 
+            smtpFromName = ?, 
+            themeAccentColor = ?, 
+            primaryBackgroundColor = ? 
+            WHERE id = 1");
         $stmt->execute([
             $_POST['siteName'],
             $_POST['ownerEmail'],
             $_POST['ownerPhone'],
             $_POST['smtpUsername'],
             $_POST['smtpPassword'],
+            $_POST['smtpHost'],
+            (int)$_POST['smtpPort'],
+            $_POST['smtpFromName'],
             $_POST['themeAccentColor'],
             $_POST['primaryBackgroundColor']
         ]);
@@ -47,6 +60,46 @@ class SettingsAdminController {
         header("Location: " . baseUrl('/admin/settings'));
         exit;
     }
+
+    public function testEmail() {
+        header('Content-Type: application/json');
+        
+        try {
+            $pdo = \Core\Database::getInstance()->getConnection();
+            $stmt = $pdo->query("SELECT ownerEmail FROM globalsettings WHERE id = 1");
+            $settings = $stmt->fetch(PDO::FETCH_ASSOC);
+            $ownerEmail = $settings['ownerEmail'] ?? 'support@synalyze.net';
+
+            require_once dirname(__DIR__, 2) . '/core/Mailer.php';
+            $success = Mailer::sendContactNotification(
+                $ownerEmail,
+                "SMTP Tester",
+                $ownerEmail,
+                "Synalyze System",
+                "SMTP Test Connection",
+                "Hello!\n\nThis is a test email sent from the Synalyze Admin Settings page to verify that your SMTP server configuration is working correctly.\n\nIf you received this email, your mail server configurations are correct!"
+            );
+
+            if ($success) {
+                echo json_encode([
+                    'success' => true,
+                    'message' => "Test email successfully sent to {$ownerEmail}. Please check your inbox (and spam folder if not found)."
+                ]);
+            } else {
+                echo json_encode([
+                    'success' => false,
+                    'message' => "Failed to send test email. Please check your SMTP username, password, host, and port settings."
+                ]);
+            }
+        } catch (\Exception $e) {
+            echo json_encode([
+                'success' => false,
+                'message' => "An error occurred: " . $e->getMessage()
+            ]);
+        }
+        exit;
+    }
+
 
     public function updateCredentials() {
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {

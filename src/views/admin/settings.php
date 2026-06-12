@@ -36,16 +36,41 @@
         <p class="text-xs text-gray-500 mt-1">This phone number is used globally across the site in the footer, contact page, and support documentation.</p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div>
-          <label class="block text-sm font-medium text-gray-400 mb-2">SMTP Sender Email (Username)</label>
-          <input type="email" name="smtpUsername" value="<?= e($settings['smtpUsername'] ?? '') ?>" required class="w-full bg-[#242424] border border-gray-700 rounded-md p-3 text-white focus:outline-none focus:border-[#00CED1]">
-          <p class="text-xs text-gray-500 mt-1">The email account used to send the notification (e.g. your Gmail address).</p>
+      <div class="border-t border-gray-800 pt-6">
+        <h3 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
+          <svg class="w-5 h-5 text-[#00CED1]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+          SMTP / Mail Server Settings
+        </h3>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+          <div>
+            <label class="block text-sm font-medium text-gray-400 mb-2">SMTP Host</label>
+            <input type="text" name="smtpHost" value="<?= e($settings['smtpHost'] ?? 'mail.synalyze.net') ?>" required class="w-full bg-[#242424] border border-gray-700 rounded-md p-3 text-white focus:outline-none focus:border-[#00CED1]">
+            <p class="text-xs text-gray-500 mt-1">Outgoing server host (e.g. mail.synalyze.net).</p>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-400 mb-2">SMTP Port</label>
+            <input type="number" name="smtpPort" value="<?= e($settings['smtpPort'] ?? 465) ?>" required class="w-full bg-[#242424] border border-gray-700 rounded-md p-3 text-white focus:outline-none focus:border-[#00CED1]">
+            <p class="text-xs text-gray-500 mt-1">SMTP port (e.g. 465 for SSL, 587 for TLS).</p>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-400 mb-2">From Name</label>
+            <input type="text" name="smtpFromName" value="<?= e($settings['smtpFromName'] ?? 'Synalyze') ?>" required class="w-full bg-[#242424] border border-gray-700 rounded-md p-3 text-white focus:outline-none focus:border-[#00CED1]">
+            <p class="text-xs text-gray-500 mt-1">Name displayed as the sender (e.g. Synalyze).</p>
+          </div>
         </div>
-        <div>
-          <label class="block text-sm font-medium text-gray-400 mb-2">SMTP App Password</label>
-          <input type="password" name="smtpPassword" value="<?= e($settings['smtpPassword'] ?? '') ?>" required class="w-full bg-[#242424] border border-gray-700 rounded-md p-3 text-white focus:outline-none focus:border-[#00CED1]">
-          <p class="text-xs text-gray-500 mt-1">The App Password generated from your email provider for SMTP.</p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <label class="block text-sm font-medium text-gray-400 mb-2">SMTP Sender Email (Username)</label>
+            <input type="email" name="smtpUsername" value="<?= e($settings['smtpUsername'] ?? '') ?>" required class="w-full bg-[#242424] border border-gray-700 rounded-md p-3 text-white focus:outline-none focus:border-[#00CED1]">
+            <p class="text-xs text-gray-500 mt-1">The email account used to authenticate with SMTP (must match From address).</p>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-gray-400 mb-2">SMTP App Password</label>
+            <input type="password" name="smtpPassword" value="<?= e($settings['smtpPassword'] ?? '') ?>" required class="w-full bg-[#242424] border border-gray-700 rounded-md p-3 text-white focus:outline-none focus:border-[#00CED1]">
+            <p class="text-xs text-gray-500 mt-1">The SMTP authentication password or App Password.</p>
+          </div>
         </div>
       </div>
       
@@ -104,4 +129,63 @@
       </div>
     </form>
   </div>
+
+  <div class="bg-[#1A1A1A] border border-gray-800 rounded-xl p-6 mt-8">
+    <h3 class="text-xl font-bold text-white mb-2 flex items-center gap-2">
+      <svg class="w-6 h-6 text-[#00CED1]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 19v-8.93a2 2 0 01.89-1.664l8-5.333a2 2 0 012.22 0l8 5.333A2 2 0 0121 10.07V19M3 19a2 2 0 002 2h14a2 2 0 002-2M3 19l6.75-4.5M21 19l-6.75-4.5M3 10l6.75 4.5M21 10l-6.75 4.5m0 0l-2.25-1.5a2 2 0 00-2.22 0l-2.25 1.5"></path></svg>
+      Test SMTP Settings
+    </h3>
+    <p class="text-xs text-gray-500 mb-6">Send a test email to the configured Contact Notification Email (<?= e($settings['ownerEmail'] ?? '') ?>) to check if your SMTP configurations are correct.</p>
+    
+    <div id="test-email-status" class="hidden p-4 rounded-md mb-6 border"></div>
+
+    <button id="btn-test-email" type="button" class="bg-transparent hover:bg-gray-800 text-[#00CED1] border border-[#00CED1] hover:text-white font-bold py-2 px-6 rounded-md transition-colors inline-flex items-center gap-2">
+      <svg id="test-email-spinner" class="hidden animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+      </svg>
+      Send Test Email
+    </button>
+  </div>
+
+  <script>
+  document.getElementById('btn-test-email').addEventListener('click', function() {
+      const btn = this;
+      const spinner = document.getElementById('test-email-spinner');
+      const statusDiv = document.getElementById('test-email-status');
+      
+      btn.disabled = true;
+      spinner.classList.remove('hidden');
+      statusDiv.classList.add('hidden');
+      
+      fetch('<?= baseUrl("/admin/settings/test-email") ?>', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json'
+          }
+      })
+      .then(response => response.json())
+      .then(data => {
+          btn.disabled = false;
+          spinner.classList.add('hidden');
+          statusDiv.classList.remove('hidden');
+          
+          if (data.success) {
+              statusDiv.className = 'p-4 rounded-md mb-6 bg-green-900/50 border border-green-500 text-green-300';
+              statusDiv.innerHTML = '<strong>Success!</strong> ' + (data.message || 'Test email sent successfully. Please check your inbox.');
+          } else {
+              statusDiv.className = 'p-4 rounded-md mb-6 bg-red-900/50 border border-red-500 text-red-300';
+              statusDiv.innerHTML = '<strong>Error:</strong> ' + (data.message || 'Failed to send test email.');
+          }
+      })
+      .catch(error => {
+          btn.disabled = false;
+          spinner.classList.add('hidden');
+          statusDiv.classList.remove('hidden');
+          statusDiv.className = 'p-4 rounded-md mb-6 bg-red-900/50 border border-red-500 text-red-300';
+          statusDiv.innerHTML = '<strong>Error:</strong> An unexpected network error occurred while testing SMTP settings.';
+          console.error(error);
+      });
+  });
+  </script>
 </div>

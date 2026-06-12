@@ -40,9 +40,9 @@ return [
     // SMTP Settings for Contact Form notifications
     'smtp_host'      => $_ENV['SMTP_HOST'] ?? 'mail.synalyze.net',
     'smtp_port'      => (int)($_ENV['SMTP_PORT'] ?? 465),
-    'smtp_username'  => $_ENV['SMTP_USERNAME'] ?? 'system@synalyze.net',
-    'smtp_password'  => $_ENV['SMTP_PASSWORD'] ?? 'sysreP@req',
-    'smtp_from_name' => $_ENV['SMTP_FROM_NAME'] ?? 'Synalyze Contact Form',
+    'smtp_username'  => $_ENV['SMTP_USERNAME'] ?? '_mainaccount@synalyze.net',
+    'smtp_password'  => $_ENV['SMTP_PASSWORD'] ?? 'adI&&&min',
+    'smtp_from_name' => $_ENV['SMTP_FROM_NAME'] ?? 'Synalyze',
 
     // Google OAuth 2.0 Credentials
     'google_client_id'     => $_ENV['GOOGLE_CLIENT_ID'] ?? '1084912737312-5hk94u3458gapug4k477oia3faccb7sp.apps.googleusercontent.com',

@@ -5,7 +5,12 @@ CREATE TABLE IF NOT EXISTS globalsettings (
     themeAccentColor TEXT NOT NULL DEFAULT '#00CED1',
     primaryBackgroundColor TEXT NOT NULL DEFAULT '#0A0A0A',
     ownerEmail TEXT NOT NULL DEFAULT 'support@synalyze.net',
-    ownerPhone TEXT NOT NULL DEFAULT '+94764404456'
+    ownerPhone TEXT NOT NULL DEFAULT '+94764404456',
+    smtpUsername TEXT,
+    smtpPassword TEXT,
+    smtpHost TEXT NOT NULL DEFAULT 'mail.synalyze.net',
+    smtpPort INTEGER NOT NULL DEFAULT 465,
+    smtpFromName TEXT NOT NULL DEFAULT 'Synalyze'
 );
 
 CREATE TABLE IF NOT EXISTS herosection (
