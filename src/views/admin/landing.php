@@ -80,7 +80,7 @@
         <input type="text" name="title" placeholder="Title" required class="w-full bg-[#242424] border border-gray-700 rounded-md p-2 text-white focus:outline-none focus:border-[#00CED1]">
         <input type="text" name="iconName" placeholder="Icon Name" required class="w-full bg-[#242424] border border-gray-700 rounded-md p-2 text-white focus:outline-none focus:border-[#00CED1]">
         <textarea name="description" placeholder="Description" required class="w-full bg-[#242424] border border-gray-700 rounded-md p-2 text-white focus:outline-none focus:border-[#00CED1]"></textarea>
-        <button type="submit" class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-md w-full">Add Feature</button>
+        <button type="submit" class="bg-[#00CED1] hover:bg-[#00a3a6] text-black font-bold py-2 px-4 rounded-md w-full">Add Feature</button>
       </form>
     </div>
 
@@ -137,7 +137,7 @@
         <input type="number" name="stepNumber" placeholder="Step Number (e.g. 1)" required class="w-full bg-[#242424] border border-gray-700 rounded-md p-2 text-white focus:outline-none focus:border-[#00CED1]">
         <input type="text" name="title" placeholder="Title" required class="w-full bg-[#242424] border border-gray-700 rounded-md p-2 text-white focus:outline-none focus:border-[#00CED1]">
         <textarea name="description" placeholder="Description" required class="w-full bg-[#242424] border border-gray-700 rounded-md p-2 text-white focus:outline-none focus:border-[#00CED1]"></textarea>
-        <button type="submit" class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-md w-full">Add Step</button>
+        <button type="submit" class="bg-[#00CED1] hover:bg-[#00a3a6] text-black font-bold py-2 px-4 rounded-md w-full">Add Step</button>
       </form>
     </div>
   </div>
@@ -228,7 +228,7 @@
           </div>
         </div>
       </div>
-      <button type="submit" class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-md w-full md:w-auto">Add Deployment Option</button>
+      <button type="submit" class="bg-[#00CED1] hover:bg-[#00a3a6] text-black font-bold py-2 px-6 rounded-md transition-colors mt-2 w-full md:w-auto">Add Deployment Option</button>
     </form>
   </div>
 </div>

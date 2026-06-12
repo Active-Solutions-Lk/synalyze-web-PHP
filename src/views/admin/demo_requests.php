@@ -10,7 +10,7 @@
 }
 
 .admin-card:hover {
-  border-color: rgba(20, 184, 166, 0.2);
+  border-color: rgba(0, 206, 209, 0.2);
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
 }
 
@@ -26,9 +26,9 @@
 
 .admin-input:focus {
   outline: none;
-  border-color: #14b8a6;
+  border-color: #00CED1;
   background-color: #222222;
-  box-shadow: 0 0 0 2px rgba(20, 184, 166, 0.15);
+  box-shadow: 0 0 0 2px rgba(0, 206, 209, 0.15);
 }
 
 .admin-input-small {
@@ -43,14 +43,14 @@
 
 .admin-input-small:focus {
   outline: none;
-  border-color: #14b8a6;
+  border-color: #00CED1;
   background-color: #222222;
-  box-shadow: 0 0 0 2px rgba(20, 184, 166, 0.15);
+  box-shadow: 0 0 0 2px rgba(0, 206, 209, 0.15);
 }
 
 .admin-btn-primary {
-  background-color: #14b8a6;
-  color: #0b1320;
+  background-color: #00CED1;
+  color: #000000;
   font-weight: 700;
   padding: 10px 20px;
   border-radius: 8px;
@@ -63,7 +63,7 @@
 }
 
 .admin-btn-primary:hover {
-  background-color: #0d9488;
+  background-color: #00a3a6;
   transform: translateY(-1px);
 }
 
@@ -230,7 +230,7 @@
                     <?php if (!empty($request['activation_key'])): ?>
                       <div class="mt-2 text-xs font-mono bg-black/40 border border-gray-800 rounded px-2 py-1.5 text-gray-300 flex items-center justify-between gap-2 max-w-[200px]" title="Activation Key">
                         <span class="truncate selection:all" id="table-key-<?= $request['id'] ?>"><?= e($request['activation_key']) ?></span>
-                        <button type="button" onclick="copyToClipboard('<?= e($request['activation_key']) ?>', this)" class="text-gray-500 hover:text-teal-400 transition-colors flex items-center shrink-0" title="Copy Key">
+                        <button type="button" onclick="copyToClipboard('<?= e($request['activation_key']) ?>', this)" class="text-gray-500 hover:text-[#00CED1] transition-colors flex items-center shrink-0" title="Copy Key">
                           <?= lucide_icon('Copy', 'w-3 h-3') ?>
                         </button>
                       </div>
@@ -242,7 +242,7 @@
                 <td class="py-4 px-6 text-center">
                   <div class="flex items-center justify-center gap-2">
                     <!-- Collapsible Trigger -->
-                    <button type="button" onclick="toggleCredForm(<?= $request['id'] ?>)" class="text-teal-400 hover:text-teal-300 p-2 rounded-lg hover:bg-teal-950/30 transition-colors" title="Send Credentials">
+                    <button type="button" onclick="toggleCredForm(<?= $request['id'] ?>)" class="text-[#00CED1] hover:text-[#00a3a6] p-2 rounded-lg hover:bg-[#00CED1]/10 transition-colors" title="Send Credentials">
                       <?= lucide_icon('Key', 'w-4 h-4') ?>
                     </button>
                     
@@ -262,7 +262,7 @@
                 <td colspan="6" class="p-6 border-b border-gray-800">
                   <div class="max-w-2xl mx-auto bg-[#181818] border border-gray-800/80 rounded-xl p-6 shadow-inner space-y-4">
                     <div class="flex items-center gap-2 border-b border-gray-800 pb-3 mb-2">
-                      <?= lucide_icon('Send', 'w-4 h-4 text-teal-400') ?>
+                      <?= lucide_icon('Send', 'w-4 h-4 text-[#00CED1]') ?>
                       <h4 class="font-bold text-white text-sm">Send Activation Key to <?= e($request['full_name']) ?></h4>
                     </div>
 

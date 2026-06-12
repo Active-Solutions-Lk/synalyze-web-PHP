@@ -330,16 +330,18 @@
       <?php foreach ($addons as $addon): ?>
         <div class="bg-[#242424] p-5 rounded-lg border border-gray-700 flex flex-col justify-between relative group min-h-[160px]" id="addon-container-<?= $addon['id'] ?>">
           <!-- View Mode -->
-          <div id="view-addon-<?= $addon['id'] ?>" class="flex flex-col h-full justify-between space-y-4">
-            <div>
-              <div class="flex justify-between items-start mb-2 gap-2">
-                <h4 class="font-bold text-white text-lg leading-snug"><?= e($addon['name']) ?></h4>
-                <span class="text-[#00CED1] text-sm font-semibold shrink-0">+$<?= e($addon['price']) ?></span>
+          <div id="view-addon-<?= $addon['id'] ?>" class="flex justify-between items-start gap-4 h-full w-full">
+            <div class="flex-1 flex flex-col justify-between h-full space-y-4">
+              <div>
+                <div class="flex justify-between items-start mb-2 gap-2">
+                  <h4 class="font-bold text-white text-lg leading-snug"><?= e($addon['name']) ?></h4>
+                  <span class="text-[#00CED1] text-sm font-semibold shrink-0">+$<?= e($addon['price']) ?></span>
+                </div>
+                <p class="text-gray-400 text-xs leading-relaxed whitespace-pre-line line-clamp-4"><?= e($addon['description']) ?></p>
               </div>
-              <p class="text-gray-400 text-xs leading-relaxed whitespace-pre-line line-clamp-4"><?= e($addon['description']) ?></p>
             </div>
             
-            <div class="flex gap-2 absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity bg-[#242424] p-1 rounded border border-gray-700 shadow-lg">
+            <div class="flex gap-2 shrink-0">
               <button onclick="toggleEdit('addon', <?= $addon['id'] ?>, true)" class="text-gray-400 hover:text-white p-1 transition-colors" title="Edit Addon">
                 <?= lucide_icon('Edit2', 'w-4 h-4') ?>
               </button>
@@ -392,7 +394,7 @@
           <textarea name="description" placeholder="Description of what this add-on provides..." required class="w-full bg-[#242424] border border-gray-700 rounded-md p-2 text-white text-sm h-20 focus:outline-none focus:border-[#00CED1]"></textarea>
         </div>
       </div>
-      <button type="submit" class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-6 rounded-md transition-colors mt-2">Add Optional Add-on</button>
+      <button type="submit" class="bg-[#00CED1] hover:bg-[#00a3a6] text-black font-bold py-2 px-6 rounded-md transition-colors mt-2">Add Optional Add-on</button>
     </form>
   </div>
   </div>
@@ -477,7 +479,7 @@
           </div>
         </div>
       </div>
-      <button type="submit" class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-md w-full md:w-auto">Add Deployment Option</button>
+      <button type="submit" class="bg-[#00CED1] hover:bg-[#00a3a6] text-black font-bold py-2 px-6 rounded-md transition-colors mt-2 w-full md:w-auto">Add Deployment Option</button>
     </form>
   </div>
 </div>

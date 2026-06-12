@@ -10,7 +10,7 @@
 }
 
 .admin-card:hover {
-  border-color: rgba(20, 184, 166, 0.2);
+  border-color: rgba(0, 206, 209, 0.2);
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
 }
 
@@ -26,14 +26,14 @@
 
 .admin-input:focus {
   outline: none;
-  border-color: #14b8a6;
+  border-color: #00CED1;
   background-color: #222222;
-  box-shadow: 0 0 0 2px rgba(20, 184, 166, 0.15);
+  box-shadow: 0 0 0 2px rgba(0, 206, 209, 0.15);
 }
 
 .admin-btn-primary {
-  background-color: #14b8a6;
-  color: #0b1320;
+  background-color: #00CED1;
+  color: #000000;
   font-weight: 700;
   padding: 10px 20px;
   border-radius: 8px;
@@ -46,7 +46,7 @@
 }
 
 .admin-btn-primary:hover {
-  background-color: #0d9488;
+  background-color: #00a3a6;
   transform: translateY(-1px);
 }
 
@@ -82,7 +82,7 @@
     <div>
       <h2 class="text-3xl font-bold text-white tracking-tight flex items-center gap-3">
         Users Directory
-        <span class="text-xs px-2.5 py-1 bg-teal-950/80 border border-teal-500/30 text-teal-400 font-semibold rounded-full">
+        <span class="text-xs px-2.5 py-1 bg-[#00CED1]/15 border border-[#00CED1]/30 text-[#00CED1] font-semibold rounded-full">
           <?= count($users) ?> Total
         </span>
       </h2>
@@ -153,7 +153,7 @@
                 <td class="py-4 px-6">
                   <div class="font-bold text-white"><?= e($user['full_name']) ?></div>
                   <?php if (!empty($user['company_name'])): ?>
-                    <div class="text-xs text-teal-400/80 font-medium mt-0.5"><?= e($user['company_name']) ?></div>
+                    <div class="text-xs text-[#00CED1]/80 font-medium mt-0.5"><?= e($user['company_name']) ?></div>
                   <?php else: ?>
                     <div class="text-xs text-gray-500 italic mt-0.5">Individual Account</div>
                   <?php endif; ?>
@@ -163,7 +163,7 @@
                 <td class="py-4 px-6">
                   <div class="flex items-center gap-1.5 text-gray-300">
                     <?= lucide_icon('Mail', 'w-3.5 h-3.5 text-gray-500') ?>
-                    <a href="mailto:<?= e($user['email']) ?>" class="hover:text-teal-400 transition-colors"><?= e($user['email']) ?></a>
+                    <a href="mailto:<?= e($user['email']) ?>" class="hover:text-[#00CED1] transition-colors"><?= e($user['email']) ?></a>
                   </div>
                   <div class="flex items-center gap-1.5 text-gray-400 text-xs mt-1">
                     <?= lucide_icon('Phone', 'w-3.5 h-3.5 text-gray-500') ?>

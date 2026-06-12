@@ -91,7 +91,7 @@
           <input type="text" name="title" placeholder="Title" required class="w-full bg-[#242424] border border-gray-700 rounded-md p-2 text-white focus:outline-none focus:border-[#00CED1]">
           <input type="text" name="iconName" placeholder="Lucide Icon Name (e.g. Server)" required class="w-full bg-[#242424] border border-gray-700 rounded-md p-2 text-white focus:outline-none focus:border-[#00CED1]">
           <textarea name="description" placeholder="Description" required class="w-full bg-[#242424] border border-gray-700 rounded-md p-2 text-white focus:outline-none focus:border-[#00CED1]"></textarea>
-          <button type="submit" class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-md w-full">Add Card</button>
+          <button type="submit" class="bg-[#00CED1] hover:bg-[#00a3a6] text-black font-bold py-2 px-4 rounded-md w-full">Add Card</button>
         </form>
       </div>
 
@@ -142,7 +142,7 @@
         <form method="POST" action="<?= e(baseUrl('/admin/about/why/create')) ?>" class="space-y-3 pt-4 border-t border-gray-700">
           <input type="text" name="title" placeholder="Title" required class="w-full bg-[#242424] border border-gray-700 rounded-md p-2 text-white focus:outline-none focus:border-[#00CED1]">
           <textarea name="description" placeholder="Description" required class="w-full bg-[#242424] border border-gray-700 rounded-md p-2 text-white focus:outline-none focus:border-[#00CED1]"></textarea>
-          <button type="submit" class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-md w-full">Add Item</button>
+          <button type="submit" class="bg-[#00CED1] hover:bg-[#00a3a6] text-black font-bold py-2 px-4 rounded-md w-full">Add Item</button>
         </form>
       </div>
     </div>

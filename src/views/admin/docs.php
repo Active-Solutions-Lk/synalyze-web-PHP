@@ -191,7 +191,7 @@ if (session_status() === PHP_SESSION_NONE) {
           <?= lucide_icon('CheckSquare', 'text-[#00CED1] w-5 h-5') ?>
           Getting Started: Onboarding Steps List
         </h3>
-        <button onclick="toggleForm('form-onboarding-add')" class="bg-gray-800 hover:bg-gray-700 text-[#00CED1] font-bold py-2 px-4 rounded-xl transition-all flex items-center gap-1.5 text-xs">
+        <button onclick="toggleForm('form-onboarding-add')" class="bg-[#00CED1] hover:bg-[#00a3a6] text-black font-bold py-2 px-4 rounded-xl transition-all flex items-center gap-1.5 text-xs">
           <?= lucide_icon('Plus', 'w-4 h-4') ?>
           Add step
         </button>
@@ -292,7 +292,7 @@ if (session_status() === PHP_SESSION_NONE) {
           <?= lucide_icon('Terminal', 'text-[#00CED1] w-5 h-5') ?>
           Syslog Integration: Configuration Fields Table
         </h3>
-        <button onclick="toggleForm('form-integration-add')" class="bg-gray-800 hover:bg-gray-700 text-[#00CED1] font-bold py-2 px-4 rounded-xl transition-all flex items-center gap-1.5 text-xs">
+        <button onclick="toggleForm('form-integration-add')" class="bg-[#00CED1] hover:bg-[#00a3a6] text-black font-bold py-2 px-4 rounded-xl transition-all flex items-center gap-1.5 text-xs">
           <?= lucide_icon('Plus', 'w-4 h-4') ?>
           Add field
         </button>
@@ -395,7 +395,7 @@ if (session_status() === PHP_SESSION_NONE) {
           <?= lucide_icon('Grid', 'text-[#00CED1] w-5 h-5') ?>
           Core Modules: Grid Audit Cards
         </h3>
-        <button onclick="toggleForm('form-module-add')" class="bg-gray-800 hover:bg-gray-700 text-[#00CED1] font-bold py-2 px-4 rounded-xl transition-all flex items-center gap-1.5 text-xs">
+        <button onclick="toggleForm('form-module-add')" class="bg-[#00CED1] hover:bg-[#00a3a6] text-black font-bold py-2 px-4 rounded-xl transition-all flex items-center gap-1.5 text-xs">
           <?= lucide_icon('Plus', 'w-4 h-4') ?>
           Add dynamic module
         </button>
@@ -550,7 +550,7 @@ if (session_status() === PHP_SESSION_NONE) {
           <?= lucide_icon('Server', 'text-[#00CED1] w-5 h-5') ?>
           Deployment Details: Setup Models
         </h3>
-        <button onclick="toggleForm('form-deployment-add')" class="bg-gray-800 hover:bg-gray-700 text-[#00CED1] font-bold py-2 px-4 rounded-xl transition-all flex items-center gap-1.5 text-xs">
+        <button onclick="toggleForm('form-deployment-add')" class="bg-[#00CED1] hover:bg-[#00a3a6] text-black font-bold py-2 px-4 rounded-xl transition-all flex items-center gap-1.5 text-xs">
           <?= lucide_icon('Plus', 'w-4 h-4') ?>
           Add setup option
         </button>
@@ -689,7 +689,7 @@ if (session_status() === PHP_SESSION_NONE) {
           <?= lucide_icon('ShieldAlert', 'text-[#00CED1] w-5 h-5') ?>
           Standards & Compliance Certifications
         </h3>
-        <button onclick="toggleForm('form-compliance-add')" class="bg-gray-800 hover:bg-gray-700 text-[#00CED1] font-bold py-2 px-4 rounded-xl transition-all flex items-center gap-1.5 text-xs">
+        <button onclick="toggleForm('form-compliance-add')" class="bg-[#00CED1] hover:bg-[#00a3a6] text-black font-bold py-2 px-4 rounded-xl transition-all flex items-center gap-1.5 text-xs">
           <?= lucide_icon('Plus', 'w-4 h-4') ?>
           Add standard
         </button>
@@ -778,7 +778,7 @@ if (session_status() === PHP_SESSION_NONE) {
           <?= lucide_icon('HelpCircle', 'text-[#00CED1] w-5 h-5') ?>
           Troubleshooting FAQ Accordion Items
         </h3>
-        <button onclick="toggleForm('form-faq-add')" class="bg-gray-800 hover:bg-gray-700 text-[#00CED1] font-bold py-2 px-4 rounded-xl transition-all flex items-center gap-1.5 text-xs">
+        <button onclick="toggleForm('form-faq-add')" class="bg-[#00CED1] hover:bg-[#00a3a6] text-black font-bold py-2 px-4 rounded-xl transition-all flex items-center gap-1.5 text-xs">
           <?= lucide_icon('Plus', 'w-4 h-4') ?>
           Add FAQ
         </button>

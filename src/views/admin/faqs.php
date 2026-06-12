@@ -10,7 +10,7 @@
 }
 
 .admin-card:hover {
-  border-color: rgba(20, 184, 166, 0.2);
+  border-color: rgba(0, 206, 209, 0.2);
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
 }
 
@@ -26,14 +26,14 @@
 
 .admin-input:focus {
   outline: none;
-  border-color: #14b8a6;
+  border-color: #00CED1;
   background-color: #222222;
-  box-shadow: 0 0 0 2px rgba(20, 184, 166, 0.15);
+  box-shadow: 0 0 0 2px rgba(0, 206, 209, 0.15);
 }
 
 .admin-btn-primary {
-  background-color: #14b8a6;
-  color: #0b1320;
+  background-color: #00CED1;
+  color: #000000;
   font-weight: 700;
   padding: 10px 20px;
   border-radius: 8px;
@@ -46,7 +46,7 @@
 }
 
 .admin-btn-primary:hover {
-  background-color: #0d9488;
+  background-color: #00a3a6;
   transform: translateY(-1px);
 }
 
