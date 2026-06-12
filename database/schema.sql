@@ -232,7 +232,10 @@ CREATE TABLE IF NOT EXISTS contact_submissions (
     company TEXT,
     subject TEXT NOT NULL,
     message TEXT NOT NULL,
-    submitted_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    submitted_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    status TEXT NOT NULL DEFAULT 'unread',
+    action_note TEXT,
+    actioned_at DATETIME
 );
 
 CREATE TABLE IF NOT EXISTS demo_requests (

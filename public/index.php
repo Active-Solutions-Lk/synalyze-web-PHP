@@ -123,6 +123,9 @@ $router->add('/admin/pricing/option/update', 'PricingAdminController@updateOptio
 
 $router->add('/admin/contact', 'ContactAdminController@index');
 $router->add('/admin/contact/update', 'ContactAdminController@update');
+$router->add('/admin/contact/inbox/read', 'ContactAdminController@markRead');
+$router->add('/admin/contact/inbox/action', 'ContactAdminController@markActioned');
+$router->add('/admin/contact/inbox/delete', 'ContactAdminController@delete');
 
 $router->add('/admin/users', 'UsersAdminController@index');
 $router->add('/admin/users/delete', 'UsersAdminController@delete');

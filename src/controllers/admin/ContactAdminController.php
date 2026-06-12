@@ -15,7 +15,10 @@ class ContactAdminController {
     public function index() {
         $model = new ContactModel();
         $pageData = $model->getContactPageData();
-        $submissions = $model->getAllSubmissions();
+        
+        $filter = $_GET['filter'] ?? 'all';
+        $submissions = $model->getAllSubmissions($filter);
+        $unreadCount = $model->getUnreadCount();
         
         $pageTitle = "Contact Page & Inbox - Admin";
         
@@ -27,7 +30,6 @@ class ContactAdminController {
     }
 
     public function update() {
-        session_start();
         $pdo = \Core\Database::getInstance()->getConnection();
         
         $stmt = $pdo->prepare("UPDATE ContactPage SET 
@@ -48,6 +50,70 @@ class ContactAdminController {
         
         $_SESSION['success'] = "Contact page updated.";
         header("Location: " . baseUrl('/admin/contact'));
+        exit;
+    }
+
+    public function markRead() {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $id = $_POST['id'] ?? null;
+            if ($id) {
+                $model = new ContactModel();
+                $model->markRead((int)$id);
+                $unreadCount = $model->getUnreadCount();
+                
+                header('Content-Type: application/json');
+                echo json_encode([
+                    'success' => true,
+                    'unreadCount' => $unreadCount
+                ]);
+                exit;
+            }
+        }
+        header('Content-Type: application/json');
+        echo json_encode(['success' => false, 'error' => 'Invalid request']);
+        exit;
+    }
+
+    public function markActioned() {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $id = $_POST['id'] ?? null;
+            $note = trim($_POST['action_note'] ?? '');
+            
+            if (!$id) {
+                $this->redirectError("Invalid message ID.");
+            }
+            if (empty($note)) {
+                $this->redirectError("Please enter an action note.");
+            }
+            
+            $model = new ContactModel();
+            $model->markActioned((int)$id, $note);
+            $this->redirectSuccess("Message marked as actioned.");
+        }
+        $this->redirectError("Invalid request.");
+    }
+
+    public function delete() {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $id = $_POST['id'] ?? null;
+            if ($id) {
+                $model = new ContactModel();
+                $model->deleteSubmission((int)$id);
+                $this->redirectSuccess("Message deleted successfully.");
+            }
+        }
+        $this->redirectError("Invalid request.");
+    }
+
+    private function redirectSuccess($msg) {
+        $_SESSION['success'] = $msg;
+        header("Location: " . baseUrl('/admin/contact?tab=inbox'));
+        exit;
+    }
+
+    private function redirectError($msg) {
+        $_SESSION['error'] = $msg;
+        header("Location: " . baseUrl('/admin/contact?tab=inbox'));
         exit;
     }
 }
