@@ -67,16 +67,16 @@ $globalPhone = $globalSettings['ownerPhone'] ?? '+94 76 440 4456';
           <input type="text" name="phoneSalesLabel" value="<?= e($pageData['phoneSalesLabel']) ?>" class="w-full bg-[#242424] border border-gray-700 rounded-md p-2 text-white">
         </div>
         <div>
-          <label class="block text-sm font-medium text-gray-400 mb-1">Sales Number <span class="text-xs text-gray-500 font-normal">(Managed via Global Settings)</span></label>
-          <input type="text" name="phoneSalesValue" value="<?= e($globalPhone) ?>" readonly class="w-full bg-[#242424] border border-gray-700 rounded-md p-2 text-gray-400 cursor-not-allowed focus:outline-none">
+          <label class="block text-sm font-medium text-gray-400 mb-1">Sales Number</label>
+          <input type="text" name="phoneSalesValue" value="<?= e($pageData['phoneSalesValue']) ?>" class="w-full bg-[#242424] border border-gray-700 rounded-md p-2 text-white">
         </div>
         <div>
           <label class="block text-sm font-medium text-gray-400 mb-1">Support Label</label>
           <input type="text" name="phoneSupportLabel" value="<?= e($pageData['phoneSupportLabel']) ?>" class="w-full bg-[#242424] border border-gray-700 rounded-md p-2 text-white">
         </div>
         <div>
-          <label class="block text-sm font-medium text-gray-400 mb-1">Support Number <span class="text-xs text-gray-500 font-normal">(Managed via Global Settings)</span></label>
-          <input type="text" name="phoneSupportValue" value="<?= e($globalPhone) ?>" readonly class="w-full bg-[#242424] border border-gray-700 rounded-md p-2 text-gray-400 cursor-not-allowed focus:outline-none">
+          <label class="block text-sm font-medium text-gray-400 mb-1">Support Number</label>
+          <input type="text" name="phoneSupportValue" value="<?= e($pageData['phoneSupportValue']) ?>" class="w-full bg-[#242424] border border-gray-700 rounded-md p-2 text-white">
         </div>
       </div>
     </div>
@@ -94,24 +94,24 @@ $globalPhone = $globalSettings['ownerPhone'] ?? '+94 76 440 4456';
           <input type="text" name="emailSalesLabel" value="<?= e($pageData['emailSalesLabel']) ?>" class="w-full bg-[#242424] border border-gray-700 rounded-md p-2 text-white">
         </div>
         <div>
-          <label class="block text-sm font-medium text-gray-400 mb-1">Sales Email <span class="text-xs text-gray-500 font-normal">(Managed via Global Settings)</span></label>
-          <input type="text" name="emailSalesValue" value="<?= e($globalEmail) ?>" readonly class="w-full bg-[#242424] border border-gray-700 rounded-md p-2 text-gray-400 cursor-not-allowed focus:outline-none">
+          <label class="block text-sm font-medium text-gray-400 mb-1">Sales Email</label>
+          <input type="text" name="emailSalesValue" value="<?= e($pageData['emailSalesValue']) ?>" class="w-full bg-[#242424] border border-gray-700 rounded-md p-2 text-white">
         </div>
         <div>
           <label class="block text-sm font-medium text-gray-400 mb-1">Support Label</label>
           <input type="text" name="emailSupportLabel" value="<?= e($pageData['emailSupportLabel']) ?>" class="w-full bg-[#242424] border border-gray-700 rounded-md p-2 text-white">
         </div>
         <div>
-          <label class="block text-sm font-medium text-gray-400 mb-1">Support Email <span class="text-xs text-gray-500 font-normal">(Managed via Global Settings)</span></label>
-          <input type="text" name="emailSupportValue" value="<?= e($globalEmail) ?>" readonly class="w-full bg-[#242424] border border-gray-700 rounded-md p-2 text-gray-400 cursor-not-allowed focus:outline-none">
+          <label class="block text-sm font-medium text-gray-400 mb-1">Support Email</label>
+          <input type="text" name="emailSupportValue" value="<?= e($pageData['emailSupportValue']) ?>" class="w-full bg-[#242424] border border-gray-700 rounded-md p-2 text-white">
         </div>
         <div>
           <label class="block text-sm font-medium text-gray-400 mb-1">General Label</label>
           <input type="text" name="emailGeneralLabel" value="<?= e($pageData['emailGeneralLabel']) ?>" class="w-full bg-[#242424] border border-gray-700 rounded-md p-2 text-white">
         </div>
         <div>
-          <label class="block text-sm font-medium text-gray-400 mb-1">General Email <span class="text-xs text-gray-500 font-normal">(Managed via Global Settings)</span></label>
-          <input type="text" name="emailGeneralValue" value="<?= e($globalEmail) ?>" readonly class="w-full bg-[#242424] border border-gray-700 rounded-md p-2 text-gray-400 cursor-not-allowed focus:outline-none">
+          <label class="block text-sm font-medium text-gray-400 mb-1">General Email</label>
+          <input type="text" name="emailGeneralValue" value="<?= e($pageData['emailGeneralValue']) ?>" class="w-full bg-[#242424] border border-gray-700 rounded-md p-2 text-white">
         </div>
       </div>
     </div>

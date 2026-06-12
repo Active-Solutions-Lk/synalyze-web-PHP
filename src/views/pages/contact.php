@@ -34,13 +34,13 @@ $contactPhone = $globalSettings['ownerPhone'] ?? '+94764404456';
           <div>
             <p class="caption-text mb-1"><?= e($pageData['phoneSalesLabel']) ?></p>
             <p class="text-white text-sm md:text-base tracking-wide font-medium">
-              <a href="tel:<?= e(preg_replace('/\s+/', '', $contactPhone)) ?>" class="hover:text-accent transition-colors"><?= e($contactPhone) ?></a>
+              <a href="tel:<?= e(preg_replace('/\s+/', '', $pageData['phoneSalesValue'])) ?>" class="hover:text-accent transition-colors"><?= e($pageData['phoneSalesValue']) ?></a>
             </p>
           </div>
           <div>
             <p class="caption-text mb-1"><?= e($pageData['phoneSupportLabel']) ?></p>
             <p class="text-white text-sm md:text-base tracking-wide font-medium">
-              <a href="tel:<?= e(preg_replace('/\s+/', '', $contactPhone)) ?>" class="hover:text-accent transition-colors"><?= e($contactPhone) ?></a>
+              <a href="tel:<?= e(preg_replace('/\s+/', '', $pageData['phoneSupportValue'])) ?>" class="hover:text-accent transition-colors"><?= e($pageData['phoneSupportValue']) ?></a>
             </p>
           </div>
         </div>
@@ -56,15 +56,21 @@ $contactPhone = $globalSettings['ownerPhone'] ?? '+94764404456';
         <div class="space-y-6 flex-1 flex flex-col justify-center w-full">
           <div>
             <p class="caption-text mb-1"><?= e($pageData['emailSalesLabel']) ?></p>
-            <p class="text-white text-sm md:text-base tracking-wide break-all font-medium"><?= e($contactEmail) ?></p>
+            <p class="text-white text-sm md:text-base tracking-wide break-all font-medium">
+              <a href="mailto:<?= e($pageData['emailSalesValue']) ?>" class="hover:text-accent transition-colors"><?= e($pageData['emailSalesValue']) ?></a>
+            </p>
           </div>
           <div>
             <p class="caption-text mb-1"><?= e($pageData['emailSupportLabel']) ?></p>
-            <p class="text-white text-sm md:text-base tracking-wide break-all font-medium"><?= e($contactEmail) ?></p>
+            <p class="text-white text-sm md:text-base tracking-wide break-all font-medium">
+              <a href="mailto:<?= e($pageData['emailSupportValue']) ?>" class="hover:text-accent transition-colors"><?= e($pageData['emailSupportValue']) ?></a>
+            </p>
           </div>
           <div>
             <p class="caption-text mb-1"><?= e($pageData['emailGeneralLabel']) ?></p>
-            <p class="text-white text-sm md:text-base tracking-wide break-all font-medium"><?= e($contactEmail) ?></p>
+            <p class="text-white text-sm md:text-base tracking-wide break-all font-medium">
+              <a href="mailto:<?= e($pageData['emailGeneralValue']) ?>" class="hover:text-accent transition-colors"><?= e($pageData['emailGeneralValue']) ?></a>
+            </p>
           </div>
         </div>
       </div>
