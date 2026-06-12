@@ -30,6 +30,12 @@
         <p class="text-xs text-gray-500 mt-1">This is the email address used globally across the site for all contact details, support information, and message notifications.</p>
       </div>
 
+      <div>
+        <label class="block text-sm font-medium text-gray-400 mb-2">Site Contact Phone</label>
+        <input type="tel" name="ownerPhone" value="<?= e($settings['ownerPhone'] ?? '+94764404456') ?>" required class="w-full bg-[#242424] border border-gray-700 rounded-md p-3 text-white focus:outline-none focus:border-[#00CED1]">
+        <p class="text-xs text-gray-500 mt-1">This phone number is used globally across the site in the footer, contact page, and support documentation.</p>
+      </div>
+
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
           <label class="block text-sm font-medium text-gray-400 mb-2">SMTP Sender Email (Username)</label>

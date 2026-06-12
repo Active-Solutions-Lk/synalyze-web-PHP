@@ -4,7 +4,8 @@ CREATE TABLE IF NOT EXISTS globalsettings (
     logoUrl TEXT,
     themeAccentColor TEXT NOT NULL DEFAULT '#00CED1',
     primaryBackgroundColor TEXT NOT NULL DEFAULT '#0A0A0A',
-    ownerEmail TEXT NOT NULL DEFAULT 'support@synalyze.net'
+    ownerEmail TEXT NOT NULL DEFAULT 'support@synalyze.net',
+    ownerPhone TEXT NOT NULL DEFAULT '+94764404456'
 );
 
 CREATE TABLE IF NOT EXISTS herosection (
@@ -123,9 +124,9 @@ CREATE TABLE IF NOT EXISTS ContactPage (
     heroDescription TEXT NOT NULL,
     phoneTitle TEXT NOT NULL DEFAULT 'Phone',
     phoneSalesLabel TEXT NOT NULL DEFAULT 'Sales & General Inquiries',
-    phoneSalesValue TEXT NOT NULL DEFAULT '+1 (800) 123-4567',
+    phoneSalesValue TEXT NOT NULL DEFAULT '+94764404456',
     phoneSupportLabel TEXT NOT NULL DEFAULT 'Technical Support',
-    phoneSupportValue TEXT NOT NULL DEFAULT '+1 (800) 987-6543',
+    phoneSupportValue TEXT NOT NULL DEFAULT '+94764404456',
     emailTitle TEXT NOT NULL DEFAULT 'E-mail',
     emailSalesLabel TEXT NOT NULL DEFAULT 'Sales',
     emailSalesValue TEXT NOT NULL DEFAULT 'support@synalyze.net',
@@ -173,7 +174,7 @@ CREATE TABLE IF NOT EXISTS DocsPage (
     supportIntro TEXT NOT NULL,
     supportFaqTitle TEXT NOT NULL DEFAULT 'Troubleshooting',
     supportContactTitle TEXT NOT NULL DEFAULT 'Get in Touch',
-    supportPhone TEXT NOT NULL DEFAULT '011 732 5200',
+    supportPhone TEXT NOT NULL DEFAULT '+94764404456',
     supportEmail TEXT NOT NULL DEFAULT 'support@synalyze.net',
     supportEmailNote TEXT NOT NULL,
     supportHoursWeekdays TEXT NOT NULL,

@@ -453,7 +453,7 @@ $accentColor = get_settings()['themeAccentColor'] ?? '#3d8c7c';
                     </div>
                     <div>
                       <p class="text-sm text-gray-400 mb-1">Help Desk</p>
-                      <a href="tel:<?= preg_replace('/\s+/', '', $docsPage['supportPhone']) ?>" class="text-lg font-bold text-white hover:text-accent transition-colors"><?= e($docsPage['supportPhone']) ?></a>
+                      <a href="tel:<?= preg_replace('/\s+/', '', get_settings()['ownerPhone'] ?? '+94764404456') ?>" class="text-lg font-bold text-white hover:text-accent transition-colors"><?= e(get_settings()['ownerPhone'] ?? '+94764404456') ?></a>
                     </div>
                   </div>
 

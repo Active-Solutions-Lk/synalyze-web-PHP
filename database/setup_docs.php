@@ -127,7 +127,7 @@ try {
         'Need technical assistance or have inquiries? Our team is ready to help you configure custom router pipelines or troubleshoot syslog connections.',
         'Troubleshooting',
         'Get in Touch',
-        '011 732 5200',
+        '+94764404456',
         'support@synalyze.net',
         'Average response time is under 4 hours.',
         '09:00 AM - 06:00 PM',

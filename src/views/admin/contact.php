@@ -1,6 +1,7 @@
 <?php
 $globalSettings = get_settings();
 $globalEmail = $globalSettings['ownerEmail'] ?? 'support@synalyze.net';
+$globalPhone = $globalSettings['ownerPhone'] ?? '+94 76 440 4456';
 ?>
 <div class="space-y-8 pb-10">
   <div class="flex justify-between items-center pb-4 border-b border-gray-800">
@@ -66,16 +67,16 @@ $globalEmail = $globalSettings['ownerEmail'] ?? 'support@synalyze.net';
           <input type="text" name="phoneSalesLabel" value="<?= e($pageData['phoneSalesLabel']) ?>" class="w-full bg-[#242424] border border-gray-700 rounded-md p-2 text-white">
         </div>
         <div>
-          <label class="block text-sm font-medium text-gray-400 mb-1">Sales Number</label>
-          <input type="text" name="phoneSalesValue" value="<?= e($pageData['phoneSalesValue']) ?>" class="w-full bg-[#242424] border border-gray-700 rounded-md p-2 text-white">
+          <label class="block text-sm font-medium text-gray-400 mb-1">Sales Number <span class="text-xs text-gray-500 font-normal">(Managed via Global Settings)</span></label>
+          <input type="text" name="phoneSalesValue" value="<?= e($globalPhone) ?>" readonly class="w-full bg-[#242424] border border-gray-700 rounded-md p-2 text-gray-400 cursor-not-allowed focus:outline-none">
         </div>
         <div>
           <label class="block text-sm font-medium text-gray-400 mb-1">Support Label</label>
           <input type="text" name="phoneSupportLabel" value="<?= e($pageData['phoneSupportLabel']) ?>" class="w-full bg-[#242424] border border-gray-700 rounded-md p-2 text-white">
         </div>
         <div>
-          <label class="block text-sm font-medium text-gray-400 mb-1">Support Number</label>
-          <input type="text" name="phoneSupportValue" value="<?= e($pageData['phoneSupportValue']) ?>" class="w-full bg-[#242424] border border-gray-700 rounded-md p-2 text-white">
+          <label class="block text-sm font-medium text-gray-400 mb-1">Support Number <span class="text-xs text-gray-500 font-normal">(Managed via Global Settings)</span></label>
+          <input type="text" name="phoneSupportValue" value="<?= e($globalPhone) ?>" readonly class="w-full bg-[#242424] border border-gray-700 rounded-md p-2 text-gray-400 cursor-not-allowed focus:outline-none">
         </div>
       </div>
     </div>

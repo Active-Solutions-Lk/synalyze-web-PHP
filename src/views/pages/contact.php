@@ -1,6 +1,7 @@
 <?php
 $globalSettings = get_settings();
 $contactEmail = $globalSettings['ownerEmail'] ?? 'support@synalyze.net';
+$contactPhone = $globalSettings['ownerPhone'] ?? '+94764404456';
 ?>
 <div class="relative font-sans pb-24 overflow-x-hidden">
   <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(61,140,124,0.12)_0%,transparent_75%)] pointer-events-none z-0"></div>
@@ -32,11 +33,15 @@ $contactEmail = $globalSettings['ownerEmail'] ?? 'support@synalyze.net';
         <div class="space-y-6 flex-1 flex flex-col justify-center">
           <div>
             <p class="caption-text mb-1"><?= e($pageData['phoneSalesLabel']) ?></p>
-            <p class="text-white text-sm md:text-base tracking-wide font-medium"><?= e($pageData['phoneSalesValue']) ?></p>
+            <p class="text-white text-sm md:text-base tracking-wide font-medium">
+              <a href="tel:<?= e(preg_replace('/\s+/', '', $contactPhone)) ?>" class="hover:text-accent transition-colors"><?= e($contactPhone) ?></a>
+            </p>
           </div>
           <div>
             <p class="caption-text mb-1"><?= e($pageData['phoneSupportLabel']) ?></p>
-            <p class="text-white text-sm md:text-base tracking-wide font-medium"><?= e($pageData['phoneSupportValue']) ?></p>
+            <p class="text-white text-sm md:text-base tracking-wide font-medium">
+              <a href="tel:<?= e(preg_replace('/\s+/', '', $contactPhone)) ?>" class="hover:text-accent transition-colors"><?= e($contactPhone) ?></a>
+            </p>
           </div>
         </div>
       </div>

@@ -41,7 +41,7 @@ if ($isLoggedIn && !empty($userEmail)) {
           Cloud-based log analysis software for NAS. Take back control of your data with comprehensive usage auditing and reporting.
         </p>
         <div class="flex flex-col gap-2 mt-4 text-gray-400 font-semibold text-sm">
-          <a href="tel:+94764404456" class="hover:text-accent transition-colors">076 440 4456</a>
+          <a href="tel:<?= e(preg_replace('/\s+/', '', $settings['ownerPhone'] ?? '+94764404456')) ?>" class="hover:text-accent transition-colors"><?= e($settings['ownerPhone'] ?? '+94764404456') ?></a>
           <a href="mailto:<?= e($settings['ownerEmail'] ?? 'support@synalyze.net') ?>" class="hover:text-accent transition-colors"><?= e($settings['ownerEmail'] ?? 'support@synalyze.net') ?></a>
         </div>
       </div>
