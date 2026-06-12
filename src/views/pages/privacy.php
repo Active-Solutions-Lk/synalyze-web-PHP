@@ -1,3 +1,6 @@
+<?php
+$contactEmail = get_settings()['ownerEmail'] ?? 'support@synalyze.net';
+?>
 <style>
 /* Robust responsive layout for legal pages */
 .legal-layout {
@@ -312,7 +315,7 @@
                 <li>The right to withdraw consent for third-party integrations (e.g. revoking Google OAuth access via your Google account settings).</li>
               </ul>
               <p>
-                To exercise any of these rights, please contact us at support@synalyze.net. We will respond in accordance with applicable data protection laws.
+                To exercise any of these rights, please contact us at <?= e($contactEmail) ?>. We will respond in accordance with applicable data protection laws.
               </p>
             </div>
           </div>

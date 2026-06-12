@@ -463,7 +463,7 @@ $accentColor = get_settings()['themeAccentColor'] ?? '#3d8c7c';
                     </div>
                     <div>
                       <p class="text-sm text-gray-400 mb-1">Support Email</p>
-                      <a href="mailto:<?= e($docsPage['supportEmail']) ?>" class="text-lg font-bold text-white hover:text-accent transition-colors"><?= e($docsPage['supportEmail']) ?></a>
+                      <a href="mailto:<?= e(get_settings()['ownerEmail'] ?? 'support@synalyze.net') ?>" class="text-lg font-bold text-white hover:text-accent transition-colors"><?= e(get_settings()['ownerEmail'] ?? 'support@synalyze.net') ?></a>
                       <p class="text-xs text-gray-500 mt-1"><?= e($docsPage['supportEmailNote']) ?></p>
                     </div>
                   </div>

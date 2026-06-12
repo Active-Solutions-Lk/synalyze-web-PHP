@@ -1,3 +1,7 @@
+<?php
+$globalSettings = get_settings();
+$contactEmail = $globalSettings['ownerEmail'] ?? 'support@synalyze.net';
+?>
 <div class="relative font-sans pb-24 overflow-x-hidden">
   <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(61,140,124,0.12)_0%,transparent_75%)] pointer-events-none z-0"></div>
   <div class="h-16 md:h-24 bg-black relative z-20 w-full"></div>
@@ -47,15 +51,15 @@
         <div class="space-y-6 flex-1 flex flex-col justify-center w-full">
           <div>
             <p class="caption-text mb-1"><?= e($pageData['emailSalesLabel']) ?></p>
-            <p class="text-white text-sm md:text-base tracking-wide break-all font-medium"><?= e($pageData['emailSalesValue']) ?></p>
+            <p class="text-white text-sm md:text-base tracking-wide break-all font-medium"><?= e($contactEmail) ?></p>
           </div>
           <div>
             <p class="caption-text mb-1"><?= e($pageData['emailSupportLabel']) ?></p>
-            <p class="text-white text-sm md:text-base tracking-wide break-all font-medium"><?= e($pageData['emailSupportValue']) ?></p>
+            <p class="text-white text-sm md:text-base tracking-wide break-all font-medium"><?= e($contactEmail) ?></p>
           </div>
           <div>
             <p class="caption-text mb-1"><?= e($pageData['emailGeneralLabel']) ?></p>
-            <p class="text-white text-sm md:text-base tracking-wide break-all font-medium"><?= e($pageData['emailGeneralValue']) ?></p>
+            <p class="text-white text-sm md:text-base tracking-wide break-all font-medium"><?= e($contactEmail) ?></p>
           </div>
         </div>
       </div>

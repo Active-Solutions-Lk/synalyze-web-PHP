@@ -42,7 +42,7 @@ if ($isLoggedIn && !empty($userEmail)) {
         </p>
         <div class="flex flex-col gap-2 mt-4 text-gray-400 font-semibold text-sm">
           <a href="tel:+94764404456" class="hover:text-accent transition-colors">076 440 4456</a>
-          <a href="mailto:vipsupport@activelk.com" class="hover:text-accent transition-colors">vipsupport@activelk.com</a>
+          <a href="mailto:<?= e($settings['ownerEmail'] ?? 'support@synalyze.net') ?>" class="hover:text-accent transition-colors"><?= e($settings['ownerEmail'] ?? 'support@synalyze.net') ?></a>
         </div>
       </div>
 

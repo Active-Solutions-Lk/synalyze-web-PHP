@@ -1,3 +1,6 @@
+<?php
+$contactEmail = get_settings()['ownerEmail'] ?? 'support@synalyze.net';
+?>
 <style>
 /* Robust responsive layout for legal pages */
 .legal-layout {
@@ -199,7 +202,7 @@
                 To access the log analysis dashboard, you are required to register an account. You agree to provide accurate, current, and complete registration information and to update such information as necessary.
               </p>
               <p>
-                You can register using standard credentials or authenticate via Google OAuth. You are responsible for maintaining the confidentiality of your account credentials (including OAuth tokens and session cookies) and for all activities that occur under your account. You agree to notify us immediately at support@synalyze.net of any unauthorized use or security breach.
+                You can register using standard credentials or authenticate via Google OAuth. You are responsible for maintaining the confidentiality of your account credentials (including OAuth tokens and session cookies) and for all activities that occur under your account. You agree to notify us immediately at <?= e($contactEmail) ?> of any unauthorized use or security breach.
               </p>
             </div>
           </div>

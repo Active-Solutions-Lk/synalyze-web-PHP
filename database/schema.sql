@@ -4,7 +4,7 @@ CREATE TABLE IF NOT EXISTS globalsettings (
     logoUrl TEXT,
     themeAccentColor TEXT NOT NULL DEFAULT '#00CED1',
     primaryBackgroundColor TEXT NOT NULL DEFAULT '#0A0A0A',
-    ownerEmail TEXT NOT NULL DEFAULT 'system@synalyze.net'
+    ownerEmail TEXT NOT NULL DEFAULT 'support@synalyze.net'
 );
 
 CREATE TABLE IF NOT EXISTS herosection (
@@ -128,11 +128,11 @@ CREATE TABLE IF NOT EXISTS ContactPage (
     phoneSupportValue TEXT NOT NULL DEFAULT '+1 (800) 987-6543',
     emailTitle TEXT NOT NULL DEFAULT 'E-mail',
     emailSalesLabel TEXT NOT NULL DEFAULT 'Sales',
-    emailSalesValue TEXT NOT NULL DEFAULT 'sales@synalyze.com',
+    emailSalesValue TEXT NOT NULL DEFAULT 'support@synalyze.net',
     emailSupportLabel TEXT NOT NULL DEFAULT 'Support',
-    emailSupportValue TEXT NOT NULL DEFAULT 'support@synalyze.com',
+    emailSupportValue TEXT NOT NULL DEFAULT 'support@synalyze.net',
     emailGeneralLabel TEXT NOT NULL DEFAULT 'General Inquiries',
-    emailGeneralValue TEXT NOT NULL DEFAULT 'info@synalyze.com',
+    emailGeneralValue TEXT NOT NULL DEFAULT 'support@synalyze.net',
     addressTitle TEXT NOT NULL DEFAULT 'Address',
     addressLine1 TEXT NOT NULL DEFAULT 'SYNALYZE Headquarters',
     addressLine2 TEXT NOT NULL DEFAULT '123 Data Drive',

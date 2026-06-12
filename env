@@ -2,7 +2,7 @@ DB_PATH=database/synalyze.sqlite
 
 SMTP_HOST=mail.synalyze.net
 SMTP_PORT=465
-SMTP_USERNAME=system@synalyze.net
+SMTP_USERNAME=support@synalyze.net
 SMTP_PASSWORD=sysreP@req
 SMTP_FROM_NAME="Synalyze Contact Form"
 

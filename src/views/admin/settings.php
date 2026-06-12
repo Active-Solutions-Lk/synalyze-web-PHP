@@ -26,8 +26,8 @@
       
       <div>
         <label class="block text-sm font-medium text-gray-400 mb-2">Contact Notification Email</label>
-        <input type="email" name="ownerEmail" value="<?= e($settings['ownerEmail'] ?? 'system@synalyze.net') ?>" required class="w-full bg-[#242424] border border-gray-700 rounded-md p-3 text-white focus:outline-none focus:border-[#00CED1]">
-        <p class="text-xs text-gray-500 mt-1">This is the email address that receives all message notifications sent through the contact form.</p>
+        <input type="email" name="ownerEmail" value="<?= e($settings['ownerEmail'] ?? 'support@synalyze.net') ?>" required class="w-full bg-[#242424] border border-gray-700 rounded-md p-3 text-white focus:outline-none focus:border-[#00CED1]">
+        <p class="text-xs text-gray-500 mt-1">This is the email address used globally across the site for all contact details, support information, and message notifications.</p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">

@@ -55,7 +55,7 @@ class DemoController {
         if ($saved) {
             // 5. Send notification email to the owner
             $settings = get_settings();
-            $ownerEmail = $settings['ownerEmail'] ?? 'system@synalyze.net';
+            $ownerEmail = $settings['ownerEmail'] ?? 'support@synalyze.net';
             
             Mailer::sendDemoRequestNotification(
                 $ownerEmail,
