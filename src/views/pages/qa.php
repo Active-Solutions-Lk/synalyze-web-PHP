@@ -215,5 +215,5 @@ details[open] .faq-chevron {
   </div>
 
   <!-- Bottom transition gradient -->
-  <div class="h-96 bg-gradient-to-b from-transparent via-[#16171B] via-40% to-[#111111] relative z-10 w-full pointer-events-none -mt-48"></div>
+  <div class="h-96 bg-gradient-to-b from-transparent via-[#16171B] via-40% to-[#16171B] relative z-10 w-full pointer-events-none -mt-48"></div>
 </div>

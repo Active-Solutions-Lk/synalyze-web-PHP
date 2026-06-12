@@ -158,7 +158,7 @@
     </div>
   </div>
   
-  <div class="h-48 bg-gradient-to-b from-transparent to-[#111111] relative z-10 w-full pointer-events-none"></div>
+  <div class="h-48 bg-gradient-to-b from-transparent to-[#16171B] relative z-10 w-full pointer-events-none"></div>
 </div>
 
 <script>

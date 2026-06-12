@@ -15,7 +15,7 @@ if ($isLoggedIn && !empty($userEmail)) {
 }
 ?>
 <footer 
-  class="relative bg-[#111111] pt-14 sm:pt-18 md:pt-24 pb-12 overflow-hidden bg-cover bg-bottom bg-no-repeat"
+  class="relative bg-[#16171B] mt-16 md:mt-24 pt-14 sm:pt-18 md:pt-24 pb-12 overflow-hidden bg-cover bg-bottom bg-no-repeat"
   style="background-image: url('<?= e(baseUrl('/assets/images/Watermark.webp')) ?>')"
 >
   <div class="container relative z-10 mx-auto px-6 max-w-7xl">

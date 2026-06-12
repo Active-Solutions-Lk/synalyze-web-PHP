@@ -280,7 +280,7 @@
   <?php endif; ?>
 
   <!-- Bottom CTA -->
-  <section class="relative z-10 py-16 md:py-32 bg-gradient-to-b from-transparent to-[#1f2020] overflow-hidden flex flex-col items-center">
+  <section class="relative z-10 py-16 md:py-32 bg-gradient-to-b from-transparent to-[#16171B] overflow-hidden flex flex-col items-center">
     <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(61,140,124,0.25)_0%,transparent_60%)] pointer-events-none"></div>
 
     <div class="container relative z-10 mx-auto px-6 max-w-5xl w-full flex flex-col items-center">
