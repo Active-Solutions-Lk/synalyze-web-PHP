@@ -3352,6 +3352,8 @@
   max-width: 420px !important;
   padding-left: 4rem !important; /* 64px, corresponds to pl-16 */
   transition: all 0.3s ease !important;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 4rem) !important;
+  mask-image: linear-gradient(to right, transparent 0%, black 4rem) !important;
 }
 .works-card:hover {
   border-color: rgba(var(--accent-rgb), 0.25) !important;
@@ -3361,5 +3363,7 @@
 @media (min-width: 1024px) {
   .works-card {
     padding-left: 6rem !important; /* 96px, corresponds to pl-24 */
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 6rem) !important;
+    mask-image: linear-gradient(to right, transparent 0%, black 6rem) !important;
   }
 }
