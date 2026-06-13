@@ -16,9 +16,21 @@ if ($isLoggedIn && !empty($userEmail)) {
 ?>
 <style>
 .custom-footer {
+  position: relative;
   margin-top: 4rem !important;
   padding-top: 3.5rem !important;
   padding-bottom: 3rem !important;
+}
+.custom-footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: linear-gradient(to bottom, var(--color-background) 0%, transparent 100%) !important;
+  pointer-events: none;
+  z-index: 20;
 }
 @media (min-width: 640px) {
   .custom-footer {
@@ -59,29 +71,29 @@ if ($isLoggedIn && !empty($userEmail)) {
           Cloud-based log analysis software for NAS. Take back control of your data with comprehensive usage auditing and reporting.
         </p>
         <div class="flex flex-col gap-2 mt-4 text-gray-400 font-semibold text-sm">
-          <a href="tel:<?= e(preg_replace('/\s+/', '', $settings['ownerPhone'] ?? '+94764404456')) ?>" class="hover:text-accent transition-colors"><?= e($settings['ownerPhone'] ?? '+94764404456') ?></a>
-          <a href="mailto:<?= e($settings['ownerEmail'] ?? 'support@synalyze.net') ?>" class="hover:text-accent transition-colors"><?= e($settings['ownerEmail'] ?? 'support@synalyze.net') ?></a>
+          <a href="tel:<?= e(preg_replace('/\s+/', '', $settings['ownerPhone'] ?? '+94764404456')) ?>" class="hover:text-white transition-colors"><?= e($settings['ownerPhone'] ?? '+94764404456') ?></a>
+          <a href="mailto:<?= e($settings['ownerEmail'] ?? 'support@synalyze.net') ?>" class="hover:text-white transition-colors"><?= e($settings['ownerEmail'] ?? 'support@synalyze.net') ?></a>
         </div>
       </div>
 
       <div class="lg:col-span-7 flex flex-col justify-between">
         <div class="grid grid-cols-3 sm:grid-cols-3 gap-4 sm:gap-8 mb-10">
           <div>
-            <h4 class="text-sm font-semibold uppercase tracking-widest text-gray-400 mb-5">Product</h4>
+            <h4 class="text-sm font-semibold uppercase tracking-widest text-white mb-5">Product</h4>
             <ul class="space-y-3 text-gray-400 font-medium text-sm">
               <li><a href="<?= e(baseUrl('/#features')) ?>" class="hover:text-white transition-colors">Features</a></li>
               <li><a href="<?= e(baseUrl('/pricing')) ?>" class="hover:text-white transition-colors">Pricing</a></li>
             </ul>
           </div>
           <div>
-            <h4 class="text-sm font-semibold uppercase tracking-widest text-gray-400 mb-5">Company</h4>
+            <h4 class="text-sm font-semibold uppercase tracking-widest text-white mb-5">Company</h4>
             <ul class="space-y-3 text-gray-400 font-medium text-sm">
               <li><a href="<?= e(baseUrl('/about')) ?>" class="hover:text-white transition-colors">About Us</a></li>
               <li><a href="<?= e(baseUrl('/contact')) ?>" class="hover:text-white transition-colors">Contact</a></li>
             </ul>
           </div>
           <div>
-            <h4 class="text-sm font-semibold uppercase tracking-widest text-gray-400 mb-5">Support</h4>
+            <h4 class="text-sm font-semibold uppercase tracking-widest text-white mb-5">Support</h4>
             <ul class="space-y-3 text-gray-400 font-medium text-sm">
               <li><a href="<?= e(baseUrl('/docs')) ?>" class="hover:text-white transition-colors">Documentation</a></li>
               <li><a href="<?= e(baseUrl('/qa')) ?>" class="hover:text-white transition-colors">FAQs</a></li>

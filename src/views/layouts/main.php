@@ -222,6 +222,19 @@ $accentRgb = hex2rgbString($accentColor);
       padding-top: 8rem !important;
     }
   }
+  
+  /* Fade out content bottom background elements to base page background */
+  main::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 120px;
+    background: linear-gradient(to bottom, transparent, var(--color-background)) !important;
+    pointer-events: none;
+    z-index: 5;
+  }
   </style>
 
   <!-- Load Lucide icons -->
