@@ -107,10 +107,10 @@ $isLoggedIn = isset($_SESSION['user']);
     <!-- Mobile Theme & Hamburger Container -->
     <div class="flex items-center gap-2 lg:hidden">
       <!-- Mobile Theme Toggle -->
-      <button class="theme-toggle-btn p-2 text-foreground hover:text-accent transition-colors flex items-center justify-center cursor-pointer rounded-full hover:bg-black/5 dark:hover:bg-white/5" aria-label="Toggle Theme">
+      <!-- <button class="theme-toggle-btn p-2 text-foreground hover:text-accent transition-colors flex items-center justify-center cursor-pointer rounded-full hover:bg-black/5 dark:hover:bg-white/5" aria-label="Toggle Theme">
         <i data-lucide="sun" class="w-6 h-6 theme-icon-sun"></i>
         <i data-lucide="moon" class="w-6 h-6 theme-icon-moon"></i>
-      </button>
+      </button> -->
       
       <!-- Mobile Hamburger Button -->
       <button id="mobile-menu-btn" class="flex items-center justify-center p-2 text-foreground focus:outline-none" aria-label="Toggle Menu">
