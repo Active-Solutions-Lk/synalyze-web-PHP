@@ -159,6 +159,8 @@ CREATE TABLE IF NOT EXISTS users (
     phone TEXT NOT NULL,
     email TEXT NOT NULL UNIQUE,
     password TEXT NOT NULL,
+    reset_token TEXT,
+    reset_token_expires_at DATETIME,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 

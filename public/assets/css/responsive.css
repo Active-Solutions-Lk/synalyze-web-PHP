@@ -778,7 +778,6 @@ body {
 .login-signup-anchor {
   color: #06b6d4;
   font-weight: 500;
-  text-decoration: underline;
   transition: opacity 0.2s;
 }
 

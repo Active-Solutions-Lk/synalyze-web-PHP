@@ -54,6 +54,8 @@ $router->add('/signup', 'SignupController@index');
 $router->add('/login', 'LoginController@index');
 $router->add('/dashboard', 'DashboardController@index');
 $router->add('/logout', 'LoginController@logout');
+$router->add('/forgot-password', 'ForgotPasswordController@forgot');
+$router->add('/reset-password', 'ForgotPasswordController@reset');
 
 // Google OAuth routes
 $router->add('/auth/google', 'GoogleAuthController@redirect');
@@ -80,6 +82,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
     if (strpos($requestPath, '/contact') !== false || strpos($_GET['url'] ?? '', 'contact') !== false) {
         $router->add('/contact', 'ContactController@submit');
+    }
+    if (strpos($requestPath, '/forgot-password') !== false || strpos($_GET['url'] ?? '', 'forgot-password') !== false) {
+        $router->add('/forgot-password', 'ForgotPasswordController@submitForgot');
+    } elseif (strpos($requestPath, '/reset-password') !== false || strpos($_GET['url'] ?? '', 'reset-password') !== false) {
+        $router->add('/reset-password', 'ForgotPasswordController@submitReset');
     }
 }
 

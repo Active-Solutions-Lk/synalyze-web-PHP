@@ -21,12 +21,13 @@ $oldInput = $_SESSION['old_input'] ?? [];
 
       <!-- Heading -->
       <div class="login-heading">
-        <h1 class="login-heading__title">Sign Into your account</h1>
+        <h1 class="login-heading__title">Forgot Password</h1>
+        <p class="signup-heading__sub" style="margin-top: 0.5rem; margin-bottom: 1rem;">Enter your email address below to receive a secure link to reset your password.</p>
       </div>
 
       <!-- Alerts -->
       <?php if (isset($_SESSION['success'])): ?>
-        <div class="signup-alert signup-alert--success">
+        <div class="signup-alert signup-alert--success" style="margin-bottom: 1.5rem;">
           <div class="signup-alert__icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="signup-alert-svg">
               <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -40,7 +41,7 @@ $oldInput = $_SESSION['old_input'] ?? [];
       <?php endif; ?>
 
       <?php if (isset($_SESSION['errors']) && !empty($_SESSION['errors'])): ?>
-        <div class="signup-alert signup-alert--error">
+        <div class="signup-alert signup-alert--error" style="margin-bottom: 1.5rem;">
           <div class="signup-alert__icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="signup-alert-svg">
               <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
@@ -58,69 +59,33 @@ $oldInput = $_SESSION['old_input'] ?? [];
       <?php endif; ?>
 
       <!-- Form -->
-      <form id="login-form" class="login-form" method="POST" action="<?= e(baseUrl('/login')) ?>" novalidate>
+      <form id="forgot-password-form" class="login-form" method="POST" action="<?= e(baseUrl('/forgot-password')) ?>" novalidate>
 
         <!-- Email -->
         <div class="signup-field">
-          <label for="login-email" class="signup-label">Email <span class="signup-required">*</span></label>
+          <label for="forgot-email" class="signup-label">Email Address <span class="signup-required">*</span></label>
           <input
-            id="login-email"
+            id="forgot-email"
             type="email"
             name="email"
             class="signup-input"
             required
             autocomplete="email"
             value="<?= e($oldInput['email'] ?? '') ?>"
+            placeholder="name@company.com"
           />
         </div>
 
-        <!-- Password -->
-        <div class="signup-field">
-          <div class="login-label-row">
-            <label for="login-password" class="signup-label">Password <span class="signup-required">*</span></label>
-            <a href="<?= e(baseUrl('/forgot-password')) ?>" class="login-forgot-link">Forgot your password ?</a>
-          </div>
-          <div class="signup-input-wrap">
-            <input
-              id="login-password"
-              type="password"
-              name="password"
-              class="signup-input signup-input--pass"
-              required
-              autocomplete="current-password"
-            />
-            <button type="button" class="signup-eye-btn" data-target="login-password" aria-label="Toggle password visibility">
-              <img src="<?= e(baseUrl('/assets/images/Sign up/no view (eye).webp')) ?>" alt="Show" class="signup-eye-icon" />
-            </button>
-          </div>
-        </div>
-
         <!-- Submit -->
-        <button type="submit" id="login-submit" class="signup-submit">
-          Sign In
+        <button type="submit" id="forgot-submit" class="signup-submit" style="margin-top: 1.5rem;">
+          Send Reset Link
         </button>
 
-        <!-- Redirect to Sign up -->
-        <p class="login-signup-text">
-          Are you new to Synalyze?
-          <a href="<?= e(baseUrl('/signup')) ?>" class="login-signup-anchor">Click here</a>
-          to Sign up
+        <!-- Redirect to Login -->
+        <p class="login-signup-text" style="margin-top: 1.5rem;">
+          Remembered your password?
+          <a href="<?= e(baseUrl('/login')) ?>" class="login-signup-anchor">Back to Log In</a>
         </p>
-
-        <!-- Divider -->
-        <!-- <div class="signup-divider">
-          <span class="signup-divider__line"></span>
-          <span class="signup-divider__text">Or</span>
-          <span class="signup-divider__line"></span>
-        </div> -->
-
-        <!-- Social Logins -->
-        <!-- <div class="signup-social">
-          <a href="<?= e(baseUrl('/auth/google/login')) ?>" id="login-google" class="signup-social__btn" aria-label="Sign in with Google">
-            <img src="<?= e(baseUrl('/assets/images/Sign up/google.webp')) ?>" alt="Google" class="signup-social__icon" />
-            <span class="signup-social__text">Sign in with Google</span>
-          </a>
-        </div> -->
 
       </form>
     </div>

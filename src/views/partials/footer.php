@@ -101,7 +101,7 @@ if ($isLoggedIn && !empty($userEmail)) {
           </div>
         </div>
 
-        <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4 w-full pt-8 border-t border-gray-800">
+        <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4 w-full pt-8 border-t border-white">
           <div class="space-y-2">
             <span class="text-white font-bold text-lg block">
               Get in touch with us!
@@ -250,12 +250,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     </div>
 
-    <div class="mt-18 pt-8 flex flex-col md:flex-row justify-between items-center gap-2 text-gray-400 text-xs font-medium border-t border-gray-800/60">
+    <div class="mt-18 pt-8 flex flex-col md:flex-row justify-between items-center gap-2 text-gray-400 text-ls font-medium">
       <p>© <?= date('Y') ?> <?= e($siteName) ?>. All Rights Reserved by Active Solutions.</p>
       <div>
-        <a href="<?= e(baseUrl('/terms')) ?>" class="hover:text-white transition-colors underline decoration-transparent hover:decoration-white underline-offset-4">Terms of Use</a>
+        <a href="<?= e(baseUrl('/terms')) ?>" class="hover:text-accent transition-colors underline decoration-transparent hover:decoration-accent underline-offset-4">Terms of Use</a>
         <span class="mx-3">|</span>
-        <a href="<?= e(baseUrl('/privacy')) ?>" class="hover:text-white transition-colors underline decoration-transparent hover:decoration-white underline-offset-4">Privacy Policy</a>
+        <a href="<?= e(baseUrl('/privacy')) ?>" class="hover:text-accent transition-colors underline decoration-transparent hover:decoration-accent underline-offset-4">Privacy Policy</a>
       </div>
     </div>
   </div>

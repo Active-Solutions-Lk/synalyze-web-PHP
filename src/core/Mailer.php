@@ -716,5 +716,119 @@ class Mailer {
             return false;
         }
     }
+
+    /**
+     * Send a beautifully formatted HTML password reset email to a user.
+     */
+    public static function sendPasswordResetEmail(
+        string $userEmail,
+        string $userName,
+        string $resetLink
+    ): bool {
+        $smtp = self::getSmtpConfig();
+        $mail = new PHPMailer(true);
+
+        try {
+            $mail->isSMTP();
+            $mail->CharSet    = 'UTF-8';
+            $mail->Host       = $smtp['host'];
+            $mail->SMTPAuth   = true;
+            $mail->Username   = $smtp['username'];
+            $mail->Password   = $smtp['password'];
+            $mail->SMTPSecure = ($smtp['port'] == 465) ? PHPMailer::ENCRYPTION_SMTPS : PHPMailer::ENCRYPTION_STARTTLS;
+            $mail->Port       = $smtp['port'];
+
+            $mail->setFrom($smtp['username'], $smtp['from_name']);
+            $mail->addAddress($userEmail);
+
+            $mail->isHTML(true);
+            $mail->Subject = 'Reset Your Synalyze Password';
+
+            $body = '
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <meta charset="utf-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>Reset Your Password</title>
+                <style>
+                    body {
+                        font-family: \'Inter\', \'Segoe UI\', Helvetica, Arial, sans-serif;
+                        background-color: #0A0A0A;
+                        color: #E2E8F0;
+                        margin: 0;
+                        padding: 0;
+                        -webkit-font-smoothing: antialiased;
+                    }
+                    .btn-action {
+                        display: inline-block;
+                        padding: 14px 28px;
+                        background-color: #00CED1;
+                        color: #000000 !important;
+                        font-weight: 700;
+                        font-size: 15px;
+                        text-transform: uppercase;
+                        letter-spacing: 1px;
+                        text-decoration: none;
+                        border-radius: 6px;
+                        margin: 15px 0;
+                        box-shadow: 0 4px 14px rgba(0, 206, 209, 0.4);
+                    }
+                </style>
+            </head>
+            <body style="background-color: #0A0A0A; margin: 0; padding: 0;">
+                <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color: #0A0A0A; min-width: 100%; margin: 0; padding: 40px 0;">
+                    <tr>
+                        <td align="center" style="background-color: #0A0A0A;">
+                            <div style="max-width: 600px; width: 100%; margin: 0 auto; background: #121212; border: 1px solid #2D3748; border-radius: 12px; overflow: hidden; text-align: left; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);">
+                                <div style="background: linear-gradient(135deg, #00CED1 0%, #008B8B 100%); padding: 30px 40px;">
+                                    <h1 style="color: #000000; font-size: 24px; font-weight: 800; margin: 0; text-transform: uppercase; letter-spacing: 1.5px;">Synalyze</h1>
+                                    <p style="color: #1F2937; font-size: 14px; margin: 5px 0 0 0; font-weight: 500;">Password Reset Request</p>
+                                </div>
+                                <div style="padding: 40px;">
+                                    <p style="font-size: 16px; line-height: 1.6; color: #FFFFFF; font-weight: 600; margin-top: 0;">
+                                        Hello ' . e($userName) . ',
+                                    </p>
+                                    <p style="font-size: 15px; line-height: 1.6; color: #E2E8F0; margin-bottom: 20px;">
+                                        We received a request to reset the password associated with your Synalyze account. Click the button below to choose a new password.
+                                    </p>
+                                    
+                                    <div style="text-align: center; margin: 30px 0;">
+                                        <a href="' . e($resetLink) . '" class="btn-action" target="_blank">Reset Password</a>
+                                    </div>
+                                    
+                                    <p style="font-size: 14px; line-height: 1.5; color: #A0AEC0; margin-bottom: 10px;">
+                                        If the button above does not work, copy and paste the following URL into your web browser:
+                                    </p>
+                                    <p style="font-size: 13px; font-family: monospace; word-break: break-all; color: #00CED1; background-color: #0D0D0D; padding: 12px; border: 1px solid #2D3748; border-radius: 6px; margin: 10px 0;">
+                                        ' . e($resetLink) . '
+                                    </p>
+                                    
+                                    <p style="font-size: 14px; color: #A0AEC0; margin-top: 30px; line-height: 1.5; border-top: 1px solid #2D3748; padding-top: 20px; margin-bottom: 0;">
+                                        <strong>Security Note:</strong> This reset link is valid for 24 hours. If you did not request a password reset, please ignore this email; your password will remain secure.
+                                    </p>
+                                </div>
+                                <div style="background: #0D0D0D; padding: 20px 40px; text-align: center; border-top: 1px solid #1A1A1A;">
+                                    <p style="font-size: 12px; color: #718096; margin: 0;">Please do not reply to this automated message.</p>
+                                    <p style="font-size: 12px; color: #718096; margin: 5px 0 0 0;">&copy; ' . date('Y') . ' Synalyze. All rights reserved.</p>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </body>
+            </html>
+            ';
+
+            $mail->Body = $body;
+            $mail->AltBody = "Hello \$userName,\n\nWe received a request to reset your Synalyze password. Please reset it using the link below:\n\n\$resetLink\n\nThis link is valid for 24 hours.";
+
+            $mail->send();
+            return true;
+        } catch (Exception $e) {
+            error_log("PHPMailer failed to send password reset email: " . $mail->ErrorInfo);
+            return false;
+        }
+    }
 }
 

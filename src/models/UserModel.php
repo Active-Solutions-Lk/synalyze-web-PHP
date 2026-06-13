@@ -156,5 +156,69 @@ class UserModel {
             date('Y-m-d H:i:s')
         ]);
     }
+
+    /**
+     * Updates the password reset token and expiration time for a user.
+     *
+     * @param string $email
+     * @param string|null $hashedToken
+     * @param string|null $expiresAt
+     * @return bool
+     */
+    public function updateResetToken($email, $hashedToken, $expiresAt) {
+        $stmt = $this->pdo->prepare("
+            UPDATE users 
+            SET reset_token = ?, reset_token_expires_at = ? 
+            WHERE email = ?
+        ");
+        return $stmt->execute([$hashedToken, $expiresAt, $email]);
+    }
+
+    /**
+     * Retrieves a user by their password reset token.
+     *
+     * @param string $hashedToken
+     * @return array|false
+     */
+    public function getUserByResetToken($hashedToken) {
+        $stmt = $this->pdo->prepare("
+            SELECT * FROM users 
+            WHERE reset_token = ?
+        ");
+        $stmt->execute([$hashedToken]);
+        return $stmt->fetch(\PDO::FETCH_ASSOC);
+    }
+
+    /**
+     * Updates a user's password.
+     *
+     * @param int $userId
+     * @param string $password
+     * @return bool
+     */
+    public function updatePassword($userId, $password) {
+        $stmt = $this->pdo->prepare("
+            UPDATE users 
+            SET password = ? 
+            WHERE id = ?
+        ");
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+        return $stmt->execute([$hashedPassword, $userId]);
+    }
+
+    /**
+     * Clears a user's password reset token.
+     *
+     * @param int $userId
+     * @return bool
+     */
+    public function clearResetToken($userId) {
+        $stmt = $this->pdo->prepare("
+            UPDATE users 
+            SET reset_token = NULL, reset_token_expires_at = NULL 
+            WHERE id = ?
+        ");
+        return $stmt->execute([$userId]);
+    }
 }
 
