@@ -109,7 +109,7 @@
   <!-- How It Works Section -->
   <?php if (!empty($howItWorks)): ?>
     <section id="how-it-works" class="relative z-10 py-16 md:py-32 bg-transparent overflow-hidden">
-      <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(30,58,138,0.25)_0%,transparent_70%)] pointer-events-none"></div>
+
 
       <div class="container relative z-10 mx-auto px-6 max-w-6xl">
         <h2 class="section-title text-center mb-12 md:mb-24">
@@ -177,7 +177,7 @@
 
   <!-- Features Grid -->
   <section id="features" class="relative z-10 py-16 md:py-32 bg-transparent overflow-hidden">
-    <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(61,140,124,0.3)_0%,transparent_70%)] pointer-events-none"></div>
+
 
     <div class="container relative z-10 mx-auto px-6 max-w-7xl">
       <div class="text-center mb-16">
@@ -213,7 +213,7 @@
   <!-- Deployment Options -->
   <?php if (!empty($deploymentOptions)): ?>
     <section id="deployment" class="relative z-10 py-16 md:py-32 bg-transparent overflow-hidden">
-      <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(61,140,124,0.15)_0%,transparent_70%)] pointer-events-none"></div>
+
 
       <div class="container relative z-10 mx-auto px-6 max-w-7xl">
         <div class="text-center mb-16">
@@ -281,7 +281,7 @@
 
   <!-- Bottom CTA -->
   <section class="relative z-10 py-16 md:py-32 bg-gradient-to-b from-transparent to-background overflow-hidden flex flex-col items-center">
-    <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(61,140,124,0.25)_0%,transparent_60%)] pointer-events-none"></div>
+
 
     <div class="container relative z-10 mx-auto px-6 max-w-5xl w-full flex flex-col items-center">
       <div class="h-[1px] w-full bg-divider mb-20"></div>
