@@ -212,7 +212,4 @@ details[open] .faq-chevron {
     <div class="h-[1px] w-full bg-divider mt-20"></div>
 
   </div>
-
-  <!-- Bottom transition gradient -->
-  <div class="h-96 bg-gradient-to-b from-transparent via-background via-40% to-background relative z-10 w-full pointer-events-none -mt-48"></div>
 </div>
