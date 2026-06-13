@@ -111,8 +111,8 @@ body {
   justify-content: center;
   padding: 6.5rem 3rem 3rem;
   overflow-y: auto;
-  /* subtle dark backdrop so form is readable over the image */
-  background-color: rgba(13, 17, 23, 0.55);
+  /* subtle backdrop so form is readable over the image */
+  background-color: var(--auth-panel-bg);
   backdrop-filter: blur(0px);
 }
 
@@ -130,14 +130,14 @@ body {
 .signup-heading__title {
   font-size: 1.75rem;
   font-weight: 700;
-  color: #ffffff;
+  color: var(--color-foreground);
   letter-spacing: -0.02em;
   margin-bottom: 0.45rem;
 }
 
 .signup-heading__sub {
   font-size: 0.83rem;
-  color: #cbd5e1;
+  color: var(--color-muted-foreground);
   line-height: 1.5;
 }
 
@@ -157,7 +157,7 @@ body {
 .signup-label {
   font-size: 0.875rem;
   font-weight: 500;
-  color: #e5e7eb;
+  color: var(--color-foreground);
 }
 
 .signup-required {
@@ -175,19 +175,20 @@ body {
 .signup-input {
   width: 100%;
   height: 2.6rem;
-  background-color: #3a3d4a;
-  border: none;
+  background-color: var(--color-card-muted);
+  border: 1px solid var(--color-border);
   border-radius: 8px;
   padding: 0 1rem;
-  color: #ffffff;
+  color: var(--color-foreground);
   font-size: 0.88rem;
   outline: none;
-  transition: box-shadow 0.2s ease, background-color 0.2s ease;
+  transition: box-shadow 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
 }
 
 .signup-input:focus {
-  background-color: #42455a;
-  box-shadow: 0 0 0 2px rgba(6, 182, 212, 0.5);
+  background-color: var(--color-card);
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 2px rgba(var(--accent-rgb), 0.5);
 }
 
 .signup-input::placeholder {
@@ -227,7 +228,7 @@ body {
   width: 20px;
   height: 20px;
   object-fit: contain;
-  filter: brightness(0) invert(1);
+  filter: var(--eye-icon-filter);
   display: block;
 }
 
@@ -242,21 +243,23 @@ body {
   display: flex;
   align-items: center;
   gap: 4px;
-  background-color: #3a3d4a;
-  border: none;
+  background-color: var(--color-card-muted);
+  border: 1px solid var(--color-border);
+  border-right: none;
   border-radius: 8px 0 0 8px;
   padding: 0 0.55rem;
-  color: #e5e7eb;
+  color: var(--color-foreground);
   font-size: 0.85rem;
   cursor: pointer;
   white-space: nowrap;
   height: 2.6rem;
-  transition: background-color 0.2s;
+  transition: background-color 0.2s, border-color 0.2s;
   flex-shrink: 0;
 }
 
 .signup-phone-country:hover {
-  background-color: #42455a;
+  background-color: var(--color-card);
+  border-color: var(--accent-color);
 }
 
 .phone-flag-emoji {
@@ -282,26 +285,26 @@ body {
   top: calc(100% + 4px);
   left: 0;
   width: 260px;
-  background-color: #1e2030;
-  border: 1px solid #3a3d4a;
+  background-color: var(--color-card);
+  border: 1px solid var(--color-border);
   border-radius: 10px;
   z-index: 200;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
   overflow: hidden;
 }
 
 .phone-dropdown-search {
   padding: 0.5rem 0.75rem;
-  border-bottom: 1px solid #3a3d4a;
+  border-bottom: 1px solid var(--color-border);
 }
 
 .phone-search-input {
   width: 100%;
-  background: #2a2d3a;
-  border: none;
+  background: var(--color-card-muted);
+  border: 1px solid var(--color-border);
   border-radius: 6px;
   padding: 0.4rem 0.65rem;
-  color: #ffffff;
+  color: var(--color-foreground);
   font-size: 0.82rem;
   outline: none;
 }
@@ -323,14 +326,14 @@ body {
 .phone-country-item {
   padding: 0.5rem 0.85rem;
   font-size: 0.82rem;
-  color: #d1d5db;
+  color: var(--color-foreground);
   cursor: pointer;
   transition: background-color 0.15s;
 }
 
 .phone-country-item:hover {
-  background-color: #2a2d3a;
-  color: #ffffff;
+  background-color: var(--color-card-muted);
+  color: var(--color-foreground);
 }
 
 .phone-country-item.hidden-item {
@@ -356,7 +359,7 @@ body {
 
 .signup-terms-label {
   font-size: 0.85rem;
-  color: #d1d5db;
+  color: var(--color-foreground);
   cursor: pointer;
 }
 
@@ -390,12 +393,12 @@ body {
 .signup-signin-link {
   text-align: center;
   font-size: 0.85rem;
-  color: #9ca3af;
+  color: var(--color-muted-foreground);
   margin-top: 0.2rem;
 }
 
 .signup-signin-anchor {
-  color: #06b6d4;
+  color: var(--accent-color);
   font-weight: 500;
   text-decoration: none;
   margin-left: 4px;
@@ -418,12 +421,12 @@ body {
 .signup-divider__line {
   flex: 1;
   height: 1px;
-  background-color: #374151;
+  background-color: var(--color-border);
 }
 
 .signup-divider__text {
   font-size: 0.78rem;
-  color: #9ca3af;
+  color: var(--color-muted-foreground);
   white-space: nowrap;
 }
 
@@ -493,7 +496,7 @@ body {
 @media (max-width: 767px) {
   .signup-panel {
     width: 100%;
-    background-color: rgba(13, 17, 23, 0.82);
+    background-color: var(--auth-panel-bg-mobile);
     backdrop-filter: blur(2px);
     padding: 6rem 1.5rem 3rem;
     margin-left: 0;
@@ -646,7 +649,7 @@ body {
   justify-content: center;
   padding: 6.5rem 3rem 3rem;
   overflow-y: auto;
-  background-color: rgba(13, 17, 23, 0.45); /* subtle dark overlay */
+  background-color: var(--auth-panel-bg);
   backdrop-filter: blur(0px);
 }
 
@@ -664,7 +667,7 @@ body {
 .login-heading__title {
   font-size: 2.2rem;
   font-weight: 500;
-  color: #ffffff;
+  color: var(--color-foreground);
   letter-spacing: -0.01em;
   margin-bottom: 0.5rem;
 }
@@ -691,12 +694,12 @@ body {
 .login-label {
   font-size: 1.05rem;
   font-weight: 500;
-  color: #ffffff;
+  color: var(--color-foreground);
 }
 
 .login-forgot-link {
   font-size: 0.8rem;
-  color: #cbd5e1;
+  color: var(--color-muted-foreground);
   text-decoration: none;
   transition: color 0.2s;
 }
@@ -709,20 +712,20 @@ body {
 .login-input {
   width: 100%;
   height: 3.2rem;
-  background-color: rgba(60, 62, 73, 0.6); /* translucent dark fill */
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  background-color: var(--color-card-muted);
+  border: 1px solid var(--color-border);
   border-radius: 9999px; /* pill shape */
   padding: 0 1.5rem;
-  color: #ffffff;
+  color: var(--color-foreground);
   font-size: 1rem;
   outline: none;
   transition: border-color 0.2s, box-shadow 0.2s, background-color 0.2s;
 }
 
 .login-input:focus {
-  background-color: rgba(66, 69, 90, 0.8);
-  border-color: rgba(6, 182, 212, 0.8);
-  box-shadow: 0 0 0 2px rgba(6, 182, 212, 0.3);
+  background-color: var(--color-card);
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 2px rgba(var(--accent-rgb), 0.3);
 }
 
 /* ---------- Password wrapper ---------- */
@@ -768,7 +771,7 @@ body {
 .login-signup-text {
   text-align: center;
   font-size: 0.92rem;
-  color: #cbd5e1;
+  color: var(--color-muted-foreground);
   margin-top: 0.8rem;
 }
 
@@ -794,7 +797,7 @@ body {
 @media (max-width: 767px) {
   .login-panel {
     width: 100%;
-    background-color: rgba(13, 17, 23, 0.82);
+    background-color: var(--auth-panel-bg-mobile);
     backdrop-filter: blur(2px);
     padding: 6rem 1.5rem 3rem;
     margin-left: 0;
@@ -823,11 +826,11 @@ body {
    ============================================= */
 
 .glassmorphism-panel {
-  background: rgba(30, 32, 48, 0.45) !important;
-  border: 1px solid rgba(255, 255, 255, 0.07) !important;
+  background: var(--panel-bg) !important;
+  border: 1px solid var(--color-border) !important;
   backdrop-filter: blur(12px);
   border-radius: 16px;
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+  box-shadow: var(--panel-shadow);
 }
 
 .dashboard-card {
@@ -869,8 +872,8 @@ body {
 
 .dashboard-action-card:hover {
   transform: translateY(-3px);
-  background-color: #1A1C23 !important;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+  background-color: var(--color-card) !important;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
 }
 
 /* =============================================

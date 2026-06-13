@@ -31,7 +31,7 @@ $isLoggedIn = isset($_SESSION['user']);
   transition: color 0.3s, border-color 0.3s, background-color 0.3s;
 }
 .nav-link.border-accent {
-  color: #ffffff !important;
+  color: var(--color-foreground) !important;
   border-color: var(--accent-color) !important;
   background-color: rgba(var(--accent-rgb), 0.1) !important;
 }
@@ -44,7 +44,7 @@ $isLoggedIn = isset($_SESSION['user']);
 }
 </style>
 
-<header class="top-0 z-50 w-full" style="position: fixed; background-color: #16171ba3; backdrop-filter: blur(8px);">
+<header class="top-0 z-50 w-full border-b border-divider" style="position: fixed; background-color: var(--nav-bg); backdrop-filter: blur(8px);">
   <div class="container mx-auto px-6 h-16 lg:h-24 flex items-center justify-between">
     <a href="<?= e(baseUrl('/')) ?>" class="flex items-center gap-2">
       <?php if ($logoUrl): ?>
@@ -53,22 +53,22 @@ $isLoggedIn = isset($_SESSION['user']);
           alt="<?= e($siteName) ?>"
           width="100" 
           height="40" 
-          class="h-7 w-auto object-contain brightness-0 invert" 
+          class="theme-logo h-7 w-auto object-contain" 
         />
       <?php else: ?>
-        <span class="text-2xl font-medium tracking-widest text-white"><?= e(strtoupper($siteName)) ?></span>
+        <span class="text-2xl font-medium tracking-widest text-foreground"><?= e(strtoupper($siteName)) ?></span>
       <?php endif; ?>
     </a>
     
     <!-- Desktop Navigation -->
-    <nav class="hidden lg:flex items-center gap-8 text-base font-large text-white" id="desktop-nav">
-      <a href="<?= e(baseUrl('/')) ?>" class="nav-link <?= $isHome ? 'border border-accent rounded-full px-5 py-2 text-white' : 'hover:text-accent transition-colors' ?>" data-target="home">Home</a>
+    <nav class="hidden lg:flex items-center gap-8 text-base font-large text-foreground" id="desktop-nav">
+      <a href="<?= e(baseUrl('/')) ?>" class="nav-link <?= $isHome ? 'border border-accent rounded-full px-5 py-2 text-foreground' : 'hover:text-accent transition-colors' ?>" data-target="home">Home</a>
       <a href="<?= e(baseUrl('/#how-it-works')) ?>" class="nav-link hover:text-accent transition-colors" data-target="how-it-works">How It Works</a>
       <a href="<?= e(baseUrl('/#features')) ?>" class="nav-link hover:text-accent transition-colors" data-target="features">Features</a>
       <a href="<?= e(baseUrl('/#deployment')) ?>" class="nav-link hover:text-accent transition-colors" data-target="deployment">Deployment</a>
-      <a href="<?= e(baseUrl('/qa')) ?>" class="nav-link <?= $isSupport ? 'border border-accent rounded-full px-5 py-2 text-white' : 'hover:text-accent transition-colors' ?>" data-target="qa">FAQs</a>
-      <a href="<?= e(baseUrl('/docs')) ?>" class="nav-link <?= $isDocs ? 'border border-accent rounded-full px-5 py-2 text-white' : 'hover:text-accent transition-colors' ?>" data-target="docs">Docs</a>
-      <a href="<?= e(baseUrl('/contact')) ?>" class="nav-link <?= $isContact ? 'border border-accent rounded-full px-5 py-2 text-white' : 'hover:text-accent transition-colors' ?>" data-target="contact">Contact Us</a>
+      <a href="<?= e(baseUrl('/qa')) ?>" class="nav-link <?= $isSupport ? 'border border-accent rounded-full px-5 py-2 text-foreground' : 'hover:text-accent transition-colors' ?>" data-target="qa">FAQs</a>
+      <a href="<?= e(baseUrl('/docs')) ?>" class="nav-link <?= $isDocs ? 'border border-accent rounded-full px-5 py-2 text-foreground' : 'hover:text-accent transition-colors' ?>" data-target="docs">Docs</a>
+      <a href="<?= e(baseUrl('/contact')) ?>" class="nav-link <?= $isContact ? 'border border-accent rounded-full px-5 py-2 text-foreground' : 'hover:text-accent transition-colors' ?>" data-target="contact">Contact Us</a>
     </nav>
 
     <!-- Desktop Session Actions -->
@@ -83,14 +83,14 @@ $isLoggedIn = isset($_SESSION['user']);
         </a>
         <a 
           href="<?= e(baseUrl('/logout')) ?>" 
-          class="text-sm font-semibold px-6 py-2.5 text-white transition-colors hover:text-accent border border-accent rounded-full"
+          class="text-sm font-semibold px-6 py-2.5 text-foreground transition-colors hover:text-accent border border-accent rounded-full"
         >
           Logout
         </a>
       <?php else: ?>
         <a 
           href="<?= e(baseUrl('/signup')) ?>" 
-          class="text-sm font-semibold px-6 py-2.5 text-white transition-colors hover:text-accent border border-accent rounded-full"
+          class="text-sm font-semibold px-6 py-2.5 text-foreground transition-colors hover:text-accent border border-accent rounded-full"
         >
           Sign Up
         </a>
@@ -104,27 +104,36 @@ $isLoggedIn = isset($_SESSION['user']);
       <?php endif; ?>
     </div>
     
-    <!-- Mobile Hamburger Button -->
-    <button id="mobile-menu-btn" class="lg:hidden flex items-center justify-center p-2 text-white focus:outline-none" aria-label="Toggle Menu">
-      <div class="menu-icon-open block">
-        <?= lucide_icon('Menu', 'w-8 h-8') ?>
-      </div>
-      <div class="menu-icon-close hidden">
-        <?= lucide_icon('X', 'w-8 h-8') ?>
-      </div>
-    </button>
+    <!-- Mobile Theme & Hamburger Container -->
+    <div class="flex items-center gap-2 lg:hidden">
+      <!-- Mobile Theme Toggle -->
+      <button class="theme-toggle-btn p-2 text-foreground hover:text-accent transition-colors flex items-center justify-center cursor-pointer rounded-full hover:bg-black/5 dark:hover:bg-white/5" aria-label="Toggle Theme">
+        <i data-lucide="sun" class="w-6 h-6 theme-icon-sun"></i>
+        <i data-lucide="moon" class="w-6 h-6 theme-icon-moon"></i>
+      </button>
+      
+      <!-- Mobile Hamburger Button -->
+      <button id="mobile-menu-btn" class="flex items-center justify-center p-2 text-foreground focus:outline-none" aria-label="Toggle Menu">
+        <div class="menu-icon-open block">
+          <?= lucide_icon('Menu', 'w-8 h-8') ?>
+        </div>
+        <div class="menu-icon-close hidden">
+          <?= lucide_icon('X', 'w-8 h-8') ?>
+        </div>
+      </button>
+    </div>
   </div>
 
   <!-- Mobile Menu Panel -->
-  <div id="mobile-menu" class="lg:hidden bg-[#16171B] border-t border-white/10">
+  <div id="mobile-menu" class="lg:hidden bg-background border-t border-divider">
     <div class="container mx-auto px-6 py-4 flex flex-col gap-4" id="mobile-nav">
-      <a href="<?= e(baseUrl('/')) ?>" class="nav-link-mobile <?= $isHome ? 'active-mobile' : 'text-white hover:text-accent' ?> transition-colors py-1 border-b border-white/5" data-target="home">Home</a>
-      <a href="<?= e(baseUrl('/#how-it-works')) ?>" class="nav-link-mobile text-white hover:text-accent transition-colors py-1 border-b border-white/5" data-target="how-it-works">How It Works</a>
-      <a href="<?= e(baseUrl('/#features')) ?>" class="nav-link-mobile text-white hover:text-accent transition-colors py-1 border-b border-white/5" data-target="features">Features</a>
-      <a href="<?= e(baseUrl('/#deployment')) ?>" class="nav-link-mobile text-white hover:text-accent transition-colors py-1 border-b border-white/5" data-target="deployment">Deployment</a>
-      <a href="<?= e(baseUrl('/qa')) ?>" class="nav-link-mobile <?= $isSupport ? 'active-mobile' : 'text-white hover:text-accent' ?> transition-colors py-1 border-b border-white/5" data-target="qa">FAQs</a>
-      <a href="<?= e(baseUrl('/docs')) ?>" class="nav-link-mobile <?= $isDocs ? 'active-mobile' : 'text-white hover:text-accent' ?> transition-colors py-1 border-b border-white/5" data-target="docs">Docs</a>
-      <a href="<?= e(baseUrl('/contact')) ?>" class="nav-link-mobile <?= $isContact ? 'active-mobile' : 'text-white hover:text-accent' ?> transition-colors py-1 border-b border-white/5" data-target="contact">Contact Us</a>
+      <a href="<?= e(baseUrl('/')) ?>" class="nav-link-mobile <?= $isHome ? 'active-mobile' : 'text-foreground hover:text-accent' ?> transition-colors py-1 border-b border-divider" data-target="home">Home</a>
+      <a href="<?= e(baseUrl('/#how-it-works')) ?>" class="nav-link-mobile text-foreground hover:text-accent transition-colors py-1 border-b border-divider" data-target="how-it-works">How It Works</a>
+      <a href="<?= e(baseUrl('/#features')) ?>" class="nav-link-mobile text-foreground hover:text-accent transition-colors py-1 border-b border-divider" data-target="features">Features</a>
+      <a href="<?= e(baseUrl('/#deployment')) ?>" class="nav-link-mobile text-foreground hover:text-accent transition-colors py-1 border-b border-divider" data-target="deployment">Deployment</a>
+      <a href="<?= e(baseUrl('/qa')) ?>" class="nav-link-mobile <?= $isSupport ? 'active-mobile' : 'text-foreground hover:text-accent' ?> transition-colors py-1 border-b border-divider" data-target="qa">FAQs</a>
+      <a href="<?= e(baseUrl('/docs')) ?>" class="nav-link-mobile <?= $isDocs ? 'active-mobile' : 'text-foreground hover:text-accent' ?> transition-colors py-1 border-b border-divider" data-target="docs">Docs</a>
+      <a href="<?= e(baseUrl('/contact')) ?>" class="nav-link-mobile <?= $isContact ? 'active-mobile' : 'text-foreground hover:text-accent' ?> transition-colors py-1 border-b border-divider" data-target="contact">Contact Us</a>
       
       <div class="flex flex-col gap-4 mt-2">
         <?php if ($isLoggedIn): ?>
@@ -137,14 +146,14 @@ $isLoggedIn = isset($_SESSION['user']);
           </a>
           <a 
             href="<?= e(baseUrl('/logout')) ?>" 
-            class="text-center text-white py-2 border border-accent rounded-full hover:bg-white/5"
+            class="text-center text-foreground py-2 border border-accent rounded-full hover:bg-black/5 dark:hover:bg-white/5"
           >
             Logout
           </a>
         <?php else: ?>
           <a 
             href="<?= e(baseUrl('/signup')) ?>" 
-            class="text-center text-white py-2 border border-accent rounded-full hover:bg-white/5"
+            class="text-center text-foreground py-2 border border-accent rounded-full hover:bg-black/5 dark:hover:bg-white/5"
           >
             Sign Up
           </a>
@@ -170,10 +179,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const desktopLinks = document.querySelectorAll('#desktop-nav .nav-link');
   const mobileLinks = document.querySelectorAll('#mobile-nav .nav-link-mobile');
 
-  const desktopActive = ['border', 'border-accent', 'rounded-full', 'px-5', 'py-2', 'text-white'];
+  const desktopActive = ['border', 'border-accent', 'rounded-full', 'px-5', 'py-2', 'text-foreground'];
   const desktopInactive = ['hover:text-accent', 'transition-colors'];
   const mobileActive = ['active-mobile'];
-  const mobileInactive = ['text-white', 'hover:text-accent'];
+  const mobileInactive = ['text-foreground', 'hover:text-accent'];
 
   function setActiveNav(targetId) {
     desktopLinks.forEach(link => {

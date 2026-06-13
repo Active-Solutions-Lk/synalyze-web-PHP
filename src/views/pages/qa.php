@@ -9,8 +9,7 @@
 .faq-category-title {
   font-size: 1.25rem; /* text-xl */
   font-weight: 600;
-  color: #ffffff;
-  letter-spacing: -0.02em;
+  color: var(--color-foreground);
   margin-bottom: 20px;
   text-align: left;
 }
@@ -22,19 +21,19 @@
 }
 
 .faq-card {
-  background-color: #111d2a; /* Slate/navy blue matching the design image */
-  border: 1px solid rgba(255, 255, 255, 0.02);
+  background-color: var(--color-card); /* Slate/navy blue matching the design image */
+  border: 1px solid var(--color-border);
   border-radius: 12px;
   overflow: hidden;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
 .faq-card:hover {
-  background-color: #142232;
+  background-color: var(--color-card-muted);
   border-color: rgba(var(--accent-rgb), 0.25);
   transform: translateY(-1px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
 }
 
 .faq-summary {
@@ -55,14 +54,14 @@
   display: flex;
   align-items: center;
   gap: 16px;
-  color: #ffffff;
+  color: var(--color-foreground);
   flex: 1;
 }
 
 .faq-icon-left {
   width: 24px;
   height: 24px;
-  color: #ffffff;
+  color: var(--color-foreground);
   opacity: 0.9;
   flex-shrink: 0;
 }
@@ -85,7 +84,7 @@
 
 /* Open states */
 details[open] {
-  background-color: #111d2a;
+  background-color: var(--color-card);
 }
 
 details[open] .faq-chevron {
@@ -98,7 +97,7 @@ details[open] .faq-chevron {
 
 .faq-answer-text {
   margin-left: 40px; /* Align text perfectly past the 24px icon + 16px gap */
-  color: #94a3b8; /* Soft blue-slate text */
+  color: var(--color-muted-foreground); /* Soft blue-slate text */
   font-size: 0.875rem; /* text-sm */
   line-height: 1.6;
   font-weight: 400;
@@ -156,7 +155,7 @@ details[open] .faq-chevron {
 }
 </style>
 
-<div class="relative font-sans pt-28 md:pt-48 pb-0">
+<div class="relative font-sans pt-navbar-offset pb-0">
   <!-- Top glow backdrop -->
   <div class="absolute inset-0 pointer-events-none" style="background-image: radial-gradient(circle at top, rgba(var(--accent-rgb), 0.1) 0%, transparent 50%);"></div>
 
@@ -166,7 +165,7 @@ details[open] .faq-chevron {
       <h1 class="page-hero-title mb-6">
         Frequently Asked Questions
       </h1>
-      <p class="text-base md:text-lg text-gray-300 max-w-3xl mx-auto leading-relaxed">
+      <p class="text-base md:text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
         Here are some common questions about SYNALYZE. If you can't find the answer you're looking for, please visit our
         <a href="<?= e(baseUrl('/support')) ?>" class="text-accent hover:underline font-medium transition-colors">Support Center</a>
         or
@@ -185,7 +184,7 @@ details[open] .faq-chevron {
           <div class="faq-list">
             <?php if (empty($category['items'])): ?>
               <div class="faq-card p-6">
-                <p class="text-gray-500 italic">No questions in this category yet.</p>
+                <p class="text-muted-foreground italic">No questions in this category yet.</p>
               </div>
             <?php else: ?>
               <?php foreach ($category['items'] as $item): ?>
@@ -210,10 +209,10 @@ details[open] .faq-chevron {
       <?php endforeach; ?>
     </div>
 
-    <div class="h-[1px] w-full bg-white mt-20"></div>
+    <div class="h-[1px] w-full bg-divider mt-20"></div>
 
   </div>
 
   <!-- Bottom transition gradient -->
-  <div class="h-96 bg-gradient-to-b from-transparent via-[#16171B] via-40% to-[#16171B] relative z-10 w-full pointer-events-none -mt-48"></div>
+  <div class="h-96 bg-gradient-to-b from-transparent via-background via-40% to-background relative z-10 w-full pointer-events-none -mt-48"></div>
 </div>

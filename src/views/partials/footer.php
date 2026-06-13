@@ -14,8 +14,26 @@ if ($isLoggedIn && !empty($userEmail)) {
     $isSubscribed = $subModel->isSubscribed($userEmail);
 }
 ?>
+<style>
+.custom-footer {
+  margin-top: 4rem !important;
+  padding-top: 3.5rem !important;
+  padding-bottom: 3rem !important;
+}
+@media (min-width: 640px) {
+  .custom-footer {
+    padding-top: 4.5rem !important;
+  }
+}
+@media (min-width: 768px) {
+  .custom-footer {
+    margin-top: 6rem !important;
+    padding-top: 6rem !important;
+  }
+}
+</style>
 <footer 
-  class="relative bg-[#16171B] mt-16 md:mt-24 pt-14 sm:pt-18 md:pt-24 pb-12 overflow-hidden bg-cover bg-bottom bg-no-repeat"
+  class="custom-footer relative bg-[#16171B] overflow-hidden bg-cover bg-bottom bg-no-repeat"
   style="background-image: url('<?= e(baseUrl('/assets/images/Watermark.webp')) ?>')"
 >
   <div class="container relative z-10 mx-auto px-6 max-w-7xl">

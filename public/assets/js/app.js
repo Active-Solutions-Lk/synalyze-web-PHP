@@ -51,6 +51,16 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    // Theme toggle button click listeners
+    const themeToggleBtns = document.querySelectorAll('.theme-toggle-btn');
+    themeToggleBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark');
+            const isDark = document.documentElement.classList.contains('dark');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        });
+    });
+
     // Theme toggle via 'd' hotkey
     window.addEventListener("keydown", (event) => {
         if (event.defaultPrevented || event.repeat) return;
@@ -99,12 +109,12 @@ document.addEventListener("DOMContentLoaded", () => {
             pill.addEventListener('click', () => {
                 // Remove active classes
                 subjectPills.forEach(p => {
-                    p.classList.remove('bg-white', 'text-black', 'font-bold', 'shadow-md');
-                    p.classList.add('bg-[#627387]', 'text-white', 'hover:bg-[#6e8096]');
+                    p.classList.remove('active-pill', 'shadow-md');
+                    p.classList.add('inactive-pill');
                 });
                 // Add active to clicked
-                pill.classList.remove('bg-[#627387]', 'text-white', 'hover:bg-[#6e8096]');
-                pill.classList.add('bg-white', 'text-black', 'font-bold', 'shadow-md');
+                pill.classList.remove('inactive-pill');
+                pill.classList.add('active-pill', 'shadow-md');
                 // Update hidden input
                 subjectInput.value = pill.getAttribute('data-value');
             });

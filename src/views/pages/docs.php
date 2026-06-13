@@ -1,25 +1,13 @@
 <?php
 $accentColor = get_settings()['themeAccentColor'] ?? '#3d8c7c';
 ?>
-<div class="relative font-sans pt-12 pb-24 text-white">
+<div class="relative font-sans pt-navbar-offset pb-24 text-foreground">
   <!-- Glowing background elements -->
   <div class="absolute inset-0 pointer-events-none z-0" style="background-image: radial-gradient(circle at top, rgba(var(--accent-rgb), 0.12) 0%, transparent 50%);"></div>
   <div class="absolute top-[40%] left-[-10%] w-[500px] h-[500px] rounded-full blur-[120px] pointer-events-none" style="background-color: rgba(var(--accent-rgb), 0.05);"></div>
   <div class="absolute bottom-[20%] right-[-10%] w-[500px] h-[500px] rounded-full blur-[120px] pointer-events-none" style="background-color: rgba(var(--accent-rgb), 0.05);"></div>
 
 <style>
-/* Core Documentation Layout */
-.docs-wrapper {
-  max-width: 1550px;
-  margin: 0 auto;
-}
-
-.docs-layout-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-  margin-top: 32px;
-}
 
 @media (min-width: 1024px) {
   .docs-layout-grid {
@@ -31,13 +19,13 @@ $accentColor = get_settings()['themeAccentColor'] ?? '#3d8c7c';
 
 /* Sidebar styling */
 .docs-aside-sidebar {
-  background-color: rgba(24, 26, 32, 0.7);
+  background-color: rgba(var(--sidebar-bg-rgb), 0.7);
   backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--color-border);
   border-radius: 24px;
   padding: 16px;
   width: 100%;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
   box-sizing: border-box;
 }
 
@@ -83,9 +71,9 @@ $accentColor = get_settings()['themeAccentColor'] ?? '#3d8c7c';
   border-radius: 100px;
   font-size: 0.8rem;
   font-weight: 600;
-  color: #94a3b8;
-  background-color: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  color: var(--color-muted-foreground);
+  background-color: var(--color-card-muted);
+  border: 1px solid var(--color-border);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   text-decoration: none;
   white-space: nowrap;
@@ -93,9 +81,9 @@ $accentColor = get_settings()['themeAccentColor'] ?? '#3d8c7c';
 }
 
 .docs-menu-item:hover {
-  color: #ffffff;
-  background-color: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.1);
+  color: var(--color-foreground);
+  background-color: var(--color-card-muted);
+  border-color: var(--color-border);
 }
 
 @media (min-width: 1024px) {
@@ -112,8 +100,8 @@ $accentColor = get_settings()['themeAccentColor'] ?? '#3d8c7c';
   }
   
   .docs-menu-item:hover {
-    background-color: rgba(255, 255, 255, 0.04);
-    border-left-color: rgba(255, 255, 255, 0.2);
+    background-color: var(--color-card-muted);
+    border-left-color: var(--color-border);
   }
 }
 
@@ -145,6 +133,47 @@ $accentColor = get_settings()['themeAccentColor'] ?? '#3d8c7c';
   .docs-articles-wrapper {
     gap: 80px;
   }
+}
+
+/* Theme adaptation overrides */
+.docs-section {
+  background-color: rgba(var(--sidebar-bg-rgb), 0.3) !important;
+  border: 1px solid var(--color-border) !important;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05) !important;
+}
+.docs-section:hover {
+  border-color: var(--color-border) !important;
+}
+.docs-section h2, .docs-section h3, .docs-section h4, .docs-section h5, .docs-section th {
+  color: var(--color-foreground) !important;
+}
+.docs-section p, .docs-section li, .docs-section td, .docs-section div {
+  color: var(--color-muted-foreground);
+}
+.docs-section strong, .docs-section table {
+  color: var(--color-foreground) !important;
+}
+.bg-\[\#111216\], .bg-\[\#111216\]\/50, .bg-\[\#1a1b22\]\/50 {
+  background-color: var(--color-card-muted) !important;
+  border-color: var(--color-border) !important;
+}
+.border-white\/5, .border-white\/10 {
+  border-color: var(--color-border) !important;
+}
+.bg-white\/5 {
+  background-color: var(--color-card-muted) !important;
+}
+.bg-black\/40 {
+  background-color: var(--color-card-muted) !important;
+}
+.text-white {
+  color: var(--color-foreground) !important;
+}
+.text-gray-300, .text-gray-400 {
+  color: var(--color-muted-foreground) !important;
+}
+.docs-sidebar-title {
+  color: var(--color-foreground) !important;
 }
 </style>
 

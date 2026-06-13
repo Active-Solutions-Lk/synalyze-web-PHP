@@ -56,7 +56,7 @@ $contactEmail = get_settings()['ownerEmail'] ?? 'support@synalyze.net';
   transition: all 0.2s ease-in-out;
 }
 .legal-toc-link:hover {
-  color: #ffffff;
+  color: var(--color-foreground);
   border-left-color: rgba(var(--accent-rgb), 0.3);
 }
 .legal-toc-link.active {
@@ -71,14 +71,14 @@ $contactEmail = get_settings()['ownerEmail'] ?? 'support@synalyze.net';
   padding: 6px 14px;
   font-size: 0.85rem;
   border-radius: 9999px;
-  background-color: #111d2a;
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  color: #94a3b8;
+  background-color: var(--color-card);
+  border: 1px solid var(--color-border);
+  color: var(--color-muted-foreground);
   transition: all 0.2s ease-in-out;
   white-space: nowrap;
 }
 .legal-mobile-pill:hover {
-  color: #ffffff;
+  color: var(--color-foreground);
   border-color: rgba(var(--accent-rgb), 0.3);
 }
 .legal-mobile-pill.active {
@@ -89,11 +89,11 @@ $contactEmail = get_settings()['ownerEmail'] ?? 'support@synalyze.net';
 }
 
 .legal-card {
-  background-color: #111d2a;
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  background-color: var(--color-card);
+  border: 1px solid var(--color-border);
   border-radius: 16px;
   padding: 32px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   transition: border-color 0.3s ease;
 }
 .legal-card:hover {
@@ -117,9 +117,20 @@ $contactEmail = get_settings()['ownerEmail'] ?? 'support@synalyze.net';
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+/* Theme color mappings for content text, links, and borders */
+.text-white {
+  color: var(--color-foreground) !important;
+}
+.text-gray-300, .text-gray-400 {
+  color: var(--color-muted-foreground) !important;
+}
+.border-white\/5, .border-white\/10 {
+  border-color: var(--color-border) !important;
+}
 </style>
 
-<div class="relative font-sans pt-28 md:pt-48 pb-0">
+<div class="relative font-sans pt-navbar-offset pb-0">
 
   <div class="container relative z-10 mx-auto px-6 max-w-7xl">
     <!-- Header -->
@@ -359,11 +370,11 @@ $contactEmail = get_settings()['ownerEmail'] ?? 'support@synalyze.net';
       </div>
     </div>
 
-    <div class="h-[1px] w-full bg-white/5 mt-20"></div>
+    <div class="h-[1px] w-full bg-divider mt-20"></div>
   </div>
 
   <!-- Bottom transition gradient -->
-  <div class="h-96 bg-gradient-to-b from-transparent via-[#16171B] via-40% to-[#16171B] relative z-10 w-full pointer-events-none -mt-48"></div>
+  <div class="h-96 bg-gradient-to-b from-transparent via-background via-40% to-background relative z-10 w-full pointer-events-none -mt-48"></div>
 </div>
 
 <script>

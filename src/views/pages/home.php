@@ -1,11 +1,11 @@
 <div class="relative font-sans">
   <!-- Hero Section -->
-  <section class="relative pt-28 sm:pt-36 md:pt-48 pb-16 md:pb-32 flex flex-col items-center justify-center min-h-[90vh] overflow-hidden">
+  <section class="relative pt-navbar-offset pb-16 md:pb-32 flex flex-col items-center justify-center min-h-[90vh] overflow-hidden">
     <div
       class="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat transition-transform duration-1000 hover:scale-105"
       style="background-image: url('<?= e(baseUrl('/assets/images/1.webp')) ?>')"
     ></div>
-    <div class="absolute inset-0 z-0 bg-gradient-to-b from-black/60 via-black/20 to-[#16171B]"></div>
+    <div class="absolute inset-0 z-0 bg-gradient-to-b from-black/60 via-black/20 to-background"></div>
 
     <div class="container relative z-10 mx-auto px-6 text-center max-w-5xl">
       <!-- Success/Demo Alerts -->
@@ -63,10 +63,10 @@
         <?php unset($_SESSION['demo_error']); ?>
       <?php endif; ?>
 
-      <h1 class="page-hero-title mb-6 uppercase">
+      <h1 class="page-hero-title mb-6 uppercase text-foreground">
         <?= e($hero['headline']) ?>
       </h1>
-      <p class="text-base md:text-lg text-gray-300 mb-10 max-w-3xl mx-auto leading-relaxed">
+      <p class="text-base md:text-lg text-muted-foreground mb-10 max-w-3xl mx-auto leading-relaxed">
         <?= e($hero['subheadline']) ?>
       </p>
 
@@ -128,7 +128,7 @@
                   <h3 class="card-title mb-2">
                     <?= e($howItWorks[0]['title']) ?>
                   </h3>
-                  <p class="text-gray-300 text-sm md:text-base leading-relaxed">
+                  <p class="text-muted-foreground text-sm md:text-base leading-relaxed">
                     <?= e($howItWorks[0]['description']) ?>
                   </p>
                 </div>
@@ -144,7 +144,7 @@
                   <h3 class="card-title mb-2">
                     <?= e($howItWorks[1]['title']) ?>
                   </h3>
-                  <p class="text-gray-300 text-sm md:text-base leading-relaxed">
+                  <p class="text-muted-foreground text-sm md:text-base leading-relaxed">
                     <?= e($howItWorks[1]['description']) ?>
                   </p>
                 </div>
@@ -163,7 +163,7 @@
                   <h3 class="card-title mb-2">
                     <?= e($howItWorks[2]['title']) ?>
                   </h3>
-                  <p class="text-gray-300 text-sm md:text-base leading-relaxed">
+                  <p class="text-muted-foreground text-sm md:text-base leading-relaxed">
                     <?= e($howItWorks[2]['description']) ?>
                   </p>
                 </div>
@@ -184,19 +184,19 @@
         <h2 class="section-title mb-6">
           Powerful Log Analysis Features
         </h2>
-        <p class="text-base md:text-lg text-gray-300 max-w-4xl mx-auto leading-relaxed">
+        <p class="text-base md:text-lg text-muted-foreground max-w-4xl mx-auto leading-relaxed">
           Built specifically for global NAS brands, with a robust cloud infrastructure for comprehensive data collection and analysis.
         </p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         <?php foreach ($features as $feature): ?>
-          <div class="flex flex-col rounded-2xl overflow-hidden border border-white/[0.06] bg-[#111d2a] shadow-2xl transition-transform hover:-translate-y-2 duration-300">
+          <div class="flex flex-col rounded-2xl overflow-hidden border border-border bg-card shadow-2xl transition-transform hover:-translate-y-2 duration-300">
             <div class="p-6 md:p-8 flex-1">
               <h3 class="card-title mb-3 leading-tight">
                 <?= e($feature['title']) ?>
               </h3>
-              <p class="text-gray-400 text-sm md:text-base leading-relaxed">
+              <p class="text-muted-foreground text-sm md:text-base leading-relaxed">
                 <?= e($feature['description']) ?>
               </p>
             </div>
@@ -220,7 +220,7 @@
           <h2 class="section-title mb-6">
             Deployment Options
           </h2>
-          <p class="text-base md:text-lg text-gray-300 max-w-3xl mx-auto leading-relaxed font-medium">
+          <p class="text-base md:text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed font-medium">
             Choose the deployment model that fits your internal IT policies and compliance requirements.
           </p>
         </div>
@@ -251,13 +251,13 @@
                   <h3 class="card-title font-bold"><?= e($option['name']) ?></h3>
                 </div>
 
-                <p class="text-gray-300 text-base mb-8 leading-relaxed min-h-[50px]">
+                <p class="text-muted-foreground text-base mb-8 leading-relaxed min-h-[50px]">
                   <?= e($option['description']) ?>
                 </p>
 
                 <?php if (!empty($bullets)): ?>
                   <div class="flex justify-start w-full mb-8">
-                    <ul class="space-y-3 flex flex-col items-start w-fit text-gray-400 text-sm md:text-base">
+                    <ul class="space-y-3 flex flex-col items-start w-fit text-muted-foreground text-sm md:text-base">
                       <?php foreach ($bullets as $bullet): ?>
                         <li class="leading-normal flex items-start gap-2">
                           <span class="text-accent">✓</span>
@@ -269,7 +269,7 @@
                 <?php endif; ?>
               </div>
 
-              <a href="<?= e(baseUrl('/docs#deployment')) ?>" style="<?= $isCloud ? 'background-color: var(--accent-color); box-shadow: 0 10px 30px rgba(var(--accent-rgb), 0.2);' : 'border-color: var(--accent-color); color: #ffffff;' ?>" class="w-full py-3 rounded-full text-base md:text-lg font-semibold transition-all duration-300 text-center flex items-center justify-center <?= $isCloud ? 'text-white hover:opacity-90' : 'border bg-transparent hover:bg-white/5' ?>">
+              <a href="<?= e(baseUrl('/docs#deployment')) ?>" style="<?= $isCloud ? 'background-color: var(--accent-color); box-shadow: 0 10px 30px rgba(var(--accent-rgb), 0.2);' : 'border-color: var(--accent-color); color: var(--color-foreground);' ?>" class="w-full py-3 rounded-full text-base md:text-lg font-semibold transition-all duration-300 text-center flex items-center justify-center <?= $isCloud ? 'text-white hover:opacity-90' : 'border border-border bg-transparent hover:bg-black/5 dark:hover:bg-white/5' ?>">
                 Learn More
               </a>
             </div>
@@ -280,17 +280,17 @@
   <?php endif; ?>
 
   <!-- Bottom CTA -->
-  <section class="relative z-10 py-16 md:py-32 bg-gradient-to-b from-transparent to-[#16171B] overflow-hidden flex flex-col items-center">
+  <section class="relative z-10 py-16 md:py-32 bg-gradient-to-b from-transparent to-background overflow-hidden flex flex-col items-center">
     <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(61,140,124,0.25)_0%,transparent_60%)] pointer-events-none"></div>
 
     <div class="container relative z-10 mx-auto px-6 max-w-5xl w-full flex flex-col items-center">
-      <div class="h-[1px] w-full bg-white mb-20"></div>
+      <div class="h-[1px] w-full bg-divider mb-20"></div>
 
       <div class="text-center mb-16 w-full">
         <h2 class="section-title mb-6">
           Ready to Take Control of Your<br class="hidden md:block" /> NAS Data?
         </h2>
-        <p class="text-base md:text-lg text-gray-300 max-w-4xl mx-auto leading-relaxed">
+        <p class="text-base md:text-lg text-muted-foreground max-w-4xl mx-auto leading-relaxed">
           We listen to our users. If you have an idea for a report, send us your idea<br class="hidden md:block" /> - if the data is available, we can probably make it.
         </p>
       </div>
@@ -311,7 +311,7 @@
             </button>
             <div class="mt-2 text-center">
               <a href="<?= e(baseUrl('/dashboard')) ?>"
-                 style="color: #00CED1; font-size: 0.85rem; font-weight: 600;
+                 style="color: var(--accent-color); font-size: 0.85rem; font-weight: 600;
                         text-decoration: underline; text-underline-offset: 3px;">
                 See More
               </a>
@@ -327,12 +327,12 @@
             </button>
           </form>
         <?php endif; ?>
-        <a href="<?= e(baseUrl('/contact')) ?>" class="px-8 py-3.5 rounded-full bg-white text-accent text-base md:text-lg hover:bg-gray-100 transition-colors shadow-lg w-full sm:w-auto flex items-center justify-center">
+        <a href="<?= e(baseUrl('/contact')) ?>" class="px-8 py-3.5 rounded-full bg-card border border-border text-accent text-base md:text-lg hover:bg-card-muted transition-colors shadow-lg w-full sm:w-auto flex items-center justify-center">
           Contact Us
         </a>
       </div>
 
-      <div class="h-[1px] w-full bg-white mt-20"></div>
+      <div class="h-[1px] w-full bg-divider mt-20"></div>
     </div>
   </section>
 </div>

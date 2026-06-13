@@ -1,6 +1,5 @@
-<div class="relative font-sans overflow-x-hidden">
+<div class="relative font-sans pt-navbar-offset overflow-x-hidden">
   <div class="absolute inset-0 pointer-events-none z-0" style="background-image: radial-gradient(circle at center, rgba(var(--accent-rgb), 0.12) 0%, transparent 75%);"></div>
-  <div class="h-16 md:h-24 bg-black relative z-20 w-full"></div>
 
   <!-- Hero Section -->
   <section class="relative pt-10 md:pt-20 pb-20 min-h-[75vh] flex items-center overflow-hidden">
@@ -8,25 +7,25 @@
       class="absolute inset-0 z-0 bg-cover bg-right bg-no-repeat"
       style="background-image: url('<?= e(baseUrl('/assets/images/about/about.webp')) ?>')"
     ></div>
-    <div class="absolute inset-0 z-0 bg-gradient-to-b from-transparent via-[#16171B]/30 to-[#16171B]"></div>
+    <div class="absolute inset-0 z-0 bg-gradient-to-b from-transparent via-background/30 to-background"></div>
 
     <div class="container relative z-10 mx-auto px-6 max-w-8xl">
       <div class="max-w-3xl text-left">
-        <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight leading-[1.2] mb-6">
+        <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground tracking-tight leading-[1.2] mb-6">
           <?= e($pageData['heroHeadline']) ?> <br />
           <span class="inline-flex items-center gap-3 mt-2">
-            <span class="font-normal text-white text-xl md:text-2xl">with </span>
+            <span class="font-normal text-foreground text-xl md:text-2xl">with </span>
             <img
               src="<?= e(baseUrl('/assets/images/Logo.webp')) ?>"
               alt="SYNALYZE"
               width="290"
               height="70"
-              class="h-8 md:h-10 w-auto object-contain brightness-0 invert"
+              class="h-8 md:h-10 w-auto object-contain dark:brightness-0 dark:invert"
             />
           </span>
         </h1>
 
-        <p class="text-base md:text-lg text-gray-300 mb-8 max-w-xl leading-relaxed">
+        <p class="text-base md:text-lg text-muted-foreground mb-8 max-w-xl leading-relaxed">
           <?= e($pageData['heroSubheadline']) ?>
         </p>
 
@@ -51,7 +50,7 @@
         <h2 class="section-title text-center mb-8">
           <?= e($pageData['whoWeAreTitle']) ?>
         </h2>
-        <p class="text-base md:text-lg text-gray-300 leading-relaxed max-w-4xl mx-auto">
+        <p class="text-base md:text-lg text-muted-foreground leading-relaxed max-w-4xl mx-auto">
           <?= e($pageData['whoWeAreDescription']) ?>
         </p>
       </div>
@@ -67,7 +66,7 @@
         <h2 class="section-title mb-6">
           <?= e($pageData['whatWeDoTitle']) ?>
         </h2>
-        <p class="text-base md:text-lg text-gray-300 max-w-4xl mx-auto leading-relaxed">
+        <p class="text-base md:text-lg text-muted-foreground max-w-4xl mx-auto leading-relaxed">
           <?= e($pageData['whatWeDoDescription']) ?>
         </p>
       </div>
@@ -81,7 +80,7 @@
             <h3 class="card-title font-bold mb-3">
               <?= e($card['title']) ?>
             </h3>
-            <p class="text-gray-400 text-sm md:text-base leading-relaxed">
+            <p class="text-muted-foreground text-sm md:text-base leading-relaxed">
               <?= e($card['description']) ?>
             </p>
           </div>
@@ -111,7 +110,7 @@
               <h3 class="card-title font-semibold mb-2">
                 <?= e($item['title']) ?>
               </h3>
-              <p class="text-base text-gray-300 leading-relaxed">
+              <p class="text-base text-muted-foreground leading-relaxed">
                 <?= e($item['description']) ?>
               </p>
             </div>
@@ -129,7 +128,7 @@
           <h2 class="section-title">
             <?= e($pageData['missionTitle']) ?>
           </h2>
-          <p class="text-base md:text-lg text-gray-300 leading-relaxed">
+          <p class="text-base md:text-lg text-muted-foreground leading-relaxed">
             <?= e($pageData['missionDescription']) ?>
           </p>
         </div>
@@ -138,14 +137,14 @@
           <h2 class="section-title">
             <?= e($pageData['visionTitle']) ?>
           </h2>
-          <p class="text-base md:text-lg text-gray-300 leading-relaxed">
+          <p class="text-base md:text-lg text-muted-foreground leading-relaxed">
             <?= e($pageData['visionDescription']) ?>
           </p>
         </div>
       </div>
 
       <div class="max-w-5xl mx-auto mt-24 w-full">
-        <hr class="border-t border-white" />
+        <hr class="border-t border-border" />
       </div>
     </div>
   </section>

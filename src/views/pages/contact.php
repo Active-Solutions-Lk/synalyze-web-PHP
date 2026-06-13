@@ -3,16 +3,15 @@ $globalSettings = get_settings();
 $contactEmail = $globalSettings['ownerEmail'] ?? 'support@synalyze.net';
 $contactPhone = $globalSettings['ownerPhone'] ?? '+94764404456';
 ?>
-<div class="relative font-sans pb-24 overflow-x-hidden">
+<div class="relative font-sans pt-navbar-offset pb-24 overflow-x-hidden">
   <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(61,140,124,0.12)_0%,transparent_75%)] pointer-events-none z-0"></div>
-  <div class="h-16 md:h-24 bg-black relative z-20 w-full"></div>
 
   <!-- Hero Section -->
   <section class="relative z-10 pt-0 pb-12 max-w-7xl mx-auto px-6 text-center">
     <h1 class="page-hero-title mb-6">
       <?= e($pageData['heroTitle']) ?>
     </h1>
-    <p class="text-base md:text-lg text-gray-300 max-w-3xl mx-auto leading-relaxed">
+    <p class="text-base md:text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
       <?= e($pageData['heroDescription']) ?>
     </p>
   </section>
@@ -101,29 +100,29 @@ $contactPhone = $globalSettings['ownerPhone'] ?? '+94764404456';
       <h2 class="section-title mb-4">
         <?= e($pageData['formTitle']) ?>
       </h2>
-      <p class="text-gray-300 max-w-3xl mx-auto text-base md:text-lg leading-relaxed">
+      <p class="text-muted-foreground max-w-3xl mx-auto text-base md:text-lg leading-relaxed">
         <?= e($pageData['formDescription']) ?>
       </p>
     </div>
 
     <div class="pro-card p-6 md:p-10 shadow-2xl">
       <?php if (isset($_SESSION['success'])): ?>
-        <div class="mb-6 p-4 rounded-xl bg-emerald-950/40 border border-emerald-800 text-emerald-400 flex items-start gap-3 animate-fade-in">
+        <div class="mb-6 p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 flex items-start gap-3 animate-fade-in">
           <?= lucide_icon('CheckCircle2', 'w-6 h-6 flex-shrink-0 mt-0.5') ?>
           <div>
-            <h4 class="font-semibold text-white">Message Sent Successfully!</h4>
-            <p class="text-sm text-gray-300 mt-1"><?= e($_SESSION['success']) ?></p>
+            <h4 class="font-semibold text-foreground">Message Sent Successfully!</h4>
+            <p class="text-sm text-muted-foreground mt-1"><?= e($_SESSION['success']) ?></p>
           </div>
         </div>
         <?php unset($_SESSION['success']); ?>
       <?php endif; ?>
 
       <?php if (isset($_SESSION['error'])): ?>
-        <div class="mb-6 p-4 rounded-xl bg-red-950/40 border border-red-800 text-red-400 flex items-start gap-3 animate-fade-in">
+        <div class="mb-6 p-4 rounded-xl bg-red-500/10 border border-red-500/20 text-red-600 dark:text-red-400 flex items-start gap-3 animate-fade-in">
           <?= lucide_icon('AlertCircle', 'w-6 h-6 flex-shrink-0 mt-0.5') ?>
           <div>
-            <h4 class="font-semibold text-white">Error</h4>
-            <p class="text-sm text-gray-300 mt-1"><?= e($_SESSION['error']) ?></p>
+            <h4 class="font-semibold text-foreground">Error</h4>
+            <p class="text-sm text-muted-foreground mt-1"><?= e($_SESSION['error']) ?></p>
           </div>
         </div>
         <?php unset($_SESSION['error']); ?>
@@ -131,22 +130,22 @@ $contactPhone = $globalSettings['ownerPhone'] ?? '+94764404456';
 
       <form method="POST" action="<?= e(baseUrl('/contact')) ?>" class="space-y-6">
         <div class="space-y-2">
-          <label class="text-sm font-medium text-white block">Name *</label>
-          <input type="text" name="name" required class="w-full bg-[#1e293b] text-white rounded-lg p-3 focus:outline-none transition-colors border border-white/[0.06] focus:border-accent text-base" />
+          <label class="text-sm font-medium text-foreground block">Name *</label>
+          <input type="text" name="name" required class="w-full bg-card text-foreground rounded-lg p-3 focus:outline-none transition-colors border border-border focus:border-accent text-base" />
         </div>
 
         <div class="space-y-2">
-          <label class="text-sm font-medium text-white block">Email Address *</label>
-          <input type="email" name="email" required class="w-full bg-[#1e293b] text-white rounded-lg p-3 focus:outline-none transition-colors border border-white/[0.06] focus:border-accent text-base" />
+          <label class="text-sm font-medium text-foreground block">Email Address *</label>
+          <input type="email" name="email" required class="w-full bg-card text-foreground rounded-lg p-3 focus:outline-none transition-colors border border-border focus:border-accent text-base" />
         </div>
 
         <div class="space-y-2">
-          <label class="text-sm font-medium text-white block">Company Name <span class="text-gray-400 font-normal text-xs ml-1.5">(optional)</span></label>
-          <input type="text" name="company" class="w-full bg-[#1e293b] text-white rounded-lg p-3 focus:outline-none transition-colors border border-white/[0.06] focus:border-accent text-base" />
+          <label class="text-sm font-medium text-foreground block">Company Name <span class="text-muted-foreground font-normal text-xs ml-1.5">(optional)</span></label>
+          <input type="text" name="company" class="w-full bg-card text-foreground rounded-lg p-3 focus:outline-none transition-colors border border-border focus:border-accent text-base" />
         </div>
 
         <div class="space-y-3">
-          <label class="text-sm font-medium text-white block">Subject</label>
+          <label class="text-sm font-medium text-foreground block">Subject</label>
           <input type="hidden" name="subject" id="subject-input" value="General Inquiry">
           <div class="flex flex-wrap gap-3">
             <?php 
@@ -157,7 +156,7 @@ $contactPhone = $globalSettings['ownerPhone'] ?? '+94764404456';
               <button
                 type="button"
                 data-value="<?= e($sub) ?>"
-                class="subject-pill px-6 py-3 rounded-md text-base font-medium transition-all cursor-pointer <?= $isActive ? 'bg-white text-black font-bold shadow-md' : 'bg-[#627387] text-white hover:bg-[#6e8096]' ?>"
+                class="subject-pill px-6 py-3 rounded-md text-base font-medium transition-all cursor-pointer <?= $isActive ? 'active-pill shadow-md' : 'inactive-pill' ?>"
               >
                 <?= e($sub) ?>
               </button>
@@ -166,22 +165,22 @@ $contactPhone = $globalSettings['ownerPhone'] ?? '+94764404456';
         </div>
 
         <div class="space-y-2">
-          <label class="text-sm font-medium text-white block">Message *</label>
-          <textarea name="message" required rows="5" class="w-full bg-[#1e293b] text-white rounded-lg p-3 focus:outline-none transition-colors border border-white/[0.06] focus:border-accent text-base"></textarea>
+          <label class="text-sm font-medium text-foreground block">Message *</label>
+          <textarea name="message" required rows="5" class="w-full bg-card text-foreground rounded-lg p-3 focus:outline-none transition-colors border border-border focus:border-accent text-base"></textarea>
         </div>
 
         <div class="space-y-4">
-          <label class="text-sm font-medium text-white block">CAPTCHA</label>
+          <label class="text-sm font-medium text-foreground block">CAPTCHA</label>
           <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4">
             <div class="flex items-center gap-3 shrink-0">
-              <img src="<?= e(baseUrl('/captcha.php')) ?>" id="captcha-img" alt="CAPTCHA" class="rounded-lg shadow-inner border border-white/[0.06] h-[60px] w-[200px]" />
+              <img src="<?= e(baseUrl('/captcha.php')) ?>" id="captcha-img" alt="CAPTCHA" class="rounded-lg shadow-inner border border-border h-[60px] w-[200px]" />
               <div class="flex flex-col gap-2">
-                <button type="button" onclick="document.getElementById('captcha-img').src='<?= e(baseUrl('/captcha.php')) ?>?'+Math.random();" class="p-1.5 rounded-md hover:bg-white/5 text-white transition-colors cursor-pointer" title="Reload CAPTCHA">
+                <button type="button" onclick="document.getElementById('captcha-img').src='<?= e(baseUrl('/captcha.php')) ?>?'+Math.random();" class="p-1.5 rounded-md hover:bg-black/5 dark:hover:bg-white/5 text-foreground transition-colors cursor-pointer" title="Reload CAPTCHA">
                   <?= lucide_icon('RotateCw', 'w-5 h-5') ?>
                 </button>
               </div>
             </div>
-            <input type="text" name="captcha" required class="w-full sm:flex-1 bg-[#1e293b] text-white rounded-lg p-3 focus:outline-none text-center font-bold tracking-wider text-base h-[60px] border border-white/[0.06] focus:border-accent" placeholder="Enter CAPTCHA" />
+            <input type="text" name="captcha" required class="w-full sm:flex-1 bg-card text-foreground rounded-lg p-3 focus:outline-none text-center font-bold tracking-wider text-base h-[60px] border border-border focus:border-accent" placeholder="Enter CAPTCHA" />
           </div>
         </div>
 
@@ -199,20 +198,20 @@ $contactPhone = $globalSettings['ownerPhone'] ?? '+94764404456';
     <h2 class="section-title mb-8">
       <?= e($pageData['locationTitle']) ?>
     </h2>
-    <div class="w-full max-w-5xl max-h-8xl mx-auto rounded-3xl border border-white/[0.04] overflow-hidden bg-[#17202c]/60 backdrop-blur-sm shadow-2xl h-[450px] sm:h-[550px] md:h-[650px] transition-all duration-500 hover:border-white/[0.1]">
+    <div class="w-full max-w-5xl max-h-8xl mx-auto rounded-3xl border border-border overflow-hidden bg-card/60 backdrop-blur-sm shadow-2xl h-[450px] sm:h-[550px] md:h-[650px] transition-all duration-500 hover:border-border/30">
       <iframe
         src="<?= e($pageData['mapEmbedUrl']) ?>"
         width="100%"
         height="100%"
-        style="border: 0; filter: invert(90%) hue-rotate(180deg) brightness(95%) contrast(90%);"
+        style="border: 0;"
         allowfullscreen="true"
         loading="lazy"
         referrerpolicy="no-referrer-when-downgrade"
-        class="w-full h-full"
+        class="w-full h-full dark:invert-[90%] dark:hue-rotate-[180deg] dark:brightness-[95%] dark:contrast-[90%]"
       ></iframe>
     </div>
     <div class="max-w-5xl mx-auto mt-24 w-full">
-      <hr class="border-t border-white" />
+      <hr class="border-t border-border" />
     </div>
   </section>
 </div>

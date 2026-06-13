@@ -1,6 +1,16 @@
 <!DOCTYPE html>
-<html lang="en" class="dark antialiased font-sans" style="--font-sans: 'Geist', sans-serif; --font-mono: 'Geist Mono', monospace;">
+<html lang="en" class="antialiased font-sans" style="--font-sans: 'Geist', sans-serif; --font-mono: 'Geist Mono', monospace;">
 <head>
+  <script>
+    (function() {
+      const theme = localStorage.getItem('theme') || 'dark';
+      if (theme === 'dark') {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    })();
+  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin - Synalyze</title>
@@ -9,11 +19,49 @@
   <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&family=Geist:wght@100..900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="<?= e(baseUrl('/assets/css/app.css')) ?>">
   <script src="https://unpkg.com/lucide@0.475.0/dist/umd/lucide.min.js" defer></script>
+  <style>
+  :root {
+    --color-background: #ffffff;
+    --color-foreground: #0f172a;
+    --color-card: #f8fafc;
+    --color-card-muted: #e2e8f0;
+    --color-border: #cbd5e1;
+    --color-muted-foreground: #475569;
+  }
+  .dark {
+    --color-background: #0A0A0A;
+    --color-foreground: #f3f4f6;
+    --color-card: #121212;
+    --color-card-muted: #1f2937;
+    --color-border: #374151;
+    --color-muted-foreground: #9ca3af;
+  }
+  body {
+    background-color: var(--color-background) !important;
+    color: var(--color-foreground) !important;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  aside {
+    background-color: var(--color-card) !important;
+    border-color: var(--color-border) !important;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+  }
+  aside h1 {
+    color: var(--color-foreground) !important;
+  }
+  aside a {
+    color: var(--color-muted-foreground) !important;
+  }
+  aside a:hover, aside a.bg-gray-800 {
+    background-color: var(--color-card-muted) !important;
+    color: #00CED1 !important;
+  }
+  </style>
 </head>
-<body class="bg-[#0A0A0A] text-gray-100 flex min-h-screen flex-col md:flex-row">
+<body class="flex min-h-screen flex-col md:flex-row">
 
   <!-- Sidebar -->
-  <aside class="w-full md:w-64 bg-[#121212] border-r border-gray-800 p-6 flex flex-col gap-6">
+  <aside class="w-full md:w-64 border-r p-6 flex flex-col gap-6">
     <div>
       <h1 class="text-xl font-bold text-white flex items-center gap-2">
         <span class="w-6 h-6 rounded bg-[#00CED1] flex items-center justify-center text-black text-xs">S</span>
